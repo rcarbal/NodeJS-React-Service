@@ -52,6 +52,13 @@ $ git checkout your-branch-name
 $ git rebase master 
 ```
 
+### Secret keys
+
+Never commit and secret API keys (like those from sengrid or twilio etc) in git. They should go in a .env file. There is more information to do this at places like this:
+
+https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786
+
+
 ## 2. About the App
 
 
