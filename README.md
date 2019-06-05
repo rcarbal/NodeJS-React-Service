@@ -54,7 +54,7 @@ $ git rebase master
 
 ### Secret keys
 
-Never commit and secret API keys (like those from sengrid or twilio etc) in git. They should go in a .env file. There is more information to do this at places like this:
+Never commit secret API keys (like those from sengrid or twilio etc) in git, since we don't want hackers to have entire access to our accounts if git is hacked. They should go in a .env file. There is more information to do this at places like this:
 
 https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786
 
