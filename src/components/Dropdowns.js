@@ -94,7 +94,7 @@ class Dropdowns extends React.Component {
                                 return (
                                     <Form.Item
                                         key={index}
-                                        label={`Alternative name ${index}`}
+                                        label={`Alternative name ${index + 1}`}
                                         prop={`altnames:${index}`}
                                         rules={{
                                             type: 'object', required: true,
