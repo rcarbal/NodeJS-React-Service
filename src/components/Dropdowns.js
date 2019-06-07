@@ -1,11 +1,19 @@
 import React from 'react';
-import { Collapse, Input, Button, Form } from 'element-react/next';
+import  { 
+            Layout,
+            Collapse, 
+            Input, 
+            Button, 
+            Form, 
+            Select
+        } from 'element-react/next';
 
 class Dropdowns extends React.Component {
     constructor(props) {
         super(props);
   
         this.state = {
+            labelPosition: 'top',
             form: {
                 altnames: [{
                 key: 1,
@@ -133,8 +141,37 @@ class Dropdowns extends React.Component {
                     </Form>
                 </Collapse.Item>
                 <Collapse.Item title="Contact" name="2">
-                    <div>Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects;</div>
-                    <div>Visual feedback: reflect current state by updating or rearranging elements of the page.</div>
+                    <Form>
+                        <Layout.Row>
+                            <Layout.Col span='12'>
+                                <Form.Item>
+                                    <Input 
+                                        placeholder="First name" prepend={
+                                            <Select value="" placeholder="Select"> {
+                                                [
+                                                    'Mr.', 
+                                                    'Ms.', 
+                                                    'Mrs.',
+                                                    'Dr.',
+                                                    'Prof.'
+                                                ].map((item, index) => 
+                                                    <Select.Option 
+                                                        key={index} 
+                                                        label={item} 
+                                                        value={index} 
+                                                    />
+                                                )
+                                            }
+                                            </Select>
+                                        } 
+                                    />
+                                </Form.Item>
+                            </Layout.Col>
+                            <Layout.Col span='12'>
+                                <Input placeholder='Last name' gutter="20" />
+                            </Layout.Col>
+                        </Layout.Row>
+                    </Form>
                 </Collapse.Item>
                 <Collapse.Item title="Legal Parties" name="3">
                     <div>Simplify the process: keep operating process simple and intuitive;</div>
