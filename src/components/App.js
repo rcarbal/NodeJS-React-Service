@@ -1,6 +1,8 @@
 import React from 'react';
 import { Steps, Menu, Button } from 'element-react/next';
 
+import Dropdowns from './Dropdowns';
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -28,6 +30,7 @@ class App extends React.Component {
                     <Steps.Step title="Review & Pay"></Steps.Step>
                 </Steps>
             </Menu>
+            <Dropdowns></Dropdowns>
             <Button onClick={() => this.next()}>Next step</Button>
           </div>
         )
