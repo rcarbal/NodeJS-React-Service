@@ -22,7 +22,7 @@ class App extends React.Component {
         return (
           <div>
             <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
-                <Steps space={200} active={this.state.active} finishStatus="success">
+                <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
                     <Steps.Step title="Company & Contact"></Steps.Step>
                     <Steps.Step title="Options & Services"></Steps.Step>
                     <Steps.Step title="Review & Pay"></Steps.Step>
