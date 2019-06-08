@@ -171,6 +171,37 @@ class Dropdowns extends React.Component {
                                 <Input placeholder='Last name' gutter="20" />
                             </Layout.Col>
                         </Layout.Row>
+                        <Layout.Row>
+                            <Layout.Col span='12'>
+                                <Input type='email' placeholder="Email address" append={
+                                    <Select value=''> {
+                                        [
+                                            ".com",
+                                            ".net",
+                                            ".edu",
+                                            ".gov"
+                                        ].map((item, index) => 
+                                            <Select.Option 
+                                                key={index} 
+                                                label={item} 
+                                                value={index} 
+                                            />
+                                        )
+                                    } </Select>
+                                } />
+                            </Layout.Col> 
+                            <Layout.Col span='12'>
+                                <Input type='number' placeholder="Phone number" />
+                            </Layout.Col>               
+                        </Layout.Row>
+                        <Layout.Row>
+                            <Layout.Col span='12'>
+                                <Input type='text' placeholder="Street Address" />
+                            </Layout.Col>
+                            <Layout.Col span='12'>
+                                <Input type='text' placeholder="Street Address continued" />
+                            </Layout.Col>
+                        </Layout.Row>
                     </Form>
                 </Collapse.Item>
                 <Collapse.Item title="Legal Parties" name="3">
