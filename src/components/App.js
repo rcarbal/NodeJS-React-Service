@@ -1,35 +1,43 @@
 import React from 'react';
-import { Button } from 'element-react/next';
+import { Steps, Menu, Button } from 'element-react/next';
 
 import Dropdowns from './Dropdowns';
-import Header from './Header';
 
-class App extends React.Component {
+class App extends React.Component { 
+    // Function overriding React.Component constructor() 
     constructor(props) {
+        // Calls code in parent(React.Component)
         super(props);
       
         this.state = {
-          active: 0
+            active: 0
         };
-      }
+    }
       
-      next() {
+    next() {
         let active = this.state.active + 1;
         if (active > 3) {
           active = 0;
         }
         this.setState({ active });
-      }
-      
-      render() {
+    }
+    render() {
         return (
-          <div>
-            <Header></Header>
-            <Dropdowns></Dropdowns>
-            <Button onClick={() => this.next()}>Next step</Button>
-          </div>
+            <div>
+                <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
+                    <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
+                        <Steps.Step title="Company & Contact"></Steps.Step>
+                        <Steps.Step title="Options & Services"></Steps.Step>
+                        <Steps.Step title="Review & Pay"></Steps.Step>
+                    </Steps>
+                </Menu>
+                <Dropdowns></Dropdowns>
+                <Button onClick={() => this.next()}>
+                    Next step
+                </Button>        
+            </div>
         )
-      }
+    }
 }
 
 export default App;
