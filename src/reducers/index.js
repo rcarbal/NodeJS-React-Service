@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 export default combineReducers({
-    dummy: 'replace this'
+    // must use 'form' to work with redux-form
+    form: formReducer
 });
