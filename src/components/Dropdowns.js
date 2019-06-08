@@ -18,6 +18,10 @@ class Dropdowns extends React.Component {
                 altnames: [{
                     key: 1,
                     value: ''
+                }],
+                members: [{
+                    key: 1,
+                    value: ''
                 }]
             },
             states: [{
@@ -60,7 +64,7 @@ class Dropdowns extends React.Component {
               value: 'ID',
               label: 'Idaho'
             }, {
-              value: 'IN',
+              value: 'IL',
               label: 'Illinois'
             }, {
               value: 'IN',
@@ -205,6 +209,17 @@ class Dropdowns extends React.Component {
   
         e.preventDefault();
     }
+
+    removeMember(item, event) {
+        let index = this.state.form.members.indexOf(item);
+
+        if(index !== -1 ) {
+            this.state.form.members.splice(index, 1);
+            this.forceUpdate();
+        }
+
+        event.preventDefault();
+    }
   
     addAltName(e) {
         e.preventDefault();
@@ -216,16 +231,25 @@ class Dropdowns extends React.Component {
   
         this.forceUpdate();
     }
-  
-    onEmailChange(value) {
-        this.setState({
-            form: Object.assign({}, this.state.form, { email: value })
+
+    addMember(event) {
+        event.preventDefault();
+
+        this.state.form.members.push({
+            key: this.state.form.members.length,
+            value: ''
         });
     }
   
     onAltNameChange(index, value) {
         this.state.form.altnames[index].value = value;
+        //this.setState({ value: this.state.form.altnames[index].value })
         this.forceUpdate();
+    }
+
+    onMemberChange(index, value) {
+        this.state.form.members[index].value = value;
+        //this.setState({ value: this.state.form.members[index].value });
     }
 
     render() {
@@ -412,9 +436,49 @@ class Dropdowns extends React.Component {
                     </Form>
                 </Collapse.Item>
                 <Collapse.Item title="Legal Parties" name="3">
-                    <div>Simplify the process: keep operating process simple and intuitive;</div>
-                    <div>Definite and clear: enunciate your intentions clearly so that the users can quickly understand and make decisions;</div>
-                    <div>Easy to identify: the interface should be straightforward, which helps the users to identify and frees them from memorizing and recalling.</div>
+                    <Form ref="form" model={this.state.form} rules={this.state.rules}>
+                        {
+                            this.state.form.members.map((member, index) => {
+                                return (
+                                    <Form.Item
+                                        key={index}
+                                        label={`Member name ${index + 1}`}
+                                  
+                                        rules={{
+                                            type: 'object', required: true,
+                                            fields: {
+                                                value: { 
+                                                    required: true, 
+                                                    message: 'You must add at least one member', 
+                                                    trigger: 'blur' 
+                                                }
+                                            }
+                                        }}
+                                    >
+                                        <Input 
+                                            value={member.value} 
+                                            onChange={this.onMemberChange.bind(this, index)}>
+                                        </Input>
+                                        <Button 
+                                            onClick={this.removeMember.bind(this, member)}>
+                                            Delete
+                                        </Button>
+                                    </Form.Item>
+                                )
+                            })
+                        }
+                        <Form.Item>
+                            <Button 
+                                type="primary" 
+                                onClick={this.handleSubmit.bind(this)}>
+                                Submit
+                            </Button>
+                            <Button 
+                                onClick={this.addMember.bind(this)}>
+                                New name
+                            </Button>
+                        </Form.Item>                
+                    </Form>
                 </Collapse.Item>
             </Collapse>
         )
