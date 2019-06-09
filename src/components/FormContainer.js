@@ -32,17 +32,29 @@ class FormContainer extends React.Component {
         stateOfIncoporation: 'Delaware',
         type: 'LLC',
         companyName: '',
-        altnames: ''
+        altnames: '',
+        firstName: '',
+        lastName: ''
     }
 
-    onNameChange = (event) => {
+    onNameInput = (event) => {
       console.log(event.target.value);
       this.setState({ companyName: event.target.value });
     }
 
-    onAltNameChange = (event) => {
+    onAltNameInput = (event) => {
       console.log(event.target.value);
       this.setState({ altnames: event.target.value });
+    }
+
+    onFirstNameInput = (event) => {
+      console.log(event.target.value);
+      this.setState({ firstName: event.target.value });
+    }
+
+    onLastNameInput = (event) => {
+      console.log(event.target.value);
+      this.setState({ lastName: event.target.value });
     }
 
     handleSubmit(event) {
@@ -52,6 +64,8 @@ class FormContainer extends React.Component {
       alert(`
           The name '${this.state.companyName}' was submitted. 
           The alternate name '${this.state.altnames}' was submitted.
+          The first name for order delivery is '${this.state.firstName}'.
+          The last name for order delivery is '${this.state.lastName}'.
       `);
 
       let active = this.state.active + 1;
@@ -85,21 +99,54 @@ class FormContainer extends React.Component {
                         <Input disabled placeholder="LLC" value={this.state.type} />
                     </Form.Item>
                 </Layout.Col>  
-                <Form.Item>
-                    <div>Name</div>
-                    <input 
-                        type='text' 
-                        value={this.state.companyName}
-                        onChange={this.onNameChange} 
-                    />
-                    <div>Alternative name(s)</div>
-                    <input
-                        type='text'
-                        value={this.state.altnames}
-                        onChange={this.onAltNameChange}
-                    />
-                </Form.Item>
             </Layout.Row>
+            <Layout.Row>
+                <Layout.Col span='12'>
+                    <Form.Item>
+                          <div>Name</div>
+                          <input 
+                              type='text' 
+                              value={this.state.companyName}
+                              onChange={this.onNameInput} 
+                          />
+                    </Form.Item>
+                </Layout.Col>
+                <Layout.Col span='12'>
+                    <Form.Item>
+                        <div>Alternative name(s)</div>
+                        <input
+                            type='text'
+                            value={this.state.altnames}
+                            onChange={this.onAltNameInput}
+                        />
+                    </Form.Item>
+                </Layout.Col>
+            </Layout.Row>
+
+            <h3>Order Delivery</h3>
+            <Layout.Row>
+              <Layout.Col span='12'>
+                  <Form.Item>
+                      <div>First name</div>
+                      <input 
+                          type='text'
+                          value={this.state.firstName}
+                          onChange={this.onFirstNameInput}
+                      />
+                  </Form.Item>
+              </Layout.Col>
+              <Layout.Col span='12'>
+                  <Form.Item>
+                      <div>Last Name</div>
+                      <input 
+                          type='text'
+                          value={this.state.lastName}
+                          onChange={this.onLastNameInput}
+                      />
+                  </Form.Item>
+              </Layout.Col>
+            </Layout.Row>
+
         </Form>
 
         <Button type='submit' onClick={this.handleSubmit.bind(this)}>
