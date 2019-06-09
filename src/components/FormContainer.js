@@ -34,27 +34,43 @@ class FormContainer extends React.Component {
         companyName: '',
         altnames: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
+        email: '',
+        phoneNum: '',
+        streetAddress: '',
+        streetAddressTwo: ''
     }
 
     onNameInput = (event) => {
-      console.log(event.target.value);
-      this.setState({ companyName: event.target.value });
+        this.setState({ companyName: event.target.value });
     }
 
     onAltNameInput = (event) => {
-      console.log(event.target.value);
-      this.setState({ altnames: event.target.value });
+        this.setState({ altnames: event.target.value });
     }
 
     onFirstNameInput = (event) => {
-      console.log(event.target.value);
-      this.setState({ firstName: event.target.value });
+        this.setState({ firstName: event.target.value });
     }
 
     onLastNameInput = (event) => {
-      console.log(event.target.value);
-      this.setState({ lastName: event.target.value });
+        this.setState({ lastName: event.target.value });
+    }
+
+    onEmailInput = (event) => {
+      this.setState({ email: event.target.value });
+    }
+
+    onPhoneNumInput = (event) => {
+      this.setState({ phoneNum: event.target.value });
+    }
+
+    onStreetInput = (event) => {
+      this.setState({ streetAddress: event.target.value })
+    }
+
+    onStreetTwoInput = (event) => {
+      this.setState({ streetAddressTwo: event.target.value })
     }
 
     handleSubmit(event) {
@@ -66,6 +82,9 @@ class FormContainer extends React.Component {
           The alternate name '${this.state.altnames}' was submitted.
           The first name for order delivery is '${this.state.firstName}'.
           The last name for order delivery is '${this.state.lastName}'.
+          The email address is '${this.state.email}'.
+          The phone number is '${this.state.phoneNum}'.
+          The street is '${this.state.streetAddress}'.
       `);
 
       let active = this.state.active + 1;
@@ -145,6 +164,52 @@ class FormContainer extends React.Component {
                       />
                   </Form.Item>
               </Layout.Col>
+            </Layout.Row>
+
+            <Layout.Row>
+                <Layout.Col span='12'>
+                    <Form.Item>
+                        <div>Email address</div>
+                        <input 
+                            type='email'
+                            value={this.state.email}
+                            onChange={this.onEmailInput}
+                        />
+                    </Form.Item>
+                </Layout.Col>
+                <Layout.Col span='12'>
+                    <Form.Item>
+                        <div>Phone Number</div>
+                        <input 
+                            type='text'
+                            value={this.state.phoneNum}
+                            onChange={this.onPhoneNumInput}
+                        />
+                    </Form.Item>
+                </Layout.Col>
+            </Layout.Row>
+
+            <Layout.Row>
+                <Layout.Col span='12'>
+                    <Form.Item>
+                        <div>Street address</div>
+                        <input
+                            type='text'
+                            value={this.state.streetAddress}
+                            onChange={this.onStreetInput}
+                        />
+                    </Form.Item>
+                </Layout.Col>
+                <Layout.Col span='12'>
+                    <Form.Item>
+                        <div>Street address continued</div>
+                        <input
+                            type='text'
+                            value={this.state.streetAddressTwo}
+                            onChange={this.onStreetTwoInput}
+                        />
+                    </Form.Item>
+                </Layout.Col>
             </Layout.Row>
 
         </Form>
