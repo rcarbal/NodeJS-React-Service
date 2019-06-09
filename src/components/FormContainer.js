@@ -11,6 +11,13 @@ import  {
         } from 'element-react/next';
 
 class FormContainer extends React.Component {
+    state = {
+        active: 0,
+        stateOfIncoporation: 'Delaware',
+        type: 'LLC',
+        companyName: ''
+    }
+  /*
     constructor(props) {
         super(props);
 
@@ -20,19 +27,28 @@ class FormContainer extends React.Component {
             form: {
                 stateOfIncoporation: 'Delaware',
                 type: 'LLC',
-
+                companyName: ''
             }
         };
     }
-    
-    next() {
-        let active = this.state.active + 1;
+  */
+    handleChange = (event) => {
+      console.log(event.target.value);
+      this.setState({ companyName: event.target.value });
+    }
+
+    handleSubmit(event) {
+      
+      event.preventDefault();
+
+      alert(`The name ${this.state.companyName} was submitted`);
+
+      let active = this.state.active + 1;
         if (active > 3) {
           active = 0;
         }
         this.setState({ active });
     }
-
 
     render(){
       return (
@@ -44,28 +60,37 @@ class FormContainer extends React.Component {
             <Steps.Step title="Review & Pay"></Steps.Step>
           </Steps>
         </Menu>
-
-        <Form ref="form" model={this.state.form} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
+        <Form ref="form" model={this.state} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
             <Layout.Row>
                 <Layout.Col span="12">
                     <Form.Item>
                         <div>State of Incorporation</div>
-                        <Input disabled placeholder="Delaware" value={this.state.form.stateOfIncoporation} />
+                        <Input disabled placeholder="Delaware" value={this.state.stateOfIncoporation} />
                     </Form.Item>
                 </Layout.Col>
                 <Layout.Col span="12">
                     <Form.Item>
                         <div>Type</div>
-                        <Input disabled placeholder="LLC" value={this.state.form.type} />
+                        <Input disabled placeholder="LLC" value={this.state.type} />
                     </Form.Item>
                 </Layout.Col>  
+                <Form.Item>
+                    <div>Name</div>
+                    <input 
+                        type='text' 
+                        value={this.state.companyName}
+                        onChange={this.handleChange} 
+                    ></input>
+                </Form.Item>
             </Layout.Row>
         </Form>
 
-        <Button onClick={() => this.next()}>
+        <Button type='submit' onClick={this.handleSubmit.bind(this)}>
           Next step
         </Button> 
-        </div>   
+        </div>  
+        
+        
       )
     };
 }
