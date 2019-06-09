@@ -1,5 +1,4 @@
 import React from 'react';
-import { Steps, Menu, Button } from 'element-react/next';
 
 import FormContainer from './FormContainer';
 
@@ -12,7 +11,7 @@ class App extends React.Component {
         
     render() {
         return (
-            <div>
+            <div style={{fontFamily: 'Helvetica Neue, helvetica'}}>
                 <FormContainer></FormContainer>  
             </div>
         )
