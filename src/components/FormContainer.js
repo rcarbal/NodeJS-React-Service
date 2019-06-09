@@ -1,7 +1,6 @@
 import React from 'react';
 import  { 
-            Layout,
-            Collapse, 
+            Layout, 
             Input, 
             Button,
             Steps, 
@@ -11,12 +10,7 @@ import  {
         } from 'element-react/next';
 
 class FormContainer extends React.Component {
-    state = {
-        active: 0,
-        stateOfIncoporation: 'Delaware',
-        type: 'LLC',
-        companyName: ''
-    }
+    
   /*
     constructor(props) {
         super(props);
@@ -32,16 +26,33 @@ class FormContainer extends React.Component {
         };
     }
   */
-    handleChange = (event) => {
+
+    state = {
+        active: 0,
+        stateOfIncoporation: 'Delaware',
+        type: 'LLC',
+        companyName: '',
+        altnames: ''
+    }
+
+    onNameChange = (event) => {
       console.log(event.target.value);
       this.setState({ companyName: event.target.value });
+    }
+
+    onAltNameChange = (event) => {
+      console.log(event.target.value);
+      this.setState({ altnames: event.target.value });
     }
 
     handleSubmit(event) {
       
       event.preventDefault();
 
-      alert(`The name ${this.state.companyName} was submitted`);
+      alert(`
+          The name '${this.state.companyName}' was submitted. 
+          The alternate name '${this.state.altnames}' was submitted.
+      `);
 
       let active = this.state.active + 1;
         if (active > 3) {
@@ -79,8 +90,14 @@ class FormContainer extends React.Component {
                     <input 
                         type='text' 
                         value={this.state.companyName}
-                        onChange={this.handleChange} 
-                    ></input>
+                        onChange={this.onNameChange} 
+                    />
+                    <div>Alternative name(s)</div>
+                    <input
+                        type='text'
+                        value={this.state.altnames}
+                        onChange={this.onAltNameChange}
+                    />
                 </Form.Item>
             </Layout.Row>
         </Form>
