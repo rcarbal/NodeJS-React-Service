@@ -17,7 +17,11 @@ class FormContainer extends React.Component {
         this.state = {
             // Toggles nav steps
             active: 0,
-            
+            form: {
+                stateOfIncoporation: 'Delaware',
+                type: 'LLC',
+
+            }
         };
     }
     
@@ -40,6 +44,24 @@ class FormContainer extends React.Component {
             <Steps.Step title="Review & Pay"></Steps.Step>
           </Steps>
         </Menu>
+
+        <Form ref="form" model={this.state.form} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
+            <Layout.Row>
+                <Layout.Col span="12">
+                    <Form.Item>
+                        <div>State of Incorporation</div>
+                        <Input disabled placeholder="Delaware" value={this.state.form.stateOfIncoporation} />
+                    </Form.Item>
+                </Layout.Col>
+                <Layout.Col span="12">
+                    <Form.Item>
+                        <div>Type</div>
+                        <Input disabled placeholder="LLC" value={this.state.form.type} />
+                    </Form.Item>
+                </Layout.Col>  
+            </Layout.Row>
+        </Form>
+
         <Button onClick={() => this.next()}>
           Next step
         </Button> 
