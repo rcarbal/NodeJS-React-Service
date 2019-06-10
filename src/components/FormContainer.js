@@ -21,12 +21,11 @@ class FormContainer extends React.Component {
             form: {
                 stateOfIncoporation: 'Delaware',
                 type: 'LLC',
-                companyName: ''
+                name: ''
             }
         };
     }
   */
-
     state = {
         active: 0,
         stateOfIncoporation: 'Delaware',
@@ -198,7 +197,9 @@ class FormContainer extends React.Component {
         zip: '',
         countries: [
           { value: 'United States of America', label: 'USA' }
-        ]
+        ],
+        memberName: '',
+        addlMemberNames: ''
     }
 
     onNameInput = (event) => {
@@ -237,20 +238,33 @@ class FormContainer extends React.Component {
       this.setState({ city: event.target.value });
     }
 
-    onStatesSelect = (selectedState, event) => {
-      let index = this.state.usStates.indexOf(selectedState);
+    onStatesSelect = (event) => {
+      let index = this.state.usStates.findIndex(function(usState) {
+          return usState.value === event.target.value;
+      })
 
-
-      this.setState({ usStates: event.target.value })
+      this.setState({ usStates: event[index].value.target.value })
     }
 
     onZipInput = (event) => {
       this.setState({ zip: event.target.value });
     }
 
+    onMemberInput = (event) => {
+      this.setState({ memberName: event.target.value });
+    }
+
+    onAddlMemberInput = (event) => {
+      this.setState({ addlMemberNames: event.target.value });
+    }
+
     handleSubmit(event) {
-      
+    
       event.preventDefault();
+
+      let index = this.state.usStates.findIndex(function(usState) {
+        return usState.value === event.target.value;
+    })
 
       alert(`
           The name '${this.state.companyName}' was submitted. 
@@ -261,6 +275,7 @@ class FormContainer extends React.Component {
           The phone number is ${this.state.phoneNum}.
           The address is ${this.state.streetAddress} ${this.state.city}, 
           ${this.state.usStates[4].value} ${this.state.zip}.
+          LLC members include: ${this.state.memberName} ${this.state.addlMemberNames}.
       `);
 
       let active = this.state.active + 1;
@@ -269,7 +284,7 @@ class FormContainer extends React.Component {
         }
         this.setState({ active });
     }
-
+    
     render(){
       return (
         <div>
@@ -435,7 +450,27 @@ class FormContainer extends React.Component {
                         } </Select>
                     </Form.Item>
                 </Layout.Col>
-            </Layout.Row>                 
+            </Layout.Row>
+            <h3>Members</h3>
+            <Layout.Row>
+                <Layout.Col span='12'>
+                    <div>Name</div>
+                    <input
+                        type='text'
+                        value={this.state.memberName}
+                        onChange={this.onMemberInput}
+                    />
+                </Layout.Col>
+                <Layout.Col span='12'>
+                    <div>Additional members(if applicable)</div>
+                    <input
+                        type='text'
+                        value={this.state.addlMemberNames}
+                        onChange={this.onAddlMemberInput}
+                    />
+                </Layout.Col>
+            </Layout.Row>
+
         </Form>
 
         <Button type='submit' onClick={this.handleSubmit.bind(this)}>
