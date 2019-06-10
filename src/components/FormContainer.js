@@ -38,7 +38,167 @@ class FormContainer extends React.Component {
         email: '',
         phoneNum: '',
         streetAddress: '',
-        streetAddressTwo: ''
+        streetAddressTwo: '',
+        city: '',
+        usStates: [
+          { value: 'AL',
+            label: 'Alabama'
+          }, {
+            value: 'AK',
+            label: 'Alaska'
+          }, {
+            value: 'AZ',
+            label: 'Arizona'
+          }, {
+            value: 'AR',
+            label: 'Arkansas'
+          }, {
+            value: 'CA',
+            label: 'California'
+          }, {
+            value: 'CO',
+            label: 'Colorado'
+          }, {
+            value: 'CT',
+            label: 'Connecticut'
+          }, {
+            value: 'DE',
+            label: 'Delaware'
+          }, {
+            value: 'DC',
+            label: 'District of Columbia'
+          }, {
+            value: 'FL',
+            label: 'Florida'
+          }, {
+            value: 'GA',
+            label: 'Georgia'
+          }, {
+            value: 'HI',
+            label: 'Hawaii'
+          }, {
+            value: 'ID',
+            label: 'Idaho'
+          }, {
+            value: 'IL',
+            label: 'Illinois'
+          }, {
+            value: 'IN',
+            label: 'Indiana'
+          }, {
+            value: 'IA',
+            label: 'Iowa'
+          }, {
+            value: 'KS',
+            label: 'Kansas'
+          }, {
+            value: 'KY',
+            label: 'Kentucky'
+          }, {
+            value: 'LA',
+            label: 'Louisiana'
+          }, {
+            value: 'ME',
+            label: 'Maine'
+          }, {
+            value: 'MD',
+            label: 'Maryland'
+          }, {
+            value: 'MA',
+            label: 'Massachusetts'
+          }, {
+            value: 'MI',
+            label: 'Michigan'
+          }, {
+            value: 'MN',
+            label: 'Minnesota'
+          }, {
+            value: 'MS',
+            label: 'Mississippi'
+          }, {
+            value: 'MO',
+            label: 'Missouri'
+          }, {
+            value: 'MT',
+            label: 'Montana'
+          }, {
+            value: 'NE',
+            label: 'Nebraska'
+          }, {
+            value: 'NV',
+            label: 'Nevada'
+          }, {
+            value: 'NH',
+            label: 'New Hampshire'
+          }, {
+            value: 'NJ',
+            label: 'New Jersey'
+          }, {
+            value: 'NM',
+            label: 'New Mexico'
+          }, {
+            value: 'NY',
+            label: 'New York'
+          }, {
+            value: 'NC',
+            label: 'North Carolina'
+          }, {
+            value: 'ND',
+            label: 'North Dakota'
+          }, {
+            value: 'OH',
+            label: 'Ohio'
+          }, {
+            value: 'OK',
+            label: 'Oklahoma'
+          }, {
+            value: 'OR',
+            label: 'Oregon'
+          }, {
+            value: 'PA',
+            label: 'Pennsylvania'
+          }, {
+            value: 'RI',
+            label: 'Rhode Island'
+          }, {
+            value: 'SC',
+            label: 'South Carolina'
+          }, {
+            value: 'SD',
+            label: 'South Dakota'
+          }, {
+            value: 'TN',
+            label: 'Tennessee'
+          }, {
+            value: 'TX',
+            label: 'Texas'
+          }, {
+            value: 'UT',
+            label: 'Utah'
+          }, {
+            value: 'VT',
+            label: 'Vermont'
+          }, {
+            value: 'VA',
+            label: 'Virginia'
+          }, {
+            value: 'WA',
+            label: 'Washington'
+          }, {
+            value: 'WV',
+            label: 'West Virginia'
+          }, {
+            value: 'WI',
+            label: 'Wisconsin'
+          }, {
+            value: 'WY',
+            label: 'Wyoming'
+          }
+        ],
+        zip: '',
+        countries: [
+          { value: 'United States of America', label: 'USA' }
+        ]
     }
 
     onNameInput = (event) => {
@@ -73,6 +233,21 @@ class FormContainer extends React.Component {
       this.setState({ streetAddressTwo: event.target.value })
     }
 
+    onCityInput = (event) => {
+      this.setState({ city: event.target.value });
+    }
+
+    onStatesSelect = (selectedState, event) => {
+      let index = this.state.usStates.indexOf(selectedState);
+
+
+      this.setState({ usStates: event.target.value })
+    }
+
+    onZipInput = (event) => {
+      this.setState({ zip: event.target.value });
+    }
+
     handleSubmit(event) {
       
       event.preventDefault();
@@ -83,8 +258,9 @@ class FormContainer extends React.Component {
           The first name for order delivery is '${this.state.firstName}'.
           The last name for order delivery is '${this.state.lastName}'.
           The email address is '${this.state.email}'.
-          The phone number is '${this.state.phoneNum}'.
-          The street is '${this.state.streetAddress}'.
+          The phone number is ${this.state.phoneNum}.
+          The address is ${this.state.streetAddress} ${this.state.city}, 
+          ${this.state.usStates[4].value} ${this.state.zip}.
       `);
 
       let active = this.state.active + 1;
@@ -211,7 +387,55 @@ class FormContainer extends React.Component {
                     </Form.Item>
                 </Layout.Col>
             </Layout.Row>
-
+            <Layout.Row>
+                <Layout.Col span='11'>
+                    <Form.Item>
+                        <input 
+                            type='text' 
+                            value={this.state.city}
+                            onChange={this.onCityInput}    
+                        />
+                    </Form.Item>
+                </Layout.Col>
+                <Layout.Col span='5'>
+                    <Form.Item>
+                        <div>State</div>
+                        <Select value={this.state.value}> {
+                            this.state.usStates.map(usState => {
+                                return  <Select.Option 
+                                            key={usState.value} 
+                                            value={usState.value} 
+                                            onChange={usState.value}
+                                        />
+                            })
+                        } </Select>
+                    </Form.Item>
+                </Layout.Col>
+                <Layout.Col span="8">
+                    <Form.Item>
+                        <div>Zip Code</div>
+                        <input 
+                            type="text"
+                            value={this.state.zip}
+                            onChange={this.onZipInput}
+                        />
+                    </Form.Item>
+                </Layout.Col>
+                <Layout.Col span='24'>
+                    <Form.Item>
+                        <div>Country</div>
+                        <Select value={ this.state.value }> {
+                            this.state.countries.map(country => {
+                                return  <Select.Option
+                                            key={country.value}
+                                            label={country.label}
+                                            value={country.value}
+                                        />
+                            })
+                        } </Select>
+                    </Form.Item>
+                </Layout.Col>
+            </Layout.Row>                 
         </Form>
 
         <Button type='submit' onClick={this.handleSubmit.bind(this)}>
@@ -236,160 +460,7 @@ export default FormContainer;
                     key: 1,
                     value: ''
                 }],
-                states: [{
-                  value: 'AL',
-                  label: 'Alabama'
-                }, {
-                  value: 'AK',
-                  label: 'Alaska'
-                }, {
-                  value: 'AZ',
-                  label: 'Arizona'
-                }, {
-                  value: 'AR',
-                  label: 'Arkansas'
-                }, {
-                  value: 'CA',
-                  label: 'California'
-                }, {
-                  value: 'CO',
-                  label: 'Colorado'
-                }, {
-                  value: 'CT',
-                  label: 'Connecticut'
-                }, {
-                  value: 'DE',
-                  label: 'Delaware'
-                }, {
-                  value: 'DC',
-                  label: 'District of Columbia'
-                }, {
-                  value: 'FL',
-                  label: 'Florida'
-                }, {
-                  value: 'GA',
-                  label: 'Georgia'
-                }, {
-                  value: 'HI',
-                  label: 'Hawaii'
-                }, {
-                  value: 'ID',
-                  label: 'Idaho'
-                }, {
-                  value: 'IL',
-                  label: 'Illinois'
-                }, {
-                  value: 'IN',
-                  label: 'Indiana'
-                }, {
-                  value: 'IA',
-                  label: 'Iowa'
-                }, {
-                  value: 'KS',
-                  label: 'Kansas'
-                }, {
-                  value: 'KY',
-                  label: 'Kentucky'
-                }, {
-                  value: 'LA',
-                  label: 'Louisiana'
-                }, {
-                  value: 'ME',
-                  label: 'Maine'
-                }, {
-                  value: 'MD',
-                  label: 'Maryland'
-                }, {
-                  value: 'MA',
-                  label: 'Massachusetts'
-                }, {
-                  value: 'MI',
-                  label: 'Michigan'
-                }, {
-                  value: 'MN',
-                  label: 'Minnesota'
-                }, {
-                  value: 'MS',
-                  label: 'Mississippi'
-                }, {
-                  value: 'MO',
-                  label: 'Missouri'
-                }, {
-                  value: 'MT',
-                  label: 'Montana'
-                }, {
-                  value: 'NE',
-                  label: 'Nebraska'
-                }, {
-                  value: 'NV',
-                  label: 'Nevada'
-                }, {
-                  value: 'NH',
-                  label: 'New Hampshire'
-                }, {
-                  value: 'NJ',
-                  label: 'New Jersey'
-                }, {
-                  value: 'NM',
-                  label: 'New Mexico'
-                }, {
-                  value: 'NY',
-                  label: 'New York'
-                }, {
-                  value: 'NC',
-                  label: 'North Carolina'
-                }, {
-                  value: 'ND',
-                  label: 'North Dakota'
-                }, {
-                  value: 'OH',
-                  label: 'Ohio'
-                }, {
-                  value: 'OK',
-                  label: 'Oklahoma'
-                }, {
-                  value: 'OR',
-                  label: 'Oregon'
-                }, {
-                  value: 'PA',
-                  label: 'Pennsylvania'
-                }, {
-                  value: 'RI',
-                  label: 'Rhode Island'
-                }, {
-                  value: 'SC',
-                  label: 'South Carolina'
-                }, {
-                  value: 'SD',
-                  label: 'South Dakota'
-                }, {
-                  value: 'TN',
-                  label: 'Tennessee'
-                }, {
-                  value: 'TX',
-                  label: 'Texas'
-                }, {
-                  value: 'UT',
-                  label: 'Utah'
-                }, {
-                  value: 'VT',
-                  label: 'Vermont'
-                }, {
-                  value: 'VA',
-                  label: 'Virginia'
-                }, {
-                  value: 'WA',
-                  label: 'Washington'
-                }, {
-                  value: 'WV',
-                  label: 'West Virginia'
-                }, {
-                  value: 'WI',
-                  label: 'Wisconsin'
-                }, {
-                  value: 'WY',
-                  label: 'Wyoming'
-                }],
+                states: [],
                 country: [{
                   value: 'USA',
                   label: 'United States of America'
