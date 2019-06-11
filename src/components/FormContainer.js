@@ -3,6 +3,7 @@ import  {
             Layout, 
             Input, 
             Button,
+            Collapse,
             Steps, 
             Menu, 
             Form, 
@@ -219,267 +220,285 @@ class FormContainer extends React.Component {
     }
 
     onEmailInput = (event) => {
-      this.setState({ email: event.target.value });
+        this.setState({ email: event.target.value });
     }
 
     onPhoneNumInput = (event) => {
-      this.setState({ phoneNum: event.target.value });
+        this.setState({ phoneNum: event.target.value });
     }
 
     onStreetInput = (event) => {
-      this.setState({ streetAddress: event.target.value })
+        this.setState({ streetAddress: event.target.value })
     }
 
     onStreetTwoInput = (event) => {
-      this.setState({ streetAddressTwo: event.target.value })
+        this.setState({ streetAddressTwo: event.target.value })
     }
 
     onCityInput = (event) => {
-      this.setState({ city: event.target.value });
+        this.setState({ city: event.target.value });
     }
 
     onStatesSelect = (event) => {
-      let index = this.state.usStates.findIndex(function(usState) {
-          return usState.value === event.target.value;
-      })
+        let index = this.state.usStates.findIndex(function(usState) {
+            return usState.value === event.target.value;
+        })
 
-      this.setState({ usStates: event[index].value.target.value })
+        this.setState({ usStates: event[index].value.target.value })
     }
 
     onZipInput = (event) => {
-      this.setState({ zip: event.target.value });
+        this.setState({ zip: event.target.value });
     }
 
     onMemberInput = (event) => {
-      this.setState({ memberName: event.target.value });
+        this.setState({ memberName: event.target.value });
     }
 
     onAddlMemberInput = (event) => {
-      this.setState({ addlMemberNames: event.target.value });
+        this.setState({ addlMemberNames: event.target.value });
     }
 
     handleSubmit(event) {
     
-      event.preventDefault();
+        event.preventDefault();
 
-      let index = this.state.usStates.findIndex(function(usState) {
-        return usState.value === event.target.value;
-    })
+        let index = this.state.usStates.findIndex(function(usState) {
+            return usState.value === event.target.value;
+        })
 
-      alert(`
-          The name '${this.state.companyName}' was submitted. 
-          The alternate name '${this.state.altnames}' was submitted.
-          The first name for order delivery is '${this.state.firstName}'.
-          The last name for order delivery is '${this.state.lastName}'.
-          The email address is '${this.state.email}'.
-          The phone number is ${this.state.phoneNum}.
-          The address is ${this.state.streetAddress} ${this.state.city}, 
-          ${this.state.usStates[4].value} ${this.state.zip}.
-          LLC members include: ${this.state.memberName} ${this.state.addlMemberNames}.
-      `);
+        alert(`
+            The name '${this.state.companyName}' was submitted. 
+            The alternate name '${this.state.altnames}' was submitted.
+            The first name for order delivery is '${this.state.firstName}'.
+            The last name for order delivery is '${this.state.lastName}'.
+            The email address is '${this.state.email}'.
+            The phone number is ${this.state.phoneNum}.
+            The address is ${this.state.streetAddress} ${this.state.city}, 
+            ${this.state.usStates[4].value} ${this.state.zip}.
+            LLC members include: ${this.state.memberName} ${this.state.addlMemberNames}.
+        `);
 
-      let active = this.state.active + 1;
-        if (active > 3) {
-          active = 0;
-        }
+        let active = this.state.active + 1;
+            if (active > 3) {
+                active = 0;
+            }
         this.setState({ active });
-    }
+    };
     
     render(){
-      return (
-        <div>
-        <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
-          <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
-            <Steps.Step title="Company & Contact"></Steps.Step>
-            <Steps.Step title="Options & Services"></Steps.Step>
-            <Steps.Step title="Review & Pay"></Steps.Step>
-          </Steps>
-        </Menu>
-        <Form ref="form" model={this.state} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
-            <Layout.Row>
-                <Layout.Col span="12">
-                    <Form.Item>
-                        <div>State of Incorporation</div>
-                        <Input disabled placeholder="Delaware" value={this.state.stateOfIncoporation} />
-                    </Form.Item>
-                </Layout.Col>
-                <Layout.Col span="12">
-                    <Form.Item>
-                        <div>Type</div>
-                        <Input disabled placeholder="LLC" value={this.state.type} />
-                    </Form.Item>
-                </Layout.Col>  
-            </Layout.Row>
-            <Layout.Row>
-                <Layout.Col span='12'>
-                    <Form.Item>
-                          <div>Name</div>
-                          <input 
-                              type='text' 
-                              value={this.state.companyName}
-                              onChange={this.onNameInput} 
-                          />
-                    </Form.Item>
-                </Layout.Col>
-                <Layout.Col span='12'>
-                    <Form.Item>
-                        <div>Alternative name(s)</div>
-                        <input
-                            type='text'
-                            value={this.state.altnames}
-                            onChange={this.onAltNameInput}
-                        />
-                    </Form.Item>
-                </Layout.Col>
-            </Layout.Row>
+        return (
+            <div>
+                <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
+                  <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
+                    <Steps.Step title="Company & Contact"></Steps.Step>
+                    <Steps.Step title="Options & Services"></Steps.Step>
+                    <Steps.Step title="Review & Pay"></Steps.Step>
+                  </Steps>
+                </Menu>
 
-            <h3>Order Delivery</h3>
-            <Layout.Row>
-              <Layout.Col span='12'>
-                  <Form.Item>
-                      <div>First name</div>
-                      <input 
-                          type='text'
-                          value={this.state.firstName}
-                          onChange={this.onFirstNameInput}
-                      />
-                  </Form.Item>
-              </Layout.Col>
-              <Layout.Col span='12'>
-                  <Form.Item>
-                      <div>Last Name</div>
-                      <input 
-                          type='text'
-                          value={this.state.lastName}
-                          onChange={this.onLastNameInput}
-                      />
-                  </Form.Item>
-              </Layout.Col>
-            </Layout.Row>
-
-            <Layout.Row>
-                <Layout.Col span='12'>
-                    <Form.Item>
-                        <div>Email address</div>
-                        <input 
-                            type='email'
-                            value={this.state.email}
-                            onChange={this.onEmailInput}
-                        />
-                    </Form.Item>
-                </Layout.Col>
-                <Layout.Col span='12'>
-                    <Form.Item>
-                        <div>Phone Number</div>
-                        <input 
-                            type='text'
-                            value={this.state.phoneNum}
-                            onChange={this.onPhoneNumInput}
-                        />
-                    </Form.Item>
-                </Layout.Col>
-            </Layout.Row>
-
-            <Layout.Row>
-                <Layout.Col span='12'>
-                    <Form.Item>
-                        <div>Street address</div>
-                        <input
-                            type='text'
-                            value={this.state.streetAddress}
-                            onChange={this.onStreetInput}
-                        />
-                    </Form.Item>
-                </Layout.Col>
-                <Layout.Col span='12'>
-                    <Form.Item>
-                        <div>Street address continued</div>
-                        <input
-                            type='text'
-                            value={this.state.streetAddressTwo}
-                            onChange={this.onStreetTwoInput}
-                        />
-                    </Form.Item>
-                </Layout.Col>
-            </Layout.Row>
-            <Layout.Row>
-                <Layout.Col span='11'>
-                    <Form.Item>
-                        <input 
-                            type='text' 
-                            value={this.state.city}
-                            onChange={this.onCityInput}    
-                        />
-                    </Form.Item>
-                </Layout.Col>
-                <Layout.Col span='5'>
-                    <Form.Item>
-                        <div>State</div>
-                        <Select value={this.state.value}> {
-                            this.state.usStates.map(usState => {
-                                return  <Select.Option 
-                                            key={usState.value} 
-                                            value={usState.value} 
-                                            onChange={usState.value}
+                <Form ref="form" model={this.state} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
+                {/*
+                    <Collapse>
+                        <Collapse.Item title="Company" name="1">
+                */}
+                            <Layout.Row>
+                                <Layout.Col span="12">
+                                    <Form.Item>
+                                        <div>State of Incorporation</div>
+                                        <Input disabled placeholder="Delaware" value={this.state.stateOfIncoporation} />
+                                    </Form.Item>
+                                </Layout.Col>
+                                <Layout.Col span="12">
+                                    <Form.Item>
+                                        <div>Type</div>
+                                        <Input disabled placeholder="LLC" value={this.state.type} />
+                                    </Form.Item>
+                                </Layout.Col>  
+                            </Layout.Row>
+                            <Layout.Row>
+                                <Layout.Col span='12'>
+                                    <Form.Item>
+                                          <div>Name</div>
+                                          <input 
+                                              type='text' 
+                                              value={this.state.companyName}
+                                              onChange={this.onNameInput} 
+                                          />
+                                    </Form.Item>
+                                </Layout.Col>
+                                <Layout.Col span='12'>
+                                    <Form.Item>
+                                        <div>Alternative name(s)</div>
+                                        <input
+                                            type='text'
+                                            value={this.state.altnames}
+                                            onChange={this.onAltNameInput}
                                         />
-                            })
-                        } </Select>
-                    </Form.Item>
-                </Layout.Col>
-                <Layout.Col span="8">
-                    <Form.Item>
-                        <div>Zip Code</div>
-                        <input 
-                            type="text"
-                            value={this.state.zip}
-                            onChange={this.onZipInput}
-                        />
-                    </Form.Item>
-                </Layout.Col>
-                <Layout.Col span='24'>
-                    <Form.Item>
-                        <div>Country</div>
-                        <Select value={ this.state.value }> {
-                            this.state.countries.map(country => {
-                                return  <Select.Option
-                                            key={country.value}
-                                            label={country.label}
-                                            value={country.value}
-                                        />
-                            })
-                        } </Select>
-                    </Form.Item>
-                </Layout.Col>
-            </Layout.Row>
-            <h3>Members</h3>
-            <Layout.Row>
-                <Layout.Col span='12'>
-                    <div>Name</div>
-                    <input
-                        type='text'
-                        value={this.state.memberName}
-                        onChange={this.onMemberInput}
-                    />
-                </Layout.Col>
-                <Layout.Col span='12'>
-                    <div>Additional members(if applicable)</div>
-                    <input
-                        type='text'
-                        value={this.state.addlMemberNames}
-                        onChange={this.onAddlMemberInput}
-                    />
-                </Layout.Col>
-            </Layout.Row>
+                                    </Form.Item>
+                                </Layout.Col>
+                            </Layout.Row>
+                    {/*        
+                        </Collapse.Item>
 
-        </Form>
+                        <Collapse.Item title="Contact" name="2">
+                    */}
+                            <h3>Order Delivery</h3>
+                                <Layout.Row>
+                                  <Layout.Col span='12'>
+                                      <Form.Item>
+                                          <div>First name</div>
+                                          <input 
+                                              type='text'
+                                              value={this.state.firstName}
+                                              onChange={this.onFirstNameInput}
+                                          />
+                                      </Form.Item>
+                                  </Layout.Col>
+                                  <Layout.Col span='12'>
+                                      <Form.Item>
+                                          <div>Last Name</div>
+                                          <input 
+                                              type='text'
+                                              value={this.state.lastName}
+                                              onChange={this.onLastNameInput}
+                                          />
+                                      </Form.Item>
+                                  </Layout.Col>
+                                </Layout.Row>
 
-        <Button type='submit' onClick={this.handleSubmit.bind(this)}>
-          Next step
-        </Button> 
-        </div>  
-        
-        
-      )
+                                <Layout.Row>
+                                    <Layout.Col span='12'>
+                                        <Form.Item>
+                                            <div>Email address</div>
+                                            <input 
+                                                type='email'
+                                                value={this.state.email}
+                                                onChange={this.onEmailInput}
+                                            />
+                                        </Form.Item>
+                                    </Layout.Col>
+                                    <Layout.Col span='12'>
+                                        <Form.Item>
+                                            <div>Phone Number</div>
+                                            <input 
+                                                type='text'
+                                                value={this.state.phoneNum}
+                                                onChange={this.onPhoneNumInput}
+                                            />
+                                        </Form.Item>
+                                    </Layout.Col>
+                                </Layout.Row>
+
+                                <Layout.Row>
+                                    <Layout.Col span='12'>
+                                        <Form.Item>
+                                            <div>Street address</div>
+                                            <input
+                                                type='text'
+                                                value={this.state.streetAddress}
+                                                onChange={this.onStreetInput}
+                                            />
+                                        </Form.Item>
+                                    </Layout.Col>
+                                    <Layout.Col span='12'>
+                                        <Form.Item>
+                                            <div>Street address continued</div>
+                                            <input
+                                                type='text'
+                                                value={this.state.streetAddressTwo}
+                                                onChange={this.onStreetTwoInput}
+                                            />
+                                        </Form.Item>
+                                    </Layout.Col>
+                                </Layout.Row>
+                                <Layout.Row>
+                                    <Layout.Col span='11'>
+                                        <Form.Item>
+                                            <input 
+                                                type='text' 
+                                                value={this.state.city}
+                                                onChange={this.onCityInput}    
+                                            />
+                                        </Form.Item>
+                                    </Layout.Col>
+                                    <Layout.Col span='5'>
+                                        <Form.Item>
+                                            <div>State</div>
+                                            <Select value={this.state.value}> {
+                                                this.state.usStates.map(usState => {
+                                                    return  <Select.Option 
+                                                                key={usState.value} 
+                                                                value={usState.value} 
+                                                                onChange={usState.value}
+                                                            />
+                                                })
+                                            } </Select>
+                                        </Form.Item>
+                                    </Layout.Col>
+                                    <Layout.Col span="8">
+                                        <Form.Item>
+                                            <div>Zip Code</div>
+                                            <input 
+                                                type="text"
+                                                value={this.state.zip}
+                                                onChange={this.onZipInput}
+                                            />
+                                        </Form.Item>
+                                    </Layout.Col>
+                                    <Layout.Col span='24'>
+                                        <Form.Item>
+                                            <div>Country</div>
+                                            <Select value={ this.state.value }> {
+                                                this.state.countries.map(country => {
+                                                    return  <Select.Option
+                                                                key={country.value}
+                                                                label={country.label}
+                                                                value={country.value}
+                                                            />
+                                                })
+                                            } </Select>
+                                        </Form.Item>
+                                    </Layout.Col>
+                                </Layout.Row>
+                        {/*
+                            </Collapse.Item>
+
+                            <Collapse.Item title="Legal Parties" name="3">
+                        */}
+                                <h3>Members</h3>
+                                <Layout.Row>
+                                    <Layout.Col span='12'>
+                                        <Form.Item>
+                                            <div>Name</div>
+                                            <input
+                                                type='text'
+                                                value={this.state.memberName}
+                                                onChange={this.onMemberInput}
+                                            />
+                                        </Form.Item>
+                                    </Layout.Col>
+                                    <Layout.Col span='12'>
+                                        <Form.Item>
+                                            <div>Additional members(if applicable)</div>
+                                            <input
+                                                type='text'
+                                                value={this.state.addlMemberNames}
+                                                onChange={this.onAddlMemberInput}
+                                            />
+                                        </Form.Item>
+                                    </Layout.Col>
+                                </Layout.Row>
+                    {/*
+                            </Collapse.Item>
+                        </Collapse>
+                    */}
+                    </Form>
+                <Button type='submit' onClick={this.handleSubmit.bind(this)}>
+                    Next step
+                </Button>
+            </div>
+        )
     };
 }
 export default FormContainer;
