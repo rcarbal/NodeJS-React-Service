@@ -289,6 +289,7 @@ class FormContainer extends React.Component {
     render(){
         return (
             <div>
+              {/*
                 <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
                   <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
                     <Steps.Step title="Company & Contact"></Steps.Step>
@@ -296,7 +297,7 @@ class FormContainer extends React.Component {
                     <Steps.Step title="Review & Pay"></Steps.Step>
                   </Steps>
                 </Menu>
-
+              */}
                 <Form ref="form" model={this.state} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
                 {/*
                     <Collapse>
@@ -494,9 +495,11 @@ class FormContainer extends React.Component {
                         </Collapse>
                     */}
                     </Form>
+                    {/*
                 <Button type='submit' onClick={this.handleSubmit.bind(this)}>
                     Next step
                 </Button>
+                    */}
             </div>
         )
     };
