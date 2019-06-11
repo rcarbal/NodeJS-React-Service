@@ -13,7 +13,7 @@ class App extends React.Component {
 
         this.state = {
             // Toggles nav steps
-            active: 0,
+            active: 1,
             form: {
                 stateOfIncoporation: 'Delaware',
                 type: 'LLC',
@@ -24,7 +24,7 @@ class App extends React.Component {
     handleSubmit() {
         let active = this.state.active + 1;
             if (active > 3) {
-                active = 0;
+                active = 1;
             }
         this.setState({ active });
     }
@@ -34,7 +34,7 @@ class App extends React.Component {
         let pageContent;
         let activeContent = this.state.active;
 
-        if (activeContent === 0 || activeContent === 1) {
+        if (activeContent === 1) {
             pageContent = <FormContainer />
         } else if (activeContent === 2) {
             pageContent = <OptionsContainer />
