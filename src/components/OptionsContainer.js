@@ -11,13 +11,17 @@ class OptionsContainer extends React.Component {
         }
     }
 
+    onChange(value) {
+        this.setState({ value });
+    }
+
     render(){
         return (
             <div>
                 <Form>
                     <h3>Package</h3>
                     <Form.Item> 
-                        <Radio.Group value={this.state.package.value} price={this.state.package.price}>
+                        <Radio.Group value={this.state.package.value} price={this.state.package.price} onChange={this.onChange.bind(this)}>
                             <Radio value='SmoothLegal' price='399'>SmoothLegal Formation</Radio>
                             <Radio value='Complete' price='298'>Complete Formation</Radio>
                             <Radio value='Basic' price='189'>Basic Formation</Radio>
