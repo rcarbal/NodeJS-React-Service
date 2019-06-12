@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Radio, Layout } from 'element-react/next';
+import { Form, Radio, Checkbox, InputNumber } from 'element-react/next';
 
 class OptionsContainer extends React.Component {
 
@@ -8,6 +8,9 @@ class OptionsContainer extends React.Component {
         package: {
             value: '',
             price: ''
+        },
+        copies: {
+            value: 0
         }
     }
 
@@ -29,6 +32,17 @@ class OptionsContainer extends React.Component {
                     </Form.Item>
                     <Form.Item>
                         <h3>Popular Services</h3>
+                        <Checkbox checked>Statement of Organizer</Checkbox>
+                        <Checkbox>Tax ID Number - EIN Application</Checkbox>
+                        <Checkbox>Compliance Kit & Seal</Checkbox>
+                        <div>Certified Copy </div>
+                        <InputNumber size='small' defaultValue={this.state.copies.value} />
+                        <div>Certified Copy w/Apostille</div>
+                        <InputNumber size='small' defaultValue={this.state.copies.value} />
+                        <div>Certified of Good Standing </div>
+                        <InputNumber size='small' defaultValue={this.state.copies.value} />
+                        <div>Certified of Good Standing w/Apostille</div>
+                        <InputNumber size='small' defaultValue={this.state.copies.value} />
                     </Form.Item>
                     <Form.Item>
                         <h3>Delivery Options</h3>
