@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Radio, Checkbox, InputNumber } from 'element-react/next';
+import { Form, Radio, Checkbox, InputNumber, Input } from 'element-react/next';
 
 class OptionsContainer extends React.Component {
 
@@ -11,7 +11,8 @@ class OptionsContainer extends React.Component {
         },
         copies: {
             value: 0
-        }
+        },
+        requests: ''
     }
 
     onChange(value) {
@@ -46,9 +47,11 @@ class OptionsContainer extends React.Component {
                     </Form.Item>
                     <Form.Item>
                         <h3>Delivery Options</h3>
+                        <Checkbox>FedEx(domestic)</Checkbox>
                     </Form.Item>
                     <Form.Item>
                         <h3>Special Requests</h3>
+                        <Input type="textarea" autosize={{ minRows: 3, maxRows: 5}} />
                     </Form.Item>
                 </Form>
             </div>
