@@ -35,7 +35,7 @@ class App extends React.Component {
         let activeContent = this.state.active;
 
         if (activeContent === 1) {
-            pageContent = <FormContainer />
+            pageContent = <InfoContainer />
         } else if (activeContent === 2) {
             pageContent = <OptionsContainer />
         } else {
