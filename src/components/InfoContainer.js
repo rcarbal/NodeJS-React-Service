@@ -1,11 +1,7 @@
 import React from 'react';
 import  { 
             Layout, 
-            Input, 
-            Button,
-            Collapse,
-            Steps, 
-            Menu, 
+            Input,
             Form, 
             Select
         } from 'element-react/next';
