@@ -1,7 +1,7 @@
 import React from 'react';
 import { Steps, Menu, Button } from 'element-react/next';
 
-import FormContainer from './FormContainer';
+import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
 
