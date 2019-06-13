@@ -4,7 +4,8 @@ class PayContainer extends React.Component {
     render() {
         return (
             <div>
-                <h1>Review and Pay</h1>
+                <h3>Review</h3>
+                <h3>Pay</h3>
             </div>
         )
     }
