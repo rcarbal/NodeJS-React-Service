@@ -1,7 +1,7 @@
 import React from 'react';
 import { Steps, Menu, Button } from 'element-react/next';
 
-import FormContainer from './FormContainer';
+import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
 
@@ -21,9 +21,16 @@ class App extends React.Component {
             }
         };
     }
-    handleSubmit() {
+    onNextStep() {
         let active = this.state.active + 1;
             if (active > 3) {
+                active = 1;
+            }
+        this.setState({ active });
+    }
+    onBack() {
+        let active = this.state.active - 1;
+            if (active < 1) {
                 active = 1;
             }
         this.setState({ active });
@@ -35,11 +42,32 @@ class App extends React.Component {
         let activeContent = this.state.active;
 
         if (activeContent === 1) {
-            pageContent = <FormContainer />
+            pageContent = (
+                <div>
+                    <InfoContainer />
+                    <Button type='submit' onClick={this.onNextStep.bind(this)}>
+                        Next step
+                    </Button>
+                </div>
+            )
         } else if (activeContent === 2) {
-            pageContent = <OptionsContainer />
+            pageContent =(
+                <div>
+                    <OptionsContainer />
+                    <Button onClick={this.onBack.bind(this)}>Back</Button>
+                    <Button type='submit' onClick={this.onNextStep.bind(this)}>
+                        Next step
+                    </Button>
+                </div>
+            )
         } else {
-            pageContent = <PayContainer />
+            pageContent = (
+                <div>
+                    <PayContainer />
+                    <Button onClick={this.onBack.bind(this)}>Back</Button>
+                    <Button>Submit</Button>
+                </div>
+            )
         }
 
         return (
@@ -52,9 +80,6 @@ class App extends React.Component {
                     </Steps>
                 </Menu>
                 { pageContent }
-                <Button type='submit' onClick={this.handleSubmit.bind(this)}>
-                    Next step
-                </Button>
             </div>
         )
     }

@@ -1,16 +1,12 @@
 import React from 'react';
 import  { 
             Layout, 
-            Input, 
-            Button,
-            Collapse,
-            Steps, 
-            Menu, 
+            Input,
             Form, 
             Select
         } from 'element-react/next';
 
-class FormContainer extends React.Component {
+class InfoContainer extends React.Component {
     
   /*
     constructor(props) {
@@ -504,7 +500,7 @@ class FormContainer extends React.Component {
         )
     };
 }
-export default FormContainer;
+export default InfoContainer;
         /*
         this.state = {
             labelPosition: 'top',
