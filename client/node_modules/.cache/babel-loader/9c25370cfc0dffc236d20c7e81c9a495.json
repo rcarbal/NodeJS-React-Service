@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Card from './Card';\nexport default Card;","map":null,"metadata":{},"sourceType":"module"}
