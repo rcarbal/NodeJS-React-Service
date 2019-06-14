@@ -1,95 +1,21 @@
 ### Smooth.legal - Create a Delaware LLC in 5 minutes
+### Smooth Legal is a web app where a person can make a Delaware LLC in 5 minutes.
 
-Smooth Legal is a web app where a person can make a Delaware LLC in 5 minutes.
+# Smooth Legal server
+This is a node.js express Restful server hosted by Heroku. It accepts form data, saves the data to a mongo database.  Sends a email, responds with successful process. Currently the live server is for testing its functionality.
 
-## 1. Contributing
+## Testing Heroku Functionality
+* To prevent email from going to spam, set ricardo.a.carballo@gmail.com as a contact.
+* Use the form found at url [https://evening-tor-34547.herokuapp.com/api/v1/test] to send email data.
+* If successful, the server response will echo the form data.
+* HTTP POST api endpoint is [https://evening-tor-34547.herokuapp.com/api/v1/test].
 
-There are two standard ways to do collobarative development with git. Fork-pull request-merge and Branch-pull request-merge. We prefer Branch-pull request-merge. This is often better for smaller teams that all have write access to the repo since it's simpler to keep the code in sync, versus having a large number of forks.
+## Testing Email Functionality
+* Clone the server repository.
+* Run `npm install`.
+* Under /test directory add a .env file with the variable SENDGRID_KEY=[SendGrid_key].
+* Run testSendGrid.js by using `node testSendgrid.js` within the /test directory.
 
-More in-depth overviews:
-
-- https://guides.github.com/introduction/flow/
-- https://gist.github.com/blackfalcon/8428401
-
-### Pull Request Workflow:
-
-1. Pull the master branch
-
-```
-$ git pull origin master
-```
-
-2. Create a new branch for your new feature
-
-```
-$ git checkout -b your-branch-name
-```
-
-3. Commit and push your new branch to Github
-
-```
-$ git add . 
-
-$ git commit -m 'Message referencing Jira ticket'
-
-$ git push origin your-branch-name
-```
-4. Create a pull request for your branch at Github
-5. Someone will approve/reject your pull request and merge your code
-6. Delete your branch
-
-### Rebase workflow
-
-Occasionally you will be working on your branch while the `master` branch is being actively developed by others thus making your branch fall behind and potentially create merge conflicts later. To solve this, you can rebase your branch to the latest version of master:
-
-```
-$ git checkout master
-
-$ git pull origin master
-
-$ git checkout your-branch-name
-
-$ git rebase master 
-```
-
-### Secret keys
-
-Never commit secret API keys (like those from sengrid or twilio etc) in git, since we don't want hackers to have entire access to our accounts if git is hacked. They should go in a .env file. There is more information to do this at places like this:
-
-https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786
-
-
-## 2. About the App
-
-
-### Steps user needs to do:
-
-- Go to landing page 
-- Enter details about the LLC
-- Enter details about the members 
-- Enter payment information
-- Pay 
-- Receive confirmation email (the actual docs get shipped in the mail)
-
-### Technologies: 
-
-- API - Node/Express 
-- Frontend - React.js
-- Frontend off the shelf elements - Element UI (https://element.eleme.io/#/en-US)
-- Emails - Sendgrid 
-- Payment - Stripe.js 
-
-We are going to clone the functionality of another website:
-
-https://secure.incnow.com/order/default.aspx?type=new&entity=llc
-
-Differences for ours:
-
-- Our app is only “LLC” and only “Delaware” 
-- We will only accept card payments
-- We will only have one version: the “Now Formation” 
-- We will include these two features automatically which Inc now makes optional.
-- Statement of Organizer
-- Tax ID Number - EIN Application
-
-A lot of the elements to do this will be in Element UI so you don’t have to build these from scratch.
+## Testing MongoDB Functionality
+* Complete the first two steps of the Testing Email Functionality section.
+* Run testDatabase.js by using `node testDatabase.js` within the /test directory.
