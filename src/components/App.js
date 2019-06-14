@@ -35,11 +35,34 @@ class App extends React.Component {
         let activeContent = this.state.active;
 
         if (activeContent === 1) {
-            pageContent = <InfoContainer />
+            pageContent = (
+                <div>
+                    <InfoContainer />
+                    <Button type='submit' onClick={this.handleSubmit.bind(this)}>
+                        Next step
+                    </Button>
+                </div>
+            )
         } else if (activeContent === 2) {
-            pageContent = <OptionsContainer />
+            pageContent =(
+                <div>
+                    <OptionsContainer />
+                    <Button>Back</Button>
+                    <Button type='submit' onClick={this.handleSubmit.bind(this)}>
+                        Next step
+                    </Button>
+                </div>
+            )
         } else {
-            pageContent = <PayContainer />
+            pageContent = (
+                <div>
+                    <PayContainer />
+                    <Button>
+                        Back
+                    </Button>
+                    <Button>Submit</Button>
+                </div>
+            )
         }
 
         return (
