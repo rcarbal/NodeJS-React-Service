@@ -21,9 +21,16 @@ class App extends React.Component {
             }
         };
     }
-    handleSubmit() {
+    onNextStep() {
         let active = this.state.active + 1;
             if (active > 3) {
+                active = 1;
+            }
+        this.setState({ active });
+    }
+    onBack() {
+        let active = this.state.active - 1;
+            if (active < 1) {
                 active = 1;
             }
         this.setState({ active });
@@ -38,7 +45,7 @@ class App extends React.Component {
             pageContent = (
                 <div>
                     <InfoContainer />
-                    <Button type='submit' onClick={this.handleSubmit.bind(this)}>
+                    <Button type='submit' onClick={this.onNextStep.bind(this)}>
                         Next step
                     </Button>
                 </div>
@@ -47,8 +54,8 @@ class App extends React.Component {
             pageContent =(
                 <div>
                     <OptionsContainer />
-                    <Button>Back</Button>
-                    <Button type='submit' onClick={this.handleSubmit.bind(this)}>
+                    <Button onClick={this.onBack.bind(this)}>Back</Button>
+                    <Button type='submit' onClick={this.onNextStep.bind(this)}>
                         Next step
                     </Button>
                 </div>
@@ -57,9 +64,7 @@ class App extends React.Component {
             pageContent = (
                 <div>
                     <PayContainer />
-                    <Button>
-                        Back
-                    </Button>
+                    <Button onClick={this.onBack.bind(this)}>Back</Button>
                     <Button>Submit</Button>
                 </div>
             )
@@ -75,9 +80,6 @@ class App extends React.Component {
                     </Steps>
                 </Menu>
                 { pageContent }
-                <Button type='submit' onClick={this.handleSubmit.bind(this)}>
-                    Next step
-                </Button>
             </div>
         )
     }
