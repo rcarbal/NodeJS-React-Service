@@ -36,16 +36,19 @@ class App extends React.Component {
         this.setState({ active });
     }
 
-    saveForm(data){
+    saveForm = (data) => {
         /// this will break! but save data here
-        this.setState(data);
+        this.setState({form: data});
     }
 
-    saveAndNext(data){
-       this.saveForm(data):
+    saveAndNext = (data) => {
+       this.saveForm(data);
        this.onNextStep();
     }
 
+    finalSubmit = () => {
+       alert('I should submit this data using axios like a boss;' + JSON.stringify(this.state));
+    }
 
     render() {
 
@@ -55,24 +58,19 @@ class App extends React.Component {
         if (activeContent === 1) {
             pageContent = (
                 <div>
-                    <InfoContainer active={this.state.active} saveAndNext={this.saveAndNext}/>
+                    <InfoContainer companyName={this.state.form.companyName} active={this.state.active} saveAndNext={this.saveAndNext}/>
                 </div>
             )
         } else if (activeContent === 2) {
             pageContent =(
                 <div>
-                    <OptionsContainer />
-                    <Button onClick={this.onBack.bind(this)}>Back</Button>
-                    <Button type='submit' onClick={this.onNextStep.bind(this)}>
-                        Next step
-                    </Button>
+                    <OptionsContainer companyName={this.state.form.companyName} active={this.state.active} handleSubmitFromEric={this.finalSubmit}/>
                 </div>
             )
         } else {
             pageContent = (
                 <div>
                     <PayContainer />
-                    <Button onClick={this.onBack.bind(this)}>Back</Button>
                 </div>
             )
         }

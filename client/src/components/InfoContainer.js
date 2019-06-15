@@ -2,6 +2,7 @@ import React from 'react';
 import  { 
             Layout, 
             Input,
+            Button,
             Form, 
             Select
         } from 'element-react/next';
@@ -291,7 +292,8 @@ class InfoContainer extends React.Component {
                   </Steps>
                 </Menu>
               */}
-                <div>{this.props.active}</p>
+                <div>{this.props.active}</div>
+                <div>{this.props.companyName}</div>
 
                 <Form ref="form" model={this.state} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
  

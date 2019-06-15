@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Radio, Checkbox, InputNumber, Input } from 'element-react/next';
+import { Form, Button, Radio, Checkbox, InputNumber, Input } from 'element-react/next';
 
 class OptionsContainer extends React.Component {
 
@@ -18,11 +18,20 @@ class OptionsContainer extends React.Component {
     onChange(value) {
         this.setState({ value });
     }
+    handleSubmit(event) {
+    
+        event.preventDefault();
+         
+        this.props.handleSubmitFromEric();
+        
+    };
 
     render(){
         return (
             <div>
                 <Form>
+                <div>{this.props.active}</div>
+                <div>{this.props.companyName}</div>
                     <h3>Package</h3>
                     <Form.Item> 
                         <Radio.Group value={this.state.package.value} price={this.state.package.price} onChange={this.onChange.bind(this)}>
@@ -54,6 +63,9 @@ class OptionsContainer extends React.Component {
                         <Input type="textarea" autosize={{ minRows: 3, maxRows: 5}} />
                     </Form.Item>
                 </Form>
+                <Button type='submit' onClick={this.handleSubmit.bind(this)}>
+                    Next step
+                </Button>
             </div>
         )
     }
