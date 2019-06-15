@@ -35,7 +35,18 @@ class App extends React.Component {
             }
         this.setState({ active });
     }
-        
+
+    saveForm(data){
+        /// this will break! but save data here
+        this.setState(data);
+    }
+
+    saveAndNext(data){
+       this.saveForm(data):
+       this.onNextStep();
+    }
+
+
     render() {
 
         let pageContent;
@@ -44,10 +55,7 @@ class App extends React.Component {
         if (activeContent === 1) {
             pageContent = (
                 <div>
-                    <InfoContainer />
-                    <Button type='submit' onClick={this.onNextStep.bind(this)}>
-                        Next step
-                    </Button>
+                    <InfoContainer active={this.state.active} saveAndNext={this.saveAndNext}/>
                 </div>
             )
         } else if (activeContent === 2) {
@@ -65,7 +73,6 @@ class App extends React.Component {
                 <div>
                     <PayContainer />
                     <Button onClick={this.onBack.bind(this)}>Back</Button>
-                    <Button>Submit</Button>
                 </div>
             )
         }

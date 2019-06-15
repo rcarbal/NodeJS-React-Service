@@ -274,12 +274,9 @@ class InfoContainer extends React.Component {
             ${this.state.usStates[4].value} ${this.state.zip}.
             LLC members include: ${this.state.memberName} ${this.state.addlMemberNames}.
         `);
-
-        let active = this.state.active + 1;
-            if (active > 3) {
-                active = 0;
-            }
-        this.setState({ active });
+         
+        this.props.saveAndNext(this.state);
+        
     };
     
     render(){
@@ -294,7 +291,10 @@ class InfoContainer extends React.Component {
                   </Steps>
                 </Menu>
               */}
+                <div>{this.props.active}</p>
+
                 <Form ref="form" model={this.state} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
+ 
                 {/*
                     <Collapse>
                         <Collapse.Item title="Company" name="1">
@@ -491,15 +491,14 @@ class InfoContainer extends React.Component {
                         </Collapse>
                     */}
                     </Form>
-                    {/*
                 <Button type='submit' onClick={this.handleSubmit.bind(this)}>
                     Next step
                 </Button>
-                    */}
             </div>
         )
     };
 }
+
 export default InfoContainer;
         /*
         this.state = {
