@@ -9,27 +9,12 @@ import  {
 
 class InfoContainer extends React.Component {
     
-  /*
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            // Toggles nav steps
-            active: 0,
-            form: {
-                stateOfIncoporation: 'Delaware',
-                type: 'LLC',
-                name: ''
-            }
-        };
-    }
-  */
     state = {
         active: 0,
         stateOfIncoporation: 'Delaware',
         type: 'LLC',
         companyName: '',
-        altnames: '',
+        altNames: '',
         firstName: '',
         lastName: '',
         email: '',
@@ -205,7 +190,7 @@ class InfoContainer extends React.Component {
     }
 
     onAltNameInput = (event) => {
-        this.setState({ altnames: event.target.value });
+        this.setState({ altNames: event.target.value });
     }
 
     onFirstNameInput = (event) => {
@@ -266,7 +251,7 @@ class InfoContainer extends React.Component {
 
         alert(`
             The name '${this.state.companyName}' was submitted. 
-            The alternate name '${this.state.altnames}' was submitted.
+            The alternate name '${this.state.altNames}' was submitted.
             The first name for order delivery is '${this.state.firstName}'.
             The last name for order delivery is '${this.state.lastName}'.
             The email address is '${this.state.email}'.
@@ -283,15 +268,6 @@ class InfoContainer extends React.Component {
     render(){
         return (
             <div>
-              {/*
-                <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
-                  <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
-                    <Steps.Step title="Company & Contact"></Steps.Step>
-                    <Steps.Step title="Options & Services"></Steps.Step>
-                    <Steps.Step title="Review & Pay"></Steps.Step>
-                  </Steps>
-                </Menu>
-              */}
                 <div>{this.props.active}</div>
                 <div>{this.props.companyName}</div>
 
@@ -331,7 +307,7 @@ class InfoContainer extends React.Component {
                                         <div>Alternative name(s)</div>
                                         <input
                                             type='text'
-                                            value={this.state.altnames}
+                                            value={this.state.altNames}
                                             onChange={this.onAltNameInput}
                                         />
                                     </Form.Item>
