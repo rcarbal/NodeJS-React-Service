@@ -16,8 +16,7 @@ class App extends React.Component {
             active: 1,
             form: {
                 stateOfIncoporation: 'Delaware',
-                type: 'LLC',
-                name: ''
+                type: 'LLC'
             }
         };
     }
@@ -58,7 +57,11 @@ class App extends React.Component {
         if (activeContent === 1) {
             pageContent = (
                 <div>
-                    <InfoContainer companyName={this.state.form.companyName} active={this.state.active} saveAndNext={this.saveAndNext}/>
+                    <InfoContainer 
+                        active={this.state.active} 
+                        companyName={this.state.form.companyName} 
+                        altNames={this.state.form.altNames}
+                        saveAndNext={this.saveAndNext}/>
                 </div>
             )
         } else if (activeContent === 2) {
