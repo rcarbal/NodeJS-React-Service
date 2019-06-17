@@ -5,6 +5,7 @@ import { Form, Button, Radio, Checkbox, InputNumber, Input } from 'element-react
 class OptionsContainer extends React.Component {
 
     state = {
+        active: 0,
         package: {
             value: '',
             price: ''
@@ -21,10 +22,16 @@ class OptionsContainer extends React.Component {
     handleSubmit(event) {
     
         event.preventDefault();
-         
-        this.props.handleSubmitFromEric();
+        this.props.saveAndNext(this.state);
+        //this.props.handleSubmitFromEric();
         
     };
+
+    onBack(event) {
+        event.preventDefault();
+
+        this.props.onBack(this.state);
+    }
 
     render(){
         return (
@@ -63,6 +70,9 @@ class OptionsContainer extends React.Component {
                         <Input type="textarea" autosize={{ minRows: 3, maxRows: 5}} />
                     </Form.Item>
                 </Form>
+                <Button onClick={this.onBack.bind(this)}>
+                    Back
+                </Button>
                 <Button type='submit' onClick={this.handleSubmit.bind(this)}>
                     Next step
                 </Button>
