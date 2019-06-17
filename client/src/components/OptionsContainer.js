@@ -18,10 +18,14 @@ class OptionsContainer extends React.Component {
 
     onChange(value) {
         this.setState({ value });
+        console.log(this.state.value)
     }
     handleSubmit(event) {
     
         event.preventDefault();
+
+        alert(`User chose the ${this.state.value} package for $${this.state.price}`)
+
         this.props.saveAndNext(this.state);
         //this.props.handleSubmitFromEric();
         
@@ -40,12 +44,28 @@ class OptionsContainer extends React.Component {
                 <div>{this.props.active}</div>
                 <div>{this.props.companyName}</div>
                     <h3>Package</h3>
-                    <Form.Item> 
-                        <Radio.Group value={this.state.package.value} price={this.state.package.price} onChange={this.onChange.bind(this)}>
-                            <Radio value='SmoothLegal' price='399'>SmoothLegal Formation</Radio>
-                            <Radio value='Complete' price='298'>Complete Formation</Radio>
-                            <Radio value='Basic' price='189'>Basic Formation</Radio>
-                        </Radio.Group>
+                    <Form.Item>
+                        <Radio 
+                            value='SmoothLegal' 
+                            checked={this.state.package.value === 'SmoothLegal'} 
+                            price='399' 
+                            onChange={this.onChange.bind(this)}>
+                            SmoothLegal Formation
+                        </Radio>
+                        <Radio 
+                            value='Complete' 
+                            checked={this.state.package.value === 'Complete'} 
+                            price='298' 
+                            onChange={this.onChange.bind(this)}>
+                            Complete Formation
+                        </Radio>
+                        <Radio 
+                            value='Basic' 
+                            checked={this.state.package.value === 'Basic'} 
+                            price='189' 
+                            onChange={this.onChange.bind(this)}>
+                            Basic Formation
+                        </Radio> 
                     </Form.Item>
                     <Form.Item>
                         <h3>Popular Services</h3>
