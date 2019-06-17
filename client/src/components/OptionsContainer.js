@@ -10,9 +10,10 @@ class OptionsContainer extends React.Component {
             value: '',
             price: ''
         },
-        copies: {
-            value: 0
-        },
+        certifiedCopies: 0,
+        certifiedCopiesWApostille: 0,
+        goodStandingCopies: 0,
+        goodStandingCopiesWApostille: 0,
         requests: ''
     }
 
@@ -20,11 +21,31 @@ class OptionsContainer extends React.Component {
         this.setState({ value });
         console.log(this.state.value)
     }
+
+    getCertifiedCopies(certifiedCopies) {
+        this.setState({ certifiedCopies });
+    }
+    getCertifiedCopiesWApostille(certifiedCopiesWApostille) {
+        this.setState({ certifiedCopiesWApostille });
+    }
+    getGoodStandingCopies(goodStandingCopies) {
+        this.setState({ goodStandingCopies });
+    }
+    getGoodStandingCopiesWApostille(goodStandingCopiesWApostille) {
+        this.setState({ goodStandingCopiesWApostille });
+    }
+
     handleSubmit(event) {
     
         event.preventDefault();
 
-        alert(`User chose the ${this.state.value} package for $${this.state.price}`)
+        alert(`
+            User chose the ${this.state.value} package for $${this.state.price}
+            User ordered ${this.state.certifiedCopies} certified copies
+            User ordered ${this.state.certifiedCopiesWApostille} certified copies w/ apostille
+            User ordered ${this.state.goodStandingCopies} certificate of good standing copies
+            User ordered ${this.state.goodStandingCopiesWApostille} certificate of good standing copies w/ apostille
+        `);
 
         this.props.saveAndNext(this.state);
         //this.props.handleSubmitFromEric();
@@ -73,13 +94,29 @@ class OptionsContainer extends React.Component {
                         <Checkbox>Tax ID Number - EIN Application</Checkbox>
                         <Checkbox>Compliance Kit & Seal</Checkbox>
                         <div>Certified Copy </div>
-                        <InputNumber size='small' defaultValue={this.state.copies.value} />
+                        <InputNumber 
+                            size='small' 
+                            defaultValue={this.state.certifiedCopies} 
+                            onChange={this.getCertifiedCopies.bind(this)}
+                        />
                         <div>Certified Copy w/Apostille</div>
-                        <InputNumber size='small' defaultValue={this.state.copies.value} />
-                        <div>Certified of Good Standing </div>
-                        <InputNumber size='small' defaultValue={this.state.copies.value} />
-                        <div>Certified of Good Standing w/Apostille</div>
-                        <InputNumber size='small' defaultValue={this.state.copies.value} />
+                        <InputNumber 
+                            size='small' 
+                            defaultValue={this.state.certifiedCopiesWApostille} 
+                            onChange={this.getCertifiedCopiesWApostille.bind(this)}
+                        />
+                        <div>Certificate of Good Standing </div>
+                        <InputNumber 
+                            size='small' 
+                            defaultValue={this.state.goodStandingCopies} 
+                            onChange={this.getGoodStandingCopies.bind(this)}
+                        />
+                        <div>Certificate of Good Standing w/Apostille</div>
+                        <InputNumber 
+                            size='small' 
+                            defaultValue={this.state.goodStandingCopiesWApostille} 
+                            onChange={this.getGoodStandingCopiesWApostille.bind(this)}
+                        />
                     </Form.Item>
                     <Form.Item>
                         <h3>Delivery Options</h3>
