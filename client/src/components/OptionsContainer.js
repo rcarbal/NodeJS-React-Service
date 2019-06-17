@@ -17,7 +17,7 @@ class OptionsContainer extends React.Component {
         requests: ''
     }
 
-    onChange(value) {
+    onPackageSelect(value) {
         this.setState({ value });
         console.log(this.state.value)
     }
@@ -35,6 +35,10 @@ class OptionsContainer extends React.Component {
         this.setState({ goodStandingCopiesWApostille });
     }
 
+    onRequestInput(requests) {
+        this.setState({ requests });
+    }
+
     handleSubmit(event) {
     
         event.preventDefault();
@@ -45,6 +49,7 @@ class OptionsContainer extends React.Component {
             User ordered ${this.state.certifiedCopiesWApostille} certified copies w/ apostille
             User ordered ${this.state.goodStandingCopies} certificate of good standing copies
             User ordered ${this.state.goodStandingCopiesWApostille} certificate of good standing copies w/ apostille
+            User requests: ${this.state.requests}
         `);
 
         this.props.saveAndNext(this.state);
@@ -70,21 +75,21 @@ class OptionsContainer extends React.Component {
                             value='SmoothLegal' 
                             checked={this.state.package.value === 'SmoothLegal'} 
                             price='399' 
-                            onChange={this.onChange.bind(this)}>
+                            onChange={this.onPackageSelect.bind(this)}>
                             SmoothLegal Formation
                         </Radio>
                         <Radio 
                             value='Complete' 
                             checked={this.state.package.value === 'Complete'} 
                             price='298' 
-                            onChange={this.onChange.bind(this)}>
+                            onChange={this.onPackageSelect.bind(this)}>
                             Complete Formation
                         </Radio>
                         <Radio 
                             value='Basic' 
                             checked={this.state.package.value === 'Basic'} 
                             price='189' 
-                            onChange={this.onChange.bind(this)}>
+                            onChange={this.onPackageSelect.bind(this)}>
                             Basic Formation
                         </Radio> 
                     </Form.Item>
@@ -124,7 +129,12 @@ class OptionsContainer extends React.Component {
                     </Form.Item>
                     <Form.Item>
                         <h3>Special Requests</h3>
-                        <Input type="textarea" autosize={{ minRows: 3, maxRows: 5}} />
+                        <Input 
+                            type="textarea" 
+                            autosize={{ minRows: 3, maxRows: 5}}
+                            value={this.state.requests}
+                            onChange={this.onRequestInput.bind(this)}
+                        />
                     </Form.Item>
                 </Form>
                 <Button onClick={this.onBack.bind(this)}>
