@@ -86,7 +86,8 @@ class App extends React.Component {
                 <div>
                     <OptionsContainer 
                         companyName={this.state.form.companyName} 
-                        active={this.state.active} 
+                        active={this.state.active}
+                        package={this.state.form.package}
                         saveAndNext={this.saveAndNext}
                         onBack={this.saveAndBack}
                     />
