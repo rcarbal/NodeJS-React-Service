@@ -88,6 +88,10 @@ class App extends React.Component {
                         companyName={this.state.form.companyName} 
                         active={this.state.active}
                         package={this.state.form.package}
+                        certifiedCopies={this.state.form.certifiedCopies}
+                        certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
+                        goodStandingCopies={this.state.form.goodStandingCopies}
+                        goodStandingCopiesWApostille={this.state.goodStandingCopiesWApostille}
                         saveAndNext={this.saveAndNext}
                         onBack={this.saveAndBack}
                     />
