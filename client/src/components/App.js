@@ -60,11 +60,15 @@ class App extends React.Component {
                     <InfoContainer 
                         active={this.state.active} 
                         companyName={this.state.form.companyName}
+                        altNames={this.state.form.altNames}
                         firstName={this.state.form.firstName}
                         lastName={this.state.form.lastName}
-                        altNames={this.state.form.altNames}
                         email={this.state.form.email}
                         phoneNum={this.state.form.phoneNum}
+                        streetAddress={this.state.form.streetAddress}
+                        streetAddressTwo={this.state.form.streetAddressTwo}
+                        city={this.state.form.city}
+                        zip={this.state.form.zip}
                         saveAndNext={this.saveAndNext}
                     />
                 </div>
