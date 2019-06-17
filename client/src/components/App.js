@@ -59,15 +59,26 @@ class App extends React.Component {
                 <div>
                     <InfoContainer 
                         active={this.state.active} 
-                        companyName={this.state.form.companyName} 
+                        companyName={this.state.form.companyName}
+                        firstName={this.state.form.firstName}
+                        lastName={this.state.form.lastName}
                         altNames={this.state.form.altNames}
-                        saveAndNext={this.saveAndNext}/>
+                        email={this.state.form.email}
+                        phoneNum={this.state.form.phoneNum}
+                        saveAndNext={this.saveAndNext}
+                    />
                 </div>
             )
         } else if (activeContent === 2) {
             pageContent =(
                 <div>
-                    <OptionsContainer companyName={this.state.form.companyName} active={this.state.active} handleSubmitFromEric={this.finalSubmit}/>
+                    <OptionsContainer 
+                        companyName={this.state.form.companyName} 
+                        active={this.state.active} 
+                        handleSubmitFromEric={this.finalSubmit}
+                        saveAndNext={this.saveAndNext}
+                        onBack={this.onBack}
+                    />
                 </div>
             )
         } else {
