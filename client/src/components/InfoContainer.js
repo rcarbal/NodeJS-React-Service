@@ -7,6 +7,8 @@ import  {
             Select
         } from 'element-react/next';
 
+let index;
+
 class InfoContainer extends React.Component {
     
     state = {
@@ -222,11 +224,12 @@ class InfoContainer extends React.Component {
     }
 
     onStatesSelect = (event) => {
-        let index = this.state.usStates.findIndex(function(usState) {
-            return usState.value === event.target.value;
-        })
 
-        this.setState({ usStates: event[index].value.target.value })
+        for(index = 0; index < this.state.usStates.length; index++ ) {
+            index = this.state.usStates[index];
+        }
+
+        this.setState({ usStates: event.value.target.value })
     }
 
     onZipInput = (event) => {
@@ -256,7 +259,7 @@ class InfoContainer extends React.Component {
             The last name for order delivery is '${this.state.lastName}'.
             The email address is '${this.state.email}'.
             The phone number is ${this.state.phoneNum}.
-            The address is ${this.state.streetAddress} ${this.state.city}, 
+            The address is ${this.state.streetAddressTwo} ${this.state.streetAddress} ${this.state.city}, 
             ${this.state.usStates[4].value} ${this.state.zip}.
             LLC members include: ${this.state.memberName} ${this.state.addlMemberNames}.
         `);
