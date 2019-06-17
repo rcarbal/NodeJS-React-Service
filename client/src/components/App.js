@@ -91,8 +91,9 @@ class App extends React.Component {
                         certifiedCopies={this.state.form.certifiedCopies}
                         certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
                         goodStandingCopies={this.state.form.goodStandingCopies}
-                        goodStandingCopiesWApostille={this.state.goodStandingCopiesWApostille}
-                        servicesList={this.state.servicesList}
+                        goodStandingCopiesWApostille={this.state.form.goodStandingCopiesWApostille}
+                        servicesList={this.state.form.servicesList}
+                        deliveryOption={this.state.form.deliveryOption}
                         specialRequests={this.state.requests}
                         saveAndNext={this.saveAndNext}
                         onBack={this.saveAndBack}
