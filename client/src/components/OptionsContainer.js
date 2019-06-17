@@ -14,6 +14,7 @@ class OptionsContainer extends React.Component {
         certifiedCopiesWApostille: 0,
         goodStandingCopies: 0,
         goodStandingCopiesWApostille: 0,
+        deliveryOption: [],
         servicesList: [],
         requests: ''
     }
@@ -54,6 +55,19 @@ class OptionsContainer extends React.Component {
         // update the state with the new array of servicesList
         this.setState({ servicesList: servicesList })
     }
+
+    upgradeDelivery(e) {
+        const deliveryOption = this.state.deliveryOption;
+        let index;
+
+        if(e.target.checked) {
+            deliveryOption.push(+e.target.value)
+        } else {
+            index = deliveryOption.indexOf(+e.target.value)
+            deliveryOption.splice(index, 1)
+        }
+        this.setState({ deliveryOption: deliveryOption });
+    }
     
     onRequestInput(requests) {
         this.setState({ requests });
@@ -70,6 +84,7 @@ class OptionsContainer extends React.Component {
             User ordered ${this.state.goodStandingCopies} certificate of good standing copies
             User ordered ${this.state.goodStandingCopiesWApostille} certificate of good standing copies w/ apostille
             User ordered the following list of services: ${this.state.servicesList}
+            FedEx delivery upgrade: ${this.state.deliveryOption}
             User requests: ${this.state.requests}
         `);
 
@@ -160,7 +175,13 @@ class OptionsContainer extends React.Component {
                     </Form.Item>
                     <Form.Item>
                         <h3>Delivery Options</h3>
-                        <Checkbox>FedEx(domestic)</Checkbox>
+                        <Checkbox.Group value={this.state.deliveryOption}>
+                            <Checkbox 
+                                value='FedEx(domestic)'
+                                onChange={this.upgradeDelivery.bind(this)}>
+                                FedEx(domestic)
+                            </Checkbox>
+                        </Checkbox.Group>
                     </Form.Item>
                     <Form.Item>
                         <h3>Special Requests</h3>
