@@ -45,6 +45,11 @@ class App extends React.Component {
        this.onNextStep();
     }
 
+    saveAndBack = (data) => {
+        this.saveForm(data);
+        this.onBack();
+    }
+
     finalSubmit = () => {
        alert('I should submit this data using axios like a boss;' + JSON.stringify(this.state));
     }
@@ -82,16 +87,17 @@ class App extends React.Component {
                     <OptionsContainer 
                         companyName={this.state.form.companyName} 
                         active={this.state.active} 
-                        handleSubmitFromEric={this.finalSubmit}
                         saveAndNext={this.saveAndNext}
-                        onBack={this.onBack}
+                        onBack={this.saveAndBack}
                     />
                 </div>
             )
         } else {
             pageContent = (
                 <div>
-                    <PayContainer />
+                    <PayContainer 
+                        handleSubmitFromEric={this.finalSubmit}
+                    />
                 </div>
             )
         }
