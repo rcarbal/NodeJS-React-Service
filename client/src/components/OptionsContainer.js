@@ -14,6 +14,7 @@ class OptionsContainer extends React.Component {
         certifiedCopiesWApostille: 0,
         goodStandingCopies: 0,
         goodStandingCopiesWApostille: 0,
+        servicesList: [],
         requests: ''
     }
 
@@ -35,6 +36,25 @@ class OptionsContainer extends React.Component {
         this.setState({ goodStandingCopiesWApostille });
     }
 
+    onServicesSelect(e) {
+        // current array of servicesList
+        const servicesList = this.state.servicesList
+        let index;
+
+        // check if the check box is checked or unchecked
+        if (e.target.checked) {
+            // add the numerical value of the checkbox to servicesList array
+            servicesList.push(+e.target.value)
+        } else {
+            // or remove the value from the unchecked checkbox from the array
+            index = servicesList.indexOf(+e.target.value)
+            servicesList.splice(index, 1)
+        }
+
+        // update the state with the new array of servicesList
+        this.setState({ servicesList: servicesList })
+    }
+    
     onRequestInput(requests) {
         this.setState({ requests });
     }
@@ -49,6 +69,7 @@ class OptionsContainer extends React.Component {
             User ordered ${this.state.certifiedCopiesWApostille} certified copies w/ apostille
             User ordered ${this.state.goodStandingCopies} certificate of good standing copies
             User ordered ${this.state.goodStandingCopiesWApostille} certificate of good standing copies w/ apostille
+            User ordered the following list of services: ${this.state.servicesList}
             User requests: ${this.state.requests}
         `);
 
@@ -95,9 +116,23 @@ class OptionsContainer extends React.Component {
                     </Form.Item>
                     <Form.Item>
                         <h3>Popular Services</h3>
-                        <Checkbox checked>Statement of Organizer</Checkbox>
-                        <Checkbox>Tax ID Number - EIN Application</Checkbox>
-                        <Checkbox>Compliance Kit & Seal</Checkbox>
+                        <Checkbox.Group value={this.state.servicesList}>
+                            <Checkbox 
+                                value='Statement of Organizer'
+                                onChange={this.onServicesSelect.bind(this)}>
+                                Statement of Organizer
+                            </Checkbox>
+                            <Checkbox 
+                                value='Tax ID Number - EIN Application'
+                                onChange={this.onServicesSelect.bind(this)}>
+                                Tax ID Number - EIN Application
+                            </Checkbox>
+                            <Checkbox 
+                                value='Compliance Kit & Seal'
+                                onChange={this.onServicesSelect.bind(this)}>
+                                Compliance Kit & Seal
+                            </Checkbox>
+                        </Checkbox.Group>
                         <div>Certified Copy </div>
                         <InputNumber 
                             size='small' 
