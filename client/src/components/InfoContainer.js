@@ -390,6 +390,7 @@ class InfoContainer extends React.Component {
                                 <Layout.Row>
                                     <Layout.Col span='11'>
                                         <Form.Item>
+                                            <div>City</div>
                                             <input 
                                                 type='text' 
                                                 value={this.state.city}
