@@ -8,6 +8,7 @@ router.get("/api/v1/test", (req, res) => {
 });
 
 router.post("/api/v1/test", (req, res) => {
+    console.log(req);
     const callback = (email, subject, data)=>{
         res.send(`Email sent to ${email} \nSubject: ${subject}\n Data: ${data}`)
     }

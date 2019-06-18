@@ -20,6 +20,7 @@ class App extends React.Component {
 
         this.state = {
             // Toggles nav steps
+            start: false,
             active: 1,
             form: {
                 stateOfIncoporation: 'Delaware',
@@ -45,7 +46,7 @@ class App extends React.Component {
 
     saveForm = (data) => {
         /// this will break! but save data here
-        this.setState({form: data});
+        this.setState({form: Object.assign(this.state.form, data)});
     }
 
     saveAndNext = (data) => {
@@ -59,11 +60,14 @@ class App extends React.Component {
         this.onBack();
     }
 
+    startForm = () => {
+       this.setState({start: true});
+    }
+
     finalSubmit = () => {
         alert(JSON.stringify(this.state));
         console.log(this.state)
-
-        axios.post('https://evening-tor-34547.herokuapp.com/api/v1/test', JSON.stringify(this.state), config)
+        axios.post('localhost:4000/api/v1/test', JSON.stringify(this.state), config)
             .then(response => {
                 console.log(response);
             })
@@ -75,72 +79,87 @@ class App extends React.Component {
     render() {
 
         let pageContent;
+        let headerContent;
         let activeContent = this.state.active;
 
-        if (activeContent === 1) {
-            pageContent = (
-                <div>
-                    <InfoContainer 
-                        active={this.state.active} 
-                        companyName={this.state.companyName}
-                        altNames={this.state.altNames}
-                        firstName={this.state.firstName}
-                        lastName={this.state.lastName}
-                        email={this.state.email}
-                        phoneNum={this.state.phoneNum}
-                        streetAddress={this.state.streetAddress}
-                        streetAddressTwo={this.state.streetAddressTwo}
-                        city={this.state.city}
-                        usState={this.state.usStates}
-                        zip={this.state.zip}
-                        memberName={this.state.memberName}
-                        addlMemberNames={this.state.addlMemberNames}
-                        saveAndNext={this.saveAndNext}
-                    />
-                </div>
-            )
-        } else if (activeContent === 2) {
-            pageContent =(
-                <div>
-                    <OptionsContainer 
-                        companyName={this.state.companyName} 
-                        active={this.state.active}
-                        package={this.state.package}
-                        certifiedCopies={this.state.certifiedCopies}
-                        certifiedCopiesWApostille={this.state.certifiedCopiesWApostille}
-                        goodStandingCopies={this.state.goodStandingCopies}
-                        goodStandingCopiesWApostille={this.state.goodStandingCopiesWApostille}
-                        servicesList={this.state.servicesList}
-                        deliveryOption={this.state.deliveryOption}
-                        specialRequests={this.state.requests}
-                        saveAndNext={this.saveAndNext}
-                        onBack={this.saveAndBack}
+        if (this.state.start){
+           if (activeContent === 1) {
+               pageContent = (
+                   <div>
+                       <InfoContainer 
+                           active={this.state.active} 
+                           companyName={this.state.companyName}
+                           altNames={this.state.altNames}
+                           firstName={this.state.firstName}
+                           lastName={this.state.lastName}
+                           email={this.state.email}
+                           phoneNum={this.state.phoneNum}
+                           streetAddress={this.state.streetAddress}
+                           streetAddressTwo={this.state.streetAddressTwo}
+                           city={this.state.city}
+                           usState={this.state.usStates}
+                           zip={this.state.zip}
+                           memberName={this.state.memberName}
+                           addlMemberNames={this.state.addlMemberNames}
+                           saveAndNext={this.saveAndNext}
+                       />
+                   </div>
+               )
+           } else if (activeContent === 2) {
+               pageContent =(
+                   <div>
+                       <OptionsContainer 
+                           companyName={this.state.companyName} 
+                           active={this.state.active}
+                           package={this.state.package}
+                           certifiedCopies={this.state.certifiedCopies}
+                           certifiedCopiesWApostille={this.state.certifiedCopiesWApostille}
+                           goodStandingCopies={this.state.goodStandingCopies}
+                           goodStandingCopiesWApostille={this.state.goodStandingCopiesWApostille}
+                           servicesList={this.state.servicesList}
+                           deliveryOption={this.state.deliveryOption}
+                           specialRequests={this.state.requests}
+                           saveAndNext={this.saveAndNext}
+                           onBack={this.saveAndBack}
 
-                        finalSubmit={this.finalSubmit}
+                           finalSubmit={this.finalSubmit}
 
-                    />
-                </div>
-            )
+                       />
+                   </div>
+               )
+           } else {
+               pageContent = (
+                   <div>
+                       <PayContainer 
+                           onBack={this.saveAndBack}
+                           finalSubmit={this.finalSubmit}
+                       />
+                   </div>
+               )
+           }
+
         } else {
-            pageContent = (
-                <div>
-                    <PayContainer 
-                        onBack={this.saveAndBack}
-                        finalSubmit={this.finalSubmit}
-                    />
-                </div>
-            )
+           pageContent = (
+             <div>
+                <Button className='text-center' onClick={this.startForm}>Create LLC in Five Minutes!</Button>
+             </div>
+           )
         }
+       if (this.state.start) {
+          headerContent = (
+              <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
+                  <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
+                      <Steps.Step title="Company & Contact"></Steps.Step>
+                      <Steps.Step title="Options & Services"></Steps.Step>
+                      <Steps.Step title="Review & Pay"></Steps.Step>
+                  </Steps>
+              </Menu>
+          )
+       } 
 
         return (
             <div style={{fontFamily: 'Helvetica Neue, helvetica'}}>
-                <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
-                    <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
-                        <Steps.Step title="Company & Contact"></Steps.Step>
-                        <Steps.Step title="Options & Services"></Steps.Step>
-                        <Steps.Step title="Review & Pay"></Steps.Step>
-                    </Steps>
-                </Menu>
+                { headerContent }
                 { pageContent }
             </div>
         )

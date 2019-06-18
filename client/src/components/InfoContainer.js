@@ -8,6 +8,12 @@ import  {
         } from 'element-react/next';
 
 let index;
+const axios = require('axios');
+
+// Config for Axios
+const config = {     
+    headers: { 'content-type': 'application/json' }
+}
 
 class InfoContainer extends React.Component {
     
@@ -210,6 +216,13 @@ class InfoContainer extends React.Component {
         `);
          
         this.props.saveAndNext(this.state);
+        axios.post('localhost:4000/api/v1/test', JSON.stringify(this.state), config)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            }) 
         
     };
     
