@@ -89,7 +89,7 @@ class OptionsContainer extends React.Component {
         `);
 
         this.props.saveAndNext(this.state);
-        //this.props.handleSubmitFromEric();
+        //this.props.finalSubmit(this.state);
         
     };
 
