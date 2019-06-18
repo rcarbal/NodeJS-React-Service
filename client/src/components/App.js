@@ -16,8 +16,7 @@ class App extends React.Component {
             active: 1,
             form: {
                 stateOfIncoporation: 'Delaware',
-                type: 'LLC',
-                name: ''
+                type: 'LLC'
             }
         };
     }
@@ -58,13 +57,35 @@ class App extends React.Component {
         if (activeContent === 1) {
             pageContent = (
                 <div>
-                    <InfoContainer companyName={this.state.form.companyName} active={this.state.active} saveAndNext={this.saveAndNext}/>
+                    <InfoContainer 
+                        active={this.state.active} 
+                        companyName={this.state.form.companyName}
+                        altNames={this.state.form.altNames}
+                        firstName={this.state.form.firstName}
+                        lastName={this.state.form.lastName}
+                        email={this.state.form.email}
+                        phoneNum={this.state.form.phoneNum}
+                        streetAddress={this.state.form.streetAddress}
+                        streetAddressTwo={this.state.form.streetAddressTwo}
+                        city={this.state.form.city}
+                        usState={this.state.form.usStates}
+                        zip={this.state.form.zip}
+                        memberName={this.state.form.memberName}
+                        addlMemberNames={this.state.form.addlMemberNames}
+                        saveAndNext={this.saveAndNext}
+                    />
                 </div>
             )
         } else if (activeContent === 2) {
             pageContent =(
                 <div>
-                    <OptionsContainer companyName={this.state.form.companyName} active={this.state.active} handleSubmitFromEric={this.finalSubmit}/>
+                    <OptionsContainer 
+                        companyName={this.state.form.companyName} 
+                        active={this.state.active} 
+                        handleSubmitFromEric={this.finalSubmit}
+                        saveAndNext={this.saveAndNext}
+                        onBack={this.onBack}
+                    />
                 </div>
             )
         } else {

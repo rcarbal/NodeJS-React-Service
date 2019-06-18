@@ -7,29 +7,16 @@ import  {
             Select
         } from 'element-react/next';
 
+let index;
+
 class InfoContainer extends React.Component {
     
-  /*
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            // Toggles nav steps
-            active: 0,
-            form: {
-                stateOfIncoporation: 'Delaware',
-                type: 'LLC',
-                name: ''
-            }
-        };
-    }
-  */
     state = {
         active: 0,
         stateOfIncoporation: 'Delaware',
         type: 'LLC',
         companyName: '',
-        altnames: '',
+        altNames: '',
         firstName: '',
         lastName: '',
         email: '',
@@ -205,7 +192,7 @@ class InfoContainer extends React.Component {
     }
 
     onAltNameInput = (event) => {
-        this.setState({ altnames: event.target.value });
+        this.setState({ altNames: event.target.value });
     }
 
     onFirstNameInput = (event) => {
@@ -237,11 +224,12 @@ class InfoContainer extends React.Component {
     }
 
     onStatesSelect = (event) => {
-        let index = this.state.usStates.findIndex(function(usState) {
-            return usState.value === event.target.value;
-        })
 
-        this.setState({ usStates: event[index].value.target.value })
+        for(index = 0; index < this.state.usStates.length; index++ ) {
+            index = this.state.usStates[index];
+        }
+
+        this.setState({ usStates: event.value.target.value })
     }
 
     onZipInput = (event) => {
@@ -266,12 +254,12 @@ class InfoContainer extends React.Component {
 
         alert(`
             The name '${this.state.companyName}' was submitted. 
-            The alternate name '${this.state.altnames}' was submitted.
+            The alternate name '${this.state.altNames}' was submitted.
             The first name for order delivery is '${this.state.firstName}'.
             The last name for order delivery is '${this.state.lastName}'.
             The email address is '${this.state.email}'.
             The phone number is ${this.state.phoneNum}.
-            The address is ${this.state.streetAddress} ${this.state.city}, 
+            The address is ${this.state.streetAddressTwo} ${this.state.streetAddress} ${this.state.city}, 
             ${this.state.usStates[4].value} ${this.state.zip}.
             LLC members include: ${this.state.memberName} ${this.state.addlMemberNames}.
         `);
@@ -283,15 +271,6 @@ class InfoContainer extends React.Component {
     render(){
         return (
             <div>
-              {/*
-                <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
-                  <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
-                    <Steps.Step title="Company & Contact"></Steps.Step>
-                    <Steps.Step title="Options & Services"></Steps.Step>
-                    <Steps.Step title="Review & Pay"></Steps.Step>
-                  </Steps>
-                </Menu>
-              */}
                 <div>{this.props.active}</div>
                 <div>{this.props.companyName}</div>
 
@@ -331,7 +310,7 @@ class InfoContainer extends React.Component {
                                         <div>Alternative name(s)</div>
                                         <input
                                             type='text'
-                                            value={this.state.altnames}
+                                            value={this.state.altNames}
                                             onChange={this.onAltNameInput}
                                         />
                                     </Form.Item>
@@ -414,6 +393,7 @@ class InfoContainer extends React.Component {
                                 <Layout.Row>
                                     <Layout.Col span='11'>
                                         <Form.Item>
+                                            <div>City</div>
                                             <input 
                                                 type='text' 
                                                 value={this.state.city}
