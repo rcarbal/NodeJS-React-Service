@@ -43,6 +43,7 @@ class App extends React.Component {
     saveAndNext = (data) => {
        this.saveForm(data);
        this.onNextStep();
+       console.log(this.state)
     }
 
     saveAndBack = (data) => {
@@ -52,6 +53,7 @@ class App extends React.Component {
 
     finalSubmit = () => {
        alert('I should submit this data using axios like a boss;' + JSON.stringify(this.state));
+        console.log(this.state)
     }
 
     render() {
@@ -85,18 +87,21 @@ class App extends React.Component {
             pageContent =(
                 <div>
                     <OptionsContainer 
-                        companyName={this.state.form.companyName} 
+                        companyName={this.state.companyName} 
                         active={this.state.active}
-                        package={this.state.form.package}
-                        certifiedCopies={this.state.form.certifiedCopies}
-                        certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
-                        goodStandingCopies={this.state.form.goodStandingCopies}
-                        goodStandingCopiesWApostille={this.state.form.goodStandingCopiesWApostille}
-                        servicesList={this.state.form.servicesList}
-                        deliveryOption={this.state.form.deliveryOption}
+                        package={this.state.package}
+                        certifiedCopies={this.state.certifiedCopies}
+                        certifiedCopiesWApostille={this.state.certifiedCopiesWApostille}
+                        goodStandingCopies={this.state.goodStandingCopies}
+                        goodStandingCopiesWApostille={this.state.goodStandingCopiesWApostille}
+                        servicesList={this.state.servicesList}
+                        deliveryOption={this.state.deliveryOption}
                         specialRequests={this.state.requests}
                         saveAndNext={this.saveAndNext}
                         onBack={this.saveAndBack}
+
+                        finalSubmit={this.finalSubmit}
+
                     />
                 </div>
             )
@@ -104,7 +109,8 @@ class App extends React.Component {
             pageContent = (
                 <div>
                     <PayContainer 
-                        handleSubmitFromEric={this.finalSubmit}
+                        onBack={this.saveAndBack}
+                        finalSubmit={this.finalSubmit}
                     />
                 </div>
             )
