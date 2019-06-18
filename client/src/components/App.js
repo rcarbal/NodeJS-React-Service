@@ -5,6 +5,13 @@ import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
 
+const axios = require('axios');
+
+// Config for Axios
+const config = {     
+    headers: { 'content-type': 'multipart/form-data' }
+}
+
 class App extends React.Component { 
     // Function overriding React.Component constructor() 
     constructor(props) {
@@ -53,8 +60,16 @@ class App extends React.Component {
     }
 
     finalSubmit = () => {
-       alert('I should submit this data using axios like a boss;' + JSON.stringify(this.state));
+        alert(JSON.stringify(this.state));
         console.log(this.state)
+
+        axios.post('https://evening-tor-34547.herokuapp.com/api/v1/test', JSON.stringify(this.state), config)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            }) 
     }
 
     render() {
