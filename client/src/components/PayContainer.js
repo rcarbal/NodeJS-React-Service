@@ -9,9 +9,7 @@ class PayContainer extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        alert(this.props.form);
-
-        this.props.finalSubmit();
+        this.props.finalSubmit(this.state);
     }
 
     onBack(event) {
