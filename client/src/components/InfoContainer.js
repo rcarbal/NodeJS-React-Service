@@ -8,6 +8,12 @@ import  {
         } from 'element-react/next';
 
 let index;
+const axios = require('axios');
+
+// Config for Axios
+const config = {     
+    headers: { 'content-type': 'application/json' }
+}
 
 class InfoContainer extends React.Component {
     
@@ -25,158 +31,107 @@ class InfoContainer extends React.Component {
         streetAddressTwo: '',
         city: '',
         usStates: [
-          { value: 'AL',
-            label: 'Alabama'
+          { value: 'AL'
           }, {
-            value: 'AK',
-            label: 'Alaska'
+            value: 'AK'
           }, {
-            value: 'AZ',
-            label: 'Arizona'
+            value: 'AZ'
           }, {
-            value: 'AR',
-            label: 'Arkansas'
+            value: 'AR'
           }, {
-            value: 'CA',
-            label: 'California'
+            value: 'CA'
           }, {
-            value: 'CO',
-            label: 'Colorado'
+            value: 'CO'
           }, {
-            value: 'CT',
-            label: 'Connecticut'
+            value: 'CT'
           }, {
-            value: 'DE',
-            label: 'Delaware'
+            value: 'DE'
           }, {
-            value: 'DC',
-            label: 'District of Columbia'
+            value: 'DC'
           }, {
-            value: 'FL',
-            label: 'Florida'
+            value: 'FL'
           }, {
-            value: 'GA',
-            label: 'Georgia'
+            value: 'GA'
           }, {
-            value: 'HI',
-            label: 'Hawaii'
+            value: 'HI'
           }, {
-            value: 'ID',
-            label: 'Idaho'
+            value: 'ID'
           }, {
-            value: 'IL',
-            label: 'Illinois'
+            value: 'IL'
           }, {
-            value: 'IN',
-            label: 'Indiana'
+            value: 'IN'
           }, {
-            value: 'IA',
-            label: 'Iowa'
+            value: 'IA'
           }, {
-            value: 'KS',
-            label: 'Kansas'
+            value: 'KS'
           }, {
-            value: 'KY',
-            label: 'Kentucky'
+            value: 'KY'
           }, {
-            value: 'LA',
-            label: 'Louisiana'
+            value: 'LA'
           }, {
-            value: 'ME',
-            label: 'Maine'
+            value: 'ME'
           }, {
-            value: 'MD',
-            label: 'Maryland'
+            value: 'MD'
           }, {
-            value: 'MA',
-            label: 'Massachusetts'
+            value: 'MA'
           }, {
-            value: 'MI',
-            label: 'Michigan'
+            value: 'MI'
           }, {
-            value: 'MN',
-            label: 'Minnesota'
+            value: 'MN'
           }, {
-            value: 'MS',
-            label: 'Mississippi'
+            value: 'MS'
           }, {
-            value: 'MO',
-            label: 'Missouri'
+            value: 'MO'
           }, {
-            value: 'MT',
-            label: 'Montana'
+            value: 'MT'
           }, {
-            value: 'NE',
-            label: 'Nebraska'
+            value: 'NE'
           }, {
-            value: 'NV',
-            label: 'Nevada'
+            value: 'NV'
           }, {
-            value: 'NH',
-            label: 'New Hampshire'
+            value: 'NH'
           }, {
-            value: 'NJ',
-            label: 'New Jersey'
+            value: 'NJ'
           }, {
-            value: 'NM',
-            label: 'New Mexico'
+            value: 'NM'
           }, {
-            value: 'NY',
-            label: 'New York'
+            value: 'NY'
           }, {
-            value: 'NC',
-            label: 'North Carolina'
+            value: 'NC'
           }, {
-            value: 'ND',
-            label: 'North Dakota'
+            value: 'ND'
           }, {
-            value: 'OH',
-            label: 'Ohio'
+            value: 'OH'
           }, {
-            value: 'OK',
-            label: 'Oklahoma'
+            value: 'OK'
           }, {
-            value: 'OR',
-            label: 'Oregon'
+            value: 'OR'
           }, {
-            value: 'PA',
-            label: 'Pennsylvania'
+            value: 'PA'
           }, {
-            value: 'RI',
-            label: 'Rhode Island'
+            value: 'RI'
           }, {
-            value: 'SC',
-            label: 'South Carolina'
+            value: 'SC'
           }, {
-            value: 'SD',
-            label: 'South Dakota'
+            value: 'SD'
           }, {
-            value: 'TN',
-            label: 'Tennessee'
+            value: 'TN'
           }, {
-            value: 'TX',
-            label: 'Texas'
+            value: 'TX'
           }, {
-            value: 'UT',
-            label: 'Utah'
+            value: 'UT'
           }, {
-            value: 'VT',
-            label: 'Vermont'
+            value: 'VT'
           }, {
-            value: 'VA',
-            label: 'Virginia'
+            value: 'VA'
           }, {
-            value: 'WA',
-            label: 'Washington'
+            value: 'WA'
           }, {
-            value: 'WV',
-            label: 'West Virginia'
+            value: 'WV'
           }, {
-            value: 'WI',
-            label: 'Wisconsin'
+            value: 'WI'
           }, {
-            value: 'WY',
-            label: 'Wyoming'
+            value: 'WY'
           }
         ],
         zip: '',
@@ -187,8 +142,8 @@ class InfoContainer extends React.Component {
         addlMemberNames: ''
     }
 
-    onNameInput = (event) => {
-        this.setState({ companyName: event.target.value });
+    onNameInput(companyName) {
+        this.setState({ companyName });
     }
 
     onAltNameInput = (event) => {
@@ -248,10 +203,6 @@ class InfoContainer extends React.Component {
     
         event.preventDefault();
 
-        let index = this.state.usStates.findIndex(function(usState) {
-            return usState.value === event.target.value;
-        })
-
         alert(`
             The name '${this.state.companyName}' was submitted. 
             The alternate name '${this.state.altNames}' was submitted.
@@ -265,6 +216,13 @@ class InfoContainer extends React.Component {
         `);
          
         this.props.saveAndNext(this.state);
+        axios.post('localhost:4000/api/v1/test', JSON.stringify(this.state), config)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            }) 
         
     };
     
@@ -274,7 +232,7 @@ class InfoContainer extends React.Component {
                 <div>{this.props.active}</div>
                 <div>{this.props.companyName}</div>
 
-                <Form ref="form" model={this.state} rules={this.state.rules} labelWidth="100" className="demo-dynamic">
+                <Form labelWidth="100" className="demo-dynamic">
  
                 {/*
                     <Collapse>
@@ -298,10 +256,10 @@ class InfoContainer extends React.Component {
                                 <Layout.Col span='12'>
                                     <Form.Item>
                                           <div>Name</div>
-                                          <input 
+                                          <Input 
                                               type='text' 
                                               value={this.state.companyName}
-                                              onChange={this.onNameInput} 
+                                              onChange={this.onNameInput.bind(this)} 
                                           />
                                     </Form.Item>
                                 </Layout.Col>
@@ -311,7 +269,7 @@ class InfoContainer extends React.Component {
                                         <input
                                             type='text'
                                             value={this.state.altNames}
-                                            onChange={this.onAltNameInput}
+                                            onChange={this.onAltNameInput.bind(this)}
                                         />
                                     </Form.Item>
                                 </Layout.Col>
@@ -329,7 +287,7 @@ class InfoContainer extends React.Component {
                                           <input 
                                               type='text'
                                               value={this.state.firstName}
-                                              onChange={this.onFirstNameInput}
+                                              onChange={this.onFirstNameInput.bind(this)}
                                           />
                                       </Form.Item>
                                   </Layout.Col>
@@ -339,7 +297,7 @@ class InfoContainer extends React.Component {
                                           <input 
                                               type='text'
                                               value={this.state.lastName}
-                                              onChange={this.onLastNameInput}
+                                              onChange={this.onLastNameInput.bind(this)}
                                           />
                                       </Form.Item>
                                   </Layout.Col>
@@ -352,7 +310,7 @@ class InfoContainer extends React.Component {
                                             <input 
                                                 type='email'
                                                 value={this.state.email}
-                                                onChange={this.onEmailInput}
+                                                onChange={this.onEmailInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Layout.Col>
@@ -362,7 +320,7 @@ class InfoContainer extends React.Component {
                                             <input 
                                                 type='text'
                                                 value={this.state.phoneNum}
-                                                onChange={this.onPhoneNumInput}
+                                                onChange={this.onPhoneNumInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Layout.Col>
@@ -375,7 +333,7 @@ class InfoContainer extends React.Component {
                                             <input
                                                 type='text'
                                                 value={this.state.streetAddress}
-                                                onChange={this.onStreetInput}
+                                                onChange={this.onStreetInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Layout.Col>
@@ -385,7 +343,7 @@ class InfoContainer extends React.Component {
                                             <input
                                                 type='text'
                                                 value={this.state.streetAddressTwo}
-                                                onChange={this.onStreetTwoInput}
+                                                onChange={this.onStreetTwoInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Layout.Col>
@@ -397,7 +355,7 @@ class InfoContainer extends React.Component {
                                             <input 
                                                 type='text' 
                                                 value={this.state.city}
-                                                onChange={this.onCityInput}    
+                                                onChange={this.onCityInput.bind(this)}    
                                             />
                                         </Form.Item>
                                     </Layout.Col>
@@ -421,7 +379,7 @@ class InfoContainer extends React.Component {
                                             <input 
                                                 type="text"
                                                 value={this.state.zip}
-                                                onChange={this.onZipInput}
+                                                onChange={this.onZipInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Layout.Col>
@@ -453,7 +411,7 @@ class InfoContainer extends React.Component {
                                             <input
                                                 type='text'
                                                 value={this.state.memberName}
-                                                onChange={this.onMemberInput}
+                                                onChange={this.onMemberInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Layout.Col>
@@ -463,7 +421,7 @@ class InfoContainer extends React.Component {
                                             <input
                                                 type='text'
                                                 value={this.state.addlMemberNames}
-                                                onChange={this.onAddlMemberInput}
+                                                onChange={this.onAddlMemberInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Layout.Col>
