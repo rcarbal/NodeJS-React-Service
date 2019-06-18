@@ -20,6 +20,7 @@ class App extends React.Component {
             }
         };
     }
+
     onNextStep() {
         let active = this.state.active + 1;
             if (active > 3) {
@@ -66,19 +67,19 @@ class App extends React.Component {
                 <div>
                     <InfoContainer 
                         active={this.state.active} 
-                        companyName={this.state.form.companyName}
-                        altNames={this.state.form.altNames}
-                        firstName={this.state.form.firstName}
-                        lastName={this.state.form.lastName}
-                        email={this.state.form.email}
-                        phoneNum={this.state.form.phoneNum}
-                        streetAddress={this.state.form.streetAddress}
-                        streetAddressTwo={this.state.form.streetAddressTwo}
-                        city={this.state.form.city}
-                        usState={this.state.form.usStates}
-                        zip={this.state.form.zip}
-                        memberName={this.state.form.memberName}
-                        addlMemberNames={this.state.form.addlMemberNames}
+                        companyName={this.state.companyName}
+                        altNames={this.state.altNames}
+                        firstName={this.state.firstName}
+                        lastName={this.state.lastName}
+                        email={this.state.email}
+                        phoneNum={this.state.phoneNum}
+                        streetAddress={this.state.streetAddress}
+                        streetAddressTwo={this.state.streetAddressTwo}
+                        city={this.state.city}
+                        usState={this.state.usStates}
+                        zip={this.state.zip}
+                        memberName={this.state.memberName}
+                        addlMemberNames={this.state.addlMemberNames}
                         saveAndNext={this.saveAndNext}
                     />
                 </div>
