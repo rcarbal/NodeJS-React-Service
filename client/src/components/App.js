@@ -45,7 +45,6 @@ class App extends React.Component {
     }
 
     saveForm = (data) => {
-        /// this will break! but save data here
         this.setState({form: Object.assign(this.state.form, data)});
     }
 
@@ -87,20 +86,20 @@ class App extends React.Component {
                pageContent = (
                    <div>
                        <InfoContainer 
-                           active={this.state.active} 
-                           companyName={this.state.companyName}
-                           altNames={this.state.altNames}
-                           firstName={this.state.firstName}
-                           lastName={this.state.lastName}
-                           email={this.state.email}
-                           phoneNum={this.state.phoneNum}
-                           streetAddress={this.state.streetAddress}
-                           streetAddressTwo={this.state.streetAddressTwo}
-                           city={this.state.city}
-                           usState={this.state.usStates}
-                           zip={this.state.zip}
-                           memberName={this.state.memberName}
-                           addlMemberNames={this.state.addlMemberNames}
+                           active={this.state.form.active} 
+                           companyName={this.state.form.companyName}
+                           altNames={this.state.form.altNames}
+                           firstName={this.state.form.firstName}
+                           lastName={this.state.form.lastName}
+                           email={this.state.form.email}
+                           phoneNum={this.state.form.phoneNum}
+                           streetAddress={this.state.form.streetAddress}
+                           streetAddressTwo={this.state.form.streetAddressTwo}
+                           city={this.state.form.city}
+                           usState={this.state.form.usStates}
+                           zip={this.state.form.zip}
+                           memberName={this.state.form.memberName}
+                           addlMemberNames={this.state.form.addlMemberNames}
                            saveAndNext={this.saveAndNext}
                        />
                    </div>
@@ -109,16 +108,16 @@ class App extends React.Component {
                pageContent =(
                    <div>
                        <OptionsContainer 
-                           companyName={this.state.companyName} 
-                           active={this.state.active}
-                           package={this.state.package}
-                           certifiedCopies={this.state.certifiedCopies}
-                           certifiedCopiesWApostille={this.state.certifiedCopiesWApostille}
-                           goodStandingCopies={this.state.goodStandingCopies}
-                           goodStandingCopiesWApostille={this.state.goodStandingCopiesWApostille}
-                           servicesList={this.state.servicesList}
-                           deliveryOption={this.state.deliveryOption}
-                           specialRequests={this.state.requests}
+                           companyName={this.state.form.companyName} 
+                           active={this.state.form.active}
+                           package={this.state.form.package}
+                           certifiedCopies={this.state.form.certifiedCopies}
+                           certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
+                           goodStandingCopies={this.state.form.goodStandingCopies}
+                           goodStandingCopiesWApostille={this.state.form.goodStandingCopiesWApostille}
+                           servicesList={this.state.form.servicesList}
+                           deliveryOption={this.state.form.deliveryOption}
+                           specialRequests={this.state.form.requests}
                            saveAndNext={this.saveAndNext}
                            onBack={this.saveAndBack}
 
