@@ -66,7 +66,7 @@ class App extends React.Component {
     finalSubmit = () => {
         alert(JSON.stringify(this.state.form));
         console.log(this.state)
-        axios.post('/api/v01/test', JSON.stringify(this.state), config)
+        axios.post('/api/v01/test', JSON.stringify(this.state.form), config)
             .then(response => {
                 console.log(response);
             })

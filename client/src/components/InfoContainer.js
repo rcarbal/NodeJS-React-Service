@@ -216,13 +216,6 @@ class InfoContainer extends React.Component {
         `);
          
         this.props.saveAndNext(this.state);
-        axios.post('localhost:4000/api/v1/test', JSON.stringify(this.state), config)
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            }) 
         
     };
     
