@@ -15,4 +15,20 @@ router.post("/api/v1/test", (req, res) => {
     email.sendEmail(req.body.email, callback);
 });
 
+router.get("/api/v01/test", (req, res) => {
+    console.log("===========================================================================================");
+    console.log("HTTP GET REQUEST");
+    console.log(req);
+    console.log("===========================================================================================");
+    res.send("YOU SEND HTTP GET REQUEST");
+});
+
+router.post("/api/v01/test", (req, res) => {
+    console.log("===========================================================================================");
+    console.log("HTTP POST REQUEST")
+    console.log(req);
+    console.log("===========================================================================================");
+    res.send("YOU SEND HTTP POST REQUEST");
+});
+
 module.exports = router;
