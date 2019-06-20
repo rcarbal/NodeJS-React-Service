@@ -146,36 +146,36 @@ class InfoContainer extends React.Component {
         this.setState({ companyName });
     }
 
-    onAltNameInput = (event) => {
-        this.setState({ altNames: event.target.value });
+    onAltNameInput(altNames) {
+        this.setState({ altNames });
     }
 
-    onFirstNameInput = (event) => {
-        this.setState({ firstName: event.target.value });
+    onFirstNameInput(firstName) {
+        this.setState({ firstName });
     }
 
-    onLastNameInput = (event) => {
-        this.setState({ lastName: event.target.value });
+    onLastNameInput(lastName) {
+        this.setState({ lastName });
     }
 
-    onEmailInput = (event) => {
-        this.setState({ email: event.target.value });
+    onEmailInput(email) {
+        this.setState({ email });
     }
 
-    onPhoneNumInput = (event) => {
-        this.setState({ phoneNum: event.target.value });
+    onPhoneNumInput(phoneNum) {
+        this.setState({ phoneNum });
     }
 
-    onStreetInput = (event) => {
-        this.setState({ streetAddress: event.target.value })
+    onStreetInput(streetAddress) {
+        this.setState({ streetAddress })
     }
 
-    onStreetTwoInput = (event) => {
-        this.setState({ streetAddressTwo: event.target.value })
+    onStreetTwoInput(streetAddressTwo) {
+        this.setState({ streetAddressTwo })
     }
 
-    onCityInput = (event) => {
-        this.setState({ city: event.target.value });
+    onCityInput(city) {
+        this.setState({ city });
     }
 
     onStatesSelect = (event) => {
@@ -187,16 +187,16 @@ class InfoContainer extends React.Component {
         this.setState({ usStates: event.value.target.value })
     }
 
-    onZipInput = (event) => {
-        this.setState({ zip: event.target.value });
+    onZipInput(zip) {
+        this.setState({ zip });
     }
 
-    onMemberInput = (event) => {
-        this.setState({ memberName: event.target.value });
+    onMemberInput(memberName) {
+        this.setState({ memberName });
     }
 
-    onAddlMemberInput = (event) => {
-        this.setState({ addlMemberNames: event.target.value });
+    onAddlMemberInput(addlMemberNames) {
+        this.setState({ addlMemberNames });
     }
 
     handleSubmit(event) {
@@ -259,7 +259,7 @@ class InfoContainer extends React.Component {
                                 <Layout.Col span='12'>
                                     <Form.Item>
                                         <div>Alternative name(s)</div>
-                                        <input
+                                        <Input
                                             type='text'
                                             value={this.state.altNames}
                                             onChange={this.onAltNameInput.bind(this)}
@@ -277,7 +277,7 @@ class InfoContainer extends React.Component {
                                   <Layout.Col span='12'>
                                       <Form.Item>
                                           <div>First name</div>
-                                          <input 
+                                          <Input 
                                               type='text'
                                               value={this.state.firstName}
                                               onChange={this.onFirstNameInput.bind(this)}
@@ -287,7 +287,7 @@ class InfoContainer extends React.Component {
                                   <Layout.Col span='12'>
                                       <Form.Item>
                                           <div>Last Name</div>
-                                          <input 
+                                          <Input 
                                               type='text'
                                               value={this.state.lastName}
                                               onChange={this.onLastNameInput.bind(this)}
@@ -300,7 +300,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='12'>
                                         <Form.Item>
                                             <div>Email address</div>
-                                            <input 
+                                            <Input 
                                                 type='email'
                                                 value={this.state.email}
                                                 onChange={this.onEmailInput.bind(this)}
@@ -310,7 +310,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='12'>
                                         <Form.Item>
                                             <div>Phone Number</div>
-                                            <input 
+                                            <Input 
                                                 type='text'
                                                 value={this.state.phoneNum}
                                                 onChange={this.onPhoneNumInput.bind(this)}
@@ -323,7 +323,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='12'>
                                         <Form.Item>
                                             <div>Street address</div>
-                                            <input
+                                            <Input
                                                 type='text'
                                                 value={this.state.streetAddress}
                                                 onChange={this.onStreetInput.bind(this)}
@@ -333,7 +333,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='12'>
                                         <Form.Item>
                                             <div>Street address continued</div>
-                                            <input
+                                            <Input
                                                 type='text'
                                                 value={this.state.streetAddressTwo}
                                                 onChange={this.onStreetTwoInput.bind(this)}
@@ -345,7 +345,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='11'>
                                         <Form.Item>
                                             <div>City</div>
-                                            <input 
+                                            <Input 
                                                 type='text' 
                                                 value={this.state.city}
                                                 onChange={this.onCityInput.bind(this)}    
@@ -369,7 +369,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span="8">
                                         <Form.Item>
                                             <div>Zip Code</div>
-                                            <input 
+                                            <Input 
                                                 type="text"
                                                 value={this.state.zip}
                                                 onChange={this.onZipInput.bind(this)}
@@ -401,7 +401,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='12'>
                                         <Form.Item>
                                             <div>Name</div>
-                                            <input
+                                            <Input
                                                 type='text'
                                                 value={this.state.memberName}
                                                 onChange={this.onMemberInput.bind(this)}
@@ -411,7 +411,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='12'>
                                         <Form.Item>
                                             <div>Additional members(if applicable)</div>
-                                            <input
+                                            <Input
                                                 type='text'
                                                 value={this.state.addlMemberNames}
                                                 onChange={this.onAddlMemberInput.bind(this)}
