@@ -30,6 +30,8 @@ class InfoContainer extends React.Component {
         streetAddress: '',
         streetAddressTwo: '',
         city: '',
+        usState: [],
+        /*
         usStates: [
           { value: 'AL'
           }, {
@@ -134,6 +136,7 @@ class InfoContainer extends React.Component {
             value: 'WY'
           }
         ],
+        */
         zip: '',
         countries: [
           { value: 'United States of America', label: 'USA' }
@@ -178,6 +181,7 @@ class InfoContainer extends React.Component {
         this.setState({ city });
     }
 
+    /*
     onStatesSelect = (event) => {
 
         for(index = 0; index < this.state.usStates.length; index++ ) {
@@ -186,6 +190,25 @@ class InfoContainer extends React.Component {
 
         this.setState({ usStates: event.value.target.value })
     }
+    */
+   onStateSelect(e) {
+    // current array of usState
+    const usState = this.state.usState
+    let index;
+
+    // check if the check box is checked or unchecked
+    if (e.target.checked) {
+        // add the numerical value of the checkbox to usState array
+       usState.push(+e.target.value)
+    } else {
+        // or remove the value from the unchecked checkbox from the array
+        index = usState.indexOf(+e.target.value)
+        usState.splice(index, 1)
+    }
+
+    // update the state with the new array of usState
+    this.setState({ usState: usState })
+}
 
     onZipInput(zip) {
         this.setState({ zip });
@@ -211,7 +234,7 @@ class InfoContainer extends React.Component {
             The email address is '${this.state.email}'.
             The phone number is ${this.state.phoneNum}.
             The address is ${this.state.streetAddressTwo} ${this.state.streetAddress} ${this.state.city}, 
-            ${this.state.usStates[4].value} ${this.state.zip}.
+            ${this.state.usState} ${this.state.zip}.
             LLC members include: ${this.state.memberName} ${this.state.addlMemberNames}.
         `);
          
@@ -355,6 +378,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='5'>
                                         <Form.Item>
                                             <div>State</div>
+                                            {/*
                                             <Select value={this.state.value}> {
                                                 this.state.usStates.map(usState => {
                                                     return  <Select.Option 
@@ -364,6 +388,15 @@ class InfoContainer extends React.Component {
                                                             />
                                                 })
                                             } </Select>
+                                            */}
+                                            <Select value={this.state.usState}>
+                                                <Select.Option 
+                                                    onChange={this.onStateSelect.bind(this)} 
+                                                    value='AL'>AL
+                                                </Select.Option>
+                                                <Select.Option value='AR'>AR</Select.Option>
+                                                <Select.Option value='AZ'>AZ</Select.Option>
+                                            </Select>
                                         </Form.Item>
                                     </Layout.Col>
                                     <Layout.Col span="8">
