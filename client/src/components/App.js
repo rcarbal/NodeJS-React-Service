@@ -9,7 +9,7 @@ const axios = require('axios');
 
 // Config for Axios
 const config = {     
-    headers: { 'content-type': 'multipart/form-data' }
+    headers: { 'content-type': 'application/json' }
 }
 
 class App extends React.Component { 
