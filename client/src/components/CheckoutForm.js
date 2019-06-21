@@ -11,21 +11,24 @@ class CheckoutForm extends Component {
     }
 
     async submit(event) {
-        let {token} = await this.props.stripe.createToken({name: "Name"});
+        let {token} = await this.props.stripe.createToken({name: "Name"}).then(({token, error}) => {
+            if(error) {
+                console.log('Could not create token to submit charge')
+                console.log(error)
+            } else {
+                if (response.ok) {
+                    this.setState({ complete: true });
+                    console.log("Purchase Complete!");
+                    console.log(response);
+                }
+            }
+        });
         let response = await fetch("/charge", {
             method: "POST",
             headers: {"Content-Type": "text/plain"},
             body: token.id
         });
-    
-        if (response.ok) {
-            this.setState({ complete: true });
-            console.log("Purchase Complete!");
-            console.log(response);
-        } else {
-            console.log('There was a problem completing the puchase')
-        }
-    }
+    };
     
     render() {
 
