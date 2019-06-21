@@ -24,12 +24,15 @@ router.get("/api/v01/test", (req, res) => {
     res.send("YOU SEND HTTP GET REQUEST");
 });
 
-router.post("/api/v01/test", (req, res) => {
+router.post("/api/v01/test", async(req, res) => {
+    
     console.log("===========================================================================================");
     console.log("HTTP POST REQUEST")
     console.log(req.body);
+    const callback = (process) => res.send(`YOU SEND HTTP POST REQUEST: Payment: ${process}`);
+    payment(callback);    
     console.log("===========================================================================================");
-    res.send("YOU SEND HTTP POST REQUEST");
+    
 });
 
 module.exports = router;
