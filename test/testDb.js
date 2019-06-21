@@ -153,6 +153,7 @@ function retieveDatabasePopulatedDocs() {
                 console.log("====================================================================");
                 console.log("Retrieving Companies with Populated references.");
                 console.log(company);
+                process.exit(0)
             }
         });
 }
