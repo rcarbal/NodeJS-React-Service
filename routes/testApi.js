@@ -1,5 +1,6 @@
 const express = require('express'),
     email = require('../api/v1/test/emailTest'),
+    payment = require('../payment'),
     router = express.Router();
 
 
