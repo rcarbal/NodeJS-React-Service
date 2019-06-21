@@ -1,9 +1,9 @@
 const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 
-module.exports = (callback) =>{
-    console.log("CHARGING====================")
-    stripe.charges.create({
+module.exports = async (resolve, reject) =>{
+    console.log("CHARGING=========================================================================")
+    await stripe.charges.create({
         amount: 2000,
         currency: "usd",
         source: "tok_visa", // obtained with Stripe.js
@@ -11,9 +11,11 @@ module.exports = (callback) =>{
     }, (error, payment)=>{
         if (error){
             console.log(error);
+            reject(false)
         } else{
             console.log("Payment Successful")
-            callback(true);
+            resolve(true)
+            // callback(true);
         }
     });
 }
