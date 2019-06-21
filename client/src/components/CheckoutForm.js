@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import { Button } from 'element-react/next';
 
-let data;
 
 class CheckoutForm extends Component {
     constructor(props) {
@@ -35,7 +34,7 @@ class CheckoutForm extends Component {
         return (
             <div className='checkout'>
               <CardElement />
-              <button onClick={this.submit}>Confirm order</button>
+              <Button onClick={this.submit}>Confirm order</Button>
             </div>
         );
     }

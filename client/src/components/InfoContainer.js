@@ -7,14 +7,6 @@ import  {
             Select
         } from 'element-react/next';
 
-let index;
-const axios = require('axios');
-
-// Config for Axios
-const config = {     
-    headers: { 'content-type': 'application/json' }
-}
-
 class InfoContainer extends React.Component {
     
     state = {
