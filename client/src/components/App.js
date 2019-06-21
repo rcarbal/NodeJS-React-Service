@@ -96,7 +96,7 @@ class App extends React.Component {
                            streetAddress={this.state.form.streetAddress}
                            streetAddressTwo={this.state.form.streetAddressTwo}
                            city={this.state.form.city}
-                           usState={this.state.form.usStates}
+                           usState={this.state.form.usState}
                            zip={this.state.form.zip}
                            memberName={this.state.form.memberName}
                            addlMemberNames={this.state.form.addlMemberNames}
