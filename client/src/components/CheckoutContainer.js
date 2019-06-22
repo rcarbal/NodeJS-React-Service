@@ -3,6 +3,7 @@ import { StripeProvider, Elements } from 'react-stripe-elements';
 
 import CheckoutForm from './CheckoutForm';
 import PaymentRequestForm from './PaymentRequestForm';
+import Payments from './Payments';
 
 class CheckoutContainer extends React.Component {
     constructor() {
@@ -27,12 +28,14 @@ class CheckoutContainer extends React.Component {
         return (
           <div className="Checkout">
             <h1>Available Elements</h1>
+            <Payments />
+            {/*
             <StripeProvider apiKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'>
               <Elements>
                 <CheckoutForm fontSize={elementFontSize} />
               </Elements>
             </StripeProvider>
-            {/*
+            
             <Elements>
               <PaymentRequestForm />
             </Elements>
