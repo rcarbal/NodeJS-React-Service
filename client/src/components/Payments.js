@@ -3,9 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { Button } from 'element-react/next';
 
 class Payments extends React.Component {
-    data = {
-        ricardo: "===================================================================================================================="
-    }
+    
     componentDidMount(){
         console.log("PRINTING PROPS =========================")
         console.log(this.props.formData);
@@ -17,7 +15,10 @@ class Payments extends React.Component {
 
         fetch('/api/v01/test', {
             method: 'POST',
-            body: JSON.stringify(token),
+            body: [
+                JSON.stringify(token),
+                this.props.formData
+            ]
         }).then(response => {
             response.json().then(data => {
             self.setState({ token: data });

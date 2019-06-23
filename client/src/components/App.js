@@ -63,7 +63,7 @@ class App extends React.Component {
        this.setState({start: true});
     }
 
-    finalSubmit = JSON.stringify(this.state)
+    
     /*
     finalSubmit = () => {
         alert(JSON.stringify(this.state.form));
