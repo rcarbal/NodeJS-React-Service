@@ -10,7 +10,8 @@ const testApiRoutes = require('./routes/testApi'),
 
 
 app.set("view engine", "ejs");
-// app.use(bodyParser.urlencoded({ extended: true }));
+
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require("body-parser").text());
 app.use(bodyParser.json());
 

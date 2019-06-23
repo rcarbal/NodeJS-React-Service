@@ -19,7 +19,7 @@ router.post("/api/v1/test", (req, res) => {
 router.get("/api/v01/test", (req, res) => {
     console.log("===========================================================================================");
     console.log("HTTP GET REQUEST");
-    console.log(req.body);
+    console.log(req);
     console.log("===========================================================================================");
     res.send("YOU SEND HTTP GET REQUEST");
 });
@@ -27,7 +27,7 @@ router.get("/api/v01/test", (req, res) => {
 router.post("/api/v01/test", (req, res) => {
     console.log("===========================================================================================");
     console.log("HTTP POST REQUEST");
-    console.log(req.body);
+    console.log(req);
     new Promise((resolve, reject) => {
         payment(resolve, reject);
     }).then((paid) => {
