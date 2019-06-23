@@ -22,12 +22,17 @@ class CheckoutContainer extends React.Component {
           }
         });
       }
+
+      finalSubmit = () => {
+        this.props.finalSubmit(this.state);
+      }
     
       render() {
         const {elementFontSize} = this.state;
         return (
           <div className="Checkout">
-            <h1>Available Elements</h1>
+
+            <h1>{this.props.tokenInfo}</h1>
             <Payments />
             {/*
             <StripeProvider apiKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'>

@@ -63,6 +63,8 @@ class App extends React.Component {
        this.setState({start: true});
     }
 
+    finalSubmit = JSON.stringify(this.state)
+    /*
     finalSubmit = () => {
         alert(JSON.stringify(this.state.form));
         console.log(this.state)
@@ -74,6 +76,7 @@ class App extends React.Component {
                 console.log(error);
             }) 
     }
+    */
 
     render() {
 
@@ -107,7 +110,7 @@ class App extends React.Component {
            } else if (activeContent === 2) {
                pageContent =(
                    <div>
-                       <OptionsContainer 
+                        <OptionsContainer 
                            companyName={this.state.form.companyName} 
                            active={this.state.form.active}
                            package={this.state.form.package}
@@ -120,18 +123,18 @@ class App extends React.Component {
                            specialRequests={this.state.form.requests}
                            saveAndNext={this.saveAndNext}
                            onBack={this.saveAndBack}
-
-                           finalSubmit={this.finalSubmit}
-
-                       />
+                        />
                    </div>
                )
            } else {
                pageContent = (
                    <div>
                        <PayContainer 
-                           onBack={this.saveAndBack}
-                           finalSubmit={this.finalSubmit}
+                            tokenInfo={this.state.form.tokenInfo}
+                            saveForm={this.saveForm}
+
+                            onBack={this.saveAndBack}
+                            finalSubmit={this.finalSubmit}
                        />
                    </div>
                )
