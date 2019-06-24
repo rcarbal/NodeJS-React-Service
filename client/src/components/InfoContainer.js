@@ -14,7 +14,7 @@ class InfoContainer extends React.Component {
         stateOfIncoporation: 'Delaware',
         type: 'LLC',
         companyName: '',
-        altNames: '',
+        altName: '',
         firstName: '',
         lastName: '',
         email: '',
@@ -151,8 +151,8 @@ class InfoContainer extends React.Component {
         this.setState({ companyName });
     }
 
-    onAltNameInput(altNames) {
-        this.setState({ altNames });
+    onAltNameInput(altName) {
+        this.setState({ altName });
     }
 
     onFirstNameInput(firstName) {
@@ -220,7 +220,7 @@ class InfoContainer extends React.Component {
 
         alert(`
             The name '${this.state.companyName}' was submitted. 
-            The alternate name '${this.state.altNames}' was submitted.
+            The alternate name '${this.state.altName}' was submitted.
             The first name for order delivery is '${this.state.firstName}'.
             The last name for order delivery is '${this.state.lastName}'.
             The email address is '${this.state.email}'.
@@ -276,7 +276,7 @@ class InfoContainer extends React.Component {
                                         <div>Alternative name(s)</div>
                                         <Input
                                             type='text'
-                                            value={this.state.altNames}
+                                            value={this.state.altName}
                                             onChange={this.onAltNameInput.bind(this)}
                                         />
                                     </Form.Item>

@@ -23,7 +23,7 @@ class App extends React.Component {
             start: false,
             active: 1,
             form: {
-                stateOfIncoporation: 'Delaware',
+                stateOfIncorporation: 'Delaware',
                 type: 'LLC'
             }
         };
@@ -91,7 +91,7 @@ class App extends React.Component {
                        <InfoContainer 
                            active={this.state.form.active} 
                            companyName={this.state.form.companyName}
-                           altNames={this.state.form.altNames}
+                           altName={this.state.form.altName}
                            firstName={this.state.form.firstName}
                            lastName={this.state.form.lastName}
                            email={this.state.form.email}
@@ -130,9 +130,33 @@ class App extends React.Component {
                pageContent = (
                    <div>
                        <PayContainer 
-                            tokenInfo={this.state.form.tokenInfo}
-                            saveForm={this.saveForm}
+                            companyName={this.state.form.companyName} 
+                            stateOfIncorporation={this.state.form.stateOfIncorporation}
+                            type={this.state.form.type}
+                            altName={this.state.form.altName}
+                            firstName={this.state.form.firstName}
+                            lastName={this.state.form.lastName}
+                            email={this.state.form.email}
+                            phoneNum={this.state.form.phoneNum}
+                            streetAddress={this.state.form.streetAddress}
+                            streetAddressTwo={this.state.form.streetAddressTwo}
+                            city={this.state.form.city}
+                            usState={this.state.form.usState}
+                            zip={this.state.form.zip}
+                            country={this.state.form.country}
+                            memberName={this.state.form.memberName}
+                            addlMemberNames={this.state.form.addlMemberNames}
 
+                            package={this.state.form.package}
+                            certifiedCopies={this.state.form.certifiedCopies}
+                            certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
+                            goodStandingCopies={this.state.form.goodStandingCopies}
+                            goodStandingCopiesWApostille={this.state.form.goodStandingCopiesWApostille}
+                            servicesList={this.state.form.servicesList}
+                            deliveryOption={this.state.form.deliveryOption}
+                            specialRequests={this.state.form.requests}
+
+                            saveForm={this.saveForm}
                             onBack={this.saveAndBack}
                             formData={JSON.stringify(this.state.form)}
                        />
