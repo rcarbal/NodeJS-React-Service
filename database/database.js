@@ -3,17 +3,16 @@ const Company = require("../models/company"),
     LegalParties = require("../models/legalParty"),
     Services = require('../models/services'),
     Request = require('../models/request'),
-    Seed = require('./seedData'),
-    mongoose = require('mongoose'),
     { extractPopularServices } = require('../utilities/propUtils'),
     { popularServicesRefs } = require('../utilities/propRefs')
+
 
 // mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
 //     console.log("=============================================================================================================================");
 //     console.log("\nConnected to mongoDB");
 // });
-
-function saveToDatabase(data) {
+function saveToDatabase(data, callback) {
+    console.log("Saving to database...")
 
     const companyData = {
         name: data.companyName,
@@ -23,7 +22,7 @@ function saveToDatabase(data) {
 
     };
 
-    const constactData = {
+    const contactData = {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
@@ -34,10 +33,10 @@ function saveToDatabase(data) {
         zip: data.zip
     };
 
-    const legalPartiesData = {
-        name: date.memberName,
-        date: data.memberDate
-    };
+    const legalPartiesData = [
+        LegalParties({ name: data.memberName }),
+        LegalParties({ name: data.addlMemberNames })
+    ];
 
 
 
@@ -64,22 +63,61 @@ function saveToDatabase(data) {
     }
 
     // Check if database LLC is already in Database
-    
+
     // Save to Database
-    const company = new Company(companyData),
-          contract = new Contact(constactData),
-          legalparties = new LegalParties(legalPartiesData),
-          services = new Services(servicesData),
-          request = new Request(requestData);
+    // const company = new Company(companyData),
+    //       contract = new Contact(constactData),
+    //       legalparties = new LegalParties(legalPartiesData),
+    //       services = new Services(servicesData),
+    //       request = new Request(requestData);
     // Send sucessful response
 
-    company.save().then(()=>{
-        console.log("Company Saved")
-    });
+    Company.create(companyData, (err, company) => {
+        if (err) console.log(err);
+        else {
+            Contact.create(contactData, (err, contact) => {
+                if (err) console.log(err);
+                else {
+                    company.contact = contact._id;
+                    LegalParties.collection.insertMany(legalPartiesData, (err, legalParties) => {
+                        if (err) console.log(err);
+                        for (var property in legalParties.insertedIds) {
+                            if (legalParties.insertedIds.hasOwnProperty(property)) {
+                                company.legalParty.push(legalParties.insertedIds[property]);
+                            }
+                        }
+                        Services.create(servicesData, (err, services) => {
+                            if (err) console.log(err);
+                            else {
+                                company.services = services._id;
+                                Request.create(requestData, (err, request) => {
+                                    if (err) console.log(err);
+                                    company.request = request._id;
+                                    company.save((err, savedCompany) => {
+                                        if (err) console.log(err);
+                                        else {
+                                            console.log("Company Saved");
+                                            callback(savedCompany);
+                                        }
 
-};
+                                    });
+                                })
+                            }
+                        })
+                    })
+                }
+            })
+        }
+    });
+}
 
 function checkLLCName() {
 
+}
+
+
+
+module.exports = {
+    saveToDatabase
 }
 

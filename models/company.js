@@ -12,7 +12,7 @@ const companySchema = new mongoose.Schema({
     type: String,
     alternate_name: String,
     state: String,
-    contacts: properties.contactRef,
+    contact: properties.contactRef,
     legalParty: [properties.legalPartiesRef],
     services: properties.servicesPropRef,
     request: properties.requestPropRef

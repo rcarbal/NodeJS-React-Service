@@ -38,7 +38,7 @@ const seedDB = () => {
                     console.log(err);
                 } else {
 
-                    company.contacts = contact._id;
+                    company.contact = contact._id;
                     console.log("====================================================================");
                     console.log("Saved Contact\n");
                     console.log(contact);
@@ -91,7 +91,7 @@ const seedDB = () => {
                                                 console.log("\n\n\n");
 
                                                 // get database reference only.
-                                                retieveDatabaseReference();
+                                                setTimeout(retieveDatabaseReference, 3000);
                                             });
 
                                         }
@@ -122,7 +122,8 @@ function retieveDatabaseReference() {
                 console.log("\n\n\n");
 
                 //Retrieve populated datababase.
-                retieveDatabasePopulatedDocs();
+                setTimeout(retieveDatabasePopulatedDocs, 3000);
+                ;
             }
         });
 }
@@ -139,7 +140,7 @@ Story.
 function retieveDatabasePopulatedDocs() {
     Company
         .findOne({})
-        .populate(["contacts","legalParty", "request","services"])
+        .populate(["contact","legalParty", "request","services"])
         .exec((error, company) => {
             if (error) {
                 console.log(error);

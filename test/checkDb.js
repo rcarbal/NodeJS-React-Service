@@ -1,5 +1,11 @@
 const mongoose = require('mongoose'),
-    Company = require("../models/company")
+    Company = require("../models/company"),
+    Contact = require("../models/contact"),
+    LegalParties = require("../models/legalParty"),
+    Services = require('../models/services'),
+    Request = require('../models/request');
+
+    
 mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");
@@ -20,7 +26,24 @@ function retieveDatabaseReference() {
                 console.log("Retriving Companies with only reference ID.\n\n");
                 console.log(aComapny);
                 console.log("\n");
-                process.exit(0);
+
+                setTimeout(retieveDatabasePopulatedDocs, 2000);
+            }
+        });
+}
+
+function retieveDatabasePopulatedDocs() {
+    Company
+        .findOne({})
+        .populate(["contact", "legalParty", "request", "services"])
+        .exec((error, company) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log("====================================================================");
+                console.log("Retrieving Companies with Populated references.");
+                console.log(company);
+                process.exit(0)
             }
         });
 }

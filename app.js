@@ -12,8 +12,8 @@ const testApiRoutes = require('./routes/testApi'),
 app.set("view engine", "ejs");
 
 //app.use(bodyParser.urlencoded({ extended: true }));
-app.use(require("body-parser").text());
-app.use(bodyParser.json());
+app.use(bodyParser.text());
+//app.use(bodyParser.json());
 
 app.use(testApiRoutes);
 app.use(paidApiRoutes);
