@@ -1,8 +1,9 @@
 const express = require('express'),
     email = require('../api/v1/test/emailTest'),
     payment = require('../payment'),
-    { saveToDatabase } = require('../database/database')
-router = express.Router();
+    { saveToDatabase } = require('../database/database'),
+    { sendEmail } = require('../email'),
+    router = express.Router();
 
 
 router.get("/api/v1/test", (req, res) => {
@@ -46,18 +47,26 @@ router.post("/api/v01/test", (req, res) => {
         payment(resolve, reject, paymentData);
     }).then((payment) => {
         if (payment.paid) {
-            response.payment = `Payment Successful of amount: $${payment.amount} `;
+            response.payment = {
+                payment_amount: payment.amount,
+                payment_successful: true
+            };
 
             let savedCallback = (savedCompany) => {
                 if (savedCompany) {
+                    let sendEmailCallback = (emailSent) => {
+                        response.emaiSent = {
+                            emailSent
+                        }
+                        console.log("===========================================================================================");
+                        res.send(response);
+                    }
                     console.log(savedCompany);
-                    response.dbSaved = `${savedCompany.name} successfully saved to database`;
-                    console.log("===========================================================================================");
-                    res.send(response);
+                    response.dbSaved = { dbSaved: true };
+                    sendEmail(savedCompany, sendEmailCallback);
                 }
             }
             saveToDatabase(body[1], savedCallback);
-
         }
 
 
