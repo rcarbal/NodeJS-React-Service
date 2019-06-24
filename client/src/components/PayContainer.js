@@ -7,9 +7,6 @@ import Payments from './Payments';
 
 class PayContainer extends React.Component {
 
-    state = {
-        tokenInfo: []
-    };
 
     componentDidMount(){
         console.log("PRINTING PROPS OF PAYCONTAINER =========================")
@@ -33,6 +30,21 @@ class PayContainer extends React.Component {
         return (
             <div>
                 <h3>Review</h3>
+                <div>================</div>
+                    <h5>Order for: {this.props.stateOfIncorporation} {this.props.type}</h5>
+                    <h4>{this.props.companyName}</h4>
+                    <h6>(Alternate name: {this.props.altName})</h6>
+                    <p>
+                        <strong>Contact: </strong>
+                        {this.props.firstName}{this.props.lastName} | {this.props.phoneNum} | {this.props.email} | 
+                        {this.props.streetAddress} {this.props.city}, {this.props.usState} {this.props.zip} {this.props.country}
+                    </p>
+                    <p>
+                        <strong>Members: </strong>
+                        {this.props.memberName}
+                        {this.props.addlMemberNames}
+                    </p>
+                <div>================</div>
                 <h3>Pay</h3>
                 {/*
                 <CheckoutContainer 
