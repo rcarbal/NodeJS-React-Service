@@ -22,7 +22,18 @@ class InfoContainer extends React.Component {
         streetAddress: '',
         streetAddressTwo: '',
         city: '',
-        usState: [],
+        /*
+        usStates: [
+            { value: 'AL' },
+            { value: 'AK' },
+            { value: 'AZ' },
+            { value: 'AR' },
+            { value: 'CA' }
+        ],
+        */
+        usState: '',
+        //usStates: ['AL', 'AK', 'AZ', 'AR', 'CA'],
+
         /*
         usStates: [
           { value: 'AL'
@@ -129,10 +140,9 @@ class InfoContainer extends React.Component {
           }
         ],
         */
+        
         zip: '',
-        countries: [
-          { value: 'United States of America', label: 'USA' }
-        ],
+        country: 'USA',
         memberName: '',
         addlMemberNames: ''
     }
@@ -174,36 +184,26 @@ class InfoContainer extends React.Component {
     }
 
     /*
-    onStatesSelect = (event) => {
-
-        for(index = 0; index < this.state.usStates.length; index++ ) {
-            index = this.state.usStates[index];
-        }
-
-        this.setState({ usStates: event.value.target.value })
-    }
-    */
-   onStateSelect(e) {
-    // current array of usState
-    const usState = this.state.usState
-    let index;
-
-    // check if the check box is checked or unchecked
-    if (e.target.checked) {
-        // add the numerical value of the checkbox to usState array
-       usState.push(+e.target.value)
-    } else {
-        // or remove the value from the unchecked checkbox from the array
-        index = usState.indexOf(+e.target.value)
-        usState.splice(index, 1)
+    onStatesSelect(usStates) {
+        this.setState({ usStates })
     }
 
-    // update the state with the new array of usState
-    this.setState({ usState: usState })
-}
+    onStateSelect(usStates) {
+        this.setState({ usStates })
+    }
+   */
 
+   onStateSelect = (event) => {
+       this.setState({ usState: event.target.value });
+   }
+   
+   
     onZipInput(zip) {
         this.setState({ zip });
+    }
+
+    onCountrySelect = (event) => {
+        this.setState({ country: event.target.value });
     }
 
     onMemberInput(memberName) {
@@ -370,25 +370,29 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='5'>
                                         <Form.Item>
                                             <div>State</div>
+                                            
                                             {/*
-                                            <Select value={this.state.value}> {
-                                                this.state.usStates.map(usState => {
+                                            <Select 
+                                                value={this.state.usStates} 
+                            
+                                            > {
+                                                this.state.usStates.map((usState) => {
                                                     return  <Select.Option 
                                                                 key={usState.value} 
-                                                                value={usState.value} 
-                                                                onChange={usState.value}
+                                                                value={usState.value}
+                                                                label={usState.value}
+                                                                onClick={this.onStateSelect.bind(this)}
                                                             />
                                                 })
                                             } </Select>
                                             */}
-                                            <Select value={this.state.usState}>
-                                                <Select.Option 
-                                                    onChange={this.onStateSelect.bind(this)} 
-                                                    value='AL'>AL
-                                                </Select.Option>
-                                                <Select.Option value='AR'>AR</Select.Option>
-                                                <Select.Option value='AZ'>AZ</Select.Option>
-                                            </Select>
+                                    
+                                            <select value={this.state.usState} onChange={this.onStateSelect}>
+                                                <option value='AL'>AL</option>
+                                                <option value='AR'>AR</option>
+                                                <option value='AZ'>AZ</option>
+                                            </select>
+                                            
                                         </Form.Item>
                                     </Layout.Col>
                                     <Layout.Col span="8">
@@ -404,6 +408,7 @@ class InfoContainer extends React.Component {
                                     <Layout.Col span='24'>
                                         <Form.Item>
                                             <div>Country</div>
+                                            {/*
                                             <Select value={ this.state.value }> {
                                                 this.state.countries.map(country => {
                                                     return  <Select.Option
@@ -413,6 +418,15 @@ class InfoContainer extends React.Component {
                                                             />
                                                 })
                                             } </Select>
+                                            */}
+                                            <Select value={this.state.country} disabled={true}>
+                                                <Select.Option>USA</Select.Option>
+                                            </Select>
+                                            {/*
+                                            <select value={this.state.country} onChange={this.onCountrySelect}>
+                                                <option value="USA">USA</option>
+                                            </select>
+                                            */}
                                         </Form.Item>
                                     </Layout.Col>
                                 </Layout.Row>
