@@ -7,10 +7,11 @@ class OptionsContainer extends React.Component {
     state = {
         active: 0,
         llcPackage: {},
-        certifiedCopies: 0,
-        certifiedCopiesWApostille: 0,
-        goodStandingCopies: 0,
-        goodStandingCopiesWApostille: 0,
+        
+        certifiedCopies: {},
+        certifiedCopiesWApostille: {},
+        goodStandingCopies: {},
+        goodStandingCopiesWApostille: {},
         deliveryOption: [],
         servicesList: [],
         requests: ''
@@ -41,19 +42,35 @@ class OptionsContainer extends React.Component {
    onPackageSelect(value) {
        this.setState({ llcPackage: value});
    }
+    
+    getCertifiedCopies(e) {
+        console.log(e)
+        this.setState({ certifiedCopies: {numCopies: e, price: 99} });
+    }
+    getCertifiedCopiesWApostille(e) {
+        this.setState({ certifiedCopiesWApostille: {numCopies: e, price: 159} });
+    }
+    getGoodStandingCopies(e) {
+        this.setState({ goodStandingCopies: {numCopies: e, price: 99} });
+    }
+    getGoodStandingCopiesWApostille(e) {
+        this.setState({ goodStandingCopiesWApostille: {numCopies: e, price: 159} });
+    }
+    
+   /*
+    orderDocuments(e) {
+        const llcDocuments = this.state.llcDocuments;
+        let index;
 
-    getCertifiedCopies(certifiedCopies) {
-        this.setState({ certifiedCopies });
+        if(e.defaultValue) {
+            llcDocuments.push(+e.value);
+        } else {
+            index = llcDocuments.indexOf(+e.defaultValue)
+            llcDocuments.splice(index, 1)
+        }
+        this.setState({ llcDocuments: llcDocuments });
     }
-    getCertifiedCopiesWApostille(certifiedCopiesWApostille) {
-        this.setState({ certifiedCopiesWApostille });
-    }
-    getGoodStandingCopies(goodStandingCopies) {
-        this.setState({ goodStandingCopies });
-    }
-    getGoodStandingCopiesWApostille(goodStandingCopiesWApostille) {
-        this.setState({ goodStandingCopiesWApostille });
-    }
+    */
 
     onServicesSelect(e) {
         // current array of servicesList
@@ -96,6 +113,7 @@ class OptionsContainer extends React.Component {
         event.preventDefault();
 
         alert(`
+            USER ORDERED ${this.state.llcDocuments}
             User chose the ${this.state.llcPackage} package for $${this.state.price}
             User ordered ${this.state.certifiedCopies} certified copies
             User ordered ${this.state.certifiedCopiesWApostille} certified copies w/ apostille
@@ -129,6 +147,31 @@ class OptionsContainer extends React.Component {
         let taxIDNumberApp = { value: 'Tax ID Number - EIN Application', price: 99 };
         let complianceKit = { value: 'Compliance Kit & Seal', price: 99 };
 
+        // DELIVERY OPTION
+        let fedExDelivery = { value: 'FedEx(domestic)', price: 29 };
+
+        // DOCUMENTS
+        let certifiedCopies = { 
+            name: 'Certified Copy', 
+            numCopies: 0, 
+            price: 99 
+        };
+        let certifiedCopiesWApostille = { 
+            name: 'Certified Copy w/ Apostille', 
+            numCopies: 0, 
+            price: 159 
+        };
+        let goodStandingCopies = { 
+            name: 'Certificate of Good Standing', 
+            numCopies: 0, 
+            price: 99 
+        };
+        let goodStandingCopiesWApostille = { 
+            name: 'Certificate of Good Standing w/ Apostille', 
+            numCopies: 0, 
+            price: 159 
+        };
+
         return (
             <div>
                 <Form>
@@ -138,22 +181,19 @@ class OptionsContainer extends React.Component {
                     <Form.Item>
                         <Radio 
                             value={SmoothLegal} 
-                            checked={this.state.llcPackage.value === 'SmoothLegal'} 
-                            price={399} 
+                            checked={this.state.llcPackage.value === 'SmoothLegal'}  
                             onChange={this.onPackageSelect.bind(this)}>
                             SmoothLegal Formation
                         </Radio>
                         <Radio 
                             value={complete} 
-                            checked={this.state.llcPackage.value === 'Complete'} 
-                            price='298' 
+                            checked={this.state.llcPackage.value === 'Complete'}  
                             onChange={this.onPackageSelect.bind(this)}>
                             Complete Formation
                         </Radio>
                         <Radio 
                             value={basic} 
-                            checked={this.state.llcPackage.value === 'Basic'} 
-                            price='189' 
+                            checked={this.state.llcPackage.value === 'Basic'}  
                             onChange={this.onPackageSelect.bind(this)}>
                             Basic Formation
                         </Radio> 
@@ -179,26 +219,30 @@ class OptionsContainer extends React.Component {
                         </Checkbox.Group>
                         <div>Certified Copy </div>
                         <InputNumber 
-                            size='small' 
-                            defaultValue={this.state.certifiedCopies} 
+                            size='small'
+                            value={certifiedCopies.price} 
+                            defaultValue={certifiedCopies.numCopies} 
                             onChange={this.getCertifiedCopies.bind(this)}
                         />
                         <div>Certified Copy w/Apostille</div>
                         <InputNumber 
-                            size='small' 
-                            defaultValue={this.state.certifiedCopiesWApostille} 
+                            size='small'
+                            value={certifiedCopiesWApostille.price} 
+                            defaultValue={certifiedCopiesWApostille.numCopies} 
                             onChange={this.getCertifiedCopiesWApostille.bind(this)}
                         />
                         <div>Certificate of Good Standing </div>
                         <InputNumber 
-                            size='small' 
-                            defaultValue={this.state.goodStandingCopies} 
+                            size='small'
+                            value={goodStandingCopies.price} 
+                            defaultValue={goodStandingCopies.numCopies} 
                             onChange={this.getGoodStandingCopies.bind(this)}
                         />
                         <div>Certificate of Good Standing w/Apostille</div>
                         <InputNumber 
-                            size='small' 
-                            defaultValue={this.state.goodStandingCopiesWApostille} 
+                            size='small'
+                            value={goodStandingCopiesWApostille.price} 
+                            defaultValue={goodStandingCopiesWApostille.numCopies} 
                             onChange={this.getGoodStandingCopiesWApostille.bind(this)}
                         />
                     </Form.Item>
@@ -206,7 +250,7 @@ class OptionsContainer extends React.Component {
                         <h3>Delivery Options</h3>
                         <Checkbox.Group value={this.state.deliveryOption}>
                             <Checkbox 
-                                value='FedEx(domestic)'
+                                value={fedExDelivery}
                                 onChange={this.upgradeDelivery.bind(this)}>
                                 FedEx(domestic)
                             </Checkbox>

@@ -113,7 +113,7 @@ class App extends React.Component {
                         <OptionsContainer 
                            companyName={this.state.form.companyName} 
                            active={this.state.form.active}
-                           package={this.state.form.package}
+                           llcPackage={this.state.form.llcPackage}
                            certifiedCopies={this.state.form.certifiedCopies}
                            certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
                            goodStandingCopies={this.state.form.goodStandingCopies}
