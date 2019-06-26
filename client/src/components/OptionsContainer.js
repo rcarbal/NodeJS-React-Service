@@ -119,9 +119,15 @@ class OptionsContainer extends React.Component {
 
     render(){
 
+        // PACKAGES
         let SmoothLegal = { value: 'SmoothLegal', price: 399 };
         let complete =    { value: 'Complete', price: 289 };
         let basic =       { value: 'Basic', price: 198 };
+
+        // SERVICES
+        let statementOfOrganizer = { value: 'Statement of Organizer', price: 49 };
+        let taxIDNumberApp = { value: 'Tax ID Number - EIN Application', price: 99 };
+        let complianceKit = { value: 'Compliance Kit & Seal', price: 99 };
 
         return (
             <div>
@@ -156,17 +162,17 @@ class OptionsContainer extends React.Component {
                         <h3>Popular Services</h3>
                         <Checkbox.Group value={this.state.servicesList}>
                             <Checkbox 
-                                value='Statement of Organizer'
+                                value={statementOfOrganizer}
                                 onChange={this.onServicesSelect.bind(this)}>
                                 Statement of Organizer
                             </Checkbox>
                             <Checkbox 
-                                value='Tax ID Number - EIN Application'
+                                value={taxIDNumberApp}
                                 onChange={this.onServicesSelect.bind(this)}>
                                 Tax ID Number - EIN Application
                             </Checkbox>
                             <Checkbox 
-                                value='Compliance Kit & Seal'
+                                value={complianceKit}
                                 onChange={this.onServicesSelect.bind(this)}>
                                 Compliance Kit & Seal
                             </Checkbox>
