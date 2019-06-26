@@ -55,7 +55,7 @@ router.post("/api/v01/test", (req, res) => {
             let savedCallback = (savedCompany) => {
                 if (savedCompany) {
                     let sendEmailCallback = (emailSent) => {
-                        response.emaiSent = {
+                        response.emailSent = {
                             emailSent
                         }
                         console.log("===========================================================================================");
