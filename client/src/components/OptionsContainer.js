@@ -6,10 +6,7 @@ class OptionsContainer extends React.Component {
 
     state = {
         active: 0,
-        package: {
-            value: '',
-            price: ''
-        },
+        llcPackage: {},
         certifiedCopies: 0,
         certifiedCopiesWApostille: 0,
         goodStandingCopies: 0,
@@ -19,10 +16,31 @@ class OptionsContainer extends React.Component {
         requests: ''
     }
 
+    /* ORIGINAL WORKING FUNCTION WITH JUST VALUE
     onPackageSelect(value) {
-        this.setState({ value });
-        console.log(this.state.value)
+        let llcPackage = {...this.state.llcPackage};
+        llcPackage.value = value;
+        this.setState({ llcPackage: { value: value }});
     }
+    */
+   /* BROKEN FUNCTION
+   onPackageSelect = (event) => {
+       event.preventDefault();
+       let value = event.target.value;
+       let price = event.target.price;
+       this.setState({ llcPackages: { value: value, price: price }});
+   }
+   */
+    /*
+    onPackageSelect = ({ target }) => {
+        let packages = [...this.state.llcPackages];
+        packages.name = target.value;
+        packages.price = target.price;
+    }
+    */
+   onPackageSelect(value) {
+       this.setState({ llcPackage: value});
+   }
 
     getCertifiedCopies(certifiedCopies) {
         this.setState({ certifiedCopies });
@@ -78,7 +96,7 @@ class OptionsContainer extends React.Component {
         event.preventDefault();
 
         alert(`
-            User chose the ${this.state.value} package for $${this.state.price}
+            User chose the ${this.state.llcPackage} package for $${this.state.price}
             User ordered ${this.state.certifiedCopies} certified copies
             User ordered ${this.state.certifiedCopiesWApostille} certified copies w/ apostille
             User ordered ${this.state.goodStandingCopies} certificate of good standing copies
@@ -100,6 +118,11 @@ class OptionsContainer extends React.Component {
     }
 
     render(){
+
+        let SmoothLegal = { value: 'SmoothLegal', price: 399 };
+        let complete =    { value: 'Complete', price: 289 };
+        let basic =       { value: 'Basic', price: 198 };
+
         return (
             <div>
                 <Form>
@@ -108,22 +131,22 @@ class OptionsContainer extends React.Component {
                     <h3>Package</h3>
                     <Form.Item>
                         <Radio 
-                            value='SmoothLegal' 
-                            checked={this.state.package.value === 'SmoothLegal'} 
-                            price='399' 
+                            value={SmoothLegal} 
+                            checked={this.state.llcPackage.value === 'SmoothLegal'} 
+                            price={399} 
                             onChange={this.onPackageSelect.bind(this)}>
                             SmoothLegal Formation
                         </Radio>
                         <Radio 
-                            value='Complete' 
-                            checked={this.state.package.value === 'Complete'} 
+                            value={complete} 
+                            checked={this.state.llcPackage.value === 'Complete'} 
                             price='298' 
                             onChange={this.onPackageSelect.bind(this)}>
                             Complete Formation
                         </Radio>
                         <Radio 
-                            value='Basic' 
-                            checked={this.state.package.value === 'Basic'} 
+                            value={basic} 
+                            checked={this.state.llcPackage.value === 'Basic'} 
                             price='189' 
                             onChange={this.onPackageSelect.bind(this)}>
                             Basic Formation

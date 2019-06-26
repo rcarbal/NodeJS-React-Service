@@ -147,7 +147,7 @@ class App extends React.Component {
                             memberName={this.state.form.memberName}
                             addlMemberNames={this.state.form.addlMemberNames}
 
-                            package={this.state.form.package}
+                            llcPackage={this.state.form.llcPackage}
                             certifiedCopies={this.state.form.certifiedCopies}
                             certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
                             goodStandingCopies={this.state.form.goodStandingCopies}
