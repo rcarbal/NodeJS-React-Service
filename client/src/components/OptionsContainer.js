@@ -75,11 +75,38 @@ class OptionsContainer extends React.Component {
     
         event.preventDefault();
 
-        let certifiedCopiesTotal = this.state.certifiedCopies.numCopies * this.state.certifiedCopies.price;
-        let certifiedCopiesWApostilleTotal = this.state.certifiedCopiesWApostille.numCopies * this.state.certifiedCopiesWApostille.price;
-        let goodStandingCopiesTotal = this.state.goodStandingCopies.numCopies * this.state.goodStandingCopies.price;
-        let goodStandingCopiesWApostilleTotal = this.state.goodStandingCopiesWApostille.numCopies * this.state.goodStandingCopiesWApostille.price;
+        let certifiedCopiesTotal;
+        if (this.state.certifiedCopies.numCopies !== undefined) {
+            certifiedCopiesTotal = this.state.certifiedCopies.numCopies * this.state.certifiedCopies.price;
+        } else {
+            certifiedCopiesTotal = 0; 
+        }
 
+        let certifiedCopiesWApostilleTotal;
+        if (this.state.certifiedCopiesWApostille.numCopies !== undefined) {
+            certifiedCopiesWApostilleTotal = this.state.certifiedCopiesWApostille.numCopies * this.state.certifiedCopiesWApostille.price;
+        } else {
+            certifiedCopiesWApostilleTotal = 0;
+        }
+        
+        let goodStandingCopiesTotal;
+        if (this.state.goodStandingCopies.numCopies !== undefined) {
+            goodStandingCopiesTotal = this.state.goodStandingCopies.numCopies * this.state.goodStandingCopies.price;
+        } else {
+            goodStandingCopiesTotal = 0;
+        }
+        
+        let goodStandingCopiesWApostilleTotal;
+        if (this.state.goodStandingCopiesWApostille.numCopies !== undefined) {
+            goodStandingCopiesWApostilleTotal = this.state.goodStandingCopiesWApostille.numCopies * this.state.goodStandingCopiesWApostille.price;
+        } else {
+            goodStandingCopiesWApostilleTotal = 0;   
+        }
+
+        let servicesDocsSum = certifiedCopiesTotal + certifiedCopiesWApostilleTotal + goodStandingCopiesTotal + goodStandingCopiesWApostilleTotal;
+
+        let deliveryOption = this.state.deliveryOption;
+        let deliveryOptionPriceSum = deliveryOption.reduce((option, {price}) => option + price, 0)
         let servicesList = this.state.servicesList;
         let servicesPriceSum = servicesList.reduce((service, {price}) =>  service + price, 0)
 
@@ -89,7 +116,8 @@ class OptionsContainer extends React.Component {
             Certified Copies w/Apostille price = ${this.state.certifiedCopiesWApostille.numCopies} * ${this.state.certifiedCopiesWApostille.price} = ${certifiedCopiesWApostilleTotal}
             Certs of Good Standing price = ${this.state.goodStandingCopies.numCopies} * ${this.state.goodStandingCopies.price} = ${goodStandingCopiesTotal}
             Certs of Good Standing w/Apostille price = ${this.state.goodStandingCopiesWApostille.numCopies} * ${this.state.goodStandingCopiesWApostille.price} = ${goodStandingCopiesWApostilleTotal}
-            Delivery Price = ${this.state.deliveryOption[0].price}
+            Service Documents Total price = ${servicesDocsSum}
+            Delivery Price = ${deliveryOptionPriceSum}
             Services Sum = ${servicesPriceSum}
             `)
 
