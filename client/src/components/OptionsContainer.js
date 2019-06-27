@@ -34,6 +34,20 @@ class OptionsContainer extends React.Component {
         this.setState({ goodStandingCopiesWApostille: {numCopies: e, price: 159} });
     }
     
+    upgradeDelivery(e) {
+        const deliveryOption = this.state.deliveryOption;
+        let index;
+
+        if(e.target.checked) {
+            deliveryOption.push(+e.target.value)
+        } else {
+            deliveryOption[0].price = 0;
+            index = deliveryOption.indexOf(+e.target.value)
+            deliveryOption.splice(index, 1)
+        }
+        this.setState({ deliveryOption: deliveryOption });
+    }
+
     onServicesSelect(e) {
         // current array of servicesList
         const servicesList = this.state.servicesList
@@ -52,20 +66,6 @@ class OptionsContainer extends React.Component {
         // update the state with the new array of servicesList
         this.setState({ servicesList: servicesList })
     }
-
-    upgradeDelivery(e) {
-        const deliveryOption = this.state.deliveryOption;
-        let index;
-
-        if(e.target.checked) {
-            deliveryOption.push(+e.target.value)
-        } else {
-            deliveryOption[0].price = 0;
-            index = deliveryOption.indexOf(+e.target.value)
-            deliveryOption.splice(index, 1)
-        }
-        this.setState({ deliveryOption: deliveryOption });
-    }
     
     onRequestInput(requests) {
         this.setState({ requests });
@@ -75,22 +75,13 @@ class OptionsContainer extends React.Component {
     
         event.preventDefault();
 
-        alert(`
-            USER ORDERED ${this.state.llcDocuments}
-            User chose the ${this.state.llcPackage} package for $${this.state.price}
-            User ordered ${this.state.certifiedCopies} certified copies
-            User ordered ${this.state.certifiedCopiesWApostille} certified copies w/ apostille
-            User ordered ${this.state.goodStandingCopies} certificate of good standing copies
-            User ordered ${this.state.goodStandingCopiesWApostille} certificate of good standing copies w/ apostille
-            User ordered the following list of services: ${this.state.servicesList}
-            FedEx delivery upgrade: ${this.state.deliveryOption}
-            User requests: ${this.state.requests}
-        `);
-
         let certifiedCopiesTotal = this.state.certifiedCopies.numCopies * this.state.certifiedCopies.price;
         let certifiedCopiesWApostilleTotal = this.state.certifiedCopiesWApostille.numCopies * this.state.certifiedCopiesWApostille.price;
         let goodStandingCopiesTotal = this.state.goodStandingCopies.numCopies * this.state.goodStandingCopies.price;
-        let goodStandingCopiesWApostilleTotal = this.state.goodStandingCopiesWApostille.numCopies * this.state.goodStandingCopiesWApostille.price
+        let goodStandingCopiesWApostilleTotal = this.state.goodStandingCopiesWApostille.numCopies * this.state.goodStandingCopiesWApostille.price;
+
+        let servicesList = this.state.servicesList;
+        let servicesPriceSum = servicesList.reduce((service, {price}) =>  service + price, 0)
 
         console.log(`
             LLC Package price = ${this.state.llcPackage.price}
@@ -99,6 +90,7 @@ class OptionsContainer extends React.Component {
             Certs of Good Standing price = ${this.state.goodStandingCopies.numCopies} * ${this.state.goodStandingCopies.price} = ${goodStandingCopiesTotal}
             Certs of Good Standing w/Apostille price = ${this.state.goodStandingCopiesWApostille.numCopies} * ${this.state.goodStandingCopiesWApostille.price} = ${goodStandingCopiesWApostilleTotal}
             Delivery Price = ${this.state.deliveryOption[0].price}
+            Services Sum = ${servicesPriceSum}
             `)
 
         this.props.saveAndNext(this.state);
