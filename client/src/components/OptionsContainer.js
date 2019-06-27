@@ -7,7 +7,6 @@ class OptionsContainer extends React.Component {
     state = {
         active: 0,
         llcPackage: {},
-        
         certifiedCopies: {},
         certifiedCopiesWApostille: {},
         goodStandingCopies: {},
@@ -17,34 +16,12 @@ class OptionsContainer extends React.Component {
         requests: ''
     }
 
-    /* ORIGINAL WORKING FUNCTION WITH JUST VALUE
+    
     onPackageSelect(value) {
-        let llcPackage = {...this.state.llcPackage};
-        llcPackage.value = value;
-        this.setState({ llcPackage: { value: value }});
+        this.setState({ llcPackage: value});
     }
-    */
-   /* BROKEN FUNCTION
-   onPackageSelect = (event) => {
-       event.preventDefault();
-       let value = event.target.value;
-       let price = event.target.price;
-       this.setState({ llcPackages: { value: value, price: price }});
-   }
-   */
-    /*
-    onPackageSelect = ({ target }) => {
-        let packages = [...this.state.llcPackages];
-        packages.name = target.value;
-        packages.price = target.price;
-    }
-    */
-   onPackageSelect(value) {
-       this.setState({ llcPackage: value});
-   }
     
     getCertifiedCopies(e) {
-        console.log(e)
         this.setState({ certifiedCopies: {numCopies: e, price: 99} });
     }
     getCertifiedCopiesWApostille(e) {
@@ -57,21 +34,6 @@ class OptionsContainer extends React.Component {
         this.setState({ goodStandingCopiesWApostille: {numCopies: e, price: 159} });
     }
     
-   /*
-    orderDocuments(e) {
-        const llcDocuments = this.state.llcDocuments;
-        let index;
-
-        if(e.defaultValue) {
-            llcDocuments.push(+e.value);
-        } else {
-            index = llcDocuments.indexOf(+e.defaultValue)
-            llcDocuments.splice(index, 1)
-        }
-        this.setState({ llcDocuments: llcDocuments });
-    }
-    */
-
     onServicesSelect(e) {
         // current array of servicesList
         const servicesList = this.state.servicesList
@@ -98,6 +60,7 @@ class OptionsContainer extends React.Component {
         if(e.target.checked) {
             deliveryOption.push(+e.target.value)
         } else {
+            deliveryOption[0].price = 0;
             index = deliveryOption.indexOf(+e.target.value)
             deliveryOption.splice(index, 1)
         }
@@ -124,6 +87,20 @@ class OptionsContainer extends React.Component {
             User requests: ${this.state.requests}
         `);
 
+        let certifiedCopiesTotal = this.state.certifiedCopies.numCopies * this.state.certifiedCopies.price;
+        let certifiedCopiesWApostilleTotal = this.state.certifiedCopiesWApostille.numCopies * this.state.certifiedCopiesWApostille.price;
+        let goodStandingCopiesTotal = this.state.goodStandingCopies.numCopies * this.state.goodStandingCopies.price;
+        let goodStandingCopiesWApostilleTotal = this.state.goodStandingCopiesWApostille.numCopies * this.state.goodStandingCopiesWApostille.price
+
+        console.log(`
+            LLC Package price = ${this.state.llcPackage.price}
+            Certified Copies price = ${this.state.certifiedCopies.numCopies} * ${this.state.certifiedCopies.price} = ${certifiedCopiesTotal}
+            Certified Copies w/Apostille price = ${this.state.certifiedCopiesWApostille.numCopies} * ${this.state.certifiedCopiesWApostille.price} = ${certifiedCopiesWApostilleTotal}
+            Certs of Good Standing price = ${this.state.goodStandingCopies.numCopies} * ${this.state.goodStandingCopies.price} = ${goodStandingCopiesTotal}
+            Certs of Good Standing w/Apostille price = ${this.state.goodStandingCopiesWApostille.numCopies} * ${this.state.goodStandingCopiesWApostille.price} = ${goodStandingCopiesWApostilleTotal}
+            Delivery Price = ${this.state.deliveryOption[0].price}
+            `)
+
         this.props.saveAndNext(this.state);
         //this.props.finalSubmit(this.state);
         
@@ -144,8 +121,8 @@ class OptionsContainer extends React.Component {
 
         // SERVICES
         let statementOfOrganizer = { value: 'Statement of Organizer', price: 49 };
-        let taxIDNumberApp = { value: 'Tax ID Number - EIN Application', price: 99 };
-        let complianceKit = { value: 'Compliance Kit & Seal', price: 99 };
+        let taxIDNumberApp       = { value: 'Tax ID Number - EIN Application', price: 99 };
+        let complianceKit        = { value: 'Compliance Kit & Seal', price: 99 };
 
         // DELIVERY OPTION
         let fedExDelivery = { value: 'FedEx(domestic)', price: 29 };
