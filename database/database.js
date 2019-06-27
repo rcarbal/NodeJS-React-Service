@@ -17,7 +17,7 @@ function saveToDatabase(data, callback) {
     const companyData = {
         name: data.companyName,
         type: data.type,
-        alternate_name: data.altNames,
+        alternate_name: data.altName,
         state: data.stateOfIncoporation
 
     };
@@ -30,7 +30,8 @@ function saveToDatabase(data, callback) {
         streetAdress: data.streetAddress,
         city: data.city,
         state: data.usState,
-        zip: data.zip
+        zip: data.zip,
+        country: data.country
     };
 
     const legalPartiesData = [

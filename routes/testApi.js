@@ -39,6 +39,7 @@ router.post("/api/v01/test", (req, res) => {
     let response = {}
 
     console.log("JSON DATA");
+    console.log(body);
     console.log(paymentData);
     console.log("===========================================================================================");
     console.log("HTTP POST REQUEST");

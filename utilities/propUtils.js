@@ -1,11 +1,13 @@
 extractPopularServices = (array , word) => {
     for(var i = 0; i < array.length ; i++){
-        if(array[i] === word){
-            return true;
+        if(array[i]["value"] === word){ // {value:}
+            return {
+                price: array[i]["price"]
+            };
         }
     }
 
-    return false;
+    return {};
 }
 
 module.exports ={

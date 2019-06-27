@@ -10,7 +10,10 @@ module.exports = async (resolve, reject, data) =>{
             reject(false)
         } else{
             console.log("Payment Successful")
-            resolve(payment)
+            console.log("SUCESSFUL PAYMENT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            console.log(payment);
+            console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            resolve(payment);
             // callback(true);
         }
     });
