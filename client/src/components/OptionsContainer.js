@@ -13,7 +13,8 @@ class OptionsContainer extends React.Component {
         goodStandingCopiesWApostille: {},
         deliveryOption: [],
         servicesList: [],
-        requests: ''
+        requests: '',
+        paymentTotal: 0
     }
 
     
@@ -74,63 +75,8 @@ class OptionsContainer extends React.Component {
     handleSubmit(event) {
     
         event.preventDefault();
-
-        let llcPackagePrice;
-        if (this.state.llcPackage.price !== undefined) {
-            llcPackagePrice = this.state.llcPackage.price;
-        } else {
-            llcPackagePrice = 0;
-        }
-
-        let certifiedCopiesTotal;
-        if (this.state.certifiedCopies.numCopies !== undefined) {
-            certifiedCopiesTotal = this.state.certifiedCopies.numCopies * this.state.certifiedCopies.price;
-        } else {
-            certifiedCopiesTotal = 0; 
-        }
-
-        let certifiedCopiesWApostilleTotal;
-        if (this.state.certifiedCopiesWApostille.numCopies !== undefined) {
-            certifiedCopiesWApostilleTotal = this.state.certifiedCopiesWApostille.numCopies * this.state.certifiedCopiesWApostille.price;
-        } else {
-            certifiedCopiesWApostilleTotal = 0;
-        }
-        
-        let goodStandingCopiesTotal;
-        if (this.state.goodStandingCopies.numCopies !== undefined) {
-            goodStandingCopiesTotal = this.state.goodStandingCopies.numCopies * this.state.goodStandingCopies.price;
-        } else {
-            goodStandingCopiesTotal = 0;
-        }
-        
-        let goodStandingCopiesWApostilleTotal;
-        if (this.state.goodStandingCopiesWApostille.numCopies !== undefined) {
-            goodStandingCopiesWApostilleTotal = this.state.goodStandingCopiesWApostille.numCopies * this.state.goodStandingCopiesWApostille.price;
-        } else {
-            goodStandingCopiesWApostilleTotal = 0;   
-        }
-
-        let servicesDocsSum = certifiedCopiesTotal + certifiedCopiesWApostilleTotal + goodStandingCopiesTotal + goodStandingCopiesWApostilleTotal;
-
-        let deliveryOption = this.state.deliveryOption;
-        let deliveryOptionPriceSum = deliveryOption.reduce((option, {price}) => option + price, 0)
-        let servicesList = this.state.servicesList;
-        let servicesPriceSum = servicesList.reduce((service, {price}) =>  service + price, 0)
-
-        console.log(`
-            LLC Package price = ${llcPackagePrice}
-            Certified Copies price = ${this.state.certifiedCopies.numCopies} * ${this.state.certifiedCopies.price} = ${certifiedCopiesTotal}
-            Certified Copies w/Apostille price = ${this.state.certifiedCopiesWApostille.numCopies} * ${this.state.certifiedCopiesWApostille.price} = ${certifiedCopiesWApostilleTotal}
-            Certs of Good Standing price = ${this.state.goodStandingCopies.numCopies} * ${this.state.goodStandingCopies.price} = ${goodStandingCopiesTotal}
-            Certs of Good Standing w/Apostille price = ${this.state.goodStandingCopiesWApostille.numCopies} * ${this.state.goodStandingCopiesWApostille.price} = ${goodStandingCopiesWApostilleTotal}
-            Service Documents Total price = ${servicesDocsSum}
-            Delivery Price = ${deliveryOptionPriceSum}
-            Services Sum = ${servicesPriceSum}
-        `)
-
+    
         this.props.saveAndNext(this.state);
-        //this.props.finalSubmit(this.state);
-        
     };
 
     onBack(event) {
@@ -273,7 +219,7 @@ class OptionsContainer extends React.Component {
                 <Button onClick={this.onBack.bind(this)}>
                     Back
                 </Button>
-                <Button type='submit' onClick={this.handleSubmit.bind(this)}>
+                <Button type='submit' value={100} onClick={this.handleSubmit.bind(this)}>
                     Next step
                 </Button>
             </div>
