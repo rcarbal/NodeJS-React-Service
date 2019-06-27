@@ -75,6 +75,13 @@ class OptionsContainer extends React.Component {
     
         event.preventDefault();
 
+        let llcPackagePrice;
+        if (this.state.llcPackage.price !== undefined) {
+            llcPackagePrice = this.state.llcPackage.price;
+        } else {
+            llcPackagePrice = 0;
+        }
+
         let certifiedCopiesTotal;
         if (this.state.certifiedCopies.numCopies !== undefined) {
             certifiedCopiesTotal = this.state.certifiedCopies.numCopies * this.state.certifiedCopies.price;
@@ -111,7 +118,7 @@ class OptionsContainer extends React.Component {
         let servicesPriceSum = servicesList.reduce((service, {price}) =>  service + price, 0)
 
         console.log(`
-            LLC Package price = ${this.state.llcPackage.price}
+            LLC Package price = ${llcPackagePrice}
             Certified Copies price = ${this.state.certifiedCopies.numCopies} * ${this.state.certifiedCopies.price} = ${certifiedCopiesTotal}
             Certified Copies w/Apostille price = ${this.state.certifiedCopiesWApostille.numCopies} * ${this.state.certifiedCopiesWApostille.price} = ${certifiedCopiesWApostilleTotal}
             Certs of Good Standing price = ${this.state.goodStandingCopies.numCopies} * ${this.state.goodStandingCopies.price} = ${goodStandingCopiesTotal}
@@ -119,7 +126,7 @@ class OptionsContainer extends React.Component {
             Service Documents Total price = ${servicesDocsSum}
             Delivery Price = ${deliveryOptionPriceSum}
             Services Sum = ${servicesPriceSum}
-            `)
+        `)
 
         this.props.saveAndNext(this.state);
         //this.props.finalSubmit(this.state);
