@@ -113,7 +113,7 @@ class App extends React.Component {
                         <OptionsContainer 
                            companyName={this.state.form.companyName} 
                            active={this.state.form.active}
-                           package={this.state.form.package}
+                           llcPackage={this.state.form.llcPackage}
                            certifiedCopies={this.state.form.certifiedCopies}
                            certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
                            goodStandingCopies={this.state.form.goodStandingCopies}
@@ -121,6 +121,7 @@ class App extends React.Component {
                            servicesList={this.state.form.servicesList}
                            deliveryOption={this.state.form.deliveryOption}
                            specialRequests={this.state.form.requests}
+                           paymentTotal={this.state.form.paymentTotal}
                            saveAndNext={this.saveAndNext}
                            onBack={this.saveAndBack}
                         />
@@ -155,6 +156,7 @@ class App extends React.Component {
                             servicesList={this.state.form.servicesList}
                             deliveryOption={this.state.form.deliveryOption}
                             specialRequests={this.state.form.requests}
+                            paymentTotal={this.state.form.paymentTotal}
 
                             saveForm={this.saveForm}
                             onBack={this.saveAndBack}
