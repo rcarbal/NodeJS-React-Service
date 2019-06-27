@@ -7,7 +7,7 @@ class Payments extends React.Component {
     componentDidMount(){
         console.log("PRINTING PROPS =========================")
         let formData = JSON.parse(this.props.formData);
-        console.log(formData.llcPackage);
+        console.log(formData);
     }
 
 
