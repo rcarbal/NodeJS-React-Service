@@ -1,6 +1,6 @@
 const express = require('express'),
     email = require('../api/v1/test/emailTest'),
-    payment = require('../payment'),
+    { processPayment } = require('../payment'),
     { saveToDatabase } = require('../database/database'),
     { sendEmail } = require('../email'),
     router = express.Router();
@@ -44,34 +44,38 @@ router.post("/api/v01/test", (req, res) => {
     console.log("===========================================================================================");
     console.log("HTTP POST REQUEST");
 
-    new Promise((resolve, reject) => {
-        payment(resolve, reject, paymentData);
-    }).then((payment) => {
+    // new Promise((resolve, reject) => {        
+    //     payment(resolve, reject, paymentData);
+    // }).then((payment) => {
+    //     if (payment.paid) {
+    //         response.payment = {
+    //             payment_amount: payment.amount,
+    //             payment_successful: true
+    //         };
+
+    //         // Call save to DB
+
+    //     }        
+    // });
+
+    const pay = processPayment(paymentData);
+    pay.then((payment) => {
         if (payment.paid) {
             response.payment = {
                 payment_amount: payment.amount,
                 payment_successful: true
             };
-
-            let savedCallback = (savedCompany) => {
-                if (savedCompany) {
-                    let sendEmailCallback = (emailSent) => {
-                        response.emailSent = {
-                            emailSent
-                        }
-                        console.log("===========================================================================================");
-                        res.send(response);
-                    }
-                    console.log(savedCompany);
-                    response.dbSaved = { dbSaved: true };
-                    sendEmail(savedCompany, sendEmailCallback);
-                }
-            }
-            saveToDatabase(body[1], savedCallback);
         }
+        return payment;
+    })
+        .then((data)=>{
+            console.log("After Payment")
+            console.log(data);
+
+        })
+        .then(()=> console.log("After Data saved"));
 
 
-    });
 });
 
 module.exports = router;
