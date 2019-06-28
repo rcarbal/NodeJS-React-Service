@@ -205,7 +205,7 @@ class InfoContainer extends React.Component {
                         </div>
 
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-4'>
                                 <Form.Item>
                                     <div>City</div>
                                     <Input 
@@ -215,11 +215,11 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-2'>
                                 <Form.Item>
                                     <div>State</div>
 
-                                    <select value={this.state.usState} onChange={this.onStateSelect}>
+                                    <select value={this.state.usState} onChange={this.onStateSelect} className='custom-select'>
                                         <option value='AL'>AL</option> <option value='AK'>AK</option> <option value='AR'>AR</option> <option value='AZ'>AZ</option> <option value='CA'>CA</option>
                                         <option value='CO'>CO</option> <option value='CT'>CT</option> <option value='DC'>DC</option> <option value='DE'>DE</option> <option value='FL'>FL</option>
                                         <option value='GA'>GA</option> <option value='HI'>HI</option> <option value='IA'>IA</option> <option value='ID'>ID</option> <option value='IL'>IL</option>
@@ -235,7 +235,7 @@ class InfoContainer extends React.Component {
 
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-3'>
                                 <Form.Item>
                                     <div>Zip Code</div>
                                     <Input 
@@ -245,12 +245,12 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-3'>
                                 <Form.Item>
                                     <div>Country</div>
-                                    <Select value={this.state.country} disabled={true}>
-                                        <Select.Option>USA</Select.Option>
-                                    </Select>
+                                    <select value={this.state.country} disabled={true} className='custom-select'>
+                                        <option>USA</option>
+                                    </select>
                                 </Form.Item>
                             </div>
                         </div>
