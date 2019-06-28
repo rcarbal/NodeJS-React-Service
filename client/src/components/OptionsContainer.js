@@ -127,9 +127,9 @@ class OptionsContainer extends React.Component {
                 <Form>
                     <h5 style={{marginTop: '2.5%', marginLeft: '10%'}}>Package</h5>
                     <div className='container card form_box' style={{marginBottom: '2.5%'}}>
-                        <Form.Item>
-                            <Layout.Row>
-                                <Layout.Col span='8'>
+                        
+                            <div className='row justify-content-between'>
+                                <div className='col-4'>
                                     <div className='card'>
                                         <div className='card-body'>
                                             <h5 className='card-title'>Basic</h5>
@@ -148,8 +148,8 @@ class OptionsContainer extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                </Layout.Col>
-                                <Layout.Col span='8'>
+                                </div>
+                                <div className='col-4'>
                                     <div className='card'>
                                         <div className='card-body'>
                                             <h5 className='card-title'>Complete</h5>
@@ -170,8 +170,8 @@ class OptionsContainer extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                </Layout.Col>
-                                <Layout.Col span='8'>
+                                </div>
+                                <div className='col-4'>
                                     <div className='card'>
                                         <div className='card-body'>
                                             <h5 className='card-title'>SmoothLegal</h5>
@@ -194,22 +194,25 @@ class OptionsContainer extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                </Layout.Col>
-                            </Layout.Row>
-                            <Layout.Row>
+                                </div>
+                            </div>
+                        <Form.Item>
+                            <Layout.Row type='flex' className='row-bg' justify='space-around'>
                                 <Layout.Col span='6' offset='2'>
                                     <Radio.Button 
                                         value={basic} 
                                         checked={this.state.llcPackage.value === 'Basic'}  
-                                        onChange={this.onPackageSelect.bind(this)}>
+                                        onChange={this.onPackageSelect.bind(this)}
+                                        className='grid-content'>
                                         Select for $198
                                     </Radio.Button> 
                                 </Layout.Col>
-                                <Layout.Col span='6' offset='2'>
+                                <Layout.Col span='6' offset='3'>
                                     <Radio.Button 
                                         value={complete} 
                                         checked={this.state.llcPackage.value === 'Complete'}  
-                                        onChange={this.onPackageSelect.bind(this)}>
+                                        onChange={this.onPackageSelect.bind(this)}
+                                        className='grid-content'>
                                         Select for $289
                                     </Radio.Button>
                                 </Layout.Col>
@@ -217,7 +220,8 @@ class OptionsContainer extends React.Component {
                                     <Radio.Button 
                                         value={SmoothLegal} 
                                         checked={this.state.llcPackage.value === 'SmoothLegal'}  
-                                        onChange={this.onPackageSelect.bind(this)}>
+                                        onChange={this.onPackageSelect.bind(this)}
+                                        className='grid-content'>
                                         Select for $399
                                     </Radio.Button>
                                 </Layout.Col>
