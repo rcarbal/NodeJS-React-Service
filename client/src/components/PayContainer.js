@@ -133,8 +133,8 @@ class PayContainer extends React.Component {
                             </table>
                         </div>
 
-                        <div className="card border-light mb-3" style={{maxWidth: '18rem'}}>
-                            <div className="card-header">Special Request</div>
+                        <div className="card border-light mx-auto" style={{width: '50%'}}>
+                            <div className="card-header"><strong>Special Request</strong></div>
                             <div className="card-body">
                                 <p className="card-text">{specialRequests}</p>
                             </div>
