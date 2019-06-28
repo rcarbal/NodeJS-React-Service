@@ -12,7 +12,8 @@ const Company = require("../models/company"),
 //     console.log("\nConnected to mongoDB");
 // });
 function saveToDatabase(data) {
-    console.log("Saving to database...")
+    return new Promise((resolve, reject)=>{
+        console.log("Saving to database...")
 
     const companyData = {
         name: data.companyName,
@@ -73,7 +74,6 @@ function saveToDatabase(data) {
     //       request = new Request(requestData);
     // Send sucessful response
 
-    var promise = new Promise((resolve, reject) => {
         Company.create(companyData, (err, company) => {
             if (err) {
                 console.log(err);
@@ -131,8 +131,6 @@ function saveToDatabase(data) {
             }
         });
     });
-    
-    return promise;
 }
 
 function checkLLCName() {

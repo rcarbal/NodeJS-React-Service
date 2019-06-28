@@ -3,6 +3,8 @@ import StripeCheckout from 'react-stripe-checkout';
 import { Button } from 'element-react/next';
 
 class Payments extends React.Component {
+
+    propsData = JSON.parse(this.props.formData);
     
     componentDidMount(){
         console.log("PRINTING PROPS =========================")
@@ -88,6 +90,11 @@ class Payments extends React.Component {
             Services Sum = ${servicesPriceSum}
             GRAND TOTAL FOR OPTIONS AND SERVICES = ${optionsGrandTotal}
         `)
+        this.propsData.paymentTotal = optionsGrandTotal;
+
+        console.log("==========================================================================")
+        console.log("Printing PROPS");
+        console.log(this.propsData);
 
         return <StripeCheckout
             name='SmoothLegal Checkout'

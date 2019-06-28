@@ -30,8 +30,10 @@ router.post("/api/v01/test", (req, res) => {
     let jsondata = `[${req.body}]`;
     const body = JSON.parse(jsondata);
 
+    console.log(body[0]);
+
     const paymentData = {
-        amount: 500,
+        amount: body[0].paymentTotal,
         currency: "usd",
         source: body[0].id
     }
@@ -44,38 +46,38 @@ router.post("/api/v01/test", (req, res) => {
     console.log("===========================================================================================");
     console.log("HTTP POST REQUEST");
 
-    // new Promise((resolve, reject) => {        
-    //     payment(resolve, reject, paymentData);
-    // }).then((payment) => {
-    //     if (payment.paid) {
-    //         response.payment = {
-    //             payment_amount: payment.amount,
-    //             payment_successful: true
-    //         };
-
-    //         // Call save to DB
-
-    //     }        
-    // });
-
-    const pay = processPayment(paymentData);
-    pay.then((payment) => {
-        if (payment.paid) {
+    processPayment(paymentData).then((data) => {
+        if (data) {
             response.payment = {
-                payment_amount: payment.amount,
+                payment_amount: data.amount,
                 payment_successful: true
             };
+            return body[1];
         }
-        return payment;
     })
+        .then(saveToDatabase)
         .then((data)=>{
-            console.log("After Payment")
-            console.log(data);
-
+            if(data){
+                response.dbSaved ={
+                    saved: true
+                };
+                return data;                
+            }
         })
-        .then(()=> console.log("After Data saved"));
+        .then(sendEmail)
+        .then((data)=>{
+            if(data){
+                response.emailSent = {
+                    emailSendSucess: true
+                };
+            }
+            res.send(response)
+
+        });
 
 
 });
+
+
 
 module.exports = router;

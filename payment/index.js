@@ -2,7 +2,7 @@ const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 
 const processPayment= (data) =>{
-    var promise = new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject)=>{
         stripe.charges.create(data, (error, payment)=>{
             if(error){
                 console.log(error);
@@ -13,8 +13,6 @@ const processPayment= (data) =>{
             }
         });
     });
-
-    return promise;
 }
 
 module.exports ={
