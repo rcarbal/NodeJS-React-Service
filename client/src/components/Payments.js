@@ -7,7 +7,7 @@ class Payments extends React.Component {
     componentDidMount(){
         console.log("PRINTING PROPS =========================")
         let formData = JSON.parse(this.props.formData);
-        console.log(formData.llcPackage);
+        console.log(formData);
     }
 
 
@@ -30,6 +30,7 @@ class Payments extends React.Component {
     };
 
     render() {
+
         let formData = JSON.parse(this.props.formData);
         
         let llcPackagePrice;
@@ -91,9 +92,9 @@ class Payments extends React.Component {
         return <StripeCheckout
             name='SmoothLegal Checkout'
             description='Pay for your LLC formation.'
+            stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
             amount={optionsGrandTotal * 100}
             token={this.onToken}
-            stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
             extra={this.data}
                    >
             <Button>Pay</Button>

@@ -88,7 +88,7 @@ class App extends React.Component {
            if (activeContent === 1) {
                pageContent = (
                    <div>
-                       <InfoContainer 
+                       <InfoContainer className="container"
                            active={this.state.form.active} 
                            companyName={this.state.form.companyName}
                            altName={this.state.form.altName}
@@ -121,7 +121,7 @@ class App extends React.Component {
                            servicesList={this.state.form.servicesList}
                            deliveryOption={this.state.form.deliveryOption}
                            specialRequests={this.state.form.requests}
-                           paymentTotal={this.state.form.paymentTotal}
+                           
                            saveAndNext={this.saveAndNext}
                            onBack={this.saveAndBack}
                         />
@@ -156,8 +156,7 @@ class App extends React.Component {
                             servicesList={this.state.form.servicesList}
                             deliveryOption={this.state.form.deliveryOption}
                             specialRequests={this.state.form.requests}
-                            paymentTotal={this.state.form.paymentTotal}
-
+                            
                             saveForm={this.saveForm}
                             onBack={this.saveAndBack}
                             formData={JSON.stringify(this.state.form)}
