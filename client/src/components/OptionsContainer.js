@@ -254,35 +254,63 @@ class OptionsContainer extends React.Component {
                             <Layout.Col span='3' offset='2'>$99</Layout.Col>
                             <Layout.Col span='3' offset='1'>$99</Layout.Col>
                         </Layout.Row>
-            
-                        <div>Certified Copy </div>
-                        <InputNumber 
-                            size='small'
-                            value={certifiedCopies.price} 
-                            defaultValue={certifiedCopies.numCopies} 
-                            onChange={this.getCertifiedCopies.bind(this)}
-                        />
-                        <div>Certified Copy w/Apostille</div>
-                        <InputNumber 
-                            size='small'
-                            value={certifiedCopiesWApostille.price} 
-                            defaultValue={certifiedCopiesWApostille.numCopies} 
-                            onChange={this.getCertifiedCopiesWApostille.bind(this)}
-                        />
-                        <div>Certificate of Good Standing </div>
-                        <InputNumber 
-                            size='small'
-                            value={goodStandingCopies.price} 
-                            defaultValue={goodStandingCopies.numCopies} 
-                            onChange={this.getGoodStandingCopies.bind(this)}
-                        />
-                        <div>Certificate of Good Standing w/Apostille</div>
-                        <InputNumber 
-                            size='small'
-                            value={goodStandingCopiesWApostille.price} 
-                            defaultValue={goodStandingCopiesWApostille.numCopies} 
-                            onChange={this.getGoodStandingCopiesWApostille.bind(this)}
-                        />
+
+                        <div className="dropdown-divider" style={{marginBottom: '2.5%', marginTop: '2.5%'}}></div>
+
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='6'>
+                                <div>Certified Copy </div>
+                                <InputNumber 
+                                    size='small'
+                                    value={certifiedCopies.price} 
+                                    defaultValue={certifiedCopies.numCopies} 
+                                    onChange={this.getCertifiedCopies.bind(this)}
+                                />
+                                <div className="dropdown-divider"></div>
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='6'>$99</Layout.Col>
+                        </Layout.Row>
+
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='6'>
+                                <div>Certified Copy w/Apostille</div>
+                                <InputNumber 
+                                    size='small'
+                                    value={certifiedCopiesWApostille.price} 
+                                    defaultValue={certifiedCopiesWApostille.numCopies} 
+                                    onChange={this.getCertifiedCopiesWApostille.bind(this)}
+                                />
+                                <div className="dropdown-divider"></div>
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='6'>$159</Layout.Col>
+                        </Layout.Row>
+
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='6'>
+                                <div>Certificate of Good Standing </div>
+                                <InputNumber 
+                                    size='small'
+                                    value={goodStandingCopies.price} 
+                                    defaultValue={goodStandingCopies.numCopies} 
+                                    onChange={this.getGoodStandingCopies.bind(this)}
+                                />
+                                <div className="dropdown-divider"></div>
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='6'>$99</Layout.Col>
+                        </Layout.Row>
+                        
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='6'>
+                                <div>Certificate of Good Standing w/Apostille</div>
+                                <InputNumber 
+                                    size='small'
+                                    value={goodStandingCopiesWApostille.price} 
+                                    defaultValue={goodStandingCopiesWApostille.numCopies} 
+                                    onChange={this.getGoodStandingCopiesWApostille.bind(this)}
+                                />
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='6'>$159</Layout.Col>
+                        </Layout.Row>
                     </Form.Item>
                     </div>
                     <h5 style={{marginLeft: '10%'}}>Delivery Options</h5>

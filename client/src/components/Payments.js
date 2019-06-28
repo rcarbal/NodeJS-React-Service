@@ -13,7 +13,7 @@ class Payments extends React.Component {
             method: 'POST',
             body: [
                 JSON.stringify(token),
-                this.propsData
+                JSON.stringify(this.propsData)
             ]
         }).then(response => {
             response.json().then(data => {
