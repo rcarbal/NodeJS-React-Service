@@ -13,7 +13,21 @@ class PayContainer extends React.Component {
 
         let formData = JSON.parse(this.props.formData);
         console.log(`LLC CERTIFIED COPIEEEEES: ${formData.certifiedCopies.numCopies}`);
-        console.log(`GRAND TOTALLLL!!!! ===== ${formData.paymentTotal}`)
+        console.log(`GRAND TOTALLLL!!!! ===== ${formData.paymentTotal}`);
+
+        let renderedServiceList = formData.servicesList.map((service, index) => {
+            return(
+                <div>
+                    <tbody>
+                        <tr>
+                            <td>{service.value}</td>
+                            <td></td>
+                            <td>${service.price}</td>                    
+                        </tr>
+                    </tbody>
+                </div>
+            ) 
+        });
 
         let llcPackage = formData.llcPackage.value,
             llcPackagePrice = formData.llcPackage.price,
@@ -92,11 +106,22 @@ class PayContainer extends React.Component {
                         </div>
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
 
-                        <strong>Services: </strong>
-                        <p>servicesList=</p>
+                        <div>
+                            <strong>Services: </strong>
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th scope='col'>Item</th>
+                                        <th scope='col'></th>
+                                        <th scope='col'>Price</th>
+                                    </tr>
+                                </thead>
+                                {renderedServiceList}
+                            </table>
+                        </div>
+                        
                         <p>deliveryOption=</p>
                         <p>paymentTotal={paymentTotal}</p>
-        <p>specialRequests={specialRequests}</p>
 
                         <div>
                             <strong>Document Copies:</strong>
@@ -132,6 +157,7 @@ class PayContainer extends React.Component {
                                 </tbody>
                             </table>
                         </div>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
 
                         <div className="card border-light mx-auto" style={{width: '50%'}}>
                             <div className="card-header"><strong>Special Request</strong></div>
