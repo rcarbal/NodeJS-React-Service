@@ -30,6 +30,7 @@ class PayContainer extends React.Component {
         return (
             <div>
                 <h3>Review</h3>
+                <div className='container card'>
                 <div>================</div>
                     <h5>Order for: {this.props.stateOfIncorporation} {this.props.type}</h5>
                     <h4>{this.props.companyName}</h4>
@@ -45,13 +46,11 @@ class PayContainer extends React.Component {
                         {this.props.addlMemberNames}
                     </p>
                 <div>================</div>
+                </div>
                 <h3>Pay</h3>
-                {/*
-                <CheckoutContainer 
-                    tokenInfo={this.state.tokenInfo}
-                />
-                */}
+                <div className='container card'>
                 <Payments formData={this.props.formData}/>
+                </div>
                 <Button onClick={this.onBack.bind(this)}>
                     Back
                 </Button>

@@ -247,7 +247,7 @@ class InfoContainer extends React.Component {
                     </Layout.Row>
                     <Layout.Row>
                         <Layout.Col span='12'>
-                            <Form.Item>
+                            <Form.Item required={true}>
                                     <div>Name</div>
                                     <Input 
                                         type='text' 
