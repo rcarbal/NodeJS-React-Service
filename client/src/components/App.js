@@ -121,7 +121,7 @@ class App extends React.Component {
                            servicesList={this.state.form.servicesList}
                            deliveryOption={this.state.form.deliveryOption}
                            specialRequests={this.state.form.requests}
-                           
+                           paymentTotal={this.state.form.paymentTotal}
                            saveAndNext={this.saveAndNext}
                            onBack={this.saveAndBack}
                         />
@@ -156,7 +156,8 @@ class App extends React.Component {
                             servicesList={this.state.form.servicesList}
                             deliveryOption={this.state.form.deliveryOption}
                             specialRequests={this.state.form.requests}
-                            
+                            paymentTotal={this.state.form.paymentTotal}
+
                             saveForm={this.saveForm}
                             onBack={this.saveAndBack}
                             formData={JSON.stringify(this.state.form)}

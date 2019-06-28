@@ -3,13 +3,8 @@ import StripeCheckout from 'react-stripe-checkout';
 import { Button } from 'element-react/next';
 
 class Payments extends React.Component {
-    
-    componentDidMount(){
-        console.log("PRINTING PROPS =========================")
-        let formData = JSON.parse(this.props.formData);
-        console.log(formData);
-    }
 
+    propsData = JSON.parse(this.props.formData);
 
     onToken = (token) => {
         const self = this;
@@ -18,7 +13,7 @@ class Payments extends React.Component {
             method: 'POST',
             body: [
                 JSON.stringify(token),
-                this.props.formData
+                this.propsData
             ]
         }).then(response => {
             response.json().then(data => {
@@ -89,11 +84,17 @@ class Payments extends React.Component {
             GRAND TOTAL FOR OPTIONS AND SERVICES = ${optionsGrandTotal}
         `)
 
+        this.propsData.paymentTotal = optionsGrandTotal;
+        console.log('PROPS DATA');
+        console.log('=++++++++=====');
+        console.log(this.propsData);
+        console.log('=++++++++=====');
+
         return <StripeCheckout
             name='SmoothLegal Checkout'
             description='Pay for your LLC formation.'
             stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
-            amount={optionsGrandTotal * 100}
+            amount={this.propsData.paymentTotal * 100}
             token={this.onToken}
             extra={this.data}
                    >
