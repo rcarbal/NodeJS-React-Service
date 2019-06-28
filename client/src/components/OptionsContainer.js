@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Button, Radio, Checkbox, InputNumber, Input } from 'element-react/next';
+import { Form, Button, Radio, Checkbox, InputNumber, Input, Layout } from 'element-react/next';
 
 class OptionsContainer extends React.Component {
 
@@ -128,24 +128,101 @@ class OptionsContainer extends React.Component {
                     <h5 style={{marginTop: '2.5%', marginLeft: '10%'}}>Package</h5>
                     <div className='container card form_box' style={{marginBottom: '2.5%'}}>
                     <Form.Item>
-                        <Radio 
-                            value={SmoothLegal} 
-                            checked={this.state.llcPackage.value === 'SmoothLegal'}  
-                            onChange={this.onPackageSelect.bind(this)}>
-                            SmoothLegal Formation
-                        </Radio>
-                        <Radio 
-                            value={complete} 
-                            checked={this.state.llcPackage.value === 'Complete'}  
-                            onChange={this.onPackageSelect.bind(this)}>
-                            Complete Formation
-                        </Radio>
-                        <Radio 
-                            value={basic} 
-                            checked={this.state.llcPackage.value === 'Basic'}  
-                            onChange={this.onPackageSelect.bind(this)}>
-                            Basic Formation
-                        </Radio> 
+                        <Layout.Row>
+                            
+                            <Layout.Col span='8'>
+                                <div className='card'>
+                                    <div className='card-body'>
+                                        <h5 className='card-title'>Basic</h5>
+                                        <div className='card-text'>
+                                            <div className='row'>
+                                                <ul className='col'>
+                                                    <li>Name Search</li>
+                                                    <li>Priority Mail (US & Global)</li>
+                                                </ul>
+                                                <ul className='col'>
+                                                    <li>Certificate of Formation</li>
+                                                    <li>Registered Agent service until 2020</li>
+                                                    <li>State Filing Fee</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Layout.Col>
+                            <Layout.Col span='8'>
+                                <div className='card'>
+                                    <div className='card-body'>
+                                        <h5 className='card-title'>Complete</h5>
+                                        <div className='card-text'>
+                                            <div className='row'>
+                                                <ul className='col'>
+                                                    <li>Name Search</li>
+                                                    <li>Priority Mail (US & Global)</li>
+                                                    <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
+                                                </ul>
+                                                <ul className='col'>
+                                                    <li>Certificate of Formation</li>
+                                                    <li>IRS and Corporate forms</li>
+                                                    <li>Registered Agent service until 2020</li>
+                                                    <li>State Filing Fee</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Layout.Col>
+                            <Layout.Col span='8'>
+                                <div className='card'>
+                                    <div className='card-body'>
+                                        <h5 className='card-title'>SmoothLegal</h5>
+                                        <div className='card-text'>
+                                            <div className='row'>
+                                                <ul className='col'>
+                                                    <li>Name Search</li>
+                                                    <li>Priority Mail (US & Global)</li>
+                                                    <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
+                                                    <li>1 - Business Day Turnaround</li>
+                                                </ul>
+                                                <ul className='col'>
+                                                    <li>Certificate of Formation</li>
+                                                    <li>IRS and Corporate forms</li>
+                                                    <li>Registered Agent service until 2020</li>
+                                                    <li>State Filing Fee</li>
+                                                    <li>Email Document Delivery</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Layout.Col>
+                        </Layout.Row>
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='2'>
+                                <Radio.Button 
+                                    value={basic} 
+                                    checked={this.state.llcPackage.value === 'Basic'}  
+                                    onChange={this.onPackageSelect.bind(this)}>
+                                    Basic Formation
+                                </Radio.Button> 
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='2'>
+                                <Radio.Button 
+                                    value={complete} 
+                                    checked={this.state.llcPackage.value === 'Complete'}  
+                                    onChange={this.onPackageSelect.bind(this)}>
+                                    Complete Formation
+                                </Radio.Button>
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='2'>
+                                <Radio.Button 
+                                    value={SmoothLegal} 
+                                    checked={this.state.llcPackage.value === 'SmoothLegal'}  
+                                    onChange={this.onPackageSelect.bind(this)}>
+                                    SmoothLegal Formation
+                                </Radio.Button>
+                            </Layout.Col>
+                        </Layout.Row>
                     </Form.Item>
                     </div>
                     <h5 style={{marginLeft: '10%'}}>Popular Services</h5>
