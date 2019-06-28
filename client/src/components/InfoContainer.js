@@ -8,7 +8,6 @@ import  {
         } from 'element-react/next';
 
 class InfoContainer extends React.Component {
-    
     state = {
         active: 0,
         stateOfIncoporation: 'Delaware',
@@ -23,113 +22,6 @@ class InfoContainer extends React.Component {
         streetAddressTwo: '',
         city: '',
         usState: '',
-        /*
-        usStates: [
-          { value: 'AL'
-          }, {
-            value: 'AK'
-          }, {
-            value: 'AZ'
-          }, {
-            value: 'AR'
-          }, {
-            value: 'CA'
-          }, {
-            value: 'CO'
-          }, {
-            value: 'CT'
-          }, {
-            value: 'DE'
-          }, {
-            value: 'DC'
-          }, {
-            value: 'FL'
-          }, {
-            value: 'GA'
-          }, {
-            value: 'HI'
-          }, {
-            value: 'ID'
-          }, {
-            value: 'IL'
-          }, {
-            value: 'IN'
-          }, {
-            value: 'IA'
-          }, {
-            value: 'KS'
-          }, {
-            value: 'KY'
-          }, {
-            value: 'LA'
-          }, {
-            value: 'ME'
-          }, {
-            value: 'MD'
-          }, {
-            value: 'MA'
-          }, {
-            value: 'MI'
-          }, {
-            value: 'MN'
-          }, {
-            value: 'MS'
-          }, {
-            value: 'MO'
-          }, {
-            value: 'MT'
-          }, {
-            value: 'NE'
-          }, {
-            value: 'NV'
-          }, {
-            value: 'NH'
-          }, {
-            value: 'NJ'
-          }, {
-            value: 'NM'
-          }, {
-            value: 'NY'
-          }, {
-            value: 'NC'
-          }, {
-            value: 'ND'
-          }, {
-            value: 'OH'
-          }, {
-            value: 'OK'
-          }, {
-            value: 'OR'
-          }, {
-            value: 'PA'
-          }, {
-            value: 'RI'
-          }, {
-            value: 'SC'
-          }, {
-            value: 'SD'
-          }, {
-            value: 'TN'
-          }, {
-            value: 'TX'
-          }, {
-            value: 'UT'
-          }, {
-            value: 'VT'
-          }, {
-            value: 'VA'
-          }, {
-            value: 'WA'
-          }, {
-            value: 'WV'
-          }, {
-            value: 'WI'
-          }, {
-            value: 'WY'
-          }
-        ],
-        */
-        
         zip: '',
         country: 'USA',
         memberName: '',
@@ -172,20 +64,9 @@ class InfoContainer extends React.Component {
         this.setState({ city });
     }
 
-    /*
-    onStatesSelect(usStates) {
-        this.setState({ usStates })
-    }
-
-    onStateSelect(usStates) {
-        this.setState({ usStates })
-    }
-   */
-
-   onStateSelect = (event) => {
+    onStateSelect = (event) => {
        this.setState({ usState: event.target.value });
    }
-   
    
     onZipInput(zip) {
         this.setState({ zip });
@@ -204,23 +85,9 @@ class InfoContainer extends React.Component {
     }
 
     handleSubmit(event) {
-    
-        event.preventDefault();
-
-        alert(`
-            The name '${this.state.companyName}' was submitted. 
-            The alternate name '${this.state.altName}' was submitted.
-            The first name for order delivery is '${this.state.firstName}'.
-            The last name for order delivery is '${this.state.lastName}'.
-            The email address is '${this.state.email}'.
-            The phone number is ${this.state.phoneNum}.
-            The address is ${this.state.streetAddressTwo} ${this.state.streetAddress} ${this.state.city}, 
-            ${this.state.usState} ${this.state.zip}.
-            LLC members include: ${this.state.memberName} ${this.state.addlMemberNames}.
-        `);
-         
-        this.props.saveAndNext(this.state);
+        event.preventDefault();  
         
+        this.props.saveAndNext(this.state);
     };
     
     render(){
@@ -247,7 +114,7 @@ class InfoContainer extends React.Component {
                     </Layout.Row>
                     <Layout.Row>
                         <Layout.Col span='12'>
-                            <Form.Item>
+                            <Form.Item required={true}>
                                     <div>Name</div>
                                     <Input 
                                         type='text' 
@@ -354,22 +221,6 @@ class InfoContainer extends React.Component {
                             <Layout.Col span='5'>
                                 <Form.Item>
                                     <div>State</div>
-                                            
-                                            {/*
-                                            <Select 
-                                                value={this.state.usStates} 
-                            
-                                            > {
-                                                this.state.usStates.map((usState) => {
-                                                    return  <Select.Option 
-                                                                key={usState.value} 
-                                                                value={usState.value}
-                                                                label={usState.value}
-                                                                onClick={this.onStateSelect.bind(this)}
-                                                            />
-                                                })
-                                            } </Select>
-                                            */}
                                     
                                     <select value={this.state.usState} onChange={this.onStateSelect}>
                                         <option value='AL'>AL</option> <option value='AK'>AK</option> <option value='AR'>AR</option> <option value='AZ'>AZ</option> <option value='CA'>CA</option>
@@ -400,17 +251,6 @@ class InfoContainer extends React.Component {
                             <Layout.Col span='24'>
                                 <Form.Item>
                                     <div>Country</div>
-                                            {/*
-                                            <Select value={ this.state.value }> {
-                                                this.state.countries.map(country => {
-                                                    return  <Select.Option
-                                                                key={country.value}
-                                                                label={country.label}
-                                                                value={country.value}
-                                                            />
-                                                })
-                                            } </Select>
-                                            */}
                                     <Select value={this.state.country} disabled={true}>
                                         <Select.Option>USA</Select.Option>
                                     </Select>

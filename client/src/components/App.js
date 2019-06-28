@@ -5,13 +5,6 @@ import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
 
-const axios = require('axios');
-
-// Config for Axios
-const config = {     
-    headers: { 'content-type': 'application/json' }
-}
-
 class App extends React.Component { 
     // Function overriding React.Component constructor() 
     constructor(props) {
@@ -63,21 +56,6 @@ class App extends React.Component {
        this.setState({start: true});
     }
 
-    
-    /*
-    finalSubmit = () => {
-        alert(JSON.stringify(this.state.form));
-        console.log(this.state)
-        axios.post('/api/v01/test', JSON.stringify(this.state.form), config)
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            }) 
-    }
-    */
-
     render() {
 
         let pageContent;
@@ -107,30 +85,30 @@ class App extends React.Component {
                        />
                    </div>
                )
-           } else if (activeContent === 2) {
-               pageContent =(
-                   <div>
+            } else if (activeContent === 2) {
+                pageContent =(
+                    <div>
                         <OptionsContainer 
-                           companyName={this.state.form.companyName} 
-                           active={this.state.form.active}
-                           llcPackage={this.state.form.llcPackage}
-                           certifiedCopies={this.state.form.certifiedCopies}
-                           certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
-                           goodStandingCopies={this.state.form.goodStandingCopies}
-                           goodStandingCopiesWApostille={this.state.form.goodStandingCopiesWApostille}
-                           servicesList={this.state.form.servicesList}
-                           deliveryOption={this.state.form.deliveryOption}
-                           specialRequests={this.state.form.requests}
-                           
-                           saveAndNext={this.saveAndNext}
-                           onBack={this.saveAndBack}
+                            companyName={this.state.form.companyName} 
+                            active={this.state.form.active}
+                            llcPackage={this.state.form.llcPackage}
+                            certifiedCopies={this.state.form.certifiedCopies}
+                            certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
+                            goodStandingCopies={this.state.form.goodStandingCopies}
+                            goodStandingCopiesWApostille={this.state.form.goodStandingCopiesWApostille}
+                            servicesList={this.state.form.servicesList}
+                            deliveryOption={this.state.form.deliveryOption}
+                            specialRequests={this.state.form.requests}
+                            paymentTotal={this.state.form.paymentTotal}
+                            saveAndNext={this.saveAndNext}
+                            onBack={this.saveAndBack}
                         />
                    </div>
-               )
-           } else {
-               pageContent = (
-                   <div>
-                       <PayContainer 
+                )
+            } else {
+                pageContent = (
+                    <div>
+                        <PayContainer 
                             companyName={this.state.form.companyName} 
                             stateOfIncorporation={this.state.form.stateOfIncorporation}
                             type={this.state.form.type}
@@ -156,33 +134,34 @@ class App extends React.Component {
                             servicesList={this.state.form.servicesList}
                             deliveryOption={this.state.form.deliveryOption}
                             specialRequests={this.state.form.requests}
-                            
+                            paymentTotal={this.state.form.paymentTotal}
+
                             saveForm={this.saveForm}
                             onBack={this.saveAndBack}
                             formData={JSON.stringify(this.state.form)}
-                       />
-                   </div>
-               )
-           }
+                        />
+                    </div>
+                )
+            }
 
         } else {
-           pageContent = (
-             <div>
-                <Button className='text-center' onClick={this.startForm}>Create LLC in Five Minutes!</Button>
-             </div>
-           )
+            pageContent = (
+                <div>
+                    <Button className='text-center' onClick={this.startForm}>Create LLC in Five Minutes!</Button>
+                </div>
+            )
         }
-       if (this.state.start) {
-          headerContent = (
-              <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
-                  <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
-                      <Steps.Step title="Company & Contact"></Steps.Step>
-                      <Steps.Step title="Options & Services"></Steps.Step>
-                      <Steps.Step title="Review & Pay"></Steps.Step>
-                  </Steps>
-              </Menu>
-          )
-       } 
+        if (this.state.start) {
+            headerContent = (
+                <Menu defaultActive="1" className="container-fluid" mode="horizontal">
+                    <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
+                        <Steps.Step title="Company & Contact"></Steps.Step>
+                        <Steps.Step title="Options & Services"></Steps.Step>
+                        <Steps.Step title="Review & Pay"></Steps.Step>
+                    </Steps>
+                </Menu>
+            )
+        } 
 
         return (
             <div style={{fontFamily: 'Helvetica Neue, helvetica'}}>

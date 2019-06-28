@@ -128,6 +128,7 @@ class OptionsContainer extends React.Component {
                 <div>{this.props.active}</div>
                 <div>{this.props.companyName}</div>
                     <h3>Package</h3>
+                    <div className='container card'>
                     <Form.Item>
                         <Radio 
                             value={SmoothLegal} 
@@ -148,8 +149,10 @@ class OptionsContainer extends React.Component {
                             Basic Formation
                         </Radio> 
                     </Form.Item>
+                    </div>
+                    <h3>Popular Services</h3>
+                    <div className='container card'>
                     <Form.Item>
-                        <h3>Popular Services</h3>
                         <Checkbox.Group value={this.state.servicesList}>
                             <Checkbox 
                                 value={statementOfOrganizer}
@@ -196,8 +199,10 @@ class OptionsContainer extends React.Component {
                             onChange={this.getGoodStandingCopiesWApostille.bind(this)}
                         />
                     </Form.Item>
+                    </div>
+                    <h3>Delivery Options</h3>
+                    <div className='container card'>
                     <Form.Item>
-                        <h3>Delivery Options</h3>
                         <Checkbox.Group value={this.state.deliveryOption}>
                             <Checkbox 
                                 value={fedExDelivery}
@@ -206,8 +211,10 @@ class OptionsContainer extends React.Component {
                             </Checkbox>
                         </Checkbox.Group>
                     </Form.Item>
+                    </div>
+                    <h3>Special Requests</h3>
+                    <div className='container card'>
                     <Form.Item>
-                        <h3>Special Requests</h3>
                         <Input 
                             type="textarea" 
                             autosize={{ minRows: 3, maxRows: 5}}
@@ -215,6 +222,7 @@ class OptionsContainer extends React.Component {
                             onChange={this.onRequestInput.bind(this)}
                         />
                     </Form.Item>
+                    </div>
                 </Form>
                 <Button onClick={this.onBack.bind(this)}>
                     Back

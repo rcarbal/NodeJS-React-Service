@@ -5,13 +5,6 @@ import { Button } from 'element-react/next';
 class Payments extends React.Component {
 
     propsData = JSON.parse(this.props.formData);
-    
-    componentDidMount(){
-        console.log("PRINTING PROPS =========================")
-        let formData = JSON.parse(this.props.formData);
-        console.log(formData);
-    }
-
 
     onToken = (token) => {
         const self = this;
@@ -20,7 +13,7 @@ class Payments extends React.Component {
             method: 'POST',
             body: [
                 JSON.stringify(token),
-                this.props.formData
+                this.propsData
             ]
         }).then(response => {
             response.json().then(data => {
@@ -96,11 +89,17 @@ class Payments extends React.Component {
         console.log("Printing PROPS");
         console.log(this.propsData);
 
+        this.propsData.paymentTotal = optionsGrandTotal;
+        console.log('PROPS DATA');
+        console.log('=++++++++=====');
+        console.log(this.propsData);
+        console.log('=++++++++=====');
+
         return <StripeCheckout
             name='SmoothLegal Checkout'
             description='Pay for your LLC formation.'
             stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
-            amount={optionsGrandTotal * 100}
+            amount={this.propsData.paymentTotal * 100}
             token={this.onToken}
             extra={this.data}
                    >
