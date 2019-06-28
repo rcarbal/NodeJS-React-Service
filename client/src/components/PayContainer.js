@@ -17,17 +17,15 @@ class PayContainer extends React.Component {
 
         let renderedServiceList = formData.servicesList.map((service, index) => {
             return(
-                <div>
-                    <tbody>
-                        <tr>
-                            <td>{service.value}</td>
-                            <td></td>
-                            <td>${service.price}</td>                    
-                        </tr>
-                    </tbody>
-                </div>
+                <tbody>
+                    <tr>
+                        <td>{service.value}</td>
+                        <td>${service.price}</td>                    
+                    </tr>
+                </tbody>
             ) 
         });
+
 
         let llcPackage = formData.llcPackage.value,
             llcPackagePrice = formData.llcPackage.price,
@@ -44,10 +42,18 @@ class PayContainer extends React.Component {
             numGoodStandingCopiesWApostille = formData.goodStandingCopiesWApostille.numCopies,
             goodStandingCopiesWApostillePrice = formData.goodStandingCopiesWApostille.price,
 
-            //servicesList= formData.servicesList,
-            //deliveryOption={this.state.form.deliveryOption}
-            specialRequests = formData.requests,
-            paymentTotal = formData.paymentTotal;
+            specialRequests = formData.requests;
+        let renderedDeliveryOption = formData.deliveryOption.map((option, index) => {
+            return(
+                <tbody>
+                    <tr>
+                        <td>{option.value}</td>  
+                        <td>{option.price}</td>                  
+                    </tr>
+                </tbody>
+            )
+        })
+            //paymentTotal = formData.paymentTotal;
 
         return (
             <div>
@@ -76,12 +82,20 @@ class PayContainer extends React.Component {
                                 <div className='col-3'></div>
                             </div>
                         </div>
-                        
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        
                         <div>
                             <strong>Members: </strong>
-                            {this.props.memberName}
-                            {this.props.addlMemberNames}
+                            <div className='row' style={{marginBottom: '2.5%'}}>
+                                <div className='col'></div>
+                                <div className='col-4'>
+                                    <ul className='list-group text-center'>
+                                        <li className='list-group-item'>{this.props.memberName}</li>
+                                        <li className='list-group-item'>{this.props.addlMemberNames}</li>
+                                    </ul>
+                                </div>
+                                <div className='col'></div>
+                            </div>
                         </div>
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
 
@@ -91,14 +105,12 @@ class PayContainer extends React.Component {
                                 <thead>
                                     <tr>
                                         <th scope='col'>Item</th>
-                                        <th scope='col'></th>
                                         <th scope='col'>Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>'{llcPackage}'</td>
-                                        <td></td>
                                         <td>${llcPackagePrice}</td>
                                     </tr>
                                 </tbody>
@@ -112,17 +124,28 @@ class PayContainer extends React.Component {
                                 <thead>
                                     <tr>
                                         <th scope='col'>Item</th>
-                                        <th scope='col'></th>
                                         <th scope='col'>Price</th>
                                     </tr>
                                 </thead>
                                 {renderedServiceList}
                             </table>
                         </div>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
                         
-                        <p>deliveryOption=</p>
-                        <p>paymentTotal={paymentTotal}</p>
-
+                        <div>
+                            <strong>Delivery Option:</strong>
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th scope='col'>Item</th>
+                                        <th scope='col'>Price</th>
+                                    </tr>
+                                </thead>
+                                {renderedDeliveryOption}
+                            </table>
+                        </div>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        
                         <div>
                             <strong>Document Copies:</strong>
                             <table className="table">
