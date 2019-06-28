@@ -38,7 +38,7 @@ class PayContainer extends React.Component {
         return (
             <div>
                 <h5 style={{marginLeft: '10%', marginTop: '2.5%'}}>Review</h5>
-                <div className='container card form_box'>
+                <div className='container card form_box' style={{marginBottom: '2.5%'}}>
                     <h5>Order for: {this.props.stateOfIncorporation} {this.props.type}</h5>
                     <h4>{this.props.companyName}</h4>
                     <h6>(Alternate name: {this.props.altName})</h6>
@@ -95,12 +95,9 @@ class PayContainer extends React.Component {
                                 </tbody>
                             </table>
                     </div>
+                    <Payments formData={this.props.formData}/>
                 </div>
-                <h3>Pay</h3>
-                <div className='container card form_box'>
-                <Payments formData={this.props.formData}/>
-                </div>
-                <Button onClick={this.onBack.bind(this)}>
+                <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%', marginBottom: '2.5%'}}>
                     Back
                 </Button>
             </div>

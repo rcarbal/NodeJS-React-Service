@@ -222,14 +222,14 @@ class OptionsContainer extends React.Component {
                     </Form.Item>
                     </div>
                 </Form>
-                <div className='row'>
+                <div className='row' style={{marginBottom: '2.5%'}}>
                     <div className='col'>
-                        <Button onClick={this.onBack.bind(this)}>
+                        <Button onClick={this.onBack.bind(this)} style={{marginLeft: '5%'}}>
                             Back
                         </Button>
                     </div>
                     <div className='col'>
-                        <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{margin: '0 2.5% 2.5% 90%'}}>
+                        <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{marginLeft: '80%'}}>
                             Next step
                         </Button>
                     </div>

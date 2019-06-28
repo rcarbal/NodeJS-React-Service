@@ -90,18 +90,19 @@ class Payments extends React.Component {
         console.log(this.propsData);
         console.log('=++++++++=====');
 
-        return <StripeCheckout
-            name='SmoothLegal Checkout'
-            description='Pay for your LLC formation.'
-            stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
-            amount={this.propsData.paymentTotal * 100}
-            token={this.onToken}
-            extra={this.data}
-                   >
-            <Button>Pay</Button>
-
-            <div>{this.props.finalSubmit}</div>
-        </StripeCheckout>
+        return(
+            <StripeCheckout
+                name='SmoothLegal Checkout'
+                description='Pay for your LLC formation.'
+                stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
+                amount={this.propsData.paymentTotal * 100}
+                token={this.onToken}
+                extra={this.data}
+            >            
+                <Button>Submit & Pay</Button>
+                <div>{this.props.finalSubmit}</div>
+            </StripeCheckout>
+        )
     }
 }
 
