@@ -1,10 +1,15 @@
 const sgMail = require('@sendgrid/mail'),
     { sendgridKey } = require('../config/keys');
 
+// Function to be used to send finished email data, returns a Promise.
+
 function sendEmail(data) {
     return new Promise((resolve, reject) => {
+
+        const SEND_TO_EMAIL = "rcarbaleq2@gmail.com"
+
         const email = {
-            to: 'rcarbaleq2@gmail.com',
+            to: SEND_TO_EMAIL,
             from: 'ricardo.a.carballo@gmail.com',
             subject: `Email for ${data.name}`,
             text:

@@ -1,3 +1,7 @@
+/**
+ Retrieves any informtion forint in the smoothlegal Mongo collections.
+*/
+
 const mongoose = require('mongoose'),
     Company = require("../models/company"),
     Contact = require("../models/contact"),

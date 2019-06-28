@@ -1,3 +1,5 @@
+// API files to test development functions.
+
 const express = require('express'),
     email = require('../api/v1/test/emailTest'),
     { processPayment } = require('../payment'),
@@ -27,15 +29,16 @@ router.get("/api/v01/test", (req, res) => {
 });
 
 router.post("/api/v01/test", (req, res) => {
-    let jsondata = `[${req.body}]`;
-    const body = JSON.parse(jsondata);
 
-    console.log(body[0]);
+    const body = `[${req.body}]`;
+    const convertJson =JSON.parse(body);
+    let paymentData = convertJson[0];
+    let llcData = convertJson[1];  
 
-    const paymentData = {
-        amount: body[0].paymentTotal,
+    const payment = {
+        amount: llcData.paymentTotal * 100,
         currency: "usd",
-        source: body[0].id
+        source: paymentData.id
     }
 
     let response = {}
@@ -46,13 +49,13 @@ router.post("/api/v01/test", (req, res) => {
     console.log("===========================================================================================");
     console.log("HTTP POST REQUEST");
 
-    processPayment(paymentData).then((data) => {
+    processPayment(payment).then((data) => {
         if (data) {
             response.payment = {
-                payment_amount: data.amount,
+                payment_amount_cents: data.amount,
                 payment_successful: true
             };
-            return body[1];
+            return llcData;
         }
     })
         .then(saveToDatabase)
@@ -74,10 +77,5 @@ router.post("/api/v01/test", (req, res) => {
             res.send(response)
 
         });
-
-
 });
-
-
-
 module.exports = router;

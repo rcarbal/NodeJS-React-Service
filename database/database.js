@@ -6,11 +6,8 @@ const Company = require("../models/company"),
     { extractPopularServices } = require('../utilities/propUtils'),
     { popularServicesRefs } = require('../utilities/propRefs')
 
+// Saves to company LLC information to database asynchronously. Returns a Promise.
 
-// mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
-//     console.log("=============================================================================================================================");
-//     console.log("\nConnected to mongoDB");
-// });
 function saveToDatabase(data) {
     return new Promise((resolve, reject)=>{
         console.log("Saving to database...")
@@ -64,16 +61,7 @@ function saveToDatabase(data) {
         request: data.requests
     }
 
-    // Check if database LLC is already in Database
-
-    // Save to Database
-    // const company = new Company(companyData),
-    //       contract = new Contact(constactData),
-    //       legalparties = new LegalParties(legalPartiesData),
-    //       services = new Services(servicesData),
-    //       request = new Request(requestData);
-    // Send sucessful response
-
+    // Setup database documents.
         Company.create(companyData, (err, company) => {
             if (err) {
                 console.log(err);
@@ -132,12 +120,6 @@ function saveToDatabase(data) {
         });
     });
 }
-
-function checkLLCName() {
-
-}
-
-
 
 module.exports = {
     saveToDatabase
