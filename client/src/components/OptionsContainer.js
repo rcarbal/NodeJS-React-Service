@@ -125,10 +125,8 @@ class OptionsContainer extends React.Component {
         return (
             <div>
                 <Form>
-                <div>{this.props.active}</div>
-                <div>{this.props.companyName}</div>
-                    <h3>Package</h3>
-                    <div className='container card'>
+                    <h5 style={{marginTop: '2.5%', marginLeft: '10%'}}>Package</h5>
+                    <div className='container card form_box' style={{marginBottom: '2.5%'}}>
                     <Form.Item>
                         <Radio 
                             value={SmoothLegal} 
@@ -150,8 +148,8 @@ class OptionsContainer extends React.Component {
                         </Radio> 
                     </Form.Item>
                     </div>
-                    <h3>Popular Services</h3>
-                    <div className='container card'>
+                    <h5 style={{marginLeft: '10%'}}>Popular Services</h5>
+                    <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
                     <Form.Item>
                         <Checkbox.Group value={this.state.servicesList}>
                             <Checkbox 
@@ -200,8 +198,8 @@ class OptionsContainer extends React.Component {
                         />
                     </Form.Item>
                     </div>
-                    <h3>Delivery Options</h3>
-                    <div className='container card'>
+                    <h5 style={{marginLeft: '10%'}}>Delivery Options</h5>
+                    <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
                     <Form.Item>
                         <Checkbox.Group value={this.state.deliveryOption}>
                             <Checkbox 
@@ -212,8 +210,8 @@ class OptionsContainer extends React.Component {
                         </Checkbox.Group>
                     </Form.Item>
                     </div>
-                    <h3>Special Requests</h3>
-                    <div className='container card'>
+                    <h5 style={{marginLeft: '10%'}}>Special Requests</h5>
+                    <div className='container card form_box' style={{padding: '1%', marginBottom: '2.5%'}}>
                     <Form.Item>
                         <Input 
                             type="textarea" 
@@ -224,12 +222,18 @@ class OptionsContainer extends React.Component {
                     </Form.Item>
                     </div>
                 </Form>
-                <Button onClick={this.onBack.bind(this)}>
-                    Back
-                </Button>
-                <Button type='submit' value={100} onClick={this.handleSubmit.bind(this)}>
-                    Next step
-                </Button>
+                <div className='row'>
+                    <div className='col'>
+                        <Button onClick={this.onBack.bind(this)}>
+                            Back
+                        </Button>
+                    </div>
+                    <div className='col'>
+                        <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{margin: '0 2.5% 2.5% 90%'}}>
+                            Next step
+                        </Button>
+                    </div>
+                </div>
             </div>
         )
     }

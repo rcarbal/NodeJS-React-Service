@@ -5,6 +5,8 @@ import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
 
+import '../Smooth.css'
+
 class App extends React.Component { 
     // Function overriding React.Component constructor() 
     constructor(props) {

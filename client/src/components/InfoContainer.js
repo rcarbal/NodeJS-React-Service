@@ -94,7 +94,7 @@ class InfoContainer extends React.Component {
         return (
             <div>
                 <Form className="demo-dynamic">
-                    <div className="container card" style={{marginTop: '2.5%', marginBottom: '2.5%'}}>
+                    <div className="container card form_box" style={{marginTop: '2.5%', marginBottom: '2.5%'}}>
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
@@ -134,7 +134,7 @@ class InfoContainer extends React.Component {
                     </div>
     
                     <h5 style={{marginLeft: '10%'}}>Order Delivery</h5>
-                    <div className="container card" style={{ marginBottom: '2.5%'}}>
+                    <div className="container card form_box" style={{ marginBottom: '2.5%'}}>
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
@@ -257,7 +257,7 @@ class InfoContainer extends React.Component {
                     </div>
                         
                     <h5 style={{marginLeft: '10%'}}>Members</h5>
-                    <div className="container card" style={{ marginBottom: '2.5%'}}>
+                    <div className="container card form_box" style={{ marginBottom: '2.5%'}}>
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
@@ -282,7 +282,7 @@ class InfoContainer extends React.Component {
                         </div>
                     </div>
                 </Form>
-                <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{margin: '0 2.5% 2.5% 90%',}}>
+                <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{margin: '0 2.5% 2.5% 90%'}}>
                     Next step
                 </Button>
             </div>

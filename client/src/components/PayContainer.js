@@ -37,8 +37,8 @@ class PayContainer extends React.Component {
 
         return (
             <div>
-                <h3>Review</h3>
-                <div className='container card'>
+                <h5 style={{marginLeft: '10%', marginTop: '2.5%'}}>Review</h5>
+                <div className='container card form_box'>
                     <h5>Order for: {this.props.stateOfIncorporation} {this.props.type}</h5>
                     <h4>{this.props.companyName}</h4>
                     <h6>(Alternate name: {this.props.altName})</h6>
@@ -97,7 +97,7 @@ class PayContainer extends React.Component {
                     </div>
                 </div>
                 <h3>Pay</h3>
-                <div className='container card'>
+                <div className='container card form_box'>
                 <Payments formData={this.props.formData}/>
                 </div>
                 <Button onClick={this.onBack.bind(this)}>
