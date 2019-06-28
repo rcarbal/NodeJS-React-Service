@@ -1,3 +1,8 @@
+/**
+ * Tests Sengrid's current implementation in the applition. All the necessary properties are 
+ * seeded into the script.
+ */
+
 const sgMail = require('@sendgrid/mail'),
       { key } = require('../module/config'),
       seed = require('./seedData');

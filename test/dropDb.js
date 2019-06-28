@@ -1,3 +1,7 @@
+/** 
+ * Completely clears the smoothlegal Mongo collections.
+*/
+
 const  mongoose = require('mongoose');
 
 mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {

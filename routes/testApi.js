@@ -1,6 +1,8 @@
+// API files to test development functions.
+
 const express = require('express'),
     email = require('../api/v1/test/emailTest'),
-    payment = require('../payment'),
+    { processPayment } = require('../payment'),
     { saveToDatabase } = require('../database/database'),
     { sendEmail } = require('../email'),
     router = express.Router();
@@ -27,50 +29,53 @@ router.get("/api/v01/test", (req, res) => {
 });
 
 router.post("/api/v01/test", (req, res) => {
-    let jsondata = `[${req.body}]`;
-    const body = JSON.parse(jsondata);
 
-    const paymentData = {
-        amount: 500,
+    const body = `[${req.body}]`;
+    const convertJson =JSON.parse(body);
+    let paymentData = convertJson[0];
+    let llcData = convertJson[1];  
+
+    const payment = {
+        amount: llcData.paymentTotal * 100,
         currency: "usd",
-        source: body[0].id
+        source: paymentData.id
     }
 
     let response = {}
 
     console.log("JSON DATA");
+    console.log(body);
     console.log(paymentData);
     console.log("===========================================================================================");
     console.log("HTTP POST REQUEST");
 
-    new Promise((resolve, reject) => {
-        payment(resolve, reject, paymentData);
-    }).then((payment) => {
-        if (payment.paid) {
+    processPayment(payment).then((data) => {
+        if (data) {
             response.payment = {
-                payment_amount: payment.amount,
+                payment_amount_cents: data.amount,
                 payment_successful: true
             };
-
-            let savedCallback = (savedCompany) => {
-                if (savedCompany) {
-                    let sendEmailCallback = (emailSent) => {
-                        response.emaiSent = {
-                            emailSent
-                        }
-                        console.log("===========================================================================================");
-                        res.send(response);
-                    }
-                    console.log(savedCompany);
-                    response.dbSaved = { dbSaved: true };
-                    sendEmail(savedCompany, sendEmailCallback);
-                }
-            }
-            saveToDatabase(body[1], savedCallback);
+            return llcData;
         }
+    })
+        .then(saveToDatabase)
+        .then((data)=>{
+            if(data){
+                response.dbSaved ={
+                    saved: true
+                };
+                return data;                
+            }
+        })
+        .then(sendEmail)
+        .then((data)=>{
+            if(data){
+                response.emailSent = {
+                    emailSendSucess: true
+                };
+            }
+            res.send(response)
 
-
-    });
+        });
 });
-
 module.exports = router;

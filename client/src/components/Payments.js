@@ -83,6 +83,11 @@ class Payments extends React.Component {
             Services Sum = ${servicesPriceSum}
             GRAND TOTAL FOR OPTIONS AND SERVICES = ${optionsGrandTotal}
         `)
+        this.propsData.paymentTotal = optionsGrandTotal;
+
+        console.log("==========================================================================")
+        console.log("Printing PROPS");
+        console.log(this.propsData);
 
         this.propsData.paymentTotal = optionsGrandTotal;
         console.log('PROPS DATA');

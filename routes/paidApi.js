@@ -1,3 +1,5 @@
+// Production ready API files.  Currently not complete.
+
 const express = require('express'),
     mongoose = require('mongoose'),
     router = express.Router();
