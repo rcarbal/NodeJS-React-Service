@@ -39,26 +39,68 @@ class PayContainer extends React.Component {
             <div>
                 <h5 style={{marginLeft: '10%', marginTop: '2.5%'}}>Review</h5>
                 <div className='container card form_box' style={{marginBottom: '2.5%'}}>
-                    <h5>Order for: {this.props.stateOfIncorporation} {this.props.type}</h5>
-                    <h4>{this.props.companyName}</h4>
-                    <h6>(Alternate name: {this.props.altName})</h6>
-                    <p>
-                        <strong>Contact: </strong>
-                        {this.props.firstName}{this.props.lastName} | {this.props.phoneNum} | {this.props.email} | 
-                        {this.props.streetAddress} {this.props.city}, {this.props.usState} {this.props.zip} {this.props.country}
-                    </p>
-                    <p>
-                        <strong>Members: </strong>
-                        {this.props.memberName}
-                        {this.props.addlMemberNames}
-                    </p>
-                    <div>
+                    <div className='card' style={{padding: '2.5%', marginBottom: '2.5%'}}>
+                        <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>
+                        <h4 className='card-title'>{this.props.companyName}</h4>
+                        <h5 style={{textAlign: 'center'}}   ><em>(Alternate name: {this.props.altName})</em></h5>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                    
+                        <div>
+                            <strong>Contact:</strong>
+                            <div className='row'>
+                                <div className='col-3'></div>
+                                <div className='col-6' style={{textAlign: 'center'}}>
+                                    {this.props.firstName} {this.props.lastName} | {this.props.phoneNum} | {this.props.email}
+                                </div>
+                                <div className='col-3'></div>
+                            </div>
+                            <div className='row'>
+                                <div className='col-3'></div>
+                                <div className='col-6' style={{textAlign: 'center'}}>
+                                    {this.props.streetAddress} {this.props.city}, {this.props.usState} {this.props.zip} {this.props.country}
+                                </div>
+                                <div className='col-3'></div>
+                            </div>
+                        </div>
+                        
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        <div>
+                            <strong>Members: </strong>
+                            {this.props.memberName}
+                            {this.props.addlMemberNames}
+                        </div>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+
+                        <div>
+                            <strong>Package:</strong>
+                            <table className='table'>
+                                <thead>
+                                    <tr>
+                                        <th scope='col'>Item</th>
+                                        <th scope='col'></th>
+                                        <th scope='col'>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>'{llcPackage}'</td>
+                                        <td></td>
+                                        <td>${llcPackagePrice}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+
                         <strong>Services: </strong>
-                            <p>servicesList=</p>
-                            <p>deliveryOption=</p>
-                            <p>paymentTotal={paymentTotal}</p>
-                            <p>specialRequests={specialRequests}</p>
-                            <table class="table">
+                        <p>servicesList=</p>
+                        <p>deliveryOption=</p>
+                        <p>paymentTotal={paymentTotal}</p>
+                        <p>specialRequests={specialRequests}</p>
+
+                        <div>
+                            <strong>Document Copies:</strong>
+                            <table className="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Item</th>
@@ -67,11 +109,6 @@ class PayContainer extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>'{llcPackage}' Package</td>
-                                        <td></td>
-                                        <td>${llcPackagePrice}</td>
-                                    </tr>
                                     <tr>
                                         <td>Certified Copies</td>
                                         <td>{numCertifiedCopies}</td>
@@ -94,7 +131,9 @@ class PayContainer extends React.Component {
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
                     </div>
+                    
                     <Payments formData={this.props.formData}/>
                 </div>
                 <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%', marginBottom: '2.5%'}}>
