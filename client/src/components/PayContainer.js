@@ -27,20 +27,60 @@ class PayContainer extends React.Component {
         });
 
 
-        let llcPackage = formData.llcPackage.value,
-            llcPackagePrice = formData.llcPackage.price,
+        let llcPackage = formData.llcPackage.value;
+        let llcPackagePrice;
+        if (llcPackage !== undefined) {
+            llcPackagePrice = formData.llcPackage.price;
+        } else {
+            llcPackagePrice = 0
+        }
 
-            numCertifiedCopies = formData.certifiedCopies.numCopies,
+        let numCertifiedCopies = formData.certifiedCopies.numCopies,
             certifiedCopiesPrice = formData.certifiedCopies.price,
+            certifiedCopiesTotal;
+        if (numCertifiedCopies !== undefined) {
+            certifiedCopiesTotal = numCertifiedCopies * certifiedCopiesPrice; 
+        } else {
+            certifiedCopiesTotal = 0;
+        }
 
-            numCertifiedCopiesWApostille = formData.certifiedCopiesWApostille.numCopies,
+        let numCertifiedCopiesWApostille = formData.certifiedCopiesWApostille.numCopies,
             certifiedCopiesWApostillePrice = formData.certifiedCopiesWApostille.price,
+            certifiedCopiesWApostilleTotal;
+        if (numCertifiedCopiesWApostille !== undefined) {
+            certifiedCopiesWApostilleTotal = numCertifiedCopiesWApostille * certifiedCopiesWApostillePrice;
+        } else {
+            certifiedCopiesWApostilleTotal = 0;
+        }
 
-            numGoodStandingCopies= formData.goodStandingCopies.numCopies,
+        let numGoodStandingCopies= formData.goodStandingCopies.numCopies,
             goodStandingCopiesPrice = formData.goodStandingCopies.price,
+            goodStandingCopiesTotal;
+        if (numGoodStandingCopies !== undefined) {
+            goodStandingCopiesTotal = numGoodStandingCopies * goodStandingCopiesPrice;
+        } else {
+            goodStandingCopiesTotal = 0;
+        }
 
-            numGoodStandingCopiesWApostille = formData.goodStandingCopiesWApostille.numCopies,
+        let numGoodStandingCopiesWApostille = formData.goodStandingCopiesWApostille.numCopies,
             goodStandingCopiesWApostillePrice = formData.goodStandingCopiesWApostille.price,
+            goodStandingCopiesWApostilleTotal;
+        if (numGoodStandingCopiesWApostille !== undefined) {
+            goodStandingCopiesWApostilleTotal = numGoodStandingCopiesWApostille * goodStandingCopiesWApostillePrice;
+        } else {
+            goodStandingCopiesWApostilleTotal = 0;
+        }
+
+        let deliveryOption = formData.deliveryOption;
+        let deliveryOptionPriceSum = deliveryOption.reduce((option, {price}) => option + price, 0)
+        let servicesList = formData.servicesList;
+        let servicesPriceSum = servicesList.reduce((service, {price}) =>  service + price, 0)
+
+
+        let documentsSum = 
+            certifiedCopiesTotal + certifiedCopiesWApostilleTotal +
+            goodStandingCopiesTotal + goodStandingCopiesWApostilleTotal + 
+            llcPackagePrice + deliveryOptionPriceSum + servicesPriceSum,
 
             specialRequests = formData.requests;
         let renderedDeliveryOption = formData.deliveryOption.map((option, index) => {
@@ -181,6 +221,14 @@ class PayContainer extends React.Component {
                             </table>
                         </div>
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+
+                        <div className='row'>
+                            <div className='col'></div>
+                            <div className="alert alert-secondary col-2" role="alert">
+                                GRAND TOTAL= ${documentsSum}
+                            </div>
+                            <div className='col'></div>
+                        </div>
 
                         <div className="card border-light mx-auto" style={{width: '50%'}}>
                             <div className="card-header"><strong>Special Request</strong></div>
