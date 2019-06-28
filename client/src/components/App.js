@@ -146,7 +146,7 @@ class App extends React.Component {
 
         } else {
             pageContent = (
-                <div>
+                <div className="container">
                     <Button className='text-center' onClick={this.startForm}>Create LLC in Five Minutes!</Button>
                 </div>
             )
