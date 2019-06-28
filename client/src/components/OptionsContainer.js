@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Button, Radio, Checkbox, InputNumber, Input } from 'element-react/next';
+import { Form, Button, Radio, Checkbox, InputNumber, Input, Layout } from 'element-react/next';
 
 class OptionsContainer extends React.Component {
 
@@ -125,95 +125,217 @@ class OptionsContainer extends React.Component {
         return (
             <div>
                 <Form>
-                <div>{this.props.active}</div>
-                <div>{this.props.companyName}</div>
-                    <h3>Package</h3>
-                    <div className='container card'>
+                    <h5 style={{marginTop: '2.5%', marginLeft: '10%'}}>Package</h5>
+                    <div className='container card form_box' style={{marginBottom: '2.5%'}}>
+                        <Form.Item>
+                            <Layout.Row>
+                                <Layout.Col span='8'>
+                                    <div className='card'>
+                                        <div className='card-body'>
+                                            <h5 className='card-title'>Basic</h5>
+                                            <div className='card-text'>
+                                                <div className='row'>
+                                                    <ul className='col'>
+                                                        <li>Name Search</li>
+                                                        <li>Priority Mail (US & Global)</li>
+                                                    </ul>
+                                                    <ul className='col'>
+                                                        <li>Certificate of Formation</li>
+                                                        <li>Registered Agent service until 2020</li>
+                                                        <li>State Filing Fee</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Layout.Col>
+                                <Layout.Col span='8'>
+                                    <div className='card'>
+                                        <div className='card-body'>
+                                            <h5 className='card-title'>Complete</h5>
+                                            <div className='card-text'>
+                                                <div className='row'>
+                                                    <ul className='col'>
+                                                        <li>Name Search</li>
+                                                        <li>Priority Mail (US & Global)</li>
+                                                        <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
+                                                    </ul>
+                                                    <ul className='col'>
+                                                        <li>Certificate of Formation</li>
+                                                        <li>IRS and Corporate forms</li>
+                                                        <li>Registered Agent service until 2020</li>
+                                                        <li>State Filing Fee</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Layout.Col>
+                                <Layout.Col span='8'>
+                                    <div className='card'>
+                                        <div className='card-body'>
+                                            <h5 className='card-title'>SmoothLegal</h5>
+                                            <div className='card-text'>
+                                                <div className='row'>
+                                                    <ul className='col'>
+                                                        <li>Name Search</li>
+                                                        <li>Priority Mail (US & Global)</li>
+                                                        <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
+                                                        <li>1 - Business Day Turnaround</li>
+                                                    </ul>
+                                                    <ul className='col'>
+                                                        <li>Certificate of Formation</li>
+                                                        <li>IRS and Corporate forms</li>
+                                                        <li>Registered Agent service until 2020</li>
+                                                        <li>State Filing Fee</li>
+                                                        <li>Email Document Delivery</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Layout.Col>
+                            </Layout.Row>
+                            <Layout.Row>
+                                <Layout.Col span='6' offset='2'>
+                                    <Radio.Button 
+                                        value={basic} 
+                                        checked={this.state.llcPackage.value === 'Basic'}  
+                                        onChange={this.onPackageSelect.bind(this)}>
+                                        Select for $198
+                                    </Radio.Button> 
+                                </Layout.Col>
+                                <Layout.Col span='6' offset='2'>
+                                    <Radio.Button 
+                                        value={complete} 
+                                        checked={this.state.llcPackage.value === 'Complete'}  
+                                        onChange={this.onPackageSelect.bind(this)}>
+                                        Select for $289
+                                    </Radio.Button>
+                                </Layout.Col>
+                                <Layout.Col span='6' offset='2'>
+                                    <Radio.Button 
+                                        value={SmoothLegal} 
+                                        checked={this.state.llcPackage.value === 'SmoothLegal'}  
+                                        onChange={this.onPackageSelect.bind(this)}>
+                                        Select for $399
+                                    </Radio.Button>
+                                </Layout.Col>
+                            </Layout.Row>
+                        </Form.Item>
+                    </div>
+
+                    <h5 style={{marginLeft: '10%'}}>Popular Services</h5>
+                    <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
                     <Form.Item>
-                        <Radio 
-                            value={SmoothLegal} 
-                            checked={this.state.llcPackage.value === 'SmoothLegal'}  
-                            onChange={this.onPackageSelect.bind(this)}>
-                            SmoothLegal Formation
-                        </Radio>
-                        <Radio 
-                            value={complete} 
-                            checked={this.state.llcPackage.value === 'Complete'}  
-                            onChange={this.onPackageSelect.bind(this)}>
-                            Complete Formation
-                        </Radio>
-                        <Radio 
-                            value={basic} 
-                            checked={this.state.llcPackage.value === 'Basic'}  
-                            onChange={this.onPackageSelect.bind(this)}>
-                            Basic Formation
-                        </Radio> 
+                        <Layout.Row type='flex' justify='center'>
+                            <Layout.Col span='16' offset='3'>
+                                <Checkbox.Group value={this.state.servicesList}>
+                                    <Checkbox.Button 
+                                        value={statementOfOrganizer}
+                                        onChange={this.onServicesSelect.bind(this)}>
+                                        Statement of Organizer
+                                    </Checkbox.Button>
+                                    <Checkbox.Button 
+                                        value={taxIDNumberApp}
+                                        onChange={this.onServicesSelect.bind(this)}>
+                                        Tax ID Number - EIN Application
+                                    </Checkbox.Button>
+                                    <Checkbox.Button 
+                                        value={complianceKit}
+                                        onChange={this.onServicesSelect.bind(this)}>
+                                        Compliance Kit & Seal
+                                    </Checkbox.Button>
+                                </Checkbox.Group>
+                            </Layout.Col>
+                        </Layout.Row>
+                        <Layout.Row type='flex' justify='center'>
+                            <Layout.Col span='3' offset='3'>$49</Layout.Col>
+                            <Layout.Col span='3' offset='2'>$99</Layout.Col>
+                            <Layout.Col span='3' offset='1'>$99</Layout.Col>
+                        </Layout.Row>
+
+                        <div className="dropdown-divider" style={{marginBottom: '2.5%', marginTop: '2.5%'}}></div>
+
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='6'>
+                                <div>Certified Copy </div>
+                                <InputNumber 
+                                    size='small'
+                                    value={certifiedCopies.price} 
+                                    defaultValue={certifiedCopies.numCopies} 
+                                    onChange={this.getCertifiedCopies.bind(this)}
+                                />
+                                <div className="dropdown-divider"></div>
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='6'>$99</Layout.Col>
+                        </Layout.Row>
+
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='6'>
+                                <div>Certified Copy w/Apostille</div>
+                                <InputNumber 
+                                    size='small'
+                                    value={certifiedCopiesWApostille.price} 
+                                    defaultValue={certifiedCopiesWApostille.numCopies} 
+                                    onChange={this.getCertifiedCopiesWApostille.bind(this)}
+                                />
+                                <div className="dropdown-divider"></div>
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='6'>$159</Layout.Col>
+                        </Layout.Row>
+
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='6'>
+                                <div>Certificate of Good Standing </div>
+                                <InputNumber 
+                                    size='small'
+                                    value={goodStandingCopies.price} 
+                                    defaultValue={goodStandingCopies.numCopies} 
+                                    onChange={this.getGoodStandingCopies.bind(this)}
+                                />
+                                <div className="dropdown-divider"></div>
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='6'>$99</Layout.Col>
+                        </Layout.Row>
+                        
+                        <Layout.Row>
+                            <Layout.Col span='6' offset='6'>
+                                <div>Certificate of Good Standing w/Apostille</div>
+                                <InputNumber 
+                                    size='small'
+                                    value={goodStandingCopiesWApostille.price} 
+                                    defaultValue={goodStandingCopiesWApostille.numCopies} 
+                                    onChange={this.getGoodStandingCopiesWApostille.bind(this)}
+                                />
+                            </Layout.Col>
+                            <Layout.Col span='6' offset='6'>$159</Layout.Col>
+                        </Layout.Row>
                     </Form.Item>
                     </div>
-                    <h3>Popular Services</h3>
-                    <div className='container card'>
+                    <h5 style={{marginLeft: '10%'}}>Delivery Options</h5>
+                    <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
                     <Form.Item>
-                        <Checkbox.Group value={this.state.servicesList}>
-                            <Checkbox 
-                                value={statementOfOrganizer}
-                                onChange={this.onServicesSelect.bind(this)}>
-                                Statement of Organizer
-                            </Checkbox>
-                            <Checkbox 
-                                value={taxIDNumberApp}
-                                onChange={this.onServicesSelect.bind(this)}>
-                                Tax ID Number - EIN Application
-                            </Checkbox>
-                            <Checkbox 
-                                value={complianceKit}
-                                onChange={this.onServicesSelect.bind(this)}>
-                                Compliance Kit & Seal
-                            </Checkbox>
-                        </Checkbox.Group>
-                        <div>Certified Copy </div>
-                        <InputNumber 
-                            size='small'
-                            value={certifiedCopies.price} 
-                            defaultValue={certifiedCopies.numCopies} 
-                            onChange={this.getCertifiedCopies.bind(this)}
-                        />
-                        <div>Certified Copy w/Apostille</div>
-                        <InputNumber 
-                            size='small'
-                            value={certifiedCopiesWApostille.price} 
-                            defaultValue={certifiedCopiesWApostille.numCopies} 
-                            onChange={this.getCertifiedCopiesWApostille.bind(this)}
-                        />
-                        <div>Certificate of Good Standing </div>
-                        <InputNumber 
-                            size='small'
-                            value={goodStandingCopies.price} 
-                            defaultValue={goodStandingCopies.numCopies} 
-                            onChange={this.getGoodStandingCopies.bind(this)}
-                        />
-                        <div>Certificate of Good Standing w/Apostille</div>
-                        <InputNumber 
-                            size='small'
-                            value={goodStandingCopiesWApostille.price} 
-                            defaultValue={goodStandingCopiesWApostille.numCopies} 
-                            onChange={this.getGoodStandingCopiesWApostille.bind(this)}
-                        />
+                        <Layout.Row>
+                            <Layout.Col span="4" offset='10'>
+                                <Checkbox.Group value={this.state.deliveryOption}>
+                                    <Checkbox.Button 
+                                        value={fedExDelivery}
+                                        onChange={this.upgradeDelivery.bind(this)}>
+                                        FedEx(domestic)
+                                    </Checkbox.Button>
+                                </Checkbox.Group>
+                            </Layout.Col>
+                        </Layout.Row>
+                        <Layout.Row>
+                            <Layout.Col span='4' offset='11'>
+                                <div>$29</div>
+                            </Layout.Col>
+                        </Layout.Row>
                     </Form.Item>
                     </div>
-                    <h3>Delivery Options</h3>
-                    <div className='container card'>
-                    <Form.Item>
-                        <Checkbox.Group value={this.state.deliveryOption}>
-                            <Checkbox 
-                                value={fedExDelivery}
-                                onChange={this.upgradeDelivery.bind(this)}>
-                                FedEx(domestic)
-                            </Checkbox>
-                        </Checkbox.Group>
-                    </Form.Item>
-                    </div>
-                    <h3>Special Requests</h3>
-                    <div className='container card'>
+                    <h5 style={{marginLeft: '10%'}}>Special Requests</h5>
+                    <div className='container card form_box' style={{padding: '1%', marginBottom: '2.5%'}}>
                     <Form.Item>
                         <Input 
                             type="textarea" 
@@ -224,12 +346,18 @@ class OptionsContainer extends React.Component {
                     </Form.Item>
                     </div>
                 </Form>
-                <Button onClick={this.onBack.bind(this)}>
-                    Back
-                </Button>
-                <Button type='submit' value={100} onClick={this.handleSubmit.bind(this)}>
-                    Next step
-                </Button>
+                <div className='row' style={{marginBottom: '2.5%'}}>
+                    <div className='col'>
+                        <Button onClick={this.onBack.bind(this)} style={{marginLeft: '5%'}}>
+                            Back
+                        </Button>
+                    </div>
+                    <div className='col'>
+                        <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{marginLeft: '80%'}}>
+                            Next step
+                        </Button>
+                    </div>
+                </div>
             </div>
         )
     }

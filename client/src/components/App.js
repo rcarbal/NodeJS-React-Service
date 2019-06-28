@@ -5,6 +5,8 @@ import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
 
+import '../Smooth.css'
+
 class App extends React.Component { 
     // Function overriding React.Component constructor() 
     constructor(props) {
@@ -146,7 +148,7 @@ class App extends React.Component {
 
         } else {
             pageContent = (
-                <div>
+                <div className="container">
                     <Button className='text-center' onClick={this.startForm}>Create LLC in Five Minutes!</Button>
                 </div>
             )
