@@ -231,36 +231,36 @@ class OptionsContainer extends React.Component {
 
                     <h5 style={{marginLeft: '10%'}}>Popular Services</h5>
                     <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
+                        <div className='card' style={{ marginTop: '2.5%', paddingTop: '2.5%' }}>
+                            <Form.Item>
+                                <div className='d-flex justify-content-center'>
+                                    <Checkbox.Group value={this.state.servicesList}>
+                                        <Checkbox.Button 
+                                            value={statementOfOrganizer}
+                                            onChange={this.onServicesSelect.bind(this)}>
+                                            Statement of Organizer
+                                        </Checkbox.Button>
+                                        <Checkbox.Button 
+                                            value={taxIDNumberApp}
+                                            onChange={this.onServicesSelect.bind(this)}>
+                                            Tax ID Number - EIN Application
+                                        </Checkbox.Button>
+                                        <Checkbox.Button 
+                                            value={complianceKit}
+                                            onChange={this.onServicesSelect.bind(this)}>
+                                            Compliance Kit & Seal
+                                        </Checkbox.Button>
+                                    </Checkbox.Group>
+                                </div>
+                                <div className='d-flex justify-content-center'>
+                                    <h5 className='col-4 text-right'><span className='badge badge-succes'>$ 49</span></h5>
+                                    <h5 className='col-4 text-center'><span className='badge badge-succes'>$ 99</span></h5>
+                                    <h5 className='col-4 text-left'><span className='badge badge-succes'>$ 99</span></h5>
+                                </div>
+                            </Form.Item>
+                        </div>
+                    <div className="dropdown-divider" style={{marginBottom: '2.5%', marginTop: '2.5%'}}></div>
                     <Form.Item>
-                        <Layout.Row type='flex' justify='center'>
-                            <Layout.Col span='16' offset='3'>
-                                <Checkbox.Group value={this.state.servicesList}>
-                                    <Checkbox.Button 
-                                        value={statementOfOrganizer}
-                                        onChange={this.onServicesSelect.bind(this)}>
-                                        Statement of Organizer
-                                    </Checkbox.Button>
-                                    <Checkbox.Button 
-                                        value={taxIDNumberApp}
-                                        onChange={this.onServicesSelect.bind(this)}>
-                                        Tax ID Number - EIN Application
-                                    </Checkbox.Button>
-                                    <Checkbox.Button 
-                                        value={complianceKit}
-                                        onChange={this.onServicesSelect.bind(this)}>
-                                        Compliance Kit & Seal
-                                    </Checkbox.Button>
-                                </Checkbox.Group>
-                            </Layout.Col>
-                        </Layout.Row>
-                        <Layout.Row type='flex' justify='center'>
-                            <Layout.Col span='3' offset='3'>$49</Layout.Col>
-                            <Layout.Col span='3' offset='2'>$99</Layout.Col>
-                            <Layout.Col span='3' offset='1'>$99</Layout.Col>
-                        </Layout.Row>
-
-                        <div className="dropdown-divider" style={{marginBottom: '2.5%', marginTop: '2.5%'}}></div>
-
                         <ul className='list-group'>
                             <li className='list-group-item d-flex justify-content-between'>
                                 <InputNumber 
@@ -307,24 +307,22 @@ class OptionsContainer extends React.Component {
                     </div>
                     <h5 style={{marginLeft: '10%'}}>Delivery Options</h5>
                     <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
-                    <Form.Item>
-                        <Layout.Row>
-                            <Layout.Col span="4" offset='10'>
-                                <Checkbox.Group value={this.state.deliveryOption}>
-                                    <Checkbox.Button 
-                                        value={fedExDelivery}
-                                        onChange={this.upgradeDelivery.bind(this)}>
-                                        FedEx(domestic)
-                                    </Checkbox.Button>
-                                </Checkbox.Group>
-                            </Layout.Col>
-                        </Layout.Row>
-                        <Layout.Row>
-                            <Layout.Col span='4' offset='11'>
-                                <div>$29</div>
-                            </Layout.Col>
-                        </Layout.Row>
-                    </Form.Item>
+                        <div className='card' style={{ marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '2.5%' }}>
+                            <Form.Item>
+                                <div className='d-flex justify-content-center'>
+                                    <Checkbox.Group value={this.state.deliveryOption}>
+                                        <Checkbox.Button 
+                                            value={fedExDelivery}
+                                            onChange={this.upgradeDelivery.bind(this)}>
+                                            FedEx(domestic)
+                                        </Checkbox.Button>
+                                    </Checkbox.Group>
+                                </div>    
+                                <div className='d-flex justify-content-center'>
+                                    <h4><span clasName='badge badge-success'>$29</span></h4>
+                                </div>
+                            </Form.Item>
+                        </div>
                     </div>
                     <h5 style={{marginLeft: '10%'}}>Special Requests</h5>
                     <div className='container card form_box' style={{padding: '1%', marginBottom: '2.5%'}}>
