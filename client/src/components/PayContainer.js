@@ -93,7 +93,159 @@ class PayContainer extends React.Component {
                 </tbody>
             )
         })
-            //paymentTotal = formData.paymentTotal;
+        
+        let packageReview;
+        if (llcPackage !== undefined) {
+            packageReview = (
+                <div>
+                    <div>
+                        <strong>Package:</strong>
+                        <table className='table'>
+                            <thead>
+                                <tr>
+                                    <th scope='col'>Item</th>
+                                    <th scope='col'>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>'{llcPackage}'</td>
+                                    <td>${llcPackagePrice}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                </div>
+            )
+        }
+
+        let serviceReview;
+        if (formData.servicesList[0] !== undefined) {
+            serviceReview = (
+                <div>
+                    <div>
+                        <strong>Services: </strong>
+                        <table className='table'>
+                            <thead>
+                                <tr>
+                                    <th scope='col'>Item</th>
+                                    <th scope='col'>Price</th>
+                                </tr>
+                            </thead>
+                            {renderedServiceList}
+                        </table>
+                    </div>
+                    <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                </div>
+            )
+        }
+
+        let deliveryPreview;
+        if (deliveryOption[0] !== undefined) {
+            deliveryPreview = (
+                <div>
+                    <div>
+                        <strong>Delivery Option:</strong>
+                        <table className='table'>
+                            <thead>
+                                <tr>
+                                    <th scope='col'>Item</th>
+                                    <th scope='col'>Price</th>
+                                </tr>
+                            </thead>
+                            {renderedDeliveryOption}
+                        </table>
+                    </div>
+                    <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                </div>
+            )
+        }
+
+
+        let certifiedCopiesPreview;
+        if (numCertifiedCopies !== undefined) {
+            certifiedCopiesPreview = (
+                <tr>
+                    <td>Certified Copies</td>
+                    <td>{numCertifiedCopies}</td>
+                    <td>${certifiedCopiesPrice}</td>
+                </tr>
+            )
+        }
+        let certifiedCopiesWApostillePreview;
+        if (numCertifiedCopiesWApostille !== undefined) {
+            certifiedCopiesWApostillePreview = (
+                <tr>
+                    <td>Certified Copies w/ Apostille</td>
+                    <td>{numCertifiedCopiesWApostille}</td>
+                    <td>${certifiedCopiesWApostillePrice}</td>
+                </tr>
+            )
+        }
+        let goodStandingCopiesPreview;
+        if (numGoodStandingCopies !== undefined) {
+            goodStandingCopiesPreview = (
+                <tr>
+                    <td>Certificates of Good Standing</td>
+                    <td>{numGoodStandingCopies}</td>
+                    <td>${goodStandingCopiesPrice}</td>
+                </tr>
+            )
+        }
+        let goodStandingCopiesWApostillePreview;
+        if (numGoodStandingCopiesWApostille !== undefined) {
+            goodStandingCopiesWApostillePreview = (
+                <tr>
+                    <td>Certificates of Good Standing w/ Apostille</td>
+                    <td>{numGoodStandingCopiesWApostille}</td>
+                    <td>${goodStandingCopiesWApostillePrice}</td>
+                </tr>
+            )
+        }
+
+        let documentsCountPreview;
+        if (numCertifiedCopies === undefined && numCertifiedCopiesWApostille === undefined && numGoodStandingCopies === undefined && numGoodStandingCopiesWApostille === undefined) {
+            documentsCountPreview = (
+                <div></div>
+            )
+        } else {
+            documentsCountPreview = (
+                <div>
+                    <div>
+                        <strong>Document Copies:</strong>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {certifiedCopiesPreview}
+                                {certifiedCopiesWApostillePreview}
+                                {goodStandingCopiesPreview}
+                                {goodStandingCopiesWApostillePreview}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                </div>
+            )   
+        }
+
+        let specialRequestsPreview;
+        if (specialRequests !== '') {
+            specialRequestsPreview = (
+                <div className="card border-light mx-auto" style={{width: '50%'}}>
+                    <div className="card-header"><strong>Special Request</strong></div>
+                    <div className="card-body">
+                        <p className="card-text">{specialRequests}</p>
+                    </div>
+                </div>
+            )
+        }
 
         return (
             <div>
@@ -139,88 +291,13 @@ class PayContainer extends React.Component {
                         </div>
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
 
-                        <div>
-                            <strong>Package:</strong>
-                            <table className='table'>
-                                <thead>
-                                    <tr>
-                                        <th scope='col'>Item</th>
-                                        <th scope='col'>Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>'{llcPackage}'</td>
-                                        <td>${llcPackagePrice}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        {packageReview}
 
-                        <div>
-                            <strong>Services: </strong>
-                            <table className='table'>
-                                <thead>
-                                    <tr>
-                                        <th scope='col'>Item</th>
-                                        <th scope='col'>Price</th>
-                                    </tr>
-                                </thead>
-                                {renderedServiceList}
-                            </table>
-                        </div>
-                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        {serviceReview}
                         
-                        <div>
-                            <strong>Delivery Option:</strong>
-                            <table className='table'>
-                                <thead>
-                                    <tr>
-                                        <th scope='col'>Item</th>
-                                        <th scope='col'>Price</th>
-                                    </tr>
-                                </thead>
-                                {renderedDeliveryOption}
-                            </table>
-                        </div>
-                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        {deliveryPreview}
                         
-                        <div>
-                            <strong>Document Copies:</strong>
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Certified Copies</td>
-                                        <td>{numCertifiedCopies}</td>
-                                        <td>${certifiedCopiesPrice}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Certified Copies w/ Apostille</td>
-                                        <td>{numCertifiedCopiesWApostille}</td>
-                                        <td>${certifiedCopiesWApostillePrice}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Certificates of Good Standing</td>
-                                        <td>{numGoodStandingCopies}</td>
-                                        <td>${goodStandingCopiesPrice}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Certificates of Good Standing w/ Apostille</td>
-                                        <td>{numGoodStandingCopiesWApostille}</td>
-                                        <td>${goodStandingCopiesWApostillePrice}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        {documentsCountPreview}
 
                         <div className='row'>
                             <div className='col'></div>
@@ -229,15 +306,8 @@ class PayContainer extends React.Component {
                             </div>
                             <div className='col'></div>
                         </div>
-
-                        <div className="card border-light mx-auto" style={{width: '50%'}}>
-                            <div className="card-header"><strong>Special Request</strong></div>
-                            <div className="card-body">
-                                <p className="card-text">{specialRequests}</p>
-                            </div>
-                        </div>
+                        {specialRequestsPreview}
                     </div>
-                    
                     <Payments formData={this.props.formData}/>
                 </div>
                 <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%', marginBottom: '2.5%'}}>

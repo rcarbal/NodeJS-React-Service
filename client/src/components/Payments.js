@@ -104,7 +104,7 @@ class Payments extends React.Component {
                 token={this.onToken}
                 extra={this.data}
             >            
-                <Button>Submit & Pay</Button>
+                <Button style={{marginBottom: '2.5%'}}>Submit & Pay</Button>
                 <div>{this.props.finalSubmit}</div>
             </StripeCheckout>
         )

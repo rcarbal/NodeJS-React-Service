@@ -2,6 +2,11 @@ body {
     background: linear-gradient( #d4f8d4 ,#b2f3b2, #90ee90);
 }
 
-.form_box {
-    padding: 2.5%;
+
+.package_card {
+    height: 325px;
+}
+
+.package_card_text {
+    font-size: 14px;
 }

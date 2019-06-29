@@ -126,15 +126,15 @@ class OptionsContainer extends React.Component {
             <div>
                 <Form>
                     <h5 style={{marginTop: '2.5%', marginLeft: '10%'}}>Package</h5>
-                    <div className='container card form_box' style={{marginBottom: '2.5%'}}>
+                    <div className='container card' style={{marginBottom: '2.5%'}}>
                         
-                            <div className='row justify-content-between'>
+                            <div className='row justify-content-between' style={{marginTop: '2.5%', marginBottom: '5%'}}>
                                 <div className='col-4'>
-                                    <div className='card'>
+                                    <div className='card package_card'>
+                                        <h5 className='card-header text-center'>Basic</h5>
                                         <div className='card-body'>
-                                            <h5 className='card-title'>Basic</h5>
-                                            <div className='card-text'>
-                                                <div className='row'>
+                                            <div className='card-text package_card_text align-self-end'>
+                                                <div className='row' style={{marginLeft: '1.75%'}}>
                                                     <ul className='col'>
                                                         <li>Name Search</li>
                                                         <li>Priority Mail (US & Global)</li>
@@ -150,11 +150,11 @@ class OptionsContainer extends React.Component {
                                     </div>
                                 </div>
                                 <div className='col-4'>
-                                    <div className='card'>
+                                    <div className='card package_card'>
+                                        <h5 className='card-header text-center'>Complete</h5>
                                         <div className='card-body'>
-                                            <h5 className='card-title'>Complete</h5>
-                                            <div className='card-text'>
-                                                <div className='row'>
+                                            <div className='card-text package_card_text align-self-end'>
+                                                <div className='row' style={{marginLeft: '1.75%'}}>
                                                     <ul className='col'>
                                                         <li>Name Search</li>
                                                         <li>Priority Mail (US & Global)</li>
@@ -172,12 +172,12 @@ class OptionsContainer extends React.Component {
                                     </div>
                                 </div>
                                 <div className='col-4'>
-                                    <div className='card'>
+                                    <div className='card package_card'>
+                                        <h5 className='card-header text-center'>SmoothLegal</h5>
                                         <div className='card-body'>
-                                            <h5 className='card-title'>SmoothLegal</h5>
-                                            <div className='card-text'>
-                                                <div className='row'>
-                                                    <ul className='col'>
+                                            <div className='card-text package_card_text'>
+                                                <div className='row' style={{marginLeft: '1.75%'}}>
+                                                    <ul className='col align-text-bottom'>
                                                         <li>Name Search</li>
                                                         <li>Priority Mail (US & Global)</li>
                                                         <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
@@ -263,7 +263,7 @@ class OptionsContainer extends React.Component {
 
                         <Layout.Row>
                             <Layout.Col span='6' offset='6'>
-                                <div>Certified Copy </div>
+                                <div>Certified Copy</div>
                                 <InputNumber 
                                     size='small'
                                     value={certifiedCopies.price} 
@@ -274,7 +274,6 @@ class OptionsContainer extends React.Component {
                             </Layout.Col>
                             <Layout.Col span='6' offset='6'>$99</Layout.Col>
                         </Layout.Row>
-
                         <Layout.Row>
                             <Layout.Col span='6' offset='6'>
                                 <div>Certified Copy w/Apostille</div>
@@ -291,7 +290,7 @@ class OptionsContainer extends React.Component {
 
                         <Layout.Row>
                             <Layout.Col span='6' offset='6'>
-                                <div>Certificate of Good Standing </div>
+                                <div>Certificate of Good Standing</div>
                                 <InputNumber 
                                     size='small'
                                     value={goodStandingCopies.price} 
