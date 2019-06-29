@@ -148,8 +148,20 @@ class App extends React.Component {
 
         } else {
             pageContent = (
-                <div className="container">
-                    <Button className='text-center' onClick={this.startForm}>Create LLC in Five Minutes!</Button>
+                <div>
+                    <div className='container-fluid'>
+                        <h1>SmoothLegal</h1>
+                        <div style={{marginTop: '5%', marginBottom: '5%'}}>
+                            <img src='undraw_filing_system_b5d2.svg' className='card-image-top' />
+                            <div>
+                                <h3 className='card-title'>Leave the paperwork to us</h3>
+                                <p className='card-text'>SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
+                            </div>
+                        </div>   
+                    <div className='d-flex justify-content-end' style={{marginBottom: '5%', marginRight: '5%'}}>
+                        <Button className='text-center' onClick={this.startForm}>Form your LLC now</Button>
+                    </div>
+                    </div>
                 </div>
             )
         }
