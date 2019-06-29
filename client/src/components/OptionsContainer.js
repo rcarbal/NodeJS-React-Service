@@ -261,59 +261,48 @@ class OptionsContainer extends React.Component {
 
                         <div className="dropdown-divider" style={{marginBottom: '2.5%', marginTop: '2.5%'}}></div>
 
-                        <Layout.Row>
-                            <Layout.Col span='6' offset='6'>
-                                <div>Certified Copy</div>
+                        <ul className='list-group'>
+                            <li className='list-group-item d-flex justify-content-between'>
                                 <InputNumber 
                                     size='small'
                                     value={certifiedCopies.price} 
                                     defaultValue={certifiedCopies.numCopies} 
                                     onChange={this.getCertifiedCopies.bind(this)}
                                 />
-                                <div className="dropdown-divider"></div>
-                            </Layout.Col>
-                            <Layout.Col span='6' offset='6'>$99</Layout.Col>
-                        </Layout.Row>
-                        <Layout.Row>
-                            <Layout.Col span='6' offset='6'>
-                                <div>Certified Copy w/Apostille</div>
+                                <div>Certified Copy</div>
+                                <h4><span className='badge badge-success'>$ 99</span></h4>
+                            </li>
+                            <li className='list-group-item d-flex justify-content-between'>
                                 <InputNumber 
                                     size='small'
                                     value={certifiedCopiesWApostille.price} 
                                     defaultValue={certifiedCopiesWApostille.numCopies} 
                                     onChange={this.getCertifiedCopiesWApostille.bind(this)}
                                 />
-                                <div className="dropdown-divider"></div>
-                            </Layout.Col>
-                            <Layout.Col span='6' offset='6'>$159</Layout.Col>
-                        </Layout.Row>
-
-                        <Layout.Row>
-                            <Layout.Col span='6' offset='6'>
-                                <div>Certificate of Good Standing</div>
+                                <div>Certified Copy w/Apostille</div>
+                                <h4><span className='badge badge-success'>$ 159</span></h4>
+                            </li>
+                            <li className='list-group-item d-flex justify-content-between'>
                                 <InputNumber 
                                     size='small'
                                     value={goodStandingCopies.price} 
                                     defaultValue={goodStandingCopies.numCopies} 
                                     onChange={this.getGoodStandingCopies.bind(this)}
                                 />
-                                <div className="dropdown-divider"></div>
-                            </Layout.Col>
-                            <Layout.Col span='6' offset='6'>$99</Layout.Col>
-                        </Layout.Row>
-                        
-                        <Layout.Row>
-                            <Layout.Col span='6' offset='6'>
-                                <div>Certificate of Good Standing w/Apostille</div>
+                                <div>Certificate of Good Standing</div>     
+                                <h4><span className='badge badge-success'>$ 99</span></h4>
+                            </li>
+                            <li className='list-group-item d-flex justify-content-between'>
                                 <InputNumber 
                                     size='small'
                                     value={goodStandingCopiesWApostille.price} 
                                     defaultValue={goodStandingCopiesWApostille.numCopies} 
                                     onChange={this.getGoodStandingCopiesWApostille.bind(this)}
                                 />
-                            </Layout.Col>
-                            <Layout.Col span='6' offset='6'>$159</Layout.Col>
-                        </Layout.Row>
+                                <div>Certificate of Good Standing w/Apostille</div>
+                                <h4><span className='badge badge-success'>$ 159</span></h4>
+                            </li>
+                        </ul>
                     </Form.Item>
                     </div>
                     <h5 style={{marginLeft: '10%'}}>Delivery Options</h5>

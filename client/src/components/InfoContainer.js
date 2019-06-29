@@ -93,26 +93,26 @@ class InfoContainer extends React.Component {
     render(){
         return (
             <div>
-                <Form className="demo-dynamic">
-                    <div className="container card form_box" style={{marginTop: '2.5%', marginBottom: '2.5%'}}>
+                <Form>
+                    <div className="container card" style={{marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '1.75%', paddingBottom: '1.75%'}}>
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>State of Incorporation</div>
+                                    <label>State of Incorporation</label>
                                     <Input disabled placeholder="Delaware" value={this.state.stateOfIncoporation} />
                                 </Form.Item>
                             </div>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Type</div>
+                                    <label>Type</label>
                                     <Input disabled placeholder="LLC" value={this.state.type} />
                                 </Form.Item>
                             </div>  
                         </div>
                         <div className='row'>
                             <div className='col'>
-                                <Form.Item required={true}>
-                                    <div>Name</div>
+                                <Form.Item>
+                                    <label>Name</label>
                                     <Input 
                                         type='text' 
                                         value={this.state.companyName}
@@ -122,7 +122,7 @@ class InfoContainer extends React.Component {
                             </div>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Alternative name(s)</div>
+                                    <label>Alternative name(s)</label>
                                     <Input
                                         type='text'
                                         value={this.state.altName}
@@ -138,7 +138,7 @@ class InfoContainer extends React.Component {
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>First name</div>
+                                    <label>First name</label>
                                     <Input 
                                         type='text'
                                         value={this.state.firstName}
@@ -148,7 +148,7 @@ class InfoContainer extends React.Component {
                             </div>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Last Name</div>
+                                    <label>Last Name</label>
                                     <Input 
                                         type='text'
                                         value={this.state.lastName}
@@ -161,7 +161,7 @@ class InfoContainer extends React.Component {
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Email address</div>
+                                    <label>Email address</label>
                                     <Input 
                                         type='email'
                                         value={this.state.email}
@@ -171,7 +171,7 @@ class InfoContainer extends React.Component {
                             </div>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Phone Number</div>
+                                    <label>Phone Number</label>
                                     <Input 
                                         type='text'
                                         value={this.state.phoneNum}
@@ -184,7 +184,7 @@ class InfoContainer extends React.Component {
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Street address</div>
+                                    <label>Street address</label>
                                     <Input
                                         type='text'
                                         value={this.state.streetAddress}
@@ -194,7 +194,7 @@ class InfoContainer extends React.Component {
                             </div>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Street address continued</div>
+                                    <label>Street address continued</label>
                                     <Input
                                         type='text'
                                         value={this.state.streetAddressTwo}
@@ -207,7 +207,7 @@ class InfoContainer extends React.Component {
                         <div className='row'>
                             <div className='col-4'>
                                 <Form.Item>
-                                    <div>City</div>
+                                    <label>City</label>
                                     <Input 
                                         type='text' 
                                         value={this.state.city}
@@ -217,7 +217,7 @@ class InfoContainer extends React.Component {
                             </div>
                             <div className='col-2'>
                                 <Form.Item>
-                                    <div>State</div>
+                                    <label>State</label>
 
                                     <select value={this.state.usState} onChange={this.onStateSelect} className='custom-select'>
                                         <option value='AL'>AL</option> <option value='AK'>AK</option> <option value='AR'>AR</option> <option value='AZ'>AZ</option> <option value='CA'>CA</option>
@@ -237,7 +237,7 @@ class InfoContainer extends React.Component {
                             </div>
                             <div className='col-3'>
                                 <Form.Item>
-                                    <div>Zip Code</div>
+                                    <label>Zip Code</label>
                                     <Input 
                                         type="text"
                                         value={this.state.zip}
@@ -247,7 +247,7 @@ class InfoContainer extends React.Component {
                             </div>
                             <div className='col-3'>
                                 <Form.Item>
-                                    <div>Country</div>
+                                    <label>Country</label>
                                     <select value={this.state.country} disabled={true} className='custom-select'>
                                         <option>USA</option>
                                     </select>
@@ -261,7 +261,7 @@ class InfoContainer extends React.Component {
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Name</div>
+                                    <label>Name</label>
                                     <Input
                                         type='text'
                                         value={this.state.memberName}
@@ -271,7 +271,7 @@ class InfoContainer extends React.Component {
                             </div>
                             <div className='col'>
                                 <Form.Item>
-                                    <div>Additional members(if applicable)</div>
+                                    <label>Additional members(if applicable)</label>
                                     <Input
                                         type='text'
                                         value={this.state.addlMemberNames}
