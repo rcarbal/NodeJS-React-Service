@@ -1,5 +1,5 @@
 import React from 'react';
-import { Steps, Menu, Button } from 'element-react/next';
+import { Steps, Menu, Button } from 'element-react';
 
 import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
@@ -155,13 +155,15 @@ class App extends React.Component {
         }
         if (this.state.start) {
             headerContent = (
+                <div>
                 <Menu defaultActive="1" className="container-fluid" mode="horizontal">
                     <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
-                        <Steps.Step title="Company & Contact"></Steps.Step>
+                        <Steps.Step title='Company & Contacts'></Steps.Step>
                         <Steps.Step title="Options & Services"></Steps.Step>
                         <Steps.Step title="Review & Pay"></Steps.Step>
                     </Steps>
                 </Menu>
+                </div>
             )
         } 
 
