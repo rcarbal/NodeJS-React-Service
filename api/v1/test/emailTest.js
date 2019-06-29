@@ -1,6 +1,6 @@
 const sgMail = require('@sendgrid/mail'),
     seed = require('../../../test/seedData');
-let {key } = require('../../../module/config');
+let {key } = require('../../../config/keys');
 
 /*
     Version 1 of the api to send email.

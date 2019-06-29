@@ -1,16 +1,12 @@
 import React from 'react';
 import { Steps, Menu, Button } from 'element-react/next';
 
+import Navbar from './Navbar';
 import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
 
-const axios = require('axios');
-
-// Config for Axios
-const config = {     
-    headers: { 'content-type': 'multipart/form-data' }
-}
+import '../Smooth.css'
 
 class App extends React.Component { 
     // Function overriding React.Component constructor() 
@@ -23,7 +19,7 @@ class App extends React.Component {
             start: false,
             active: 1,
             form: {
-                stateOfIncoporation: 'Delaware',
+                stateOfIncorporation: 'Delaware',
                 type: 'LLC'
             }
         };
@@ -45,7 +41,6 @@ class App extends React.Component {
     }
 
     saveForm = (data) => {
-        /// this will break! but save data here
         this.setState({form: Object.assign(this.state.form, data)});
     }
 
@@ -64,18 +59,6 @@ class App extends React.Component {
        this.setState({start: true});
     }
 
-    finalSubmit = () => {
-        alert(JSON.stringify(this.state));
-        console.log(this.state)
-        axios.post('localhost:4000/api/v1/test', JSON.stringify(this.state), config)
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            }) 
-    }
-
     render() {
 
         let pageContent;
@@ -86,76 +69,119 @@ class App extends React.Component {
            if (activeContent === 1) {
                pageContent = (
                    <div>
-                       <InfoContainer 
-                           active={this.state.active} 
-                           companyName={this.state.companyName}
-                           altNames={this.state.altNames}
-                           firstName={this.state.firstName}
-                           lastName={this.state.lastName}
-                           email={this.state.email}
-                           phoneNum={this.state.phoneNum}
-                           streetAddress={this.state.streetAddress}
-                           streetAddressTwo={this.state.streetAddressTwo}
-                           city={this.state.city}
-                           usState={this.state.usStates}
-                           zip={this.state.zip}
-                           memberName={this.state.memberName}
-                           addlMemberNames={this.state.addlMemberNames}
+                       <InfoContainer className="container"
+                           active={this.state.form.active} 
+                           companyName={this.state.form.companyName}
+                           altName={this.state.form.altName}
+                           firstName={this.state.form.firstName}
+                           lastName={this.state.form.lastName}
+                           email={this.state.form.email}
+                           phoneNum={this.state.form.phoneNum}
+                           streetAddress={this.state.form.streetAddress}
+                           streetAddressTwo={this.state.form.streetAddressTwo}
+                           city={this.state.form.city}
+                           usState={this.state.form.usState}
+                           zip={this.state.form.zip}
+                           memberName={this.state.form.memberName}
+                           addlMemberNames={this.state.form.addlMemberNames}
                            saveAndNext={this.saveAndNext}
                        />
                    </div>
                )
-           } else if (activeContent === 2) {
-               pageContent =(
-                   <div>
-                       <OptionsContainer 
-                           companyName={this.state.companyName} 
-                           active={this.state.active}
-                           package={this.state.package}
-                           certifiedCopies={this.state.certifiedCopies}
-                           certifiedCopiesWApostille={this.state.certifiedCopiesWApostille}
-                           goodStandingCopies={this.state.goodStandingCopies}
-                           goodStandingCopiesWApostille={this.state.goodStandingCopiesWApostille}
-                           servicesList={this.state.servicesList}
-                           deliveryOption={this.state.deliveryOption}
-                           specialRequests={this.state.requests}
-                           saveAndNext={this.saveAndNext}
-                           onBack={this.saveAndBack}
-
-                           finalSubmit={this.finalSubmit}
-
-                       />
+            } else if (activeContent === 2) {
+                pageContent =(
+                    <div>
+                        <OptionsContainer 
+                            companyName={this.state.form.companyName} 
+                            active={this.state.form.active}
+                            llcPackage={this.state.form.llcPackage}
+                            certifiedCopies={this.state.form.certifiedCopies}
+                            certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
+                            goodStandingCopies={this.state.form.goodStandingCopies}
+                            goodStandingCopiesWApostille={this.state.form.goodStandingCopiesWApostille}
+                            servicesList={this.state.form.servicesList}
+                            deliveryOption={this.state.form.deliveryOption}
+                            specialRequests={this.state.form.requests}
+                            paymentTotal={this.state.form.paymentTotal}
+                            saveAndNext={this.saveAndNext}
+                            onBack={this.saveAndBack}
+                        />
                    </div>
-               )
-           } else {
-               pageContent = (
-                   <div>
-                       <PayContainer 
-                           onBack={this.saveAndBack}
-                           finalSubmit={this.finalSubmit}
-                       />
-                   </div>
-               )
-           }
+                )
+            } else {
+                pageContent = (
+                    <div>
+                        <PayContainer 
+                            companyName={this.state.form.companyName} 
+                            stateOfIncorporation={this.state.form.stateOfIncorporation}
+                            type={this.state.form.type}
+                            altName={this.state.form.altName}
+                            firstName={this.state.form.firstName}
+                            lastName={this.state.form.lastName}
+                            email={this.state.form.email}
+                            phoneNum={this.state.form.phoneNum}
+                            streetAddress={this.state.form.streetAddress}
+                            streetAddressTwo={this.state.form.streetAddressTwo}
+                            city={this.state.form.city}
+                            usState={this.state.form.usState}
+                            zip={this.state.form.zip}
+                            country={this.state.form.country}
+                            memberName={this.state.form.memberName}
+                            addlMemberNames={this.state.form.addlMemberNames}
+
+                            llcPackage={this.state.form.llcPackage}
+                            certifiedCopies={this.state.form.certifiedCopies}
+                            certifiedCopiesWApostille={this.state.form.certifiedCopiesWApostille}
+                            goodStandingCopies={this.state.form.goodStandingCopies}
+                            goodStandingCopiesWApostille={this.state.form.goodStandingCopiesWApostille}
+                            servicesList={this.state.form.servicesList}
+                            deliveryOption={this.state.form.deliveryOption}
+                            specialRequests={this.state.form.requests}
+                            paymentTotal={this.state.form.paymentTotal}
+
+                            saveForm={this.saveForm}
+                            onBack={this.saveAndBack}
+                            formData={JSON.stringify(this.state.form)}
+                        />
+                    </div>
+                )
+            }
 
         } else {
-           pageContent = (
-             <div>
-                <Button className='text-center' onClick={this.startForm}>Create LLC in Five Minutes!</Button>
-             </div>
-           )
+            pageContent = (
+                <div>
+                    <Navbar />
+                    <div className='container-fluid'>
+                        <div className='row'>
+                            <div className='col-8'>
+                                <img src='undraw_filing_system_b5d2.svg' className='card-image-top' />
+                            </div> 
+                            <div className='col-4' style={{marginTop: '15%'}}>
+                                <h2>Leave the paperwork to us.</h2>
+                                <p style={{padding: '2.5%', textAlign: 'justify'}}>SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
+                            </div>  
+                        </div>
+                    <div className='d-flex justify-content-end' style={{marginBottom: '5%', marginRight: '5%'}}>
+                        <Button className='text-center' onClick={this.startForm}>Form your LLC now</Button>
+                    </div>
+                    </div>
+                </div>
+            )
         }
-       if (this.state.start) {
-          headerContent = (
-              <Menu defaultActive="1" className="el-menu-demo" mode="horizontal">
-                  <Steps space={500} active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
-                      <Steps.Step title="Company & Contact"></Steps.Step>
-                      <Steps.Step title="Options & Services"></Steps.Step>
-                      <Steps.Step title="Review & Pay"></Steps.Step>
-                  </Steps>
-              </Menu>
-          )
-       } 
+        if (this.state.start) {
+            headerContent = (
+                <div>
+                    <Navbar />
+                    <Menu defaultActive="1" className="container-fluid" mode="horizontal">
+                        <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
+                            <Steps.Step title="Company & Contact"></Steps.Step>
+                            <Steps.Step title="Options & Services"></Steps.Step>
+                            <Steps.Step title="Review & Pay"></Steps.Step>
+                        </Steps>
+                    </Menu>
+                </div>
+            )
+        } 
 
         return (
             <div style={{fontFamily: 'Helvetica Neue, helvetica'}}>

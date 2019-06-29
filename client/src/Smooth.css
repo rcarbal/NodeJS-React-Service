@@ -1,0 +1,14 @@
+body {
+    background: linear-gradient( #d4f8d4 ,#b2f3b2, #90ee90);
+    background-attachment:fixed;
+    height:100%;
+}
+
+
+.package_card {
+    height: 325px;
+}
+
+.package_card_text {
+    font-size: 14px;
+}

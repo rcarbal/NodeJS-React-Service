@@ -1,5 +1,10 @@
+// API files to test development functions.
+
 const express = require('express'),
     email = require('../api/v1/test/emailTest'),
+    { processPayment } = require('../payment'),
+    { saveToDatabase } = require('../database/database'),
+    { sendEmail } = require('../email'),
     router = express.Router();
 
 
@@ -9,10 +14,68 @@ router.get("/api/v1/test", (req, res) => {
 
 router.post("/api/v1/test", (req, res) => {
     console.log(req);
-    const callback = (email, subject, data)=>{
+    const callback = (email, subject, data) => {
         res.send(`Email sent to ${email} \nSubject: ${subject}\n Data: ${data}`)
     }
     email.sendEmail(req.body.email, callback);
 });
 
+router.get("/api/v01/test", (req, res) => {
+    console.log("===========================================================================================");
+    console.log("HTTP GET REQUEST");
+    console.log(req.body);
+    console.log("===========================================================================================");
+    res.send("YOU SEND HTTP GET REQUEST");
+});
+
+router.post("/api/v01/test", (req, res) => {
+
+    const body = `[${req.body}]`;
+    const convertJson =JSON.parse(body);
+    let paymentData = convertJson[0];
+    let llcData = convertJson[1];  
+
+    const payment = {
+        amount: llcData.paymentTotal * 100,
+        currency: "usd",
+        source: paymentData.id
+    }
+
+    let response = {}
+
+    console.log("JSON DATA");
+    console.log(body);
+    console.log(paymentData);
+    console.log("===========================================================================================");
+    console.log("HTTP POST REQUEST");
+
+    processPayment(payment).then((data) => {
+        if (data) {
+            response.payment = {
+                payment_amount_cents: data.amount,
+                payment_successful: true
+            };
+            return llcData;
+        }
+    })
+        .then(saveToDatabase)
+        .then((data)=>{
+            if(data){
+                response.dbSaved ={
+                    saved: true
+                };
+                return data;                
+            }
+        })
+        .then(sendEmail)
+        .then((data)=>{
+            if(data){
+                response.emailSent = {
+                    emailSendSucess: true
+                };
+            }
+            res.send(response)
+
+        });
+});
 module.exports = router;

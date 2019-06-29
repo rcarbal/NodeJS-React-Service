@@ -1,40 +1,52 @@
 import React from 'react';
 
-import { Form, Button, Radio, Checkbox, InputNumber, Input } from 'element-react/next';
+import { Form, Button, Radio, Checkbox, InputNumber, Input, Layout } from 'element-react/next';
 
 class OptionsContainer extends React.Component {
 
     state = {
         active: 0,
-        package: {
-            value: '',
-            price: ''
-        },
-        certifiedCopies: 0,
-        certifiedCopiesWApostille: 0,
-        goodStandingCopies: 0,
-        goodStandingCopiesWApostille: 0,
+        llcPackage: {},
+        certifiedCopies: {},
+        certifiedCopiesWApostille: {},
+        goodStandingCopies: {},
+        goodStandingCopiesWApostille: {},
         deliveryOption: [],
         servicesList: [],
-        requests: ''
+        requests: '',
+        paymentTotal: 0
     }
 
+    
     onPackageSelect(value) {
-        this.setState({ value });
-        console.log(this.state.value)
+        this.setState({ llcPackage: value});
     }
+    
+    getCertifiedCopies(e) {
+        this.setState({ certifiedCopies: {numCopies: e, price: 99} });
+    }
+    getCertifiedCopiesWApostille(e) {
+        this.setState({ certifiedCopiesWApostille: {numCopies: e, price: 159} });
+    }
+    getGoodStandingCopies(e) {
+        this.setState({ goodStandingCopies: {numCopies: e, price: 99} });
+    }
+    getGoodStandingCopiesWApostille(e) {
+        this.setState({ goodStandingCopiesWApostille: {numCopies: e, price: 159} });
+    }
+    
+    upgradeDelivery(e) {
+        const deliveryOption = this.state.deliveryOption;
+        let index;
 
-    getCertifiedCopies(certifiedCopies) {
-        this.setState({ certifiedCopies });
-    }
-    getCertifiedCopiesWApostille(certifiedCopiesWApostille) {
-        this.setState({ certifiedCopiesWApostille });
-    }
-    getGoodStandingCopies(goodStandingCopies) {
-        this.setState({ goodStandingCopies });
-    }
-    getGoodStandingCopiesWApostille(goodStandingCopiesWApostille) {
-        this.setState({ goodStandingCopiesWApostille });
+        if(e.target.checked) {
+            deliveryOption.push(+e.target.value)
+        } else {
+            deliveryOption[0].price = 0;
+            index = deliveryOption.indexOf(+e.target.value)
+            deliveryOption.splice(index, 1)
+        }
+        this.setState({ deliveryOption: deliveryOption });
     }
 
     onServicesSelect(e) {
@@ -55,19 +67,6 @@ class OptionsContainer extends React.Component {
         // update the state with the new array of servicesList
         this.setState({ servicesList: servicesList })
     }
-
-    upgradeDelivery(e) {
-        const deliveryOption = this.state.deliveryOption;
-        let index;
-
-        if(e.target.checked) {
-            deliveryOption.push(+e.target.value)
-        } else {
-            index = deliveryOption.indexOf(+e.target.value)
-            deliveryOption.splice(index, 1)
-        }
-        this.setState({ deliveryOption: deliveryOption });
-    }
     
     onRequestInput(requests) {
         this.setState({ requests });
@@ -76,21 +75,8 @@ class OptionsContainer extends React.Component {
     handleSubmit(event) {
     
         event.preventDefault();
-
-        alert(`
-            User chose the ${this.state.value} package for $${this.state.price}
-            User ordered ${this.state.certifiedCopies} certified copies
-            User ordered ${this.state.certifiedCopiesWApostille} certified copies w/ apostille
-            User ordered ${this.state.goodStandingCopies} certificate of good standing copies
-            User ordered ${this.state.goodStandingCopiesWApostille} certificate of good standing copies w/ apostille
-            User ordered the following list of services: ${this.state.servicesList}
-            FedEx delivery upgrade: ${this.state.deliveryOption}
-            User requests: ${this.state.requests}
-        `);
-
-        //this.props.saveAndNext(this.state);
-        this.props.finalSubmit(this.state);
-        
+    
+        this.props.saveAndNext(this.state);
     };
 
     onBack(event) {
@@ -100,91 +86,247 @@ class OptionsContainer extends React.Component {
     }
 
     render(){
+
+        // PACKAGES
+        let SmoothLegal = { value: 'SmoothLegal', price: 399 };
+        let complete =    { value: 'Complete', price: 289 };
+        let basic =       { value: 'Basic', price: 198 };
+
+        // SERVICES
+        let statementOfOrganizer = { value: 'Statement of Organizer', price: 49 };
+        let taxIDNumberApp       = { value: 'Tax ID Number - EIN Application', price: 99 };
+        let complianceKit        = { value: 'Compliance Kit & Seal', price: 99 };
+
+        // DELIVERY OPTION
+        let fedExDelivery = { value: 'FedEx(domestic)', price: 29 };
+
+        // DOCUMENTS
+        let certifiedCopies = { 
+            name: 'Certified Copy', 
+            numCopies: 0, 
+            price: 99 
+        };
+        let certifiedCopiesWApostille = { 
+            name: 'Certified Copy w/ Apostille', 
+            numCopies: 0, 
+            price: 159 
+        };
+        let goodStandingCopies = { 
+            name: 'Certificate of Good Standing', 
+            numCopies: 0, 
+            price: 99 
+        };
+        let goodStandingCopiesWApostille = { 
+            name: 'Certificate of Good Standing w/ Apostille', 
+            numCopies: 0, 
+            price: 159 
+        };
+
         return (
             <div>
                 <Form>
-                <div>{this.props.active}</div>
-                <div>{this.props.companyName}</div>
-                    <h3>Package</h3>
+                    <h5 style={{marginTop: '2.5%', marginLeft: '10%'}}>Package</h5>
+                    <div className='container card' style={{marginBottom: '2.5%'}}>
+                        
+                            <div className='row justify-content-between' style={{marginTop: '2.5%', marginBottom: '5%'}}>
+                                <div className='col-4'>
+                                    <div className='card package_card'>
+                                        <h5 className='card-header text-center'>Basic</h5>
+                                        <div className='card-body'>
+                                            <div className='card-text package_card_text align-self-end'>
+                                                <div className='row' style={{marginLeft: '1.75%'}}>
+                                                    <ul className='col'>
+                                                        <li>Name Search</li>
+                                                        <li>Priority Mail (US & Global)</li>
+                                                    </ul>
+                                                    <ul className='col'>
+                                                        <li>Certificate of Formation</li>
+                                                        <li>Registered Agent service until 2020</li>
+                                                        <li>State Filing Fee</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='col-4'>
+                                    <div className='card package_card'>
+                                        <h5 className='card-header text-center'>Complete</h5>
+                                        <div className='card-body'>
+                                            <div className='card-text package_card_text align-self-end'>
+                                                <div className='row' style={{marginLeft: '1.75%'}}>
+                                                    <ul className='col'>
+                                                        <li>Name Search</li>
+                                                        <li>Priority Mail (US & Global)</li>
+                                                        <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
+                                                    </ul>
+                                                    <ul className='col'>
+                                                        <li>Certificate of Formation</li>
+                                                        <li>IRS and Corporate forms</li>
+                                                        <li>Registered Agent service until 2020</li>
+                                                        <li>State Filing Fee</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='col-4'>
+                                    <div className='card package_card'>
+                                        <h5 className='card-header text-center'>SmoothLegal</h5>
+                                        <div className='card-body'>
+                                            <div className='card-text package_card_text'>
+                                                <div className='row' style={{marginLeft: '1.75%'}}>
+                                                    <ul className='col align-text-bottom'>
+                                                        <li>Name Search</li>
+                                                        <li>Priority Mail (US & Global)</li>
+                                                        <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
+                                                        <li>1 - Business Day Turnaround</li>
+                                                    </ul>
+                                                    <ul className='col'>
+                                                        <li>Certificate of Formation</li>
+                                                        <li>IRS and Corporate forms</li>
+                                                        <li>Registered Agent service until 2020</li>
+                                                        <li>State Filing Fee</li>
+                                                        <li>Email Document Delivery</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <Form.Item>
+                            <Layout.Row type='flex' className='row-bg' justify='space-around'>
+                                <Layout.Col span='6' offset='2'>
+                                    <Radio.Button 
+                                        value={basic} 
+                                        checked={this.state.llcPackage.value === 'Basic'}  
+                                        onChange={this.onPackageSelect.bind(this)}
+                                        className='grid-content'>
+                                        Select for $198
+                                    </Radio.Button> 
+                                </Layout.Col>
+                                <Layout.Col span='6' offset='3'>
+                                    <Radio.Button 
+                                        value={complete} 
+                                        checked={this.state.llcPackage.value === 'Complete'}  
+                                        onChange={this.onPackageSelect.bind(this)}
+                                        className='grid-content'>
+                                        Select for $289
+                                    </Radio.Button>
+                                </Layout.Col>
+                                <Layout.Col span='6' offset='2'>
+                                    <Radio.Button 
+                                        value={SmoothLegal} 
+                                        checked={this.state.llcPackage.value === 'SmoothLegal'}  
+                                        onChange={this.onPackageSelect.bind(this)}
+                                        className='grid-content'>
+                                        Select for $399
+                                    </Radio.Button>
+                                </Layout.Col>
+                            </Layout.Row>
+                        </Form.Item>
+                    </div>
+
+                    <h5 style={{marginLeft: '10%'}}>Popular Services</h5>
+                    <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
+                        <div className='card' style={{ marginTop: '2.5%', paddingTop: '2.5%' }}>
+                            <Form.Item>
+                                <div className='d-flex justify-content-center'>
+                                    <Checkbox.Group value={this.state.servicesList}>
+                                        <Checkbox.Button 
+                                            value={statementOfOrganizer}
+                                            onChange={this.onServicesSelect.bind(this)}>
+                                            Statement of Organizer
+                                        </Checkbox.Button>
+                                        <Checkbox.Button 
+                                            value={taxIDNumberApp}
+                                            onChange={this.onServicesSelect.bind(this)}>
+                                            Tax ID Number - EIN Application
+                                        </Checkbox.Button>
+                                        <Checkbox.Button 
+                                            value={complianceKit}
+                                            onChange={this.onServicesSelect.bind(this)}>
+                                            Compliance Kit & Seal
+                                        </Checkbox.Button>
+                                    </Checkbox.Group>
+                                </div>
+                                <div className='d-flex justify-content-center'>
+                                    <h5 className='col-4 text-right'><span className='badge badge-succes'>$ 49</span></h5>
+                                    <h5 className='col-4 text-center'><span className='badge badge-succes'>$ 99</span></h5>
+                                    <h5 className='col-4 text-left'><span className='badge badge-succes'>$ 99</span></h5>
+                                </div>
+                            </Form.Item>
+                        </div>
+                    <div className="dropdown-divider" style={{marginBottom: '2.5%', marginTop: '2.5%'}}></div>
                     <Form.Item>
-                        <Radio 
-                            value='SmoothLegal' 
-                            checked={this.state.package.value === 'SmoothLegal'} 
-                            price='399' 
-                            onChange={this.onPackageSelect.bind(this)}>
-                            SmoothLegal Formation
-                        </Radio>
-                        <Radio 
-                            value='Complete' 
-                            checked={this.state.package.value === 'Complete'} 
-                            price='298' 
-                            onChange={this.onPackageSelect.bind(this)}>
-                            Complete Formation
-                        </Radio>
-                        <Radio 
-                            value='Basic' 
-                            checked={this.state.package.value === 'Basic'} 
-                            price='189' 
-                            onChange={this.onPackageSelect.bind(this)}>
-                            Basic Formation
-                        </Radio> 
+                        <ul className='list-group'>
+                            <li className='list-group-item d-flex justify-content-between'>
+                                <InputNumber 
+                                    size='small'
+                                    value={certifiedCopies.price} 
+                                    defaultValue={certifiedCopies.numCopies} 
+                                    onChange={this.getCertifiedCopies.bind(this)}
+                                />
+                                <div>Certified Copy</div>
+                                <h4><span className='badge badge-success'>$ 99</span></h4>
+                            </li>
+                            <li className='list-group-item d-flex justify-content-between'>
+                                <InputNumber 
+                                    size='small'
+                                    value={certifiedCopiesWApostille.price} 
+                                    defaultValue={certifiedCopiesWApostille.numCopies} 
+                                    onChange={this.getCertifiedCopiesWApostille.bind(this)}
+                                />
+                                <div>Certified Copy w/Apostille</div>
+                                <h4><span className='badge badge-success'>$ 159</span></h4>
+                            </li>
+                            <li className='list-group-item d-flex justify-content-between'>
+                                <InputNumber 
+                                    size='small'
+                                    value={goodStandingCopies.price} 
+                                    defaultValue={goodStandingCopies.numCopies} 
+                                    onChange={this.getGoodStandingCopies.bind(this)}
+                                />
+                                <div>Certificate of Good Standing</div>     
+                                <h4><span className='badge badge-success'>$ 99</span></h4>
+                            </li>
+                            <li className='list-group-item d-flex justify-content-between'>
+                                <InputNumber 
+                                    size='small'
+                                    value={goodStandingCopiesWApostille.price} 
+                                    defaultValue={goodStandingCopiesWApostille.numCopies} 
+                                    onChange={this.getGoodStandingCopiesWApostille.bind(this)}
+                                />
+                                <div>Certificate of Good Standing w/Apostille</div>
+                                <h4><span className='badge badge-success'>$ 159</span></h4>
+                            </li>
+                        </ul>
                     </Form.Item>
+                    </div>
+                    <h5 style={{marginLeft: '10%'}}>Delivery Options</h5>
+                    <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
+                        <div className='card' style={{ marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '2.5%' }}>
+                            <Form.Item>
+                                <div className='d-flex justify-content-center'>
+                                    <Checkbox.Group value={this.state.deliveryOption}>
+                                        <Checkbox.Button 
+                                            value={fedExDelivery}
+                                            onChange={this.upgradeDelivery.bind(this)}>
+                                            FedEx(domestic)
+                                        </Checkbox.Button>
+                                    </Checkbox.Group>
+                                </div>    
+                                <div className='d-flex justify-content-center'>
+                                    <h4><span clasName='badge badge-success'>$29</span></h4>
+                                </div>
+                            </Form.Item>
+                        </div>
+                    </div>
+                    <h5 style={{marginLeft: '10%'}}>Special Requests</h5>
+                    <div className='container card form_box' style={{padding: '1%', marginBottom: '2.5%'}}>
                     <Form.Item>
-                        <h3>Popular Services</h3>
-                        <Checkbox.Group value={this.state.servicesList}>
-                            <Checkbox 
-                                value='Statement of Organizer'
-                                onChange={this.onServicesSelect.bind(this)}>
-                                Statement of Organizer
-                            </Checkbox>
-                            <Checkbox 
-                                value='Tax ID Number - EIN Application'
-                                onChange={this.onServicesSelect.bind(this)}>
-                                Tax ID Number - EIN Application
-                            </Checkbox>
-                            <Checkbox 
-                                value='Compliance Kit & Seal'
-                                onChange={this.onServicesSelect.bind(this)}>
-                                Compliance Kit & Seal
-                            </Checkbox>
-                        </Checkbox.Group>
-                        <div>Certified Copy </div>
-                        <InputNumber 
-                            size='small' 
-                            defaultValue={this.state.certifiedCopies} 
-                            onChange={this.getCertifiedCopies.bind(this)}
-                        />
-                        <div>Certified Copy w/Apostille</div>
-                        <InputNumber 
-                            size='small' 
-                            defaultValue={this.state.certifiedCopiesWApostille} 
-                            onChange={this.getCertifiedCopiesWApostille.bind(this)}
-                        />
-                        <div>Certificate of Good Standing </div>
-                        <InputNumber 
-                            size='small' 
-                            defaultValue={this.state.goodStandingCopies} 
-                            onChange={this.getGoodStandingCopies.bind(this)}
-                        />
-                        <div>Certificate of Good Standing w/Apostille</div>
-                        <InputNumber 
-                            size='small' 
-                            defaultValue={this.state.goodStandingCopiesWApostille} 
-                            onChange={this.getGoodStandingCopiesWApostille.bind(this)}
-                        />
-                    </Form.Item>
-                    <Form.Item>
-                        <h3>Delivery Options</h3>
-                        <Checkbox.Group value={this.state.deliveryOption}>
-                            <Checkbox 
-                                value='FedEx(domestic)'
-                                onChange={this.upgradeDelivery.bind(this)}>
-                                FedEx(domestic)
-                            </Checkbox>
-                        </Checkbox.Group>
-                    </Form.Item>
-                    <Form.Item>
-                        <h3>Special Requests</h3>
                         <Input 
                             type="textarea" 
                             autosize={{ minRows: 3, maxRows: 5}}
@@ -192,13 +334,20 @@ class OptionsContainer extends React.Component {
                             onChange={this.onRequestInput.bind(this)}
                         />
                     </Form.Item>
+                    </div>
                 </Form>
-                <Button onClick={this.onBack.bind(this)}>
-                    Back
-                </Button>
-                <Button type='submit' onClick={this.handleSubmit.bind(this)}>
-                    Next step
-                </Button>
+                <div className='row' style={{marginBottom: '2.5%'}}>
+                    <div className='col'>
+                        <Button onClick={this.onBack.bind(this)} style={{marginLeft: '5%'}}>
+                            Back
+                        </Button>
+                    </div>
+                    <div className='col'>
+                        <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{marginLeft: '80%'}}>
+                            Next step
+                        </Button>
+                    </div>
+                </div>
             </div>
         )
     }
