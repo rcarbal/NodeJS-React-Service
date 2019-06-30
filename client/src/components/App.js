@@ -159,11 +159,11 @@ class App extends React.Component {
                             <div className='col-4' style={{marginTop: '15%'}}>
                                 <h2>Leave the paperwork to us.</h2>
                                 <p style={{padding: '2.5%', textAlign: 'justify'}}>SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
+                                <div className='d-flex justify-content-center'>
+                                    <Button className='text-center' onClick={this.startForm} style={{marginTop: '2.5%'}}>Form your LLC now</Button>                 
+                                </div>
                             </div>  
                         </div>
-                    <div className='d-flex justify-content-end' style={{marginBottom: '5%', marginRight: '5%'}}>
-                        <Button className='text-center' onClick={this.startForm}>Form your LLC now</Button>
-                    </div>
                     </div>
                 </div>
             )
