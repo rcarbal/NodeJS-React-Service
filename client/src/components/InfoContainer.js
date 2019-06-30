@@ -94,7 +94,7 @@ class InfoContainer extends React.Component {
         return (
             <div>
                 <Form>
-                    <div className="container card" style={{marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '1.75%', paddingBottom: '1.75%'}}>
+                    <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
@@ -134,7 +134,7 @@ class InfoContainer extends React.Component {
                     </div>
     
                     <h5 style={{marginLeft: '10%'}}>Order Delivery</h5>
-                    <div className="container card" style={{marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '1.75%', paddingBottom: '1.75%'}}>
+                    <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
@@ -257,7 +257,7 @@ class InfoContainer extends React.Component {
                     </div>
                         
                     <h5 style={{marginLeft: '10%'}}>Members</h5>
-                    <div className="container card" style={{marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '1.75%', paddingBottom: '1.75%'}}>
+                    <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>

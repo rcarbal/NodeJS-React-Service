@@ -126,8 +126,8 @@ class OptionsContainer extends React.Component {
             <div>
                 <Form>
                     <h5 style={{marginTop: '2.5%', marginLeft: '10%'}}>Package</h5>
-                    <div className='container card' style={{marginBottom: '2.5%'}}>
-                        
+                    <div className='container card form_box'>
+                    
                             <div className='row justify-content-between' style={{marginTop: '2.5%', marginBottom: '5%'}}>
                                 <div className='col-4'>
                                     <div className='card package_card'>
