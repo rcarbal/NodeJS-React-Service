@@ -74,8 +74,9 @@ router.post("/api/v01/test", (req, res) => {
                     emailSendSucess: true
                 };
             }
-            res.send(response)
+            res.send(response);
 
         });
 });
+
 module.exports = router;

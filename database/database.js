@@ -40,6 +40,11 @@ function saveToDatabase(data) {
 
 
     const servicesData = {
+
+        package: {
+            name: data.llcPackage.value,
+            price: data.llcPackage.price
+        } ,
         orgStatement: extractPopularServices(
             data.servicesList,
             popularServicesRefs.ORG_STATEMENT
@@ -55,7 +60,11 @@ function saveToDatabase(data) {
         certCopy: data.certifiedCopies,
         certCopyApost: data.certifiedCopiesWApostille,
         certGoodStand: data.goodStandingCopies,
-        certGoodStandApost: data.goodStandingCopiesWApostille
+        certGoodStandApost: data.goodStandingCopiesWApostille,
+        deliveryOption: {
+            price: data.deliveryOption[0].price,
+            value: data.deliveryOption[0].value
+        }
     }
     const requestData = {
         request: data.requests

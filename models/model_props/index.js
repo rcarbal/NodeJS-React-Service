@@ -43,13 +43,15 @@ const legalPartiesRef = {
 // Services objects setup
 
 const services = {
+    package: {},
     orgStatement : {},
     einApp : {},
     complianceKitSeal : {},
     certCopy : {},
     certCopyApost : {},
     certGoodStand : {},
-    certGoodStandApost: {} 
+    certGoodStandApost: {},
+    deliveryOption: {}
 }
 
 const servicesPropRef =  {
