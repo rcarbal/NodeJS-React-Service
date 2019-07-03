@@ -64,6 +64,7 @@ router.post("/api/v01/test", (req, res) => {
                 response.dbSaved ={
                     saved: true
                 };
+                console.log(data);
                 return data;                
             }
         })

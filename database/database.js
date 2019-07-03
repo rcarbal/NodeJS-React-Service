@@ -130,6 +130,10 @@ function saveToDatabase(data) {
     });
 }
 
+function queryDbRefsFilled(){
+
+}
+
 module.exports = {
     saveToDatabase
 }
