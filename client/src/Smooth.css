@@ -9,6 +9,14 @@ body {
     height: 325px;
 }
 
+.form_box {
+    margin-top: 2.5%; 
+    margin-bottom: 2.5%;
+    padding-top: 1.75%;
+    padding-bottom: 1.75%; 
+    width: 60%;
+}
+
 .package_card_text {
     font-size: 14px;
 }

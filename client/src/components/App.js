@@ -1,6 +1,7 @@
 import React from 'react';
 import { Steps, Menu, Button } from 'element-react';
 
+import Navbar from './Navbar';
 import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
@@ -149,18 +150,20 @@ class App extends React.Component {
         } else {
             pageContent = (
                 <div>
+                    <Navbar />
                     <div className='container-fluid'>
-                        <h1>SmoothLegal</h1>
-                        <div style={{marginTop: '5%', marginBottom: '5%'}}>
-                            <img src='undraw_filing_system_b5d2.svg' className='card-image-top' />
-                            <div>
-                                <h3 className='card-title'>Leave the paperwork to us</h3>
-                                <p className='card-text'>SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
-                            </div>
-                        </div>   
-                    <div className='d-flex justify-content-end' style={{marginBottom: '5%', marginRight: '5%'}}>
-                        <Button className='text-center' onClick={this.startForm}>Form your LLC now</Button>
-                    </div>
+                        <div className='row'>
+                            <div className='col-8'>
+                                <img src='undraw_filing_system_b5d2.svg' className='card-image-top' />
+                            </div> 
+                            <div className='col-4' style={{marginTop: '15%'}}>
+                                <h2>Leave the paperwork to us.</h2>
+                                <p style={{padding: '2.5%', textAlign: 'justify'}}>SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
+                                <div className='d-flex justify-content-center'>
+                                    <Button className='text-center' onClick={this.startForm} style={{marginTop: '2.5%'}}>Form your LLC now</Button>                 
+                                </div>
+                            </div>  
+                        </div>
                     </div>
                 </div>
             )
@@ -168,13 +171,14 @@ class App extends React.Component {
         if (this.state.start) {
             headerContent = (
                 <div>
-                <Menu defaultActive="1" className="container-fluid" mode="horizontal">
-                    <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
-                        <Steps.Step title='Company & Contacts'></Steps.Step>
-                        <Steps.Step title="Options & Services"></Steps.Step>
-                        <Steps.Step title="Review & Pay"></Steps.Step>
-                    </Steps>
-                </Menu>
+                    <Navbar />
+                    <Menu defaultActive="1" className="container-fluid" mode="horizontal">
+                        <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
+                            <Steps.Step title="Company & Contact"></Steps.Step>
+                            <Steps.Step title="Options & Services"></Steps.Step>
+                            <Steps.Step title="Review & Pay"></Steps.Step>
+                        </Steps>
+                    </Menu>
                 </div>
             )
         } 
