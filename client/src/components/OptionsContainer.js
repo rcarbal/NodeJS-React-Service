@@ -319,7 +319,7 @@ class OptionsContainer extends React.Component {
                                     </Checkbox.Group>
                                 </div>    
                                 <div className='d-flex justify-content-center'>
-                                    <h4><span clasName='badge badge-success'>$29</span></h4>
+                                    <h4><span className='badge badge-success'>$29</span></h4>
                                 </div>
                             </Form.Item>
                         </div>

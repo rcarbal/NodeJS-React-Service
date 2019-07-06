@@ -154,7 +154,7 @@ class App extends React.Component {
                     <div className='container-fluid'>
                         <div className='row'>
                             <div className='col-8'>
-                                <img src='undraw_filing_system_b5d2.svg' className='card-image-top' />
+                                <img src='undraw_filing_system_b5d2.svg' className='card-image-top' alt='Filing papers' />
                             </div> 
                             <div className='col-4' style={{marginTop: '15%'}}>
                                 <h2>Leave the paperwork to us.</h2>

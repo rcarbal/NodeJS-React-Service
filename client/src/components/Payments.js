@@ -9,7 +9,14 @@ class Payments extends React.Component {
     onToken = (token) => {
         const self = this;
 
-        fetch('/api/v01/test', {
+        let URL;
+        if(process.env.NODE_ENV === 'production'){
+            URL = '/api/v1/';
+        }else{
+            URL = '/api/v01/test';
+        }
+
+        fetch(URL, {
             method: 'POST',
             body: [
                 JSON.stringify(token),
@@ -101,6 +108,7 @@ class Payments extends React.Component {
                 description='Pay for your LLC formation.'
                 stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
                 amount={this.propsData.paymentTotal * 100}
+                email={this.propsData.email}
                 token={this.onToken}
                 extra={this.data}
             >            
