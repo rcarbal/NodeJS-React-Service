@@ -1,5 +1,5 @@
 import React from 'react';
-import { Steps, Menu, Button } from 'element-react/next';
+import { Steps, Menu, Button } from 'element-react';
 
 import Navbar from './Navbar';
 import InfoContainer from './InfoContainer';
