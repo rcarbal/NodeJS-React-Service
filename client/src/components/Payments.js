@@ -108,7 +108,7 @@ class Payments extends React.Component {
                 description='Pay for your LLC formation.'
                 stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
                 amount={this.propsData.paymentTotal * 100}
-                email={this.propsData.email}
+                email={this.propsData.email} 
                 token={this.onToken}
                 extra={this.data}
             >            
