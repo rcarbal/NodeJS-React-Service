@@ -43,6 +43,15 @@ converServicesToHTML = ({ services }, refs, payment) => {
                     refString = `Package: ${services['package']['name']}`;
                 }
 
+                if (refString === "Delivery Option - ") {
+                    html += `<tr>
+                                <td>${refString} ${services.deliveryOption.value}</td>
+                                <td class="alignright">$${services.deliveryOption.price}</td>
+                            </tr>
+                    `;
+                    continue;
+                }
+
 
                 html += `
                 <tr>

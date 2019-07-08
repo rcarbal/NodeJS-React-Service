@@ -16,18 +16,20 @@ const servicesRef = [
     "certCopy",
     "certCopyApost",
     "certGoodStand",
-    "certGoodStandApost"
+    "certGoodStandApost",
+    "deliveryOption"
 ];
 
 const ServicesString = {
     "package":"package",
-    "orgStatement":"Statement of Organizer",
+    "orgStatement":"Statement of Organizer ",
     "einApp":"Tax ID Number - EIN Application",
     "complianceKitSeal":"Compliance Kit & Seal",
-    "certCopy":"Certified Copies",
-    "certCopyApost":"Certified Copies with Apostille",
-    "certGoodStand":"Certificates of Good Standing",
-    "certGoodStandApost":"Certificates of Good Standing with Apostille"
+    "certCopy":"Certified Copies - ",
+    "certCopyApost":"Certified Copies with Apostille - ",
+    "certGoodStand":"Certificates of Good Standing - ",
+    "certGoodStandApost":"Certificates of Good Standing with Apostille - ",
+    "deliveryOption":"Delivery Option - "
 };
 
 module.exports = {
