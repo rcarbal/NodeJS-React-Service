@@ -6,6 +6,7 @@ import  {
             Form, 
             Select
         } from 'element-react/next';
+import { Tooltip } from 'element-react/next';
 
 class InfoContainer extends React.Component {
     state = {
@@ -94,6 +95,7 @@ class InfoContainer extends React.Component {
         return (
             <div>
                 <Form>
+                    <h5 style={{marginLeft: '10%', marginTop: '2.5%'}}>Company Info</h5>
                     <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
@@ -111,24 +113,28 @@ class InfoContainer extends React.Component {
                         </div>
                         <div className='row'>
                             <div className='col'>
-                                <Form.Item>
-                                    <label>Name</label>
-                                    <Input 
-                                        type='text' 
-                                        value={this.state.companyName}
-                                        onChange={this.onNameInput.bind(this)} 
-                                    />
-                                </Form.Item>
+                                <Tooltip effect='dark' content="Enter the name of your prospective LLC (name must end with 'LLC')." placement='bottom'>
+                                    <Form.Item>
+                                        <label>Company Name</label>
+                                        <Input 
+                                            type='text' 
+                                            value={this.state.companyName}
+                                            onChange={this.onNameInput.bind(this)} 
+                                        />
+                                    </Form.Item>
+                                </Tooltip>
                             </div>
                             <div className='col'>
-                                <Form.Item>
-                                    <label>Alternative name(s)</label>
-                                    <Input
-                                        type='text'
-                                        value={this.state.altName}
-                                        onChange={this.onAltNameInput.bind(this)}
-                                    />
-                                </Form.Item>
+                                <Tooltip effect='dark' content='Enter another name in case your first choice is already in use.' placement='bottom'>
+                                    <Form.Item>
+                                        <label>Alternative Company Name</label>
+                                        <Input
+                                            type='text'
+                                            value={this.state.altName}
+                                            onChange={this.onAltNameInput.bind(this)}
+                                        />
+                                    </Form.Item>
+                                </Tooltip>
                             </div>
                         </div>
                     </div>

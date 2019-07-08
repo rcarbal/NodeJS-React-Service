@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Button, Radio, Checkbox, InputNumber, Input, Layout } from 'element-react/next';
+import { Form, Button, Radio, Checkbox, InputNumber, Input, Layout, Tooltip } from 'element-react/next';
 
 class OptionsContainer extends React.Component {
 
@@ -88,7 +88,7 @@ class OptionsContainer extends React.Component {
     render(){
 
         // PACKAGES
-        let SmoothLegal = { value: 'SmoothLegal', price: 399 };
+        let Premium = { value: 'Premium', price: 399 };
         let complete =    { value: 'Complete', price: 289 };
         let basic =       { value: 'Basic', price: 198 };
 
@@ -158,7 +158,7 @@ class OptionsContainer extends React.Component {
                                                     <ul className='col'>
                                                         <li>Name Search</li>
                                                         <li>Priority Mail (US & Global)</li>
-                                                        <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
+                                                        <li>Professionally-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
                                                     </ul>
                                                     <ul className='col'>
                                                         <li>Certificate of Formation</li>
@@ -173,14 +173,14 @@ class OptionsContainer extends React.Component {
                                 </div>
                                 <div className='col-4'>
                                     <div className='card package_card'>
-                                        <h5 className='card-header text-center'>SmoothLegal</h5>
+                                        <h5 className='card-header text-center'>Premium</h5>
                                         <div className='card-body'>
                                             <div className='card-text package_card_text'>
                                                 <div className='row' style={{marginLeft: '1.75%'}}>
                                                     <ul className='col align-text-bottom'>
                                                         <li>Name Search</li>
                                                         <li>Priority Mail (US & Global)</li>
-                                                        <li>A Professional-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
+                                                        <li>Professionally-Prepared 20 page LLC Operating Agreement - Ready for Signature</li>
                                                         <li>1 - Business Day Turnaround</li>
                                                     </ul>
                                                     <ul className='col'>
@@ -218,8 +218,8 @@ class OptionsContainer extends React.Component {
                                 </Layout.Col>
                                 <Layout.Col span='6' offset='2'>
                                     <Radio.Button 
-                                        value={SmoothLegal} 
-                                        checked={this.state.llcPackage.value === 'SmoothLegal'}  
+                                        value={Premium} 
+                                        checked={this.state.llcPackage.value === 'Premium'}  
                                         onChange={this.onPackageSelect.bind(this)}
                                         className='grid-content'>
                                         Select for $399
@@ -269,7 +269,13 @@ class OptionsContainer extends React.Component {
                                     defaultValue={certifiedCopies.numCopies} 
                                     onChange={this.getCertifiedCopies.bind(this)}
                                 />
-                                <div>Certified Copy</div>
+                                <Tooltip 
+                                    effect='dark' 
+                                    content='A copy of a Certificate of Incorporation/Formation or Amendments thereto that has been Certified by the Secretary of State with a cover sheet and authentication code.'
+                                    placement='top-start'
+                                >
+                                    <div>Certified Copy</div>
+                                </Tooltip>  
                                 <h4><span className='badge badge-success'>$ 99</span></h4>
                             </li>
                             <li className='list-group-item d-flex justify-content-between'>
@@ -279,7 +285,13 @@ class OptionsContainer extends React.Component {
                                     defaultValue={certifiedCopiesWApostille.numCopies} 
                                     onChange={this.getCertifiedCopiesWApostille.bind(this)}
                                 />
-                                <div>Certified Copy w/Apostille</div>
+                                <Tooltip 
+                                    effect='dark' 
+                                    content="The apostille is a certification from the Secretary of State required by certain countries (who have accepted the terms of the Hague Convention's international treaty). It is the equivalent of a 'legalization' and avoids having to get an official filing 'legalized' by the US Department of State then the foreign consulate. We can provide a company with an apostille along with their Certified Copy of the Certificate of Incorporation/Formation and Amendments thereto. This can be produced usually the same day it is ordered."
+                                    placement='top-start'    
+                                >
+                                    <div>Certified Copy w/Apostille</div>
+                                </Tooltip>
                                 <h4><span className='badge badge-success'>$ 159</span></h4>
                             </li>
                             <li className='list-group-item d-flex justify-content-between'>
@@ -289,7 +301,13 @@ class OptionsContainer extends React.Component {
                                     defaultValue={goodStandingCopies.numCopies} 
                                     onChange={this.getGoodStandingCopies.bind(this)}
                                 />
-                                <div>Certificate of Good Standing</div>     
+                                <Tooltip 
+                                    effect='dark' 
+                                    content='Official document from Secretary of State to certify that an entity is in existence and has satisfied state corporate or LLC law requirements such as filing all the necessary reports and documents, having a Registered Agent and being up-to-date with regards to all penalties and fees owed to the state. This is sometimes required for banking, business transactions or other governmental authorities outside the state of incorporation. This document will be sent to you electronically through email and will not be sent through FedEx if the option is selected.'
+                                    placement='top-start'    
+                                >
+                                    <div>Certificate of Good Standing</div>  
+                                </Tooltip>   
                                 <h4><span className='badge badge-success'>$ 99</span></h4>
                             </li>
                             <li className='list-group-item d-flex justify-content-between'>
@@ -299,7 +317,13 @@ class OptionsContainer extends React.Component {
                                     defaultValue={goodStandingCopiesWApostille.numCopies} 
                                     onChange={this.getGoodStandingCopiesWApostille.bind(this)}
                                 />
-                                <div>Certificate of Good Standing w/Apostille</div>
+                                <Tooltip 
+                                    effect='dark'
+                                    content="The apostille is a certification from the Secretary of State required by certain countries (who have accepted the terms of the Hague Convention's international treaty). It is the equivalent of a 'legalization' and avoids having to get an official filing 'legalized' by the US Department of State then the foreign consulate. We can provide a company with an apostille along with their Certificate of Good Standing. This can be produced usually the same day it is ordered."
+                                    placement='top-start'
+                                >
+                                    <div>Certificate of Good Standing w/Apostille</div>
+                                </Tooltip>
                                 <h4><span className='badge badge-success'>$ 159</span></h4>
                             </li>
                         </ul>
@@ -319,7 +343,7 @@ class OptionsContainer extends React.Component {
                                     </Checkbox.Group>
                                 </div>    
                                 <div className='d-flex justify-content-center'>
-                                    <h4><span clasName='badge badge-success'>$29</span></h4>
+                                    <h4><span className='badge badge-success'>$29</span></h4>
                                 </div>
                             </Form.Item>
                         </div>
