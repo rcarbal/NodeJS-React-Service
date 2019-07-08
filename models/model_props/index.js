@@ -16,6 +16,7 @@ const contact = {
     email: String,
     phoneNumber: String,
     streetAdress: String,
+    streetAddressTwo: String,
     city: String,
     state: String,
     zip: String,

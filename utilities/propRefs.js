@@ -32,8 +32,17 @@ const ServicesString = {
     "deliveryOption":"Delivery Option - "
 };
 
+const orderDocuments = [
+    "package",
+    "orgStatement",
+    "einApp",
+    "complianceKitSeal",
+    "deliveryOption"
+];
+
 module.exports = {
     popularServicesRefs,
     servicesRef,
-    ServicesString
+    ServicesString,
+    orderDocuments
 }

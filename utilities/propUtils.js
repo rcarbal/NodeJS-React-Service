@@ -36,39 +36,78 @@ converServicesToHTML = ({ services }, refs, payment) => {
             if (refs[ref] === prop) {
                 let refString = getRefString(refs[ref]);
                 const obj = services[prop];
-                const copies = getNumberOfCopies(obj)
+                let copies = null;
 
-                if (refString === 'package') {
-                    const package = services["package"]['name'];
-                    refString = `Package: ${services['package']['name']}`;
+                if (payment) {
+                    copies = getNumberOfCopies(obj)
+                } else {
+                    copies = getNumberOfCopies(obj, true)
                 }
 
-                if (refString === "Delivery Option - ") {
-                    html += `<tr>
-                                <td>${refString} ${services.deliveryOption.value}</td>
-                                <td class="alignright">$${services.deliveryOption.price}</td>
-                            </tr>
+
+                // If there is a payment object, for Confirmation email
+                if (payment) {
+                    if (refString === 'package') {
+                        const package = services["package"]['name'];
+                        refString = `Package: ${services['package']['name']}`;
+                    }
+
+                    if (refString === "Delivery Option - ") {
+                        html += `<tr>
+                                    <td>${refString} ${services.deliveryOption.value}</td>
+                                    <td class="alignright">$${services.deliveryOption.price}</td>
+                                </tr>
+                        `;
+                        continue;
+                    }
+
+
+                    html += `
+                    <tr>
+                        <td>${refString} ${copies.first}</td>
+                        <td class="alignright">$${copies.second}</td>
+                    </tr>
                     `;
-                    continue;
+                }
+
+                // For Order email
+                else {
+
+                    if (refString === 'package') {
+                        refString = `Package: ${services['package']['name']}`;
+                    }
+                    if (refString === "Delivery Option - ") {
+                        html += `<li>
+                                    ${refString} ${services.deliveryOption.value}
+                                </li>
+                        `;
+                        continue;
+                    }
+
+                    html += `
+                        <li>
+                            ${refString} ${returnCopies(copies)}
+                        </li>
+                    `
                 }
 
 
-                html += `
-                <tr>
-                    <td>${refString} ${copies.first}</td>
-                    <td class="alignright">$${copies.second}</td>
-                </tr>
-                `;
             }
         }
     }
-    return html + `
-    <tr>
-        <td><strong>Total</strong></td>
-        <td><strong>${payment}</strong></td>
+    if (payment) {
+        return html + `
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>${payment}</strong></td>
 
-    </tr>
+            </tr>
     `;
+    } else {
+        return html;
+
+    }
+
 }
 
 getRefString = (ref) => {
@@ -76,7 +115,7 @@ getRefString = (ref) => {
 
 };
 
-getNumberOfCopies = (paymentObject) => {
+getNumberOfCopies = (paymentObject, order) => {
     let copies = "";
     let onePrice = "";
 
@@ -95,10 +134,18 @@ getNumberOfCopies = (paymentObject) => {
     }
 
     if (parseInt(copies) > 1) {
-        return {
-            first: ` Copies: ${copies} @ $${onePrice}`,
-            second: parseInt(copies) * parseInt(onePrice)
+        if (order) {
+            return {
+                first: ` Copies: ${copies}`,
+                second: parseInt(copies) * parseInt(onePrice)
+            }
+        } else {
+            return {
+                first: ` Copies: ${copies} @ $${onePrice}`,
+                second: parseInt(copies) * parseInt(onePrice)
+            }
         }
+
     }
     else if (parseInt(copies) === 1) {
         return {
@@ -140,6 +187,14 @@ function formatMoney(number, decPlaces, decSep, thouSep) {
         i.substr(j).replace(/(\decSep{3})(?=\decSep)/g, "$1" + thouSep) +
         (decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
 }
+
+function returnCopies(copies) {
+    if (copies.first) {
+        return copies.first;
+    } else {
+        return "";
+    }
+};
 
 
 module.exports = {

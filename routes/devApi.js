@@ -4,7 +4,7 @@ const express = require('express'),
     email = require('../api/v1/test/emailTest'),
     { processPayment } = require('../payment'),
     { saveToDatabase,queryDbRefsFilled } = require('../database/database'),
-    { sendEmailConfirmtaion } = require('../email'),
+    { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
     router = express.Router();
 
 
@@ -70,6 +70,7 @@ router.post("/api/v01/test", (req, res) => {
             }
         })
         .then(queryDbRefsFilled)
+        .then(sendEmailOrder)
         .then(sendEmailConfirmtaion)
         .then((data)=>{
             if(data){

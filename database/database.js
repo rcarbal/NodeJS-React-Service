@@ -27,6 +27,7 @@ function saveToDatabase(data) {
             email: data.email,
             phoneNumber: data.phoneNum,
             streetAdress: data.streetAddress,
+            streetAddressTwo: data.streetAddressTwo,
             city: data.city,
             state: data.usState,
             zip: data.zip,
