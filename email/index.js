@@ -1,22 +1,19 @@
-const sgMail = require('@sendgrid/mail'),
-    { sendgridKey } = require('../config/keys');
+const sgMail = require('@sendgrid/mail');
+const { sendgridKey } = require('../config/keys');
+const emailTemplate = require('./emailtemplate/confirmationTemplate');
 
 // Function to be used to send finished email data, returns a Promise.
 
-function sendEmail(data) {
+function sendEmailConfirmtaion(data) {
     return new Promise((resolve, reject) => {
 
-        const SEND_TO_EMAIL = "rcarbaleq2@gmail.com"
+        const SEND_TO_EMAIL_CONFIRMATION = data.contact.email;
 
         const email = {
-            to: SEND_TO_EMAIL,
+            to: SEND_TO_EMAIL_CONFIRMATION,
             from: 'ricardo.a.carballo@gmail.com',
-            subject: `Email for ${data.name}`,
-            text:
-                `Payment successfull: ${data.name}
-        =========================================================================
-        ${JSON.stringify(data)}
-        `
+            subject: `Confirmtaion Email for ${data.name} LLC Application`,
+            html: emailTemplate(data)            
         }
 
         if (sendgridKey !== undefined) {
@@ -42,5 +39,5 @@ function sendEmail(data) {
 }
 
 module.exports = {
-    sendEmail
+    sendEmailConfirmtaion
 }

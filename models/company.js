@@ -15,7 +15,9 @@ const companySchema = new mongoose.Schema({
     contact: properties.contactRef,
     legalParty: [properties.legalPartiesRef],
     services: properties.servicesPropRef,
-    request: properties.requestPropRef
+    request: properties.requestPropRef,
+    date: String,
+    payment: Number
 });
 
 module.exports = mongoose.model("Company", companySchema);

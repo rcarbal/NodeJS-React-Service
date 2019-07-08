@@ -3,8 +3,8 @@
 const express = require('express'),
     email = require('../api/v1/test/emailTest'),
     { processPayment } = require('../payment'),
-    { saveToDatabase } = require('../database/database'),
-    { sendEmail } = require('../email'),
+    { saveToDatabase,queryDbRefsFilled } = require('../database/database'),
+    { sendEmailConfirmtaion } = require('../email'),
     router = express.Router();
 
 
@@ -55,6 +55,7 @@ router.post("/api/v01/test", (req, res) => {
                 payment_amount_cents: data.amount,
                 payment_successful: true
             };
+            llcData.payment = data.amount;
             return llcData;
         }
     })
@@ -68,7 +69,8 @@ router.post("/api/v01/test", (req, res) => {
                 return data;                
             }
         })
-        .then(sendEmail)
+        .then(queryDbRefsFilled)
+        .then(sendEmailConfirmtaion)
         .then((data)=>{
             if(data){
                 response.emailSent = {

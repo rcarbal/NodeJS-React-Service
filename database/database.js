@@ -3,74 +3,73 @@ const Company = require("../models/company"),
     LegalParties = require("../models/legalParty"),
     Services = require('../models/services'),
     Request = require('../models/request'),
-    { extractPopularServices } = require('../utilities/propUtils'),
+    { extractPopularServices, checkProp } = require('../utilities/propUtils'),
     { popularServicesRefs } = require('../utilities/propRefs')
 
 // Saves to company LLC information to database asynchronously. Returns a Promise.
 
 function saveToDatabase(data) {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         console.log("Saving to database...")
 
-    const companyData = {
-        name: data.companyName,
-        type: data.type,
-        alternate_name: data.altName,
-        state: data.stateOfIncoporation
+        const companyData = {
+            name: data.companyName,
+            type: data.type,
+            alternate_name: data.altName,
+            state: data.stateOfIncoporation,
+            date: new Date().toString(),
+            payment: data.payment
+        };
 
-    };
+        const contactData = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phoneNumber: data.phoneNum,
+            streetAdress: data.streetAddress,
+            city: data.city,
+            state: data.usState,
+            zip: data.zip,
+            country: data.country
+        };
 
-    const contactData = {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phoneNumber: data.phoneNum,
-        streetAdress: data.streetAddress,
-        city: data.city,
-        state: data.usState,
-        zip: data.zip,
-        country: data.country
-    };
-
-    const legalPartiesData = [
-        LegalParties({ name: data.memberName }),
-        LegalParties({ name: data.addlMemberNames })
-    ];
+        const legalPartiesData = [
+            LegalParties({ name: data.memberName }),
+            LegalParties({ name: data.addlMemberNames })
+        ];
 
 
 
-    const servicesData = {
+        const servicesData = {
 
-        package: {
-            name: data.llcPackage.value,
-            price: data.llcPackage.price
-        } ,
-        orgStatement: extractPopularServices(
-            data.servicesList,
-            popularServicesRefs.ORG_STATEMENT
-        ),
-        einApp: extractPopularServices(
-            data.servicesList,
-            popularServicesRefs.EIN_APPLICATION
-        ),
-        complianceKitSeal: extractPopularServices(
-            data.servicesList,
-            popularServicesRefs.COMPLIANCE_KIT_SEAl
-        ),
-        certCopy: data.certifiedCopies,
-        certCopyApost: data.certifiedCopiesWApostille,
-        certGoodStand: data.goodStandingCopies,
-        certGoodStandApost: data.goodStandingCopiesWApostille,
-        deliveryOption: {
-            price: data.deliveryOption[0].price,
-            value: data.deliveryOption[0].value
+            package: {
+                name: data.llcPackage.value,
+                price: data.llcPackage.price
+            },
+            orgStatement: extractPopularServices(
+                data.servicesList,
+                popularServicesRefs.ORG_STATEMENT
+            ),
+            einApp: extractPopularServices(
+                data.servicesList,
+                popularServicesRefs.EIN_APPLICATION
+            ),
+            complianceKitSeal: extractPopularServices(
+                data.servicesList,
+                popularServicesRefs.COMPLIANCE_KIT_SEAl
+            ),
+            certCopy: data.certifiedCopies,
+            certCopyApost: data.certifiedCopiesWApostille,
+            certGoodStand: data.goodStandingCopies,
+            certGoodStandApost: data.goodStandingCopiesWApostille,
+            deliveryOption: checkProp(data.deliveryOption[0], 'price', 'value')
         }
-    }
-    const requestData = {
-        request: data.requests
-    }
 
-    // Setup database documents.
+        const requestData = {
+            request: data.requests
+        }
+
+        // Setup database documents.
         Company.create(companyData, (err, company) => {
             if (err) {
                 console.log(err);
@@ -130,11 +129,26 @@ function saveToDatabase(data) {
     });
 }
 
-function queryDbRefsFilled(){
-
+function queryDbRefsFilled(data) {
+    return new Promise((resolve, reject) => {
+        Company.findById(data.id)
+            .populate(["contact", "legalParty", "request", "services"])
+            .exec((error, company) => {
+                if (error) {
+                    console.log(error);
+                    reject(error);
+                } else {
+                    console.log("========================================================");
+                    console.log("RETRIEVED FILLED REFERENCE");
+                    console.log(company);
+                    resolve(company);
+                }
+            });
+    });
 }
 
 module.exports = {
-    saveToDatabase
+    saveToDatabase,
+    queryDbRefsFilled
 }
 
