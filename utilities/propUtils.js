@@ -1,7 +1,7 @@
 /**
  * Funtion used to search for services sent by the client-side application.
  */
-const { ServicesString } = require('../utilities/propRefs');
+const { ServicesString, enforcedProps } = require('../utilities/propRefs');
 
 
 extractPopularServices = (array, word) => {
@@ -96,13 +96,13 @@ converServicesToHTML = ({ services }, refs, payment) => {
                         }
 
                     }
-                    if (copies){
+                    if (copies) {
                         html += `
                         <li>
                             ${refString} ${returnCopies(copies)}
                         </li>
                     `
-                    }else{
+                    } else {
                         html += `
                         <li>
                             ${refString} ${"-- NOT REQUESTED"}
@@ -221,6 +221,91 @@ function returnCopies(copies) {
 
 };
 
+function enforceProperties(properties) {
+    let missingProps = {};
+    for (prop in enforcedProps) {
+        if (!properties.hasOwnProperty(enforcedProps[prop])) {
+            missingProps[enforcedProps[prop]] = 'Required property not found in JSON request.';
+        }
+        else {
+            let propValue = properties[enforcedProps[prop]];
+            let extractedProp = enforcedProps[prop];
+
+            switch (extractedProp) {
+                case 'llcPackage':
+                    if (!propValue.hasOwnProperty("price")){
+                        missingProps.package_price = `${extractedProp} must have "price" property.`
+                    }
+                    if (!propValue.hasOwnProperty("value")){
+                        missingProps.package_value = `${extractedProp} must have "value" property.`
+                    }
+                    break;
+                case 'servicesList':
+                    if (propValue.length < 1){
+                        missingProps[extractedProp] = `${extractedProp} is missing required STO and EIN properties`
+                    }
+                    if (propValue.length > 0){
+                        let sto = false;
+                        let ein = false;
+                        for (i in propValue){
+
+                            if (!propValue[i].hasOwnProperty("price")){
+                                missingProps[`serviceList_${i}_price`] = `${extractedProp} at at index ${i} is missing required "price"`;
+                            }
+                            if (!propValue[i].hasOwnProperty("value")){
+                                missingProps[`serviceList_${i}_value`] = `${extractedProp} at at index ${i} is missing required "value"`;
+                            }else{
+                                if (propValue[i]['value'] === "Statement of Organizer"){
+                                    sto = true;
+                                }
+                                if (propValue[i]['value'] === "Tax ID Number - EIN Application"){
+                                    ein = true;
+                                }
+                            }
+                        }
+
+                        if (!sto) missingProps[extractedProp]['sto'] = `required Statement of Organizer not found.`
+                        if (!ein) missingProps[extractedProp]['ein'] = `required Tax ID Number - EIN Application not found.`
+                    }
+                    break;
+
+                case 'paymentTotal':
+                    if (typeof propValue !== "number"){
+                        missingProps.paymentTotal = 'Total Payment must be of type Number.'
+                        break;
+                    }
+                    if (propValue < 1 ){
+                        missingProps.paymentTotal = 'Total Payment must be greater then 0'
+                        break;
+                    }
+                    break;
+
+                default:
+                    if (typeof propValue !== "string"){
+                        missingProps[extractedProp] = `${extractedProp} ,must be of type String`;
+                        break
+                    }
+                    if (propValue.length < 1){
+                        missingProps[extractedProp] = `${extractedProp} ,must be of of greater length than ${propValue.length}`
+                        break;
+                    }
+            }
+        }
+    }
+
+    return missingProps;
+}
+
+function checkIfObjectIsEmpty(obj){
+        for(var prop in obj) {
+          if(obj.hasOwnProperty(prop)) {
+            return false;
+          }
+        }
+      
+        return JSON.stringify(obj) === JSON.stringify({});
+}
+
 
 module.exports = {
     extractPopularServices,
@@ -228,5 +313,7 @@ module.exports = {
     converServicesToHTML,
     getDate,
     getPayment,
-    formatMoney
+    formatMoney,
+    enforceProperties,
+    checkIfObjectIsEmpty
 }

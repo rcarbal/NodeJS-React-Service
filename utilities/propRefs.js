@@ -40,9 +40,17 @@ const orderDocuments = [
     "deliveryOption"
 ];
 
+const enforcedProps = [
+    "stateOfIncorporation","type","companyName", "firstName", "lastName", "email",
+    "phoneNum", "streetAddress", "city", "usState", "zip", "country", "memberName",
+    "llcPackage", "servicesList", "paymentTotal"
+
+]
+
 module.exports = {
     popularServicesRefs,
     servicesRef,
     ServicesString,
-    orderDocuments
+    orderDocuments,
+    enforcedProps
 }

@@ -5,6 +5,7 @@ const express = require('express'),
     { processPayment } = require('../payment'),
     { saveToDatabase, queryDbRefsFilled } = require('../database/database'),
     { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
+    { enforceProperties,checkIfObjectIsEmpty } = require('../utilities/propUtils'),
     { successJSON } = require('../api/v1/response')
 router = express.Router();
 
@@ -44,34 +45,38 @@ router.post("/api/v01/test", (req, res) => {
 
     let response = {}
 
-    console.log("JSON DATA");
-    console.log(body);
+    console.log("JSON PAYMENT DATA");
     console.log(paymentData);
+    console.log("JSON LLC DATA =-=-=-=-=-=-=-=-=-=-=-=-=-=-=>>");
+    console.log(llcData);
     console.log("===========================================================================================");
     console.log("HTTP POST REQUEST");
 
-    processPayment(payment).then((data) => {
-        if (data) {
-            llcData.payment = data.amount;
-            return llcData;
-        }
-    })
-        .then(saveToDatabase)
-        .then((data) => {
+    const missingProps = enforceProperties(llcData);
+    if (!checkIfObjectIsEmpty(missingProps)) {
+        res.status(400).send(missingProps);
+    } else {
+        processPayment(payment).then((data) => {
             if (data) {
-                return data;
+                llcData.payment = data.amount;
+                return llcData;
             }
         })
-        .then(queryDbRefsFilled)
-        .then(sendEmailOrder)
-        .then(sendEmailConfirmtaion)
-        .then((data) => {
-            if (data) {
-                res.send(data);
-            }
-            
-
-        });
+            .then(saveToDatabase)
+            .then((data) => {
+                if (data) {
+                    return data;
+                }
+            })
+            .then(queryDbRefsFilled)
+            .then(sendEmailOrder)
+            .then(sendEmailConfirmtaion)
+            .then((data) => {
+                if (data) {
+                    res.status(200).send(data);
+                }
+            });
+    }
 });
 
 module.exports = router;
