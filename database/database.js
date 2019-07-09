@@ -63,7 +63,7 @@ function saveToDatabase(data) {
             certCopyApost: data.certifiedCopiesWApostille,
             certGoodStand: data.goodStandingCopies,
             certGoodStandApost: data.goodStandingCopiesWApostille,
-            deliveryOption: checkProp(data.deliveryOption[0], 'price', 'value')
+            deliveryOption: checkProp(data.deliveryOption[0] = {}, 'price', 'value')
         }
 
         const requestData = {

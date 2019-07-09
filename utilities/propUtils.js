@@ -39,9 +39,15 @@ converServicesToHTML = ({ services }, refs, payment) => {
                 let copies = null;
 
                 if (payment) {
-                    copies = getNumberOfCopies(obj)
+                    if (obj) {
+                        copies = getNumberOfCopies(obj)
+                    }
+
                 } else {
-                    copies = getNumberOfCopies(obj, true)
+                    if (obj) {
+                        copies = getNumberOfCopies(obj, true)
+                    }
+
                 }
 
 
@@ -53,21 +59,25 @@ converServicesToHTML = ({ services }, refs, payment) => {
                     }
 
                     if (refString === "Delivery Option - ") {
-                        html += `<tr>
+                        if (services.deliveryOption) {
+                            html += `<tr>
                                     <td>${refString} ${services.deliveryOption.value}</td>
                                     <td class="alignright">$${services.deliveryOption.price}</td>
                                 </tr>
                         `;
-                        continue;
+                            continue;
+                        }
                     }
 
+                    if (copies) {
+                        html += `
+                        <tr>
+                            <td>${refString} ${copies.first}</td>
+                            <td class="alignright">$${copies.second}</td>
+                        </tr>
+                        `;
+                    }
 
-                    html += `
-                    <tr>
-                        <td>${refString} ${copies.first}</td>
-                        <td class="alignright">$${copies.second}</td>
-                    </tr>
-                    `;
                 }
 
                 // For Order email
@@ -77,18 +87,28 @@ converServicesToHTML = ({ services }, refs, payment) => {
                         refString = `Package: ${services['package']['name']}`;
                     }
                     if (refString === "Delivery Option - ") {
-                        html += `<li>
+                        if (services.deliveryOption) {
+                            html += `<li>
                                     ${refString} ${services.deliveryOption.value}
                                 </li>
                         `;
-                        continue;
-                    }
+                            continue;
+                        }
 
-                    html += `
+                    }
+                    if (copies){
+                        html += `
                         <li>
                             ${refString} ${returnCopies(copies)}
                         </li>
                     `
+                    }else{
+                        html += `
+                        <li>
+                            ${refString} ${"-- NOT REQUESTED"}
+                        </li>
+                    `
+                    }
                 }
 
 
@@ -189,11 +209,16 @@ function formatMoney(number, decPlaces, decSep, thouSep) {
 }
 
 function returnCopies(copies) {
-    if (copies.first) {
-        return copies.first;
+    if (copies) {
+        if (copies.first) {
+            return copies.first;
+        } else {
+            return "";
+        }
     } else {
         return "";
     }
+
 };
 
 

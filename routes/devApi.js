@@ -3,9 +3,10 @@
 const express = require('express'),
     email = require('../api/v1/test/emailTest'),
     { processPayment } = require('../payment'),
-    { saveToDatabase,queryDbRefsFilled } = require('../database/database'),
+    { saveToDatabase, queryDbRefsFilled } = require('../database/database'),
     { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
-    router = express.Router();
+    { successJSON } = require('../api/v1/response')
+router = express.Router();
 
 
 router.get("/api/v1/test", (req, res) => {
@@ -31,9 +32,9 @@ router.get("/api/v01/test", (req, res) => {
 router.post("/api/v01/test", (req, res) => {
 
     const body = `[${req.body}]`;
-    const convertJson =JSON.parse(body);
+    const convertJson = JSON.parse(body);
     let paymentData = convertJson[0];
-    let llcData = convertJson[1];  
+    let llcData = convertJson[1];
 
     const payment = {
         amount: llcData.paymentTotal * 100,
@@ -51,34 +52,24 @@ router.post("/api/v01/test", (req, res) => {
 
     processPayment(payment).then((data) => {
         if (data) {
-            response.payment = {
-                payment_amount_cents: data.amount,
-                payment_successful: true
-            };
             llcData.payment = data.amount;
             return llcData;
         }
     })
         .then(saveToDatabase)
-        .then((data)=>{
-            if(data){
-                response.dbSaved ={
-                    saved: true
-                };
-                console.log(data);
-                return data;                
+        .then((data) => {
+            if (data) {
+                return data;
             }
         })
         .then(queryDbRefsFilled)
         .then(sendEmailOrder)
         .then(sendEmailConfirmtaion)
-        .then((data)=>{
-            if(data){
-                response.emailSent = {
-                    emailSendSucess: true
-                };
+        .then((data) => {
+            if (data) {
+                res.send(data);
             }
-            res.send(response);
+            
 
         });
 });
