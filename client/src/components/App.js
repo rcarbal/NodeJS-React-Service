@@ -153,7 +153,7 @@ class App extends React.Component {
                     <Navbar />
                     <div className='container-fluid'>
                         <div className='row'>
-                            <div className='col-8'>
+                            <div className='col-8' style={{marginTop: '2.5%', marginBottom: '2.5%'}}>
                                 <img src='undraw_filing_system_b5d2.svg' className='card-image-top' alt='Filing papers' />
                             </div> 
                             <div className='col-4' style={{marginTop: '15%'}}>

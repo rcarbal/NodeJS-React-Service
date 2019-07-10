@@ -249,7 +249,7 @@ class PayContainer extends React.Component {
 
         return (
             <div>
-                <h5 style={{marginLeft: '10%', marginTop: '2.5%'}}>Review</h5>
+                <h5 className='form_box_title'>Review</h5>
                 <div className='container card form_box' style={{marginBottom: '2.5%'}}>
                     <div className='card' style={{padding: '2.5%', marginBottom: '2.5%', marginTop: '2.5%'}}>
                         <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>

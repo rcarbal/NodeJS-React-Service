@@ -4,9 +4,9 @@ import  {
             Input,
             Button,
             Form, 
-            Select
+            Select,
+            Tooltip
         } from 'element-react/next';
-import { Tooltip } from 'element-react/next';
 
 class InfoContainer extends React.Component {
     state = {
@@ -95,7 +95,9 @@ class InfoContainer extends React.Component {
         return (
             <div>
                 <Form>
-                    <h5 style={{marginLeft: '10%', marginTop: '2.5%'}}>Company Info</h5>
+                    <Tooltip effect='dark' content='Create a name for your limited liability corporation' placement='bottom'>
+                        <h5 className='form_box_title'>Company Info</h5>
+                    </Tooltip>
                     <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
@@ -139,7 +141,9 @@ class InfoContainer extends React.Component {
                         </div>
                     </div>
     
-                    <h5 style={{marginLeft: '10%'}}>Order Delivery</h5>
+                    <Tooltip effect='dark' content='Address where your LLC documents will be sent' placement='bottom'>
+                        <h5 className='form_box_title'>Order Delivery</h5>
+                    </Tooltip>
                     <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
@@ -261,8 +265,10 @@ class InfoContainer extends React.Component {
                             </div>
                         </div>
                     </div>
-                        
-                    <h5 style={{marginLeft: '10%'}}>Members</h5>
+
+                    <Tooltip effect='dark' content="Add names of your LLC's legal members" placement='bottom'>
+                        <h5 className='form_box_title'>Members</h5>
+                    </Tooltip>    
                     <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>

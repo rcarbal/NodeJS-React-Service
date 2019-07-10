@@ -125,7 +125,9 @@ class OptionsContainer extends React.Component {
         return (
             <div>
                 <Form>
-                    <h5 style={{marginTop: '2.5%', marginLeft: '10%'}}>Package</h5>
+                    <Tooltip effect='dark' content='Choose an LLC formation package that best suits your needs' placement='bottom'>
+                        <h5 className='form_box_title'>Package</h5>
+                    </Tooltip>
                     <div className='container card form_box'>
                     
                             <div className='row justify-content-between' style={{marginTop: '2.5%', marginBottom: '5%'}}>
@@ -229,7 +231,9 @@ class OptionsContainer extends React.Component {
                         </Form.Item>
                     </div>
 
-                    <h5 style={{marginLeft: '10%'}}>Popular Services</h5>
+                    <Tooltip effect='dark' content='Add more to your order' placement='bottom'>
+                        <h5 className='form_box_title'>Popular Services</h5>
+                    </Tooltip>
                     <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
                         <div className='card' style={{ marginTop: '2.5%', paddingTop: '2.5%' }}>
                             <Form.Item>
@@ -329,7 +333,10 @@ class OptionsContainer extends React.Component {
                         </ul>
                     </Form.Item>
                     </div>
-                    <h5 style={{marginLeft: '10%'}}>Delivery Options</h5>
+
+                    <Tooltip effect='dark' content='Optionally upgrade your order delivery' placement='bottom'>
+                        <h5 className='form_box_title'>Delivery Options</h5>
+                    </Tooltip>
                     <div className='container card form_box' style={{ marginBottom: '2.5%'}}>
                         <div className='card' style={{ marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '2.5%' }}>
                             <Form.Item>
@@ -348,9 +355,12 @@ class OptionsContainer extends React.Component {
                             </Form.Item>
                         </div>
                     </div>
-                    <h5 style={{marginLeft: '10%'}}>Special Requests</h5>
+
+                    <Tooltip effect='dark' content='Feel free to include anything else about your order' placement='bottom'>
+                        <h5 className='form_box_title'>Special Requests</h5>
+                    </Tooltip>
                     <div className='container card form_box' style={{padding: '1%', marginBottom: '2.5%'}}>
-                    <Form.Item>
+                    <Form.Item style={{marginTop: '2.5%'}}>
                         <Input 
                             type="textarea" 
                             autosize={{ minRows: 3, maxRows: 5}}
