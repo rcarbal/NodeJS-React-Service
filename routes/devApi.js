@@ -5,7 +5,7 @@ const express = require('express'),
     { processPayment } = require('../payment'),
     { saveToDatabase, queryDbRefsFilled } = require('../database/database'),
     { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
-    { enforceProperties,checkIfObjectIsEmpty } = require('../utilities/propUtils'),
+    { enforceProperties, checkIfObjectIsEmpty } = require('../utilities/propUtils'),
     { successJSON } = require('../api/v1/response')
 router = express.Router();
 
@@ -75,8 +75,17 @@ router.post("/api/v01/test", (req, res) => {
                 if (data) {
                     res.status(200).send(data);
                 }
+            })
+            .catch(()=>{
+                console.log("Paymentr Failed")
+                res.status(409).send({
+                    payment: 'Failed'
+                });
             });
     }
 });
+
+
+
 
 module.exports = router;
