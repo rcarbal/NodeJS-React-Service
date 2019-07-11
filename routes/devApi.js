@@ -10,7 +10,7 @@ const express = require('express'),
     router = express.Router();
 
 
-router.get("/api/v1/test", (req, res) => {
+router.get("/api/v1/test/database/JSON", (req, res) => {
     res.render("form");
 });
 

@@ -10,7 +10,7 @@ const mongoose = require('mongoose'),
     Request = require('../models/request');
 
     
-mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");

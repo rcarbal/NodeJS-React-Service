@@ -12,7 +12,7 @@ const Company = require("../models/company"),
     Seed = require('./seedData'),
     mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");
