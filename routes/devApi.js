@@ -6,8 +6,8 @@ const express = require('express'),
     { saveToDatabase, queryDbRefsFilled } = require('../database/database'),
     { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
     { enforceProperties, checkIfObjectIsEmpty } = require('../utilities/propUtils'),
-    { successJSON } = require('../api/v1/response')
-router = express.Router();
+    { successJSON } = require('../api/v1/response'),
+    router = express.Router();
 
 
 router.get("/api/v1/test", (req, res) => {

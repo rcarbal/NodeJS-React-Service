@@ -5,7 +5,7 @@ const express = require('express'),
     router = express.Router();
 
 mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
-    console.log("Connected to mongoDB");
+    console.log("Connected to mongoDB!!!!");
 });
 
 router.post("/api/v1/", (req, res) => {
