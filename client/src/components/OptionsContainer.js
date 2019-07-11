@@ -72,11 +72,17 @@ class OptionsContainer extends React.Component {
         this.setState({ requests });
     }
 
-    handleSubmit(event) {
-    
+    handleSubmit(event) {    
         event.preventDefault();
-    
-        this.props.saveAndNext(this.state);
+
+        let llcPackage = this.state.llcPackage;
+
+        // Checks if a package is selected
+        if (Object.keys(llcPackage).length === 0) {
+            alert('Please select a package option');
+        } else {
+            this.props.saveAndNext(this.state);
+        }
     };
 
     onBack(event) {
