@@ -4,9 +4,15 @@ const Company = require("../models/company"),
     Services = require('../models/services'),
     Request = require('../models/request'),
     { extractPopularServices, checkProp } = require('../utilities/propUtils'),
-    { popularServicesRefs } = require('../utilities/propRefs')
+    { popularServicesRefs } = require('../utilities/propRefs'),
+    mongoose = require('mongoose');
 
 // Saves to company LLC information to database asynchronously. Returns a Promise.
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
+    console.log("Connected to mongoDB!!!!");
+});
+
 
 function saveToDatabase(data) {
     return new Promise((resolve, reject) => {

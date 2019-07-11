@@ -3,7 +3,7 @@
 */
 
 const testApiRoutes = require('./routes/devApi'),
-      paidApiRoutes = require('./routes/prodApi'), 
+    //   paidApiRoutes = require('./routes/prodApi'), 
       bodyParser    = require("body-parser"),
       express       = require('express'),
       app           = express();
@@ -16,7 +16,7 @@ app.use(bodyParser.text());
 //app.use(bodyParser.json());
 
 app.use(testApiRoutes);
-app.use(paidApiRoutes);
+// app.use(paidApiRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
