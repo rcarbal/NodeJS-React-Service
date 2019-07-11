@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "description": "Backend server for SmoothLegal",
   "main": "app.js",
+  "engines":{
+    "node":"12.3.1",
+    "npm":"6.9.0"
+  },
   "scripts": {
+    "start":"node app.js",
     "server": "node app.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "nodemon": "nodemon app.js",
-    "dev1": "concurrently \"npm run nodemon\" \"npm run client\""
+    "dev1": "concurrently \"npm run nodemon\" \"npm run client\"",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
