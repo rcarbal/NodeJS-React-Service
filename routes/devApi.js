@@ -9,6 +9,8 @@ const express = require('express'),
     { successJSON } = require('../api/v1/response'),
     router = express.Router();
 
+console.log("Inside dev API ======================================");
+
 
 router.get("/api/v1/test/database/JSON", (req, res) => {
     res.render("form");
