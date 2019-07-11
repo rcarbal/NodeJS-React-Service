@@ -29,6 +29,7 @@ class InfoContainer extends React.Component {
         addlMemberNames: ''
     }
 
+
     onNameInput(companyName) {
         this.setState({ companyName });
     }
@@ -88,13 +89,57 @@ class InfoContainer extends React.Component {
     handleSubmit(event) {
         event.preventDefault();  
 
-        this.props.saveAndNext(this.state);
+        let companyName   = this.state.companyName,
+            altName       = this.state.altName,
+            firstName     = this.state.firstName,
+            lastName      = this.state.lastName,
+            email         = this.state.email,
+            phoneNum      = this.state.phoneNum,
+            streetAddress = this.state.streetAddress,
+            city          = this.state.city,
+            zip           = this.state.zip,
+            memberName    = this.state.memberName;
+        
+        switch('') {
+            case companyName: 
+                alert('You must create a name for your LLC');
+                break;
+            case altName:
+                alert('You must add an alternate name for your LLC');
+                break;
+            case firstName:
+                alert('Please add your first name');
+                break;
+            case lastName:
+                alert('Please add your last name');
+                break;
+            case email:
+                alert('Please add your email');
+                break;
+            case phoneNum:
+                alert('Please add your phone number');
+                break;
+            case streetAddress:
+                alert('Please add your street address');
+                break;
+            case city:
+                alert('Please add your city');
+                break;
+            case zip:
+                alert('Please add your ZIP code');
+                break;
+            case memberName:
+                alert('Please add at least one member to your LLC')
+                break;
+            default:
+                this.props.saveAndNext(this.state);
+        }
     };
     
     render(){
         return (
             <div>
-                <Form>
+                <Form ref='form' model={this.state} rules={this.state.rules}>
                     <Tooltip effect='dark' content='Create a name for your limited liability corporation' placement='bottom'>
                         <h5 className='form_box_title'>Company Info</h5>
                     </Tooltip>
@@ -193,7 +238,7 @@ class InfoContainer extends React.Component {
 
                         <div className='row'>
                             <div className='col'>
-                                <Form.Item>
+                                <Form.Item required={true}>
                                     <label>Street address</label>
                                     <Input
                                         type='text'

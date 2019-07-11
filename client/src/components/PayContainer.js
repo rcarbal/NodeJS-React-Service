@@ -12,7 +12,9 @@ class PayContainer extends React.Component {
     render() {
 
         let formData = JSON.parse(this.props.formData);
-        console.log(`LLC CERTIFIED COPIEEEEES: ${formData.certifiedCopies.numCopies}`);
+        console.log('========+++++++++++==========')
+        console.log(this.state)
+        console.log('========+++++++++++==========')
         console.log(`GRAND TOTALLLL!!!! ===== ${formData.paymentTotal}`);
 
         let renderedServiceList = formData.servicesList.map((service, index) => {

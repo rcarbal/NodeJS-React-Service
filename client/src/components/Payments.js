@@ -24,9 +24,9 @@ class Payments extends React.Component {
             ]
         }).then(response => {
             response.json().then(data => {
-            self.setState({ token: data });
-            console.log(this.state);
-            alert(`We are in business, ${data.email}`);
+                self.setState({ token: data });
+                console.log(this.state);
+                alert(`We are in business, ${data.email}`);
             });
         });
     };

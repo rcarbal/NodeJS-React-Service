@@ -35,3 +35,11 @@ body {
 .package_card_text {
     font-size: 14px;
 }
+
+#choose:valid {
+    color: #90ee90;
+}
+
+#choose:invalid {
+    color: red;
+}
