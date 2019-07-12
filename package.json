@@ -8,13 +8,7 @@
     "npm":"6.9.0"
   },
   "scripts": {
-    "start":"node app.js",
-    "server": "node app.js",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "nodemon": "nodemon app.js",
-    "dev1": "concurrently \"npm run nodemon\" \"npm run client\"",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -31,15 +25,6 @@
   },
   "homepage": "https://github.com/modern-labor/smoothlegal#readme",
   "dependencies": {
-    "@sendgrid/mail": "^6.4.0",
-    "body-parser": "^1.19.0",
-    "concurrently": "^4.1.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
-    "ejs": "^2.6.1",
-    "express": "^4.17.1",
-    "lodash": "^4.17.11",
-    "mongoose": "^5.5.15",
-    "stripe": "^7.2.0"
+    "express": "^4.17.1"
   }
 }
