@@ -9,6 +9,15 @@ class PayContainer extends React.Component {
         this.props.onBack(this.state);
     }
 
+    reviewOrder() {
+        this.props.onNextStep(this.state);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.saveAndNext(this.state);
+    }
+
     render() {
 
         let formData = JSON.parse(this.props.formData);
@@ -256,7 +265,7 @@ class PayContainer extends React.Component {
                     <div className='card' style={{padding: '2.5%', marginBottom: '2.5%', marginTop: '2.5%'}}>
                         <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>
                         <h4 className='card-title'>{this.props.companyName}</h4>
-                        <h5 style={{textAlign: 'center'}}   ><em>(Alternate name: {this.props.altName})</em></h5>
+                        <h5 style={{textAlign: 'center'}}><em>(Alternate name: {this.props.altName})</em></h5>
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
                     
                         <div>
@@ -310,11 +319,22 @@ class PayContainer extends React.Component {
                         </div>
                         {specialRequestsPreview}
                     </div>
-                    <Payments formData={this.props.formData}/>
+
+                    <Payments formData={this.props.formData} reviewOrder={this.reviewOrder}/>
+
                 </div>
-                <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%', marginBottom: '2.5%'}}>
-                    Back
-                </Button>
+                <div className='row' style={{marginBottom: '2.5%'}}>
+                    <div className='col'>
+                        <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%'}}>
+                            Back
+                        </Button>
+                    </div>
+                    <div className='col'>
+                        <Button onClick={this.handleSubmit.bind(this)} style={{marginLeft: '80%'}}>
+                            Next step
+                        </Button>
+                    </div>
+                </div>
             </div>
         )
     }
