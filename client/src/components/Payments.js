@@ -109,7 +109,7 @@ class Payments extends React.Component {
         console.log(this.propsData);
         console.log('=++++++++=====');
 
-        if(tokenInfo === undefined) {
+        if (tokenInfo === undefined) {
             return(
                 <StripeCheckout
                     name='SmoothLegal Checkout'
