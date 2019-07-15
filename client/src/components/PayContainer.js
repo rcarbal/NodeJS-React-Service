@@ -281,6 +281,9 @@ class PayContainer extends React.Component {
         if(payStatus === 'pass') {
             return (
                 <div className='container card form_box' style={{marginBottom: '2.5%'}}>
+                    <div className="alert alert-info" role="alert">
+                        Thank you for your purchase. Your payment was processed successfully.
+                    </div>
                     <div className='card' style={{padding: '2.5%', marginBottom: '2.5%', marginTop: '2.5%'}}>
                         <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>
                         <h4 className='card-title'>{this.props.companyName}</h4>
@@ -313,7 +316,7 @@ class PayContainer extends React.Component {
                                 <div className='col-4'>
                                     <ul className='list-group text-center'>
                                         <li className='list-group-item'>{this.props.memberName}</li>
-                                        <li className='list-group-item'>{this.props.addlMemberNames}</li>
+                                        {/* <li className='list-group-item'>{this.props.addlMemberNames}</li> */}
                                     </ul>
                                 </div>
                                 <div className='col'></div>
@@ -377,7 +380,7 @@ class PayContainer extends React.Component {
                                     <div className='col-4'>
                                         <ul className='list-group text-center'>
                                             <li className='list-group-item'>{this.props.memberName}</li>
-                                            <li className='list-group-item'>{this.props.addlMemberNames}</li>
+                                            {/* <li className='list-group-item'>{this.props.addlMemberNames}</li> */}
                                         </ul>
                                     </div>
                                     <div className='col'></div>

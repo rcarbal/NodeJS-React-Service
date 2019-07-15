@@ -132,9 +132,7 @@ class Payments extends React.Component {
             )
         } else {
             return(
-                <div className="alert alert-info" role="alert">
-                    Thank you for your purchase. Your payment was processed successfully.
-                </div>
+                <div></div>
             )
         }
     }
