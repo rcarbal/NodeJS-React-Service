@@ -47,7 +47,7 @@ function saveToDatabase(data) {
 
 
 
-        const servicesData = {
+        let servicesData = {
 
             package: {
                 name: data.llcPackage.value,
@@ -68,9 +68,10 @@ function saveToDatabase(data) {
             certCopy: data.certifiedCopies,
             certCopyApost: data.certifiedCopiesWApostille,
             certGoodStand: data.goodStandingCopies,
-            certGoodStandApost: data.goodStandingCopiesWApostille,
-            deliveryOption: checkProp(data.deliveryOption[0] = {}, 'price', 'value')
+            certGoodStandApost: data.goodStandingCopiesWApostille            
         }
+
+        servicesData.deliveryOption =  checkProp(data.deliveryOption[0], 'price', 'value')
 
         const requestData = {
             request: data.requests
@@ -120,8 +121,10 @@ function saveToDatabase(data) {
                                         else {
                                             company.request = request._id;
                                             company.save((err, savedCompany) => {
-                                                console.log('Error on Company save.');
-                                                if (err) console.log(err);
+                                                if (err) {
+                                                    console.log('Error on Company save.');
+                                                    console.log(err);
+                                                }
                                                 else {
                                                     console.log("Company Saved");
                                                     resolve(savedCompany);

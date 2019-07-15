@@ -16,7 +16,7 @@ extractPopularServices = (array, word) => {
     return {};
 }
 
-checkProp = (data, property1, property2) => {
+checkProp = (data ={}, property1, property2) => {
     if (data.hasOwnProperty(property1) && data.hasOwnProperty(property2)) {
         return {
             price: data.price,

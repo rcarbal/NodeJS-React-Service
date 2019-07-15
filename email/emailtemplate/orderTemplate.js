@@ -1,10 +1,10 @@
 const { converServicesToHTML, getDate, formatMoney } = require('../../utilities/propUtils');
 const { servicesRef } = require('../../utilities/propRefs')
 
-module.exports = (data) => {
-    const servicesHTML = converServicesToHTML(data, servicesRef);
-
-return `
+module.exports = (data, callback) => {
+  const servicesHTML = converServicesToHTML(data, servicesRef);
+  
+  return `
 <html>
 
 <body>

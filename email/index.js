@@ -9,15 +9,17 @@ function sendEmailOrder(data){
     return new Promise((resolve, reject)=>{
 
         const SEND_TO_EMAIL_ORDER = 'ricardo.a.carballo@gmail.com';
+        let html = emailOrderTemplate(data);        
 
-        const email = {
+        let email = {
             to: SEND_TO_EMAIL_ORDER,
             from: 'ricardo.a.carballo@gmail.com',
-            subject: `Order for ${data.name} LLC Application`,
-            html: emailOrderTemplate(data)            
+            subject: `Order for ${data.name} LLC Application`   
         }
+
+        email.html = html
         console.log("Sending ORDER EMAIL **********************");
-        send(email,data, resolve, reject, 'ORDER');
+        send(email,data, resolve, reject);
     });
 }
 
@@ -29,26 +31,27 @@ function sendEmailConfirmtaion(data) {
         const email = {
             to: SEND_TO_EMAIL_CONFIRMATION,
             from: 'ricardo.a.carballo@gmail.com',
-            subject: `Purchase Confirmataion for ${data.name} LLC Application`,
-            html: emailConfirmationTemplate(data)            
+            subject: `Purchase Confirmataion for ${data.name} LLC Application`,          
         }
+
+        email.html = emailConfirmationTemplate(data)  
         console.log("Sending CONFIRMATION EMAIL **********************")
-        send(email,data, resolve, reject, 'CONFIRMATION');
+        send(email,data, resolve, reject);
     });
 }
 
-function send(email, data, resolve, reject, type){
+function send(email, data, resolve, reject){
     if (sendgridKey !== undefined) {
         console.log(`Sending email...`);
         sgMail.setApiKey(sendgridKey);
         sgMail.send(email, (error, json) => {
             if (error) {
-                console.log(`Error on ${type} email send.`);
+                console.log(`Error on email send.`);
                 console.log(error);
                 reject();
             } else {
                 console.log("=======================")
-                console.log(`${type} Email sent`)
+                console.log(` Email sent`)
                 resolve(data);
             }
         });
@@ -59,8 +62,6 @@ function send(email, data, resolve, reject, type){
         reject(`Key is undefined`);
     }
 }
-
-
 
 module.exports = {
     sendEmailConfirmtaion,
