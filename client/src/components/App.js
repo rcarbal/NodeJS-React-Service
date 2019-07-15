@@ -27,7 +27,7 @@ class App extends React.Component {
 
     onNextStep() {
         let active = this.state.active + 1;
-            if (active > 3) {
+            if (active > 4) {
                 active = 1;
             }
         this.setState({ active });
@@ -66,30 +66,30 @@ class App extends React.Component {
         let activeContent = this.state.active;
 
         if (this.state.start){
-           if (activeContent === 1) {
-               pageContent = (
-                   <div>
-                       <InfoContainer className="container"
-                           active={this.state.form.active} 
-                           companyName={this.state.form.companyName}
-                           altName={this.state.form.altName}
-                           firstName={this.state.form.firstName}
-                           lastName={this.state.form.lastName}
-                           email={this.state.form.email}
-                           phoneNum={this.state.form.phoneNum}
-                           streetAddress={this.state.form.streetAddress}
-                           streetAddressTwo={this.state.form.streetAddressTwo}
-                           city={this.state.form.city}
-                           usState={this.state.form.usState}
-                           zip={this.state.form.zip}
-                           memberName={this.state.form.memberName}
-                           addlMemberNames={this.state.form.addlMemberNames}
-                           saveAndNext={this.saveAndNext}
-                       />
-                   </div>
-               )
+            if (activeContent === 1) {
+                pageContent = (
+                    <div>
+                        <InfoContainer className="container"
+                            active={this.state.form.active} 
+                            companyName={this.state.form.companyName}
+                            altName={this.state.form.altName}
+                            firstName={this.state.form.firstName}
+                            lastName={this.state.form.lastName}
+                            email={this.state.form.email}
+                            phoneNum={this.state.form.phoneNum}
+                            streetAddress={this.state.form.streetAddress}
+                            streetAddressTwo={this.state.form.streetAddressTwo}
+                            city={this.state.form.city}
+                            usState={this.state.form.usState}
+                            zip={this.state.form.zip}
+                            memberName={this.state.form.memberName}
+                            addlMemberNames={this.state.form.addlMemberNames}
+                            saveAndNext={this.saveAndNext}
+                        />
+                    </div>
+                )
             } else if (activeContent === 2) {
-                pageContent =(
+                pageContent = (
                     <div>
                         <OptionsContainer 
                             companyName={this.state.form.companyName} 
@@ -108,7 +108,7 @@ class App extends React.Component {
                         />
                    </div>
                 )
-            } else {
+            } else if (activeContent === 3) {
                 pageContent = (
                     <div>
                         <PayContainer 
@@ -140,9 +140,19 @@ class App extends React.Component {
                             paymentTotal={this.state.form.paymentTotal}
 
                             saveForm={this.saveForm}
+                            onNextStep={this.onNextStep}
+                            saveAndNext={this.saveAndNext}
                             onBack={this.saveAndBack}
                             formData={JSON.stringify(this.state.form)}
+
+                            active={this.state.active}
                         />
+                    </div>
+                )
+            } else {
+                pageContent = (
+                    <div>
+                        <h1>This will be the review container!</h1>
                     </div>
                 )
             }
