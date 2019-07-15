@@ -2,8 +2,8 @@
     Smoothlegal Server main file.
 */
 
-const testApiRoutes = require('./routes/testApi'),
-      paidApiRoutes = require('./routes/paidApi'), 
+const testApiRoutes = require('./routes/devApi'),
+      paidApiRoutes = require('./routes/prodApi'), 
       bodyParser    = require("body-parser"),
       express       = require('express'),
       app           = express();

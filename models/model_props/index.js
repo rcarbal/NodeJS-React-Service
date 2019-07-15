@@ -16,6 +16,7 @@ const contact = {
     email: String,
     phoneNumber: String,
     streetAdress: String,
+    streetAddressTwo: String,
     city: String,
     state: String,
     zip: String,
@@ -43,13 +44,15 @@ const legalPartiesRef = {
 // Services objects setup
 
 const services = {
+    package: {},
     orgStatement : {},
     einApp : {},
     complianceKitSeal : {},
     certCopy : {},
     certCopyApost : {},
     certGoodStand : {},
-    certGoodStandApost: {} 
+    certGoodStandApost: {},
+    deliveryOption: {}
 }
 
 const servicesPropRef =  {

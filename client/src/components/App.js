@@ -1,5 +1,5 @@
 import React from 'react';
-import { Steps, Menu, Button } from 'element-react/next';
+import { Steps, Menu, Button } from 'element-react';
 
 import Navbar from './Navbar';
 import InfoContainer from './InfoContainer';
@@ -66,30 +66,30 @@ class App extends React.Component {
         let activeContent = this.state.active;
 
         if (this.state.start){
-           if (activeContent === 1) {
-               pageContent = (
-                   <div>
-                       <InfoContainer className="container"
-                           active={this.state.form.active} 
-                           companyName={this.state.form.companyName}
-                           altName={this.state.form.altName}
-                           firstName={this.state.form.firstName}
-                           lastName={this.state.form.lastName}
-                           email={this.state.form.email}
-                           phoneNum={this.state.form.phoneNum}
-                           streetAddress={this.state.form.streetAddress}
-                           streetAddressTwo={this.state.form.streetAddressTwo}
-                           city={this.state.form.city}
-                           usState={this.state.form.usState}
-                           zip={this.state.form.zip}
-                           memberName={this.state.form.memberName}
-                           addlMemberNames={this.state.form.addlMemberNames}
-                           saveAndNext={this.saveAndNext}
-                       />
-                   </div>
-               )
+            if (activeContent === 1) {
+                pageContent = (
+                    <div>
+                        <InfoContainer className="container"
+                            active={this.state.form.active} 
+                            companyName={this.state.form.companyName}
+                            altName={this.state.form.altName}
+                            firstName={this.state.form.firstName}
+                            lastName={this.state.form.lastName}
+                            email={this.state.form.email}
+                            phoneNum={this.state.form.phoneNum}
+                            streetAddress={this.state.form.streetAddress}
+                            streetAddressTwo={this.state.form.streetAddressTwo}
+                            city={this.state.form.city}
+                            usState={this.state.form.usState}
+                            zip={this.state.form.zip}
+                            memberName={this.state.form.memberName}
+                            addlMemberNames={this.state.form.addlMemberNames}
+                            saveAndNext={this.saveAndNext}
+                        />
+                    </div>
+                )
             } else if (activeContent === 2) {
-                pageContent =(
+                pageContent = (
                     <div>
                         <OptionsContainer 
                             companyName={this.state.form.companyName} 
@@ -140,30 +140,33 @@ class App extends React.Component {
                             paymentTotal={this.state.form.paymentTotal}
 
                             saveForm={this.saveForm}
+                            onNextStep={this.onNextStep}
+                            saveAndNext={this.saveAndNext}
                             onBack={this.saveAndBack}
                             formData={JSON.stringify(this.state.form)}
+
+                            active={this.state.active}
                         />
                     </div>
                 )
             }
-
         } else {
             pageContent = (
                 <div>
                     <Navbar />
                     <div className='container-fluid'>
                         <div className='row'>
-                            <div className='col-8'>
-                                <img src='undraw_filing_system_b5d2.svg' className='card-image-top' />
+                            <div className='col-8' style={{marginTop: '2.5%', marginBottom: '2.5%'}}>
+                                <img src='undraw_filing_system_b5d2.svg' className='card-image-top' alt='Filing papers' />
                             </div> 
                             <div className='col-4' style={{marginTop: '15%'}}>
                                 <h2>Leave the paperwork to us.</h2>
                                 <p style={{padding: '2.5%', textAlign: 'justify'}}>SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
+                                <div className='d-flex justify-content-center'>
+                                    <Button className='text-center' onClick={this.startForm} style={{marginTop: '2.5%'}}>Form your LLC now</Button>                 
+                                </div>
                             </div>  
                         </div>
-                    <div className='d-flex justify-content-end' style={{marginBottom: '5%', marginRight: '5%'}}>
-                        <Button className='text-center' onClick={this.startForm}>Form your LLC now</Button>
-                    </div>
                     </div>
                 </div>
             )

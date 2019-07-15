@@ -8,7 +8,7 @@ mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, (
     console.log("Connected to mongoDB");
 });
 
-router.post("/api/v1/paid", (req, res) => {
+router.post("/api/v1/", (req, res) => {
     //Saved to database
 
     // Information sent to email

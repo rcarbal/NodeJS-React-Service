@@ -3,16 +3,47 @@ import { Button } from 'element-react/next';
 import Payments from './Payments';
 
 class PayContainer extends React.Component {
+
+    state = {
+        tokenInfo: {
+            tokenInfo: {
+                card: {
+                    cvc_check: ''
+                }
+            }
+        }
+    }
+
+    saveToken = (tokenInfo) => {
+        this.setState({tokenInfo: tokenInfo });
+    }
+
+    reviewOrder() {
+        this.props.onNextStep(this.state);
+    }
+    
     onBack(event) {
         event.preventDefault();
 
         this.props.onBack(this.state);
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.saveAndNext(this.state);
+        console.log('+++++++++++ THIS.STATE CALLED ON SUBMIT +++++++++++')
+        console.log(this.state)
+        console.log('+++++++ THIS.STATE.TOKENINFO.TOKENINFO.CARD.CVC_CHECK')
+        console.log(this.state.tokenInfo.tokenInfo.card.cvc_check)
+    }
+
     render() {
 
         let formData = JSON.parse(this.props.formData);
-        console.log(`LLC CERTIFIED COPIEEEEES: ${formData.certifiedCopies.numCopies}`);
+        let payStatus = this.state.tokenInfo.tokenInfo.card.cvc_check;
+        console.log('+++++++ THIS.STATE.TOKENINFO.TOKENINFO.CARD.CVC_CHECK')
+        console.log(payStatus);
+        
         console.log(`GRAND TOTALLLL!!!! ===== ${formData.paymentTotal}`);
 
         let renderedServiceList = formData.servicesList.map((service, index) => {
@@ -247,14 +278,16 @@ class PayContainer extends React.Component {
             )
         }
 
-        return (
-            <div>
-                <h5 style={{marginLeft: '10%', marginTop: '2.5%'}}>Review</h5>
+        if(payStatus === 'pass') {
+            return (
                 <div className='container card form_box' style={{marginBottom: '2.5%'}}>
+                    <div className="alert alert-info" role="alert">
+                        Thank you for your purchase. Your payment was processed successfully.
+                    </div>
                     <div className='card' style={{padding: '2.5%', marginBottom: '2.5%', marginTop: '2.5%'}}>
                         <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>
                         <h4 className='card-title'>{this.props.companyName}</h4>
-                        <h5 style={{textAlign: 'center'}}   ><em>(Alternate name: {this.props.altName})</em></h5>
+                        <h5 style={{textAlign: 'center'}}><em>(Alternate name: {this.props.altName})</em></h5>
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
                     
                         <div>
@@ -283,38 +316,114 @@ class PayContainer extends React.Component {
                                 <div className='col-4'>
                                     <ul className='list-group text-center'>
                                         <li className='list-group-item'>{this.props.memberName}</li>
-                                        <li className='list-group-item'>{this.props.addlMemberNames}</li>
+                                        {/* <li className='list-group-item'>{this.props.addlMemberNames}</li> */}
                                     </ul>
                                 </div>
                                 <div className='col'></div>
                             </div>
                         </div>
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
-
+    
                         {packageReview}
-
+    
                         {serviceReview}
-                        
+                            
                         {deliveryPreview}
-                        
+                            
                         {documentsCountPreview}
-
+    
                         <div className='row'>
                             <div className='col'></div>
                             <div className="alert alert-secondary col-2" role="alert">
-                                GRAND TOTAL= ${documentsSum}
+                                ${documentsSum}
                             </div>
                             <div className='col'></div>
                         </div>
                         {specialRequestsPreview}
                     </div>
-                    <Payments formData={this.props.formData}/>
                 </div>
-                <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%', marginBottom: '2.5%'}}>
-                    Back
-                </Button>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <h5 className='form_box_title'>Review</h5>
+                    <div className='container card form_box' style={{marginBottom: '2.5%'}}>
+                        <div className='card' style={{padding: '2.5%', marginBottom: '2.5%', marginTop: '2.5%'}}>
+                            <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>
+                            <h4 className='card-title'>{this.props.companyName}</h4>
+                            <h5 style={{textAlign: 'center'}}><em>(Alternate name: {this.props.altName})</em></h5>
+                            <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        
+                            <div>
+                                <strong>Contact:</strong>
+                                <div className='row'>
+                                    <div className='col-3'></div>
+                                    <div className='col-6' style={{textAlign: 'center'}}>
+                                        {this.props.firstName} {this.props.lastName} | {this.props.phoneNum} | {this.props.email}
+                                    </div>
+                                    <div className='col-3'></div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-3'></div>
+                                    <div className='col-6' style={{textAlign: 'center'}}>
+                                        {this.props.streetAddress} {this.props.city}, {this.props.usState} {this.props.zip} {this.props.country}
+                                    </div>
+                                    <div className='col-3'></div>
+                                </div>
+                            </div>
+                            <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                            
+                            <div>
+                                <strong>Members: </strong>
+                                <div className='row' style={{marginBottom: '2.5%'}}>
+                                    <div className='col'></div>
+                                    <div className='col-4'>
+                                        <ul className='list-group text-center'>
+                                            <li className='list-group-item'>{this.props.memberName}</li>
+                                            {/* <li className='list-group-item'>{this.props.addlMemberNames}</li> */}
+                                        </ul>
+                                    </div>
+                                    <div className='col'></div>
+                                </div>
+                            </div>
+                            <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+    
+                            {packageReview}
+    
+                            {serviceReview}
+                            
+                            {deliveryPreview}
+                            
+                            {documentsCountPreview}
+    
+                            <div className='row'>
+                                <div className='col'></div>
+                                <div className="alert alert-secondary col-2" role="alert">
+                                    ${documentsSum}
+                                </div>
+                                <div className='col'></div>
+                            </div>
+                            {specialRequestsPreview}
+                        </div>
+    
+                        <Payments 
+                            formData={this.props.formData} 
+                            reviewOrder={this.reviewOrder} 
+                            tokenInfo={this.state}
+                            saveToken={this.saveToken}
+                        />
+    
+                    </div>
+                    <div className='row' style={{marginBottom: '2.5%'}}>
+                        <div className='col'>
+                            <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%'}}>
+                                Back
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 

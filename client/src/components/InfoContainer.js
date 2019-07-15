@@ -4,7 +4,8 @@ import  {
             Input,
             Button,
             Form, 
-            Select
+            Select,
+            Tooltip
         } from 'element-react/next';
 
 class InfoContainer extends React.Component {
@@ -25,8 +26,13 @@ class InfoContainer extends React.Component {
         zip: '',
         country: 'USA',
         memberName: '',
-        addlMemberNames: ''
+        addlMemberNames: [{
+            key: 1,
+            value: ''
+        }]
+        //addlMemberNames: ''
     }
+
 
     onNameInput(companyName) {
         this.setState({ companyName });
@@ -80,21 +86,97 @@ class InfoContainer extends React.Component {
         this.setState({ memberName });
     }
 
+    /*
     onAddlMemberInput(addlMemberNames) {
         this.setState({ addlMemberNames });
     }
+    */
+   removeMember(item, e) {
+    var index = this.state.addlMemberNames.indexOf(item);
+  
+    if (index !== -1) {
+      this.state.addlMemberNames.splice(index, 1);
+      this.forceUpdate();
+    }
+  
+    e.preventDefault();
+  }
+  
+  addMember(e) {
+    e.preventDefault();
+  
+    this.state.addlMemberNames.push({
+      key: this.state.addlMemberNames.length,
+      value: ''
+    });
+  
+    this.forceUpdate();
+  }
+
+  onMemberChange(index, value) {
+    this.state.addlMemberNames[index].value = value;
+    this.forceUpdate();
+  }
+  
 
     handleSubmit(event) {
         event.preventDefault();  
 
-        this.props.saveAndNext(this.state);
+        let companyName   = this.state.companyName,
+            altName       = this.state.altName,
+            firstName     = this.state.firstName,
+            lastName      = this.state.lastName,
+            email         = this.state.email,
+            phoneNum      = this.state.phoneNum,
+            streetAddress = this.state.streetAddress,
+            city          = this.state.city,
+            zip           = this.state.zip,
+            memberName    = this.state.memberName;
+        
+        switch('') {
+            case companyName: 
+                alert('You must create a name for your LLC');
+                break;
+            case altName:
+                alert('You must add an alternate name for your LLC');
+                break;
+            case firstName:
+                alert('Please add your first name');
+                break;
+            case lastName:
+                alert('Please add your last name');
+                break;
+            case email:
+                alert('Please add your email');
+                break;
+            case phoneNum:
+                alert('Please add your phone number');
+                break;
+            case streetAddress:
+                alert('Please add your street address');
+                break;
+            case city:
+                alert('Please add your city');
+                break;
+            case zip:
+                alert('Please add your ZIP code');
+                break;
+            case memberName:
+                alert('Please add at least one member to your LLC')
+                break;
+            default:
+                this.props.saveAndNext(this.state);
+        }
     };
     
     render(){
         return (
             <div>
-                <Form>
-                    <div className="container card" style={{marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '1.75%', paddingBottom: '1.75%'}}>
+                <Form ref='form' model={this.state} rules={this.state.rules}>
+                    <Tooltip effect='dark' content='Create a name for your limited liability corporation' placement='bottom'>
+                        <h5 className='form_box_title'>Company Info</h5>
+                    </Tooltip>
+                    <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
@@ -111,30 +193,36 @@ class InfoContainer extends React.Component {
                         </div>
                         <div className='row'>
                             <div className='col'>
-                                <Form.Item>
-                                    <label>Name</label>
-                                    <Input 
-                                        type='text' 
-                                        value={this.state.companyName}
-                                        onChange={this.onNameInput.bind(this)} 
-                                    />
-                                </Form.Item>
+                                <Tooltip effect='dark' content="Enter the name of your prospective LLC (name must end with 'LLC')." placement='bottom'>
+                                    <Form.Item>
+                                        <label>Company Name</label>
+                                        <Input 
+                                            type='text' 
+                                            value={this.state.companyName}
+                                            onChange={this.onNameInput.bind(this)} 
+                                        />
+                                    </Form.Item>
+                                </Tooltip>
                             </div>
                             <div className='col'>
-                                <Form.Item>
-                                    <label>Alternative name(s)</label>
-                                    <Input
-                                        type='text'
-                                        value={this.state.altName}
-                                        onChange={this.onAltNameInput.bind(this)}
-                                    />
-                                </Form.Item>
+                                <Tooltip effect='dark' content='Enter another name in case your first choice is already in use.' placement='bottom'>
+                                    <Form.Item>
+                                        <label>Alternative Company Name</label>
+                                        <Input
+                                            type='text'
+                                            value={this.state.altName}
+                                            onChange={this.onAltNameInput.bind(this)}
+                                        />
+                                    </Form.Item>
+                                </Tooltip>
                             </div>
                         </div>
                     </div>
     
-                    <h5 style={{marginLeft: '10%'}}>Order Delivery</h5>
-                    <div className="container card" style={{marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '1.75%', paddingBottom: '1.75%'}}>
+                    <Tooltip effect='dark' content='Address where your LLC documents will be sent' placement='bottom'>
+                        <h5 className='form_box_title'>Order Delivery</h5>
+                    </Tooltip>
+                    <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
@@ -183,7 +271,7 @@ class InfoContainer extends React.Component {
 
                         <div className='row'>
                             <div className='col'>
-                                <Form.Item>
+                                <Form.Item required={true}>
                                     <label>Street address</label>
                                     <Input
                                         type='text'
@@ -255,9 +343,11 @@ class InfoContainer extends React.Component {
                             </div>
                         </div>
                     </div>
-                        
-                    <h5 style={{marginLeft: '10%'}}>Members</h5>
-                    <div className="container card" style={{marginTop: '2.5%', marginBottom: '2.5%', paddingTop: '1.75%', paddingBottom: '1.75%'}}>
+
+                    <Tooltip effect='dark' content="Add names of your LLC's legal members" placement='bottom'>
+                        <h5 className='form_box_title'>Members</h5>
+                    </Tooltip>    
+                    <div className="container card form_box">
                         <div className='row'>
                             <div className='col'>
                                 <Form.Item>
@@ -270,6 +360,7 @@ class InfoContainer extends React.Component {
                                 </Form.Item>
                             </div>
                             <div className='col'>
+                            {/*
                                 <Form.Item>
                                     <label>Additional members(if applicable)</label>
                                     <Input
@@ -277,6 +368,31 @@ class InfoContainer extends React.Component {
                                         value={this.state.addlMemberNames}
                                         onChange={this.onAddlMemberInput.bind(this)}
                                     />
+                                </Form.Item>
+                            */}
+                                {
+                                    this.state.addlMemberNames.map((member, index) => {
+                                        return (
+                                            <Form.Item
+                                                key={index}
+                                                label={`Member ${index}`}
+                                                prop={`addlMemberNames:${index}`}
+                                                rules={{
+                                                    type: 'object', required: true,
+                                                    fields: {
+                                                        value: { required: true, message: 'Member can not be null', trigger: 'blur' }
+                                                    }
+                                                }}
+                                            >
+                                                <Input value={member.value} onChange={this.onMemberChange.bind(this, index)}></Input>
+                                                <Button onClick={this.removeMember.bind(this, member)}>Delete</Button>
+                                            </Form.Item>
+                                        )
+                                    })
+                                }
+                                <Form.Item>
+                                    <Button type="primary" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+                                    <Button onClick={this.addMember.bind(this)}>New member</Button>
                                 </Form.Item>
                             </div>
                         </div>
