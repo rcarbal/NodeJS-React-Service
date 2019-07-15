@@ -13,8 +13,7 @@ const devApiRoutes = require('./routes/devApi'),
 app.set("view engine", "ejs");
 app.use(bodyParser.text());
 app.use(devApiRoutes);
-
-// app.use(paidApiRoutes);
+app.use(prodApiRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
@@ -24,15 +23,6 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     });
 }
-
-app.get('/', (req, res)=>{
-    res.send({hi: '1212'})
-});
-
-app.get('/.well-known/acme-challenge/:file', (req, res) =>{
-    console.log("printing content ======================================");
-    res.send(`DADr97Nje9iTTgEDw8y8YBJSkznmRryr5e1K0PACG0I.YWtMAGHQezdkbuF3jRq1jCKb5d-H7AY3V5dxcNAJGVk`);
-});
 
 const port = process.env.PORT || 4000;
 

@@ -293,6 +293,8 @@ function enforceProperties(properties) {
         }
     }
 
+    console.log('*Props Object*');
+    console.log(missingProps);
     return missingProps;
 }
 

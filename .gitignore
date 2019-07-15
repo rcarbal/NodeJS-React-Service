@@ -28,3 +28,5 @@ client/yarn-error.log*
 
 .env
 dev.js
+
+serverCertsApi.js

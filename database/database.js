@@ -79,12 +79,14 @@ function saveToDatabase(data) {
         // Setup database documents.
         Company.create(companyData, (err, company) => {
             if (err) {
+                console.log('Error on Company create.');
                 console.log(err);
                 reject()
             }
             else {
                 Contact.create(contactData, (err, contact) => {
                     if (err) {
+                        console.log('Error on Contact create.');
                         console.log(err);
                         reject()
                     }
@@ -92,6 +94,7 @@ function saveToDatabase(data) {
                         company.contact = contact._id;
                         LegalParties.collection.insertMany(legalPartiesData, (err, legalParties) => {
                             if (err) {
+                                console.log('Error on Legal Parties array.');
                                 console.log(err);
                                 reject()
                             }
@@ -102,6 +105,7 @@ function saveToDatabase(data) {
                             }
                             Services.create(servicesData, (err, services) => {
                                 if (err) {
+                                    console.log('Error on Services create.');
                                     console.log(err);
                                     reject()
                                 }
@@ -109,12 +113,14 @@ function saveToDatabase(data) {
                                     company.services = services._id;
                                     Request.create(requestData, (err, request) => {
                                         if (err) {
+                                            console.log('Error on Request create.');
                                             console.log(err);
                                             reject()
                                         }
                                         else {
                                             company.request = request._id;
                                             company.save((err, savedCompany) => {
+                                                console.log('Error on Company save.');
                                                 if (err) console.log(err);
                                                 else {
                                                     console.log("Company Saved");
@@ -142,6 +148,7 @@ function queryDbRefsFilled(data) {
             .populate(["contact", "legalParty", "request", "services"])
             .exec((error, company) => {
                 if (error) {
+                    console.log('Error on Populate execute.');
                     console.log(error);
                     reject(error);
                 } else {

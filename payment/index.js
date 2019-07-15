@@ -7,6 +7,7 @@ const processPayment= (data) =>{
     return new Promise((resolve, reject)=>{
         stripe.charges.create(data, (error, payment)=>{
             if(error){
+                console.log('Payment Unsuccessful')
                 console.log(error);
                 reject(false)
             }else{

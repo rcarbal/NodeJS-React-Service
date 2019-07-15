@@ -17,7 +17,7 @@ function sendEmailOrder(data){
             html: emailOrderTemplate(data)            
         }
         console.log("Sending ORDER EMAIL **********************");
-        send(email,data, resolve, reject);
+        send(email,data, resolve, reject, 'ORDER');
     });
 }
 
@@ -33,21 +33,22 @@ function sendEmailConfirmtaion(data) {
             html: emailConfirmationTemplate(data)            
         }
         console.log("Sending CONFIRMATION EMAIL **********************")
-        send(email,data, resolve, reject);
+        send(email,data, resolve, reject, 'CONFIRMATION');
     });
 }
 
-function send(email, data, resolve, reject){
+function send(email, data, resolve, reject, type){
     if (sendgridKey !== undefined) {
         console.log(`Sending email...`);
         sgMail.setApiKey(sendgridKey);
         sgMail.send(email, (error, json) => {
             if (error) {
+                console.log(`Error on ${type} email send.`);
                 console.log(error);
                 reject();
             } else {
                 console.log("=======================")
-                console.log(`Email sent`)
+                console.log(`${type} Email sent`)
                 resolve(data);
             }
         });
