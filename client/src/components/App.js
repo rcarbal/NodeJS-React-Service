@@ -144,6 +144,8 @@ class App extends React.Component {
                             saveAndNext={this.saveAndNext}
                             onBack={this.saveAndBack}
                             formData={JSON.stringify(this.state.form)}
+
+                            active={this.state.active}
                         />
                     </div>
                 )

@@ -7,12 +7,18 @@ class Payments extends React.Component {
     propsData = JSON.parse(this.props.formData);
 
     state = {
+        active: 0,
         tokenInfo: {}
     }
 
+    /*
     onPaySubmit() {
-        console.log('HELLLLOOOOOO')
         this.props.reviewOrder.bind(this);
+    }
+*/
+    saveToken() {
+        let tokenInfo = this.state;
+        this.props.saveToken(tokenInfo);
     }
 
     onToken = (token) => {
@@ -35,6 +41,7 @@ class Payments extends React.Component {
             response.json().then(data => {
                 self.setState({ token: data });
                 self.setState({ tokenInfo: token })
+                self.setState({ active: 4 })
                 console.log('######## TYPE OF THIS.STATE #######')
                 console.log(typeof this.state);
                 console.log('######## THIS.STATE.TOKEN')
@@ -43,7 +50,7 @@ class Payments extends React.Component {
                 console.log(token.card.cvc_check);
                 console.log('######## PROPS DATA')
                 console.log(this.propsData);
-                this.onPaySubmit();
+                this.saveToken();
             });
         });
     };
@@ -125,8 +132,8 @@ class Payments extends React.Component {
             )
         } else {
             return(
-                <div class="alert alert-info" role="alert">
-                    THANKS FOR YOUR PAYMENT
+                <div className="alert alert-info" role="alert">
+                    Thank you for your purchase. Your payment was processed successfully.
                 </div>
             )
         }
