@@ -26,7 +26,11 @@ class InfoContainer extends React.Component {
         zip: '',
         country: 'USA',
         memberName: '',
-        addlMemberNames: ''
+        addlMemberNames: [{
+            key: 1,
+            value: ''
+        }]
+        //addlMemberNames: ''
     }
 
 
@@ -82,9 +86,38 @@ class InfoContainer extends React.Component {
         this.setState({ memberName });
     }
 
+    /*
     onAddlMemberInput(addlMemberNames) {
         this.setState({ addlMemberNames });
     }
+    */
+   removeMember(item, e) {
+    var index = this.state.addlMemberNames.indexOf(item);
+  
+    if (index !== -1) {
+      this.state.addlMemberNames.splice(index, 1);
+      this.forceUpdate();
+    }
+  
+    e.preventDefault();
+  }
+  
+  addMember(e) {
+    e.preventDefault();
+  
+    this.state.addlMemberNames.push({
+      key: this.state.addlMemberNames.length,
+      value: ''
+    });
+  
+    this.forceUpdate();
+  }
+
+  onMemberChange(index, value) {
+    this.state.addlMemberNames[index].value = value;
+    this.forceUpdate();
+  }
+  
 
     handleSubmit(event) {
         event.preventDefault();  
@@ -327,6 +360,7 @@ class InfoContainer extends React.Component {
                                 </Form.Item>
                             </div>
                             <div className='col'>
+                            {/*
                                 <Form.Item>
                                     <label>Additional members(if applicable)</label>
                                     <Input
@@ -334,6 +368,31 @@ class InfoContainer extends React.Component {
                                         value={this.state.addlMemberNames}
                                         onChange={this.onAddlMemberInput.bind(this)}
                                     />
+                                </Form.Item>
+                            */}
+                                {
+                                    this.state.addlMemberNames.map((member, index) => {
+                                        return (
+                                            <Form.Item
+                                                key={index}
+                                                label={`Member ${index}`}
+                                                prop={`addlMemberNames:${index}`}
+                                                rules={{
+                                                    type: 'object', required: true,
+                                                    fields: {
+                                                        value: { required: true, message: 'Member can not be null', trigger: 'blur' }
+                                                    }
+                                                }}
+                                            >
+                                                <Input value={member.value} onChange={this.onMemberChange.bind(this, index)}></Input>
+                                                <Button onClick={this.removeMember.bind(this, member)}>Delete</Button>
+                                            </Form.Item>
+                                        )
+                                    })
+                                }
+                                <Form.Item>
+                                    <Button type="primary" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+                                    <Button onClick={this.addMember.bind(this)}>New member</Button>
                                 </Form.Item>
                             </div>
                         </div>
