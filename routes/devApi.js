@@ -6,7 +6,7 @@ const express = require('express'),
     { saveToDatabase, queryDbRefsFilled } = require('../database/database'),
     { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
     { enforceProperties, checkIfObjectIsEmpty } = require('../utilities/propUtils'),
-    { successJSON } = require('../api/v1/response'),
+    { SMOOTH_LEGAL_PACKAGE_CONSTANTS } = require('../utilities/clientConstants')
     router = express.Router();
 
 console.log("Inside dev API ======================================");
@@ -15,6 +15,11 @@ console.log("Inside dev API ======================================");
 router.get("/api/v1/test/database/JSON", (req, res) => {
     res.render("form");
 });
+
+router.get("/api/v1/test/package/JSON", (req, res) => {
+    res.status(200).send(SMOOTH_LEGAL_PACKAGE_CONSTANTS);
+});
+
 
 router.post("/api/v1/test", (req, res) => {
     console.log(req);
