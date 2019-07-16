@@ -27,7 +27,7 @@ class App extends React.Component {
 
     onNextStep() {
         let active = this.state.active + 1;
-            if (active > 4) {
+            if (active > 3) {
                 active = 1;
             }
         this.setState({ active });
@@ -108,7 +108,7 @@ class App extends React.Component {
                         />
                    </div>
                 )
-            } else if (activeContent === 3) {
+            } else {
                 pageContent = (
                     <div>
                         <PayContainer 
@@ -149,14 +149,7 @@ class App extends React.Component {
                         />
                     </div>
                 )
-            } else {
-                pageContent = (
-                    <div>
-                        <h1>This will be the review container!</h1>
-                    </div>
-                )
             }
-
         } else {
             pageContent = (
                 <div>

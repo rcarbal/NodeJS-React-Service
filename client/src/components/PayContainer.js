@@ -280,7 +280,68 @@ class PayContainer extends React.Component {
 
         if(payStatus === 'pass') {
             return (
-                <div>ORDER REVIEW</div>
+                <div className='container card form_box' style={{marginBottom: '2.5%'}}>
+                    <div className="alert alert-info" role="alert">
+                        Thank you for your purchase. Your payment was processed successfully.
+                    </div>
+                    <div className='card' style={{padding: '2.5%', marginBottom: '2.5%', marginTop: '2.5%'}}>
+                        <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>
+                        <h4 className='card-title'>{this.props.companyName}</h4>
+                        <h5 style={{textAlign: 'center'}}><em>(Alternate name: {this.props.altName})</em></h5>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                    
+                        <div>
+                            <strong>Contact:</strong>
+                            <div className='row'>
+                                <div className='col-3'></div>
+                                <div className='col-6' style={{textAlign: 'center'}}>
+                                    {this.props.firstName} {this.props.lastName} | {this.props.phoneNum} | {this.props.email}
+                                </div>
+                                <div className='col-3'></div>
+                            </div>
+                            <div className='row'>
+                                <div className='col-3'></div>
+                                <div className='col-6' style={{textAlign: 'center'}}>
+                                    {this.props.streetAddress} {this.props.city}, {this.props.usState} {this.props.zip} {this.props.country}
+                                </div>
+                                <div className='col-3'></div>
+                            </div>
+                        </div>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+                        
+                        <div>
+                            <strong>Members: </strong>
+                            <div className='row' style={{marginBottom: '2.5%'}}>
+                                <div className='col'></div>
+                                <div className='col-4'>
+                                    <ul className='list-group text-center'>
+                                        <li className='list-group-item'>{this.props.memberName}</li>
+                                        {/* <li className='list-group-item'>{this.props.addlMemberNames}</li> */}
+                                    </ul>
+                                </div>
+                                <div className='col'></div>
+                            </div>
+                        </div>
+                        <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
+    
+                        {packageReview}
+    
+                        {serviceReview}
+                            
+                        {deliveryPreview}
+                            
+                        {documentsCountPreview}
+    
+                        <div className='row'>
+                            <div className='col'></div>
+                            <div className="alert alert-secondary col-2" role="alert">
+                                ${documentsSum}
+                            </div>
+                            <div className='col'></div>
+                        </div>
+                        {specialRequestsPreview}
+                    </div>
+                </div>
             )
         } else {
             return (
@@ -319,7 +380,7 @@ class PayContainer extends React.Component {
                                     <div className='col-4'>
                                         <ul className='list-group text-center'>
                                             <li className='list-group-item'>{this.props.memberName}</li>
-                                            <li className='list-group-item'>{this.props.addlMemberNames}</li>
+                                            {/* <li className='list-group-item'>{this.props.addlMemberNames}</li> */}
                                         </ul>
                                     </div>
                                     <div className='col'></div>
@@ -338,7 +399,7 @@ class PayContainer extends React.Component {
                             <div className='row'>
                                 <div className='col'></div>
                                 <div className="alert alert-secondary col-2" role="alert">
-                                    GRAND TOTAL= ${documentsSum}
+                                    ${documentsSum}
                                 </div>
                                 <div className='col'></div>
                             </div>
@@ -357,11 +418,6 @@ class PayContainer extends React.Component {
                         <div className='col'>
                             <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%'}}>
                                 Back
-                            </Button>
-                        </div>
-                        <div className='col'>
-                            <Button onClick={this.handleSubmit.bind(this)} style={{marginLeft: '80%'}}>
-                                Review Order
                             </Button>
                         </div>
                     </div>
