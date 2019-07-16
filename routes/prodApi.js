@@ -7,6 +7,10 @@ const express = require('express'),
     { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
     router = express.Router();
 
+router.get("/api/v1/package/JSON", (req, res) => {
+    res.status(200).send(SMOOTH_LEGAL_PACKAGE_CONSTANTS);
+});
+
 router.post("/api/v1/", (req, res) => {
     const body = `[${req.body}]`;
     const convertJson = JSON.parse(body);
