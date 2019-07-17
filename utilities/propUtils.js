@@ -263,9 +263,8 @@ function enforceProperties(properties) {
                                 }
                             }
                         }
-                        missingProps[extractedProp] = {};
-                        if (!sto) missingProps[extractedProp]['sto'] = `required Statement of Organizer not found.`;
-                        if (!ein) missingProps[extractedProp]['ein'] = `required Tax ID Number - EIN Application not found.`;
+                        if (!sto){} missingProps['sto'] = `required Statement of Organizer not found.`;
+                        if (!ein) missingProps['ein'] = `required Tax ID Number - EIN Application not found.`;
                     }
                     break;
 
