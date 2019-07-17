@@ -16,6 +16,16 @@ app.use(devApiRoutes);
 app.use(prodApiRoutes);
 
 if (process.env.NODE_ENV === 'production') {
+
+    // Force https
+    app.use((req, res, next) => {
+        if (req.header('x-forwarded-proto') !== 'https'){
+            res.redirect(`https://${req.header('www')}${req.url}`)
+        } else {
+            next();
+        }
+    });
+
     app.use(express.static('client/build'));
     const path = require('path');
     app.get('/', (req, res) => {
