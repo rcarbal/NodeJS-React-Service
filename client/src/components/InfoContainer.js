@@ -375,7 +375,7 @@ class InfoContainer extends React.Component {
                                         return (
                                             <Form.Item
                                                 key={index}
-                                                label={`Member ${index}`}
+                                                label={`Member ${index + 1}`}
                                                 prop={`addlMemberNames:${index}`}
                                                 rules={{
                                                     type: 'object', required: true,
@@ -385,14 +385,13 @@ class InfoContainer extends React.Component {
                                                 }}
                                             >
                                                 <Input value={member.value} onChange={this.onMemberChange.bind(this, index)}></Input>
-                                                <Button onClick={this.removeMember.bind(this, member)}>Delete</Button>
+                                                <Button onClick={this.removeMember.bind(this, member)} style={{marginTop: '1%'}}>Delete</Button>
                                             </Form.Item>
                                         )
                                     })
                                 }
                                 <Form.Item>
-                                    <Button type="primary" onClick={this.handleSubmit.bind(this)}>Submit</Button>
-                                    <Button onClick={this.addMember.bind(this)}>New member</Button>
+                                    <Button onClick={this.addMember.bind(this)}>Add member</Button>
                                 </Form.Item>
                             </div>
                         </div>

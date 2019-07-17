@@ -20,7 +20,10 @@ if (process.env.NODE_ENV === 'production') {
     // Force https
     app.use((req, res, next) => {
         if (req.header('x-forwarded-proto') !== 'https'){
-            res.redirect(`https://${req.header('www')}${req.url}`)
+            console.log("Inside https force ================================================");
+            console.log(req.url);
+            console.log(`https://www.smooth.legal${req.url}`);
+            res.redirect(`https://www.smooth.legal${req.url}`);
         } else {
             next();
         }
