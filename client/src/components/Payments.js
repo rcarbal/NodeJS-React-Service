@@ -38,6 +38,15 @@ class Payments extends React.Component {
                 JSON.stringify(this.propsData)
             ]
         }).then(response => {
+            /*
+            if (response.status === 400) {
+                console.log(` 
+                    !!!!!!! ERROR !!!!!!!
+                    ${response.json()}
+                `)
+            }
+            */
+
             response.json().then(data => {
                 self.setState({ token: data });
                 self.setState({ tokenInfo: token })
