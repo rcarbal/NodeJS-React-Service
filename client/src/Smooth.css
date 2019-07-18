@@ -867,7 +867,7 @@ button,input,select,textarea,label{
 }
 .hero{
     text-align:center;
-    padding-top:40px
+    padding-top:10px
 }
 .hero-paragraph{
     font-size:20px;
@@ -889,7 +889,6 @@ button,input,select,textarea,label{
 }
 .hero-illustration{
     position:relative;
-    margin-top:48px
 }
 .hero-shape{
     display:none;
@@ -902,7 +901,8 @@ button,input,select,textarea,label{
 @media (min-width: 641px){
     .hero{
         text-align:left;
-        padding-top:160px
+        padding-top:80px;
+        padding-bottom: 80px;
     }
     .hero-inner{display:flex}
     .hero-copy{
@@ -911,7 +911,6 @@ button,input,select,textarea,label{
     }
     .hero-form{margin:0}
     .hero-illustration{
-        margin-top:-143px;
         padding-bottom:0
     }
     .hero-shape{display:block}
