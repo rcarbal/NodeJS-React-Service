@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
+import Footer from './Footer';
 
 import '../Smooth.css'
 
@@ -83,7 +84,7 @@ class App extends React.Component {
                             usState={this.state.form.usState}
                             zip={this.state.form.zip}
                             memberName={this.state.form.memberName}
-                            addlMemberNames={this.state.form.addlMemberNames}
+                            //addlMemberNames={this.state.form.addlMemberNames}
                             saveAndNext={this.saveAndNext}
                         />
                     </div>
@@ -127,7 +128,7 @@ class App extends React.Component {
                             zip={this.state.form.zip}
                             country={this.state.form.country}
                             memberName={this.state.form.memberName}
-                            addlMemberNames={this.state.form.addlMemberNames}
+                            //addlMemberNames={this.state.form.addlMemberNames}
 
                             llcPackage={this.state.form.llcPackage}
                             certifiedCopies={this.state.form.certifiedCopies}
@@ -153,6 +154,71 @@ class App extends React.Component {
         } else {
             pageContent = (
                 <div>
+                    <header className="site-header">
+			            <div className="header-shape header-shape-1">
+				            <svg width="337" height="222" viewBox="0 0 337 222" xmlns="http://www.w3.org/2000/svg">
+				                <defs>
+				                    <linearGradient x1="50%" y1="55.434%" x2="50%" y2="0%" id="header-shape-1">
+				                        <stop stop-color="#E0E1FE" stop-opacity="0" offset="0%"/>
+				                        <stop stop-color="#E0E1FE" offset="100%"/>
+				                    </linearGradient>
+				                </defs>
+				                <path d="M1103.21 0H1440v400h-400c145.927-118.557 166.997-251.89 63.21-400z" transform="translate(-1103)" fill="url(#header-shape-1)" fill-rule="evenodd"/>
+				            </svg>
+			            </div>
+			            <div className="header-shape header-shape-2">
+				            <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" style={{overflow: 'visible'}}>
+				                <defs>
+				                    <linearGradient x1="93.05%" y1="19.767%" x2="15.034%" y2="85.765%" id="header-shape-2">
+				                        <stop stop-color="#FF3058" offset="0%"/>
+				                        <stop stop-color="#FF6381" offset="100%"/>
+				                    </linearGradient>
+				                </defs>
+				                <circle className="anime-element fadeup-animation" cx="64" cy="64" r="64" fill="url(#header-shape-2)" fill-rule="evenodd"/>
+				            </svg>
+			            </div>
+
+                        <div className="container">
+                            <div className="site-header-inner">
+                                <div className="brand header-brand">
+                                    <h1 className="m-0">
+                                    <a href='/' className="brand">
+                                        <span className="fa-stack">
+                                            <i className="far fa-circle fa-stack-2x"></i>
+                                            <i className="far fa-paper-plane fa-stack-1x"></i>
+                                        </span>
+                                    </a>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main>  
+                        <section className="hero">
+                            <div className="container">
+                                <div className="hero-inner">
+						            <div className="hero-copy">
+	                                    <h2 className="hero-title mt-0">Leave the paperwork to us.</h2>
+	                                    <p className="hero-paragraph">SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
+							            <div className="hero-form field field-grouped">
+							            	<div className="control">
+							            		<a className="button button-primary button-block" onClick={this.startForm} href="#">Start your form</a>
+							            	</div>
+							            </div>
+                                    </div>
+                                    
+						            <div className="hero-illustration">
+                                        <img src='filingPapers.svg' className='card-image-top' alt='Filing papers' />   
+                                    </div>   
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+
+                    <Footer />
+                    
+                    {/*
                     <Navbar />
                     <div className='container-fluid'>
                         <div className='row'>
@@ -168,6 +234,7 @@ class App extends React.Component {
                             </div>  
                         </div>
                     </div>
+                    */}
                 </div>
             )
         }
@@ -175,7 +242,7 @@ class App extends React.Component {
             headerContent = (
                 <div>
                     <Navbar />
-                    <Menu defaultActive="1" className="container-fluid" mode="horizontal">
+                    <Menu defaultActive="1" className="container-fluid" mode="horizontal" className='border-top border-light' style={{background: '#11103E'}}>
                         <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
                             <Steps.Step title="Company & Contact"></Steps.Step>
                             <Steps.Step title="Options & Services"></Steps.Step>

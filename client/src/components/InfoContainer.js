@@ -7,6 +7,7 @@ import  {
             Select,
             Tooltip
         } from 'element-react/next';
+import Footer from './Footer';
 
 class InfoContainer extends React.Component {
     state = {
@@ -25,8 +26,7 @@ class InfoContainer extends React.Component {
         usState: '',
         zip: '',
         country: 'USA',
-        memberName: '',
-        addlMemberNames: [{
+        memberName: [{
             key: 1,
             value: ''
         }]
@@ -92,10 +92,10 @@ class InfoContainer extends React.Component {
     }
     */
    removeMember(item, e) {
-    var index = this.state.addlMemberNames.indexOf(item);
+    var index = this.state.memberName.indexOf(item);
   
     if (index !== -1) {
-      this.state.addlMemberNames.splice(index, 1);
+      this.state.memberName.splice(index, 1);
       this.forceUpdate();
     }
   
@@ -105,8 +105,8 @@ class InfoContainer extends React.Component {
   addMember(e) {
     e.preventDefault();
   
-    this.state.addlMemberNames.push({
-      key: this.state.addlMemberNames.length,
+    this.state.memberName.push({
+      key: this.state.memberName.length,
       value: ''
     });
   
@@ -114,7 +114,7 @@ class InfoContainer extends React.Component {
   }
 
   onMemberChange(index, value) {
-    this.state.addlMemberNames[index].value = value;
+    this.state.memberName[index].value = value;
     this.forceUpdate();
   }
   
@@ -131,10 +131,25 @@ class InfoContainer extends React.Component {
             streetAddress = this.state.streetAddress,
             city          = this.state.city,
             zip           = this.state.zip,
-            memberName    = this.state.memberName;
+            memberName    = this.state.memberName[0].value;
+
+        let llcRegex = /LLC$/;
+
+        if (llcRegex.test(companyName) === false && companyName !== '') {
+            alert("Please append 'LLC' after your company name.");
+        }
+        if (llcRegex.test(altName) === false && altName !== '') {
+            alert("Please append 'LLC' after your alternate company name.")
+        }
+
+        let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+
+        if(emailRegex.test(email) === false && email !== '') {
+            alert('Please enter a valid email address.');
+        }
         
         switch('') {
-            case companyName: 
+            case companyName:
                 alert('You must create a name for your LLC');
                 break;
             case altName:
@@ -178,13 +193,13 @@ class InfoContainer extends React.Component {
                     </Tooltip>
                     <div className="container card form_box">
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>State of Incorporation</label>
                                     <Input disabled placeholder="Delaware" value={this.state.stateOfIncoporation} />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Type</label>
                                     <Input disabled placeholder="LLC" value={this.state.type} />
@@ -192,7 +207,7 @@ class InfoContainer extends React.Component {
                             </div>  
                         </div>
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Tooltip effect='dark' content="Enter the name of your prospective LLC (name must end with 'LLC')." placement='bottom'>
                                     <Form.Item>
                                         <label>Company Name</label>
@@ -204,7 +219,7 @@ class InfoContainer extends React.Component {
                                     </Form.Item>
                                 </Tooltip>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Tooltip effect='dark' content='Enter another name in case your first choice is already in use.' placement='bottom'>
                                     <Form.Item>
                                         <label>Alternative Company Name</label>
@@ -224,7 +239,7 @@ class InfoContainer extends React.Component {
                     </Tooltip>
                     <div className="container card form_box">
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>First name</label>
                                     <Input 
@@ -234,7 +249,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Last Name</label>
                                     <Input 
@@ -247,7 +262,7 @@ class InfoContainer extends React.Component {
                         </div>
 
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Email address</label>
                                     <Input 
@@ -257,7 +272,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Phone Number</label>
                                     <Input 
@@ -270,7 +285,7 @@ class InfoContainer extends React.Component {
                         </div>
 
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item required={true}>
                                     <label>Street address</label>
                                     <Input
@@ -280,7 +295,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Street address continued</label>
                                     <Input
@@ -293,7 +308,7 @@ class InfoContainer extends React.Component {
                         </div>
 
                         <div className='row'>
-                            <div className='col-4'>
+                            <div className='col-sm-8 col-md-4'>
                                 <Form.Item>
                                     <label>City</label>
                                     <Input 
@@ -303,7 +318,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col-2'>
+                            <div className='col-sm-4 col-md-2'>
                                 <Form.Item>
                                     <label>State</label>
 
@@ -323,7 +338,7 @@ class InfoContainer extends React.Component {
 
                                 </Form.Item>
                             </div>
-                            <div className='col-3'>
+                            <div className='col-sm-6 col-md-3'>
                                 <Form.Item>
                                     <label>Zip Code</label>
                                     <Input 
@@ -333,7 +348,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col-3'>
+                            <div className='col-sm-6 col-md-3'>
                                 <Form.Item>
                                     <label>Country</label>
                                     <select value={this.state.country} disabled={true} className='custom-select'>
@@ -347,36 +362,17 @@ class InfoContainer extends React.Component {
                     <Tooltip effect='dark' content="Add names of your LLC's legal members" placement='bottom'>
                         <h5 className='form_box_title'>Members</h5>
                     </Tooltip>    
-                    <div className="container card form_box">
+                    <div className="container card form_box" style={{marginBottom: '2.5%'}}>
                         <div className='row'>
-                            <div className='col'>
-                                <Form.Item>
-                                    <label>Name</label>
-                                    <Input
-                                        type='text'
-                                        value={this.state.memberName}
-                                        onChange={this.onMemberInput.bind(this)}
-                                    />
-                                </Form.Item>
-                            </div>
-                            <div className='col'>
-                            {/*
-                                <Form.Item>
-                                    <label>Additional members(if applicable)</label>
-                                    <Input
-                                        type='text'
-                                        value={this.state.addlMemberNames}
-                                        onChange={this.onAddlMemberInput.bind(this)}
-                                    />
-                                </Form.Item>
-                            */}
+                            <div className='col' />
+                            <div className='col-md-6'>
                                 {
-                                    this.state.addlMemberNames.map((member, index) => {
+                                    this.state.memberName.map((member, index) => {
                                         return (
                                             <Form.Item
                                                 key={index}
                                                 label={`Member ${index + 1}`}
-                                                prop={`addlMemberNames:${index}`}
+                                                prop={`memberName:${index}`}
                                                 rules={{
                                                     type: 'object', required: true,
                                                     fields: {
@@ -385,21 +381,38 @@ class InfoContainer extends React.Component {
                                                 }}
                                             >
                                                 <Input value={member.value} onChange={this.onMemberChange.bind(this, index)}></Input>
-                                                <Button onClick={this.removeMember.bind(this, member)} style={{marginTop: '1%'}}>Delete</Button>
+                                                <Button className='button-sm button-danger button-block' onClick={this.removeMember.bind(this, member)} style={{marginTop: '1%'}}>Delete</Button>
                                             </Form.Item>
                                         )
                                     })
                                 }
+                                
                                 <Form.Item>
-                                    <Button onClick={this.addMember.bind(this)}>Add member</Button>
+                                    <Button 
+                                        className='button-sm button-primary button-block' 
+                                        onClick={this.addMember.bind(this)} 
+                                        style={{border: '1px #3f47f6 solid'}}>
+                                        Add another member
+                                    </Button>
                                 </Form.Item>
                             </div>
+                            <div className='col' />
                         </div>
                     </div>
                 </Form>
-                <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{margin: '0 2.5% 2.5% 90%'}}>
-                    Next step
-                </Button>
+                <div className='row' style={{marginBottom: '2.5%'}}>
+                    <div className='col-6'></div>
+                    <div className='col-6'>
+                        <div className='d-flex justify-content-center'>
+                            <Button className='button button-primary button-block' onClick={this.handleSubmit.bind(this)}>
+                                Next step
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                <Footer />
+
             </div>
         )
     };
