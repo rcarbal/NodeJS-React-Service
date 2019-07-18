@@ -182,7 +182,7 @@ class App extends React.Component {
                             <div className="site-header-inner">
                                 <div className="brand header-brand">
                                     <h1 className="m-0">
-                                    <a href='/' className="nav_brand">
+                                    <a href='/' className="brand">
                                         <span className="fa-stack">
                                             <i className="far fa-circle fa-stack-2x"></i>
                                             <i className="far fa-paper-plane fa-stack-1x"></i>
@@ -442,7 +442,7 @@ class App extends React.Component {
             headerContent = (
                 <div>
                     <Navbar />
-                    <Menu defaultActive="1" className="container-fluid" mode="horizontal">
+                    <Menu defaultActive="1" className="container-fluid" mode="horizontal" className='border-top border-light' style={{background: '#11103E'}}>
                         <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
                             <Steps.Step title="Company & Contact"></Steps.Step>
                             <Steps.Step title="Options & Services"></Steps.Step>

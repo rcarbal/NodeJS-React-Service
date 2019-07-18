@@ -12,10 +12,17 @@ body {
 }
 
 nav {
-    background: black;
+    background: #11103E;
 }
 
 .nav_brand {
+    text-align: center;
+    font-family: 'Timmana', sans-serif;
+    color:#ABABC9;
+    text-decoration: none;
+}
+
+.brand {
     text-align: center;
     font-family: 'Timmana', sans-serif;
     color:#11103E;
@@ -42,18 +49,11 @@ nav {
     padding-top: 1.75%;
     padding-bottom: 1.75%; 
     width: 60%;
+    background: #D2DAF0;
 }
 
 .package_card_text {
     font-size: 14px;
-}
-
-#choose:valid {
-    color: #90ee90;
-}
-
-#choose:invalid {
-    color: red;
 }
 
 article,aside,footer,header,nav,section {
