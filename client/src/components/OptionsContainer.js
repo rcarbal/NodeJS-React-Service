@@ -138,10 +138,15 @@ class OptionsContainer extends React.Component {
                     </Tooltip>
                     <div className='container card form_box'>
                     
-                            <div className='row justify-content-between' style={{marginTop: '2.5%', marginBottom: '5%'}}>
-                                <div className='col-4'>
+                                
+                                
+                                
+                            
+                        <Form.Item>
+                            <div className='row justify-content-between' style={{marginTop: '2.5%', marginBottom: '2.5%'}}>
+                                <div className='col-md-4'>
                                     <div className='card package_card'>
-                                        <h5 className='card-header text-center'>Basic</h5>
+                                        <h5 className='card-header text-center' id='package_card_title'>Basic</h5>
                                         <div className='card-body'>
                                             <div className='card-text package_card_text align-self-end'>
                                                 <div className='row' style={{marginLeft: '1.75%'}}>
@@ -157,11 +162,23 @@ class OptionsContainer extends React.Component {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div className='card-footer'>
+                                            <div className='control'>
+                                                <Radio 
+                                                    value={basic} 
+                                                    checked={this.state.llcPackage.value === 'Basic'}  
+                                                    onChange={this.onPackageSelect.bind(this)}
+                                                    className='grid-content button button-primary button-block'>
+                                                    Select for $198
+                                                </Radio>    
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className='col-4'>
+                                     
+                                <div className='col-md-4'>
                                     <div className='card package_card'>
-                                        <h5 className='card-header text-center'>Complete</h5>
+                                        <h5 className='card-header text-center' id='package_card_title'>Complete</h5>
                                         <div className='card-body'>
                                             <div className='card-text package_card_text align-self-end'>
                                                 <div className='row' style={{marginLeft: '1.75%'}}>
@@ -179,11 +196,23 @@ class OptionsContainer extends React.Component {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div className='card-footer'>
+                                            <div className='control'>
+                                                <Radio 
+                                                    value={complete} 
+                                                    checked={this.state.llcPackage.value === 'Complete'}  
+                                                    onChange={this.onPackageSelect.bind(this)}
+                                                    className='grid-content button button-primary button-block'>
+                                                    Select for $289
+                                                </Radio>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className='col-4'>
+                                
+                                <div className='col-md-4'>
                                     <div className='card package_card'>
-                                        <h5 className='card-header text-center'>Premium</h5>
+                                        <h5 className='card-header text-center' id='package_card_title'>Premium</h5>
                                         <div className='card-body'>
                                             <div className='card-text package_card_text'>
                                                 <div className='row' style={{marginLeft: '1.75%'}}>
@@ -203,39 +232,20 @@ class OptionsContainer extends React.Component {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div className='card-footer'>
+                                            <div className='control'>
+                                                <Radio 
+                                                    value={Premium} 
+                                                    checked={this.state.llcPackage.value === 'Premium'}  
+                                                    onChange={this.onPackageSelect.bind(this)}
+                                                    className='grid-content button button-primary button-block'>
+                                                    Select for $399
+                                                </Radio>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        <Form.Item>
-                            <Layout.Row type='flex' className='row-bg' justify='space-around'>
-                                <Layout.Col span='6' offset='2'>
-                                    <Radio.Button 
-                                        value={basic} 
-                                        checked={this.state.llcPackage.value === 'Basic'}  
-                                        onChange={this.onPackageSelect.bind(this)}
-                                        className='grid-content'>
-                                        Select for $198
-                                    </Radio.Button> 
-                                </Layout.Col>
-                                <Layout.Col span='6' offset='3'>
-                                    <Radio.Button 
-                                        value={complete} 
-                                        checked={this.state.llcPackage.value === 'Complete'}  
-                                        onChange={this.onPackageSelect.bind(this)}
-                                        className='grid-content'>
-                                        Select for $289
-                                    </Radio.Button>
-                                </Layout.Col>
-                                <Layout.Col span='6' offset='2'>
-                                    <Radio.Button 
-                                        value={Premium} 
-                                        checked={this.state.llcPackage.value === 'Premium'}  
-                                        onChange={this.onPackageSelect.bind(this)}
-                                        className='grid-content'>
-                                        Select for $399
-                                    </Radio.Button>
-                                </Layout.Col>
-                            </Layout.Row>
                         </Form.Item>
                     </div>
 

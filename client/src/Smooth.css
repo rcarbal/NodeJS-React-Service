@@ -35,7 +35,7 @@ nav {
 }
 
 .package_card {
-    height: 410px;
+    margin-bottom: 1%;
 }
 
 .form_box_title {
@@ -54,6 +54,10 @@ nav {
 
 .package_card_text {
     font-size: 14px;
+    line-height: 25px;
+}
+#package_card_title {
+    margin-top: 0;
 }
 
 article,aside,footer,header,nav,section {
