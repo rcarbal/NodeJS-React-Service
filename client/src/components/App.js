@@ -84,7 +84,7 @@ class App extends React.Component {
                             usState={this.state.form.usState}
                             zip={this.state.form.zip}
                             memberName={this.state.form.memberName}
-                            addlMemberNames={this.state.form.addlMemberNames}
+                            //addlMemberNames={this.state.form.addlMemberNames}
                             saveAndNext={this.saveAndNext}
                         />
                     </div>
@@ -128,7 +128,7 @@ class App extends React.Component {
                             zip={this.state.form.zip}
                             country={this.state.form.country}
                             memberName={this.state.form.memberName}
-                            addlMemberNames={this.state.form.addlMemberNames}
+                            //addlMemberNames={this.state.form.addlMemberNames}
 
                             llcPackage={this.state.form.llcPackage}
                             certifiedCopies={this.state.form.certifiedCopies}

@@ -26,8 +26,7 @@ class InfoContainer extends React.Component {
         usState: '',
         zip: '',
         country: 'USA',
-        memberName: '',
-        addlMemberNames: [{
+        memberName: [{
             key: 1,
             value: ''
         }]
@@ -93,10 +92,10 @@ class InfoContainer extends React.Component {
     }
     */
    removeMember(item, e) {
-    var index = this.state.addlMemberNames.indexOf(item);
+    var index = this.state.memberName.indexOf(item);
   
     if (index !== -1) {
-      this.state.addlMemberNames.splice(index, 1);
+      this.state.memberName.splice(index, 1);
       this.forceUpdate();
     }
   
@@ -106,8 +105,8 @@ class InfoContainer extends React.Component {
   addMember(e) {
     e.preventDefault();
   
-    this.state.addlMemberNames.push({
-      key: this.state.addlMemberNames.length,
+    this.state.memberName.push({
+      key: this.state.memberName.length,
       value: ''
     });
   
@@ -115,7 +114,7 @@ class InfoContainer extends React.Component {
   }
 
   onMemberChange(index, value) {
-    this.state.addlMemberNames[index].value = value;
+    this.state.memberName[index].value = value;
     this.forceUpdate();
   }
   
@@ -132,7 +131,7 @@ class InfoContainer extends React.Component {
             streetAddress = this.state.streetAddress,
             city          = this.state.city,
             zip           = this.state.zip,
-            memberName    = this.state.memberName;
+            memberName    = this.state.memberName[0].value;
         
         switch('') {
             case companyName: 
@@ -162,11 +161,9 @@ class InfoContainer extends React.Component {
             case zip:
                 alert('Please add your ZIP code');
                 break;
-                /*
             case memberName:
                 alert('Please add at least one member to your LLC')
                 break;
-                */
             default:
                 this.props.saveAndNext(this.state);
         }
@@ -365,12 +362,12 @@ class InfoContainer extends React.Component {
                                 </Form.Item>
                             */}
                                 {
-                                    this.state.addlMemberNames.map((member, index) => {
+                                    this.state.memberName.map((member, index) => {
                                         return (
                                             <Form.Item
                                                 key={index}
                                                 label={`Member ${index + 1}`}
-                                                prop={`addlMemberNames:${index}`}
+                                                prop={`memberName:${index}`}
                                                 rules={{
                                                     type: 'object', required: true,
                                                     fields: {

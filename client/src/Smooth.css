@@ -728,7 +728,6 @@ button,input,select,textarea,label{
 }
 .input .inline-input{
     display:inline;
-    width:auto
 }
 .textarea{
     display:block;
@@ -737,7 +736,6 @@ button,input,select,textarea,label{
 }
 .textarea .inline-textarea{
     display:inline;
-    width:auto
 }
 .field-grouped>.control:not(:last-child){margin-bottom:8px}
 @media (min-width: 641px){

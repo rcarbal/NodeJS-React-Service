@@ -58,6 +58,12 @@ class PayContainer extends React.Component {
             ) 
         });
 
+        let memberList = formData.memberName.map((member, index) => {
+            return(
+                <li className='list-group-item'>{member.value}</li>
+            )
+        })
+
 
         let llcPackage = formData.llcPackage.value;
         let llcPackagePrice;
@@ -316,8 +322,7 @@ class PayContainer extends React.Component {
                                 <div className='col'></div>
                                 <div className='col-4'>
                                     <ul className='list-group text-center'>
-                                        <li className='list-group-item'>{this.props.memberName}</li>
-                                        {/* <li className='list-group-item'>{this.props.addlMemberNames}</li> */}
+                                        {memberList}    
                                     </ul>
                                 </div>
                                 <div className='col'></div>
@@ -380,8 +385,7 @@ class PayContainer extends React.Component {
                                     <div className='col'></div>
                                     <div className='col-4'>
                                         <ul className='list-group text-center'>
-                                            <li className='list-group-item'>{this.props.memberName}</li>
-                                            {/* <li className='list-group-item'>{this.props.addlMemberNames}</li> */}
+                                            {memberList}    
                                         </ul>
                                     </div>
                                     <div className='col'></div>
