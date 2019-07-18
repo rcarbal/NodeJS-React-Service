@@ -132,9 +132,24 @@ class InfoContainer extends React.Component {
             city          = this.state.city,
             zip           = this.state.zip,
             memberName    = this.state.memberName[0].value;
+
+        let llcRegex = /LLC$/;
+
+        if (llcRegex.test(companyName) === false && companyName !== '') {
+            alert("Please append 'LLC' after your company name.");
+        }
+        if (llcRegex.test(altName) === false && altName !== '') {
+            alert("Please append 'LLC' after your alternate company name.")
+        }
+
+        let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+
+        if(emailRegex.test(email) === false && email !== '') {
+            alert('Please enter a valid email address.');
+        }
         
         switch('') {
-            case companyName: 
+            case companyName:
                 alert('You must create a name for your LLC');
                 break;
             case altName:
@@ -366,13 +381,19 @@ class InfoContainer extends React.Component {
                                                 }}
                                             >
                                                 <Input value={member.value} onChange={this.onMemberChange.bind(this, index)}></Input>
-                                                <Button onClick={this.removeMember.bind(this, member)} style={{marginTop: '1%'}}>Delete</Button>
+                                                <Button className='button-sm button-danger button-block' onClick={this.removeMember.bind(this, member)} style={{marginTop: '1%'}}>Delete</Button>
                                             </Form.Item>
                                         )
                                     })
                                 }
+                                
                                 <Form.Item>
-                                    <Button onClick={this.addMember.bind(this)}>Add member</Button>
+                                    <Button 
+                                        className='button-sm button-primary button-block' 
+                                        onClick={this.addMember.bind(this)} 
+                                        style={{border: '1px #3f47f6 solid'}}>
+                                        Add another member
+                                    </Button>
                                 </Form.Item>
                             </div>
                             <div className='col' />

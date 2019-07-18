@@ -128,8 +128,10 @@ class Payments extends React.Component {
                     email={this.propsData.email} 
                     token={this.onToken}
                     extra={this.data}
-                >            
-                    <Button style={{marginBottom: '2.5%'}}>Submit & Pay</Button>
+                >    
+                    <div className='row d-flex justify-content-center'>
+                        <Button className='button button-primary button-block' style={{marginBottom: '2.5%'}}>Submit & Pay</Button>
+                    </div>        
                 </StripeCheckout>
             )
         } else {

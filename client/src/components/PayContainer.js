@@ -288,12 +288,15 @@ class PayContainer extends React.Component {
         if(payStatus === 'pass') {
             return (
                 <div className='container card form_box' style={{marginBottom: '2.5%'}}>
-                    <div className="alert alert-info" role="alert">
+                    <div className="alert alert-warning alert-dismissible fade show" role="alert">
                         Thank you for your purchase. Your payment was processed successfully.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div className='card' style={{padding: '2.5%', marginBottom: '2.5%', marginTop: '2.5%'}}>
                         <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>
-                        <h4 className='card-title'>{this.props.companyName}</h4>
+                        <h3 className='card-title text-center'>{this.props.companyName}</h3>
                         <h5 style={{textAlign: 'center'}}><em>(Alternate name: {this.props.altName})</em></h5>
                         <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
                     
@@ -356,7 +359,7 @@ class PayContainer extends React.Component {
                     <div className='container card form_box' style={{marginBottom: '2.5%'}}>
                         <div className='card' style={{padding: '2.5%', marginBottom: '2.5%', marginTop: '2.5%'}}>
                             <h5 style={{textAlign: 'center'}}>Order for {this.props.stateOfIncorporation} {this.props.type}:</h5>
-                            <h4 className='card-title'>{this.props.companyName}</h4>
+                            <h3 className='card-title text-center'>{this.props.companyName}</h3>
                             <h5 style={{textAlign: 'center'}}><em>(Alternate name: {this.props.altName})</em></h5>
                             <div className='dropdown-divider' style={{marginBottom: '2.5%'}}></div>
                         

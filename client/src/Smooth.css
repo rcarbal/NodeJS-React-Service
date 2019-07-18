@@ -794,6 +794,18 @@ button,input,select,textarea,label{
     border: 2px #3f47f6 solid;
 }
 
+.button-danger{
+    color: #fff;
+    background: #f64950 !important;
+    
+}
+
+.button-danger:hover {
+    color: #fff;
+    background: #e50b14 !important;
+    border: 1px #e50b14 solid;
+}
+
 .button-block{display:flex}
 .site-header{
     position:relative;
