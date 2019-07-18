@@ -162,9 +162,11 @@ class InfoContainer extends React.Component {
             case zip:
                 alert('Please add your ZIP code');
                 break;
+                /*
             case memberName:
                 alert('Please add at least one member to your LLC')
                 break;
+                */
             default:
                 this.props.saveAndNext(this.state);
         }
@@ -179,13 +181,13 @@ class InfoContainer extends React.Component {
                     </Tooltip>
                     <div className="container card form_box">
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>State of Incorporation</label>
                                     <Input disabled placeholder="Delaware" value={this.state.stateOfIncoporation} />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Type</label>
                                     <Input disabled placeholder="LLC" value={this.state.type} />
@@ -193,7 +195,7 @@ class InfoContainer extends React.Component {
                             </div>  
                         </div>
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Tooltip effect='dark' content="Enter the name of your prospective LLC (name must end with 'LLC')." placement='bottom'>
                                     <Form.Item>
                                         <label>Company Name</label>
@@ -205,7 +207,7 @@ class InfoContainer extends React.Component {
                                     </Form.Item>
                                 </Tooltip>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Tooltip effect='dark' content='Enter another name in case your first choice is already in use.' placement='bottom'>
                                     <Form.Item>
                                         <label>Alternative Company Name</label>
@@ -225,7 +227,7 @@ class InfoContainer extends React.Component {
                     </Tooltip>
                     <div className="container card form_box">
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>First name</label>
                                     <Input 
@@ -235,7 +237,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Last Name</label>
                                     <Input 
@@ -248,7 +250,7 @@ class InfoContainer extends React.Component {
                         </div>
 
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Email address</label>
                                     <Input 
@@ -258,7 +260,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Phone Number</label>
                                     <Input 
@@ -271,7 +273,7 @@ class InfoContainer extends React.Component {
                         </div>
 
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item required={true}>
                                     <label>Street address</label>
                                     <Input
@@ -281,7 +283,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col'>
+                            <div className='col-md-6'>
                                 <Form.Item>
                                     <label>Street address continued</label>
                                     <Input
@@ -294,7 +296,7 @@ class InfoContainer extends React.Component {
                         </div>
 
                         <div className='row'>
-                            <div className='col-4'>
+                            <div className='col-sm-8 col-md-4'>
                                 <Form.Item>
                                     <label>City</label>
                                     <Input 
@@ -304,7 +306,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col-2'>
+                            <div className='col-sm-4 col-md-2'>
                                 <Form.Item>
                                     <label>State</label>
 
@@ -324,7 +326,7 @@ class InfoContainer extends React.Component {
 
                                 </Form.Item>
                             </div>
-                            <div className='col-3'>
+                            <div className='col-sm-6 col-md-3'>
                                 <Form.Item>
                                     <label>Zip Code</label>
                                     <Input 
@@ -334,7 +336,7 @@ class InfoContainer extends React.Component {
                                     />
                                 </Form.Item>
                             </div>
-                            <div className='col-3'>
+                            <div className='col-sm-6 col-md-3'>
                                 <Form.Item>
                                     <label>Country</label>
                                     <select value={this.state.country} disabled={true} className='custom-select'>
@@ -350,17 +352,8 @@ class InfoContainer extends React.Component {
                     </Tooltip>    
                     <div className="container card form_box">
                         <div className='row'>
-                            <div className='col'>
-                                <Form.Item>
-                                    <label>Name</label>
-                                    <Input
-                                        type='text'
-                                        value={this.state.memberName}
-                                        onChange={this.onMemberInput.bind(this)}
-                                    />
-                                </Form.Item>
-                            </div>
-                            <div className='col'>
+                            <div className='col' />
+                            <div className='col-md-6'>
                             {/*
                                 <Form.Item>
                                     <label>Additional members(if applicable)</label>
@@ -395,6 +388,7 @@ class InfoContainer extends React.Component {
                                     <Button onClick={this.addMember.bind(this)}>Add member</Button>
                                 </Form.Item>
                             </div>
+                            <div className='col' />
                         </div>
                     </div>
                 </Form>
