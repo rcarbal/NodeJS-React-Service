@@ -52,7 +52,9 @@ class Payments extends React.Component {
                 console.log(this.propsData);
                 this.saveToken();
             });
-        });
+        })/*.catch(
+            alert('Sorry, the request could not be completed. Please email us at support@smooth.legal to describe your problem.')
+        )*/;
     };
 
     render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'element-react/next';
 import Payments from './Payments';
+import Footer from './Footer';
 
 class PayContainer extends React.Component {
 
@@ -421,6 +422,9 @@ class PayContainer extends React.Component {
                             </Button>
                         </div>
                     </div>
+
+                    <Footer />
+
                 </div>
             )
         }

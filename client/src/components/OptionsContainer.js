@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Form, Button, Radio, Checkbox, InputNumber, Input, Layout, Tooltip } from 'element-react/next';
 
+import Footer from './Footer';
+
 class OptionsContainer extends React.Component {
 
     state = {
@@ -388,6 +390,9 @@ class OptionsContainer extends React.Component {
                         </Button>
                     </div>
                 </div>
+
+                <Footer />
+
             </div>
         )
     }

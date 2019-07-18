@@ -7,6 +7,7 @@ import  {
             Select,
             Tooltip
         } from 'element-react/next';
+import Footer from './Footer';
 
 class InfoContainer extends React.Component {
     state = {
@@ -400,6 +401,9 @@ class InfoContainer extends React.Component {
                 <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{margin: '0 2.5% 2.5% 90%'}}>
                     Next step
                 </Button>
+
+                <Footer />
+
             </div>
         )
     };
