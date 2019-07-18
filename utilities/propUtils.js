@@ -2,6 +2,7 @@
  * Funtion used to search for services sent by the client-side application.
  */
 const { ServicesString, enforcedProps } = require('../utilities/propRefs');
+const LegalParties = require("../models/legalParty");
 
 
 extractPopularServices = (array, word) => {
@@ -16,7 +17,7 @@ extractPopularServices = (array, word) => {
     return {};
 }
 
-checkProp = (data ={}, property1, property2) => {
+checkProp = (data = {}, property1, property2) => {
     if (data.hasOwnProperty(property1) && data.hasOwnProperty(property2)) {
         return {
             price: data.price,
@@ -233,32 +234,32 @@ function enforceProperties(properties) {
 
             switch (extractedProp) {
                 case 'llcPackage':
-                    if (!propValue.hasOwnProperty("price")){
+                    if (!propValue.hasOwnProperty("price")) {
                         missingProps.package_price = `${extractedProp} must have "price" property.`
                     }
-                    if (!propValue.hasOwnProperty("value")){
+                    if (!propValue.hasOwnProperty("value")) {
                         missingProps.package_value = `${extractedProp} must have "value" property.`
                     }
                     break;
                 case 'servicesList':
-                    if (propValue.length < 1){
+                    if (propValue.length < 1) {
                         missingProps[extractedProp] = `${extractedProp} is missing required STO and EIN properties`
                     }
-                    if (propValue.length > 0){
+                    if (propValue.length > 0) {
                         let sto = false;
                         let ein = false;
-                        for (i in propValue){
+                        for (i in propValue) {
 
-                            if (!propValue[i].hasOwnProperty("price")){
+                            if (!propValue[i].hasOwnProperty("price")) {
                                 missingProps[`serviceList_${i}_price`] = `${extractedProp} at at index ${i} is missing required "price"`;
                             }
-                            if (!propValue[i].hasOwnProperty("value")){
+                            if (!propValue[i].hasOwnProperty("value")) {
                                 missingProps[`serviceList_${i}_value`] = `${extractedProp} at at index ${i} is missing required "value"`;
-                            }else{
-                                if (propValue[i]['value'] === "Statement of Organizer"){
+                            } else {
+                                if (propValue[i]['value'] === "Statement of Organizer") {
                                     sto = true;
                                 }
-                                if (propValue[i]['value'] === "Tax ID Number - EIN Application"){
+                                if (propValue[i]['value'] === "Tax ID Number - EIN Application") {
                                     ein = true;
                                 }
                             }
@@ -267,24 +268,34 @@ function enforceProperties(properties) {
                         if (!ein) missingProps['ein'] = `required Tax ID Number - EIN Application not found.`;
                     }
                     break;
+                case 'memberName':
+                    if (propValue.length > 0) {
+                        for (i in propValue) {
+                            if (typeof propValue[i]['value'] !== 'string') {
+                                missingProps[extractedProp] = `${extractedProp} ,must be of type String`;
+                                break;
+                            }
+                        }
+                    }
+                    break;
 
                 case 'paymentTotal':
-                    if (typeof propValue !== "number"){
+                    if (typeof propValue !== "number") {
                         missingProps.paymentTotal = 'Total Payment must be of type Number.'
                         break;
                     }
-                    if (propValue < 1 ){
+                    if (propValue < 1) {
                         missingProps.paymentTotal = 'Total Payment must be greater then 0'
                         break;
                     }
                     break;
 
                 default:
-                    if (typeof propValue !== "string"){
+                    if (typeof propValue !== "string") {
                         missingProps[extractedProp] = `${extractedProp} ,must be of type String`;
-                        break
+                        break;
                     }
-                    if (propValue.length < 1){
+                    if (propValue.length < 1) {
                         missingProps[extractedProp] = `${extractedProp} ,must be of of greater length than ${propValue.length}`
                         break;
                     }
@@ -297,14 +308,26 @@ function enforceProperties(properties) {
     return missingProps;
 }
 
-function checkIfObjectIsEmpty(obj){
-        for(var prop in obj) {
-          if(obj.hasOwnProperty(prop)) {
+function extractLegalParties({memberName}){
+    let arr =[]
+
+    for (i in memberName){
+        if (memberName[i].hasOwnProperty('value')){
+            const party = {name: memberName[i]['value']};
+            arr.push(LegalParties(party))
+        };
+    };
+    return arr;
+};
+
+function checkIfObjectIsEmpty(obj) {
+    for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
             return false;
-          }
         }
-      
-        return JSON.stringify(obj) === JSON.stringify({});
+    }
+
+    return JSON.stringify(obj) === JSON.stringify({});
 }
 
 
@@ -316,5 +339,6 @@ module.exports = {
     getPayment,
     formatMoney,
     enforceProperties,
-    checkIfObjectIsEmpty
+    checkIfObjectIsEmpty,
+    extractLegalParties
 }

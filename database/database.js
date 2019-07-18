@@ -3,7 +3,7 @@ const Company = require("../models/company"),
     LegalParties = require("../models/legalParty"),
     Services = require('../models/services'),
     Request = require('../models/request'),
-    { extractPopularServices, checkProp } = require('../utilities/propUtils'),
+    { extractPopularServices, checkProp, extractLegalParties } = require('../utilities/propUtils'),
     { popularServicesRefs } = require('../utilities/propRefs'),
     mongoose = require('mongoose');
 
@@ -40,9 +40,8 @@ function saveToDatabase(data) {
             country: data.country
         };
 
-        const legalPartiesData = [
-            LegalParties({ name: data.memberName })
-        ];
+        let legalPartiesData = extractLegalParties(data);
+    
 
 
 
