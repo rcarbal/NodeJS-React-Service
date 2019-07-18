@@ -41,8 +41,7 @@ function saveToDatabase(data) {
         };
 
         const legalPartiesData = [
-            LegalParties({ name: data.memberName }),
-            LegalParties({ name: data.addlMemberNames })
+            LegalParties({ name: data.memberName })
         ];
 
 

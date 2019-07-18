@@ -347,20 +347,10 @@ class InfoContainer extends React.Component {
                     <Tooltip effect='dark' content="Add names of your LLC's legal members" placement='bottom'>
                         <h5 className='form_box_title'>Members</h5>
                     </Tooltip>    
-                    <div className="container card form_box">
+                    <div className="container card form_box" style={{marginBottom: '2.5%'}}>
                         <div className='row'>
                             <div className='col' />
                             <div className='col-md-6'>
-                            {/*
-                                <Form.Item>
-                                    <label>Additional members(if applicable)</label>
-                                    <Input
-                                        type='text'
-                                        value={this.state.addlMemberNames}
-                                        onChange={this.onAddlMemberInput.bind(this)}
-                                    />
-                                </Form.Item>
-                            */}
                                 {
                                     this.state.memberName.map((member, index) => {
                                         return (
@@ -389,9 +379,16 @@ class InfoContainer extends React.Component {
                         </div>
                     </div>
                 </Form>
-                <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{margin: '0 2.5% 2.5% 90%'}}>
-                    Next step
-                </Button>
+                <div className='row' style={{marginBottom: '2.5%'}}>
+                    <div className='col-6'></div>
+                    <div className='col-6'>
+                        <div className='d-flex justify-content-center'>
+                            <Button className='button button-primary button-block' onClick={this.handleSubmit.bind(this)}>
+                                Next step
+                            </Button>
+                        </div>
+                    </div>
+                </div>
 
                 <Footer />
 

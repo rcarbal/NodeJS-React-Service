@@ -101,7 +101,7 @@ class OptionsContainer extends React.Component {
         let basic =       { value: 'Basic', price: 198 };
 
         // SERVICES
-        let statementOfOrganizer = { value: 'Statement of Organizer', price: 49 };
+        let statementOfOrganizer = { value: "Statement of Organizer", price: 49 };
         let taxIDNumberApp       = { value: 'Tax ID Number - EIN Application', price: 99 };
         let complianceKit        = { value: 'Compliance Kit & Seal', price: 99 };
 
@@ -136,12 +136,7 @@ class OptionsContainer extends React.Component {
                     <Tooltip effect='dark' content='Choose an LLC formation package that best suits your needs' placement='bottom'>
                         <h5 className='form_box_title'>Package</h5>
                     </Tooltip>
-                    <div className='container card form_box'>
-                    
-                                
-                                
-                                
-                            
+                    <div className='container card form_box'>           
                         <Form.Item>
                             <div className='row justify-content-between' style={{marginTop: '2.5%', marginBottom: '2.5%'}}>
                                 <div className='col-md-4'>
@@ -389,15 +384,19 @@ class OptionsContainer extends React.Component {
                     </div>
                 </Form>
                 <div className='row' style={{marginBottom: '2.5%'}}>
-                    <div className='col'>
-                        <Button onClick={this.onBack.bind(this)} style={{marginLeft: '5%'}}>
-                            Back
-                        </Button>
+                    <div className='col-6'>
+                        <div className='d-flex justify-content-center'>
+                            <Button className='button button-secondary button-block' onClick={this.onBack.bind(this)}>
+                                Back
+                            </Button>
+                        </div>
                     </div>
-                    <div className='col'>
-                        <Button type='submit' onClick={this.handleSubmit.bind(this)} style={{marginLeft: '80%'}}>
-                            Next step
-                        </Button>
+                    <div className='col-6'>
+                        <div className='d-flex justify-content-center'>
+                            <Button className='button button-primary button-block' onClick={this.handleSubmit.bind(this)}>
+                                Next step
+                            </Button>
+                        </div>
                     </div>
                 </div>
 

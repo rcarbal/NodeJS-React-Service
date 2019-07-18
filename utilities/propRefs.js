@@ -22,7 +22,7 @@ const servicesRef = [
 
 const ServicesString = {
     "package":"package",
-    "orgStatement":"Statement of Organizer ",
+    "orgStatement":"Statement of Organizer",
     "einApp":"Tax ID Number - EIN Application",
     "complianceKitSeal":"Compliance Kit & Seal",
     "certCopy":"Certified Copies - ",

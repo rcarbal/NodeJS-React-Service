@@ -421,9 +421,13 @@ class PayContainer extends React.Component {
                     </div>
                     <div className='row' style={{marginBottom: '2.5%'}}>
                         <div className='col'>
-                            <Button onClick={this.onBack.bind(this)} style={{marginLeft: '2.5%'}}>
-                                Back
-                            </Button>
+                            <div className='d-flex justify-content-center'>
+                                <Button className='button button-secondary button-block' onClick={this.onBack.bind(this)}>
+                                    Back
+                                </Button>
+                            </div>
+                        </div>
+                        <div className='col'>
                         </div>
                     </div>
 

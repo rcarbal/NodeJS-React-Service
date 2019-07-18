@@ -777,10 +777,23 @@ button,input,select,textarea,label{
 }
 .button-primary{
     color:#fff !important;
-    transition:background .15s ease
+    transition:background .15s ease;
+    background:#4950F6
 }
-.button-primary{background:#4950F6}
+
 .button-primary:hover{background:#3f47f6}
+
+.button-secondary{
+    color: #4950F6;
+    background: #fff;
+    border: 2px #4950F6 solid;
+}
+
+.button-secondary:hover{
+    color: #3f47f6;
+    border: 2px #3f47f6 solid;
+}
+
 .button-block{display:flex}
 .site-header{
     position:relative;
