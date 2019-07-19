@@ -39,7 +39,7 @@ function retieveDatabaseReference() {
 function retieveDatabasePopulatedDocs() {
     Company
         .findOne({})
-        .populate(["contact", "legalParty", "request", "services"])
+        .populate(["contact", "memberName", "request", "services"])
         .exec((error, company) => {
             if (error) {
                 console.log(error);

@@ -56,7 +56,7 @@ const seedDB = () => {
 
                             for (var property in saves.insertedIds) {
                                 if (saves.insertedIds.hasOwnProperty(property)) {
-                                    company.legalParty.push(saves.insertedIds[property]);
+                                    company.memberName.push(saves.insertedIds[property]);
                                 }
                             }
 
@@ -140,7 +140,7 @@ Story.
 function retieveDatabasePopulatedDocs() {
     Company
         .findOne({})
-        .populate(["contact","legalParty", "request","services"])
+        .populate(["contact","memberName", "request","services"])
         .exec((error, company) => {
             if (error) {
                 console.log(error);

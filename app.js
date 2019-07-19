@@ -6,6 +6,9 @@
 const devApiRoutes = require('./routes/devApi'),
       prodApiRoutes = require('./routes/prodApi'), 
       bodyParser    = require("body-parser"),
+      passport      = require('passport'),
+      LocalStrategy = require('passport-local'),
+      User          = require('./models/user'),
       express       = require('express'),
       app           = express();
 
@@ -14,6 +17,19 @@ app.set("view engine", "ejs");
 app.use(bodyParser.text());
 app.use(devApiRoutes);
 app.use(prodApiRoutes);
+
+// Passport configuration
+app.use(require('express-session')({
+    secret: '2Qepxniwwin98fujitsu',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 if (process.env.NODE_ENV === 'production') {
 
