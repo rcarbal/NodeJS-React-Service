@@ -31,7 +31,7 @@ function sendEmailConfirmtaion(data) {
         const email = {
             to: SEND_TO_EMAIL_CONFIRMATION,
             from: 'ricardo.a.carballo@gmail.com',
-            subject: `Purchase Confirmataion for ${data.name} LLC Application`,          
+            subject: `Purchase Confirmation for ${data.name} Application`,          
         }
 
         email.html = emailConfirmationTemplate(data)  
