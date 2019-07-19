@@ -251,8 +251,8 @@ class OptionsContainer extends React.Component {
                         <div className='card' style={{ marginTop: '2.5%', paddingTop: '2.5%' }}>
                             <Form.Item>
                                 <div className='d-flex justify-content-center'>
-                                    <Checkbox.Group value={this.state.servicesList}>
-                                        <Checkbox.Button 
+                                    <Checkbox.Group value={this.state.servicesList} fill='#4950F6'>
+                                        <Checkbox.Button
                                             value={statementOfOrganizer}
                                             onChange={this.onServicesSelect.bind(this)}>
                                             Statement of Organizer
