@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
+import Admin from './Admin';
 import Footer from './Footer';
 
 import '../Smooth.css'
@@ -19,6 +20,7 @@ class App extends React.Component {
             // Toggles nav steps
             start: false,
             active: 1,
+            loginClick: false,
             form: {
                 stateOfIncorporation: 'Delaware',
                 type: 'LLC'
@@ -39,6 +41,10 @@ class App extends React.Component {
                 active = 1;
             }
         this.setState({ active });
+    }
+
+    startLogin = () => {
+        this.setState({ loginClick: true })
     }
 
     saveForm = (data) => {
@@ -65,6 +71,9 @@ class App extends React.Component {
         let pageContent;
         let headerContent;
         let activeContent = this.state.active;
+
+        console.log('activeContent a.k.a. this.state.active')
+        console.log(activeContent);
 
         if (this.state.start){
             if (activeContent === 1) {
@@ -210,31 +219,11 @@ class App extends React.Component {
                                     
 						            <div className="hero-illustration">
                                         <img src='filingPapers.svg' className='card-image-top' alt='Filing papers' />   
-                                    </div>   
+                                    </div> 
                                 </div>
                             </div>
                         </section>
                     </main>
-
-                    <Footer />
-                    
-                    {/*
-                    <Navbar />
-                    <div className='container-fluid'>
-                        <div className='row'>
-                            <div className='col-8' style={{marginTop: '2.5%', marginBottom: '2.5%'}}>
-                                <img src='undraw_filing_system_b5d2.svg' className='card-image-top' alt='Filing papers' />
-                            </div> 
-                            <div className='col-4' style={{marginTop: '15%'}}>
-                                <h2>Leave the paperwork to us.</h2>
-                                <p style={{padding: '2.5%', textAlign: 'justify'}}>SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
-                                <div className='d-flex justify-content-center'>
-                                    <Button className='text-center' onClick={this.startForm} style={{marginTop: '2.5%'}}>Form your LLC now</Button>                 
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
-                    */}
                 </div>
             )
         }
@@ -257,6 +246,10 @@ class App extends React.Component {
             <div style={{fontFamily: 'Helvetica Neue, helvetica'}}>
                 { headerContent }
                 { pageContent }
+                <Footer 
+                    active={this.state.active}
+                    adminLogin={this.adminLogin}
+                />
             </div>
         )
     }

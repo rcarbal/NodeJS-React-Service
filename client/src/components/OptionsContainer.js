@@ -399,9 +399,6 @@ class OptionsContainer extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <Footer />
-
             </div>
         )
     }
