@@ -12,6 +12,7 @@ const processPayment= (data) =>{
                 reject(false)
             }else{
                 console.log("Payment Successful");
+                console.log(payment);
                 resolve(payment);
             }
         });
