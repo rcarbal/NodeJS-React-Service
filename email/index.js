@@ -8,13 +8,13 @@ const emailOrderTemplate = require('./emailtemplate/orderTemplate');
 function sendEmailOrder(data){
     return new Promise((resolve, reject)=>{
 
-        const SEND_TO_EMAIL_ORDER = 'ricardo.a.carballo@gmail.com';
+        const SEND_TO_EMAIL_ORDER = 'orders@smooth.legal';
         let html = emailOrderTemplate(data);        
 
         let email = {
             to: SEND_TO_EMAIL_ORDER,
-            from: 'ricardo.a.carballo@gmail.com',
-            subject: `Order for ${data.name} LLC Application`   
+            from: 'orders@smooth.legal',
+            subject: `Order for ${data.name} Application`   
         }
 
         email.html = html
@@ -30,8 +30,8 @@ function sendEmailConfirmtaion(data) {
 
         const email = {
             to: SEND_TO_EMAIL_CONFIRMATION,
-            from: 'ricardo.a.carballo@gmail.com',
-            subject: `Purchase Confirmataion for ${data.name} LLC Application`,          
+            from: 'orders@smooth.legal',
+            subject: `Purchase Confirmation for ${data.name} Application`,          
         }
 
         email.html = emailConfirmationTemplate(data)  
