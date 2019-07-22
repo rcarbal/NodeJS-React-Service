@@ -62,5 +62,7 @@ const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
     console.log(`Started Smoothlegal server... 
+    
+    \nmachine: ${process.env.USERNAME}
     \nListening on port: ${port}`);
 });
