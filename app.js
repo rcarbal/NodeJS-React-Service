@@ -5,6 +5,7 @@
 
 const devApiRoutes = require('./routes/devApi'),
       prodApiRoutes = require('./routes/prodApi'), 
+      authRoutes    = require('./routes/authRoutes'),
       bodyParser    = require("body-parser"),
       passport      = require('passport'),
       LocalStrategy = require('passport-local'),
@@ -14,11 +15,15 @@ const devApiRoutes = require('./routes/devApi'),
 
 
 app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(bodyParser.text());
+app.use(authRoutes);
 app.use(devApiRoutes);
 app.use(prodApiRoutes);
 
-// Passport configuration
+
+// Passport configurations
 app.use(require('express-session')({
     secret: '2Qepxniwwin98fujitsu',
     resave: false,

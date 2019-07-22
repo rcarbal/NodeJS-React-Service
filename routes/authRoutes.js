@@ -1,6 +1,26 @@
 const express = require('express'),
-    router = express.Router();
+      User = require('../models/user'),
+      passport = require("passport");
+      router = express.Router();
 
-router.post("/register", (req, res)=>{
-    
+router.get('/api/v1/register', (req, res)=>{
+    res.render('register');
+})
+
+router.post("/api/v1/register", (req, res)=>{
+    console.log(req.body);
+    let newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, (err, user) =>{
+        if (err){
+            console.log(err);
+            return res.redirect("/");
+        }
+        console.log("User Saved");
+        console.log(user);
+        passport.authenticate("local")(req, res, ()=>{
+        res.send(`${user.username}: SAVED`);
+        });
+    });
 });
+
+module.exports = router;
