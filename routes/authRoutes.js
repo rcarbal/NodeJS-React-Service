@@ -23,4 +23,8 @@ router.post("/api/v1/register", (req, res)=>{
     });
 });
 
+router.post("/api/v1/login",passport.authenticate('local'), (req, res)=>{
+    res.status(200).send({loginSuccess: req.user.username});
+});
+
 module.exports = router;
