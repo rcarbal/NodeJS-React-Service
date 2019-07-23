@@ -1,5 +1,7 @@
 import React from 'react';
-import { Steps, Menu, Button } from 'element-react';
+import { Steps, 
+         Menu, 
+        } from 'element-react';
 
 import Navbar from './Navbar';
 import InfoContainer from './InfoContainer';
@@ -180,7 +182,7 @@ class App extends React.Component {
 	                                    <p className="hero-paragraph">SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
 							            <div className="hero-form field field-grouped">
 							            	<div className="control">
-							            		<a className="button button-primary button-block" onClick={this.startForm} href="#">Start your form</a>
+							            		<a className="button button-primary button-block" onClick={this.startForm} href="/">Start your form</a>
 							            	</div>
 							            </div>
                                     </div>
@@ -199,7 +201,7 @@ class App extends React.Component {
             headerContent = (
                 <div>
                     <Navbar />
-                    <Menu defaultActive="1" className="container-fluid" mode="horizontal" className='border-top border-light' style={{background: '#11103E'}}>
+                    <Menu defaultActive="1" mode="horizontal" className='border-top border-light container-fluid' style={{background: '#11103E'}}>
                         <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
                             <Steps.Step title="Company & Contact"></Steps.Step>
                             <Steps.Step title="Options & Services"></Steps.Step>

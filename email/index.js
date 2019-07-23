@@ -19,7 +19,7 @@ function sendEmailOrder(data){
         let email = {
             to: SEND_TO_EMAIL_ORDER,
             from: 'orders@smooth.legal',
-            subject: `Order for ${data.name} LLC Application`   
+            subject: `Order for ${data.name} Application`   
         }
 
         email.html = html

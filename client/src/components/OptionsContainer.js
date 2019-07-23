@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { Form, Button, Radio, Checkbox, InputNumber, Input, Layout, Tooltip } from 'element-react/next';
-
-import Footer from './Footer';
+import { Form, Button, Radio, Checkbox, InputNumber, Input, Tooltip } from 'element-react/next';
 
 class OptionsContainer extends React.Component {
 
