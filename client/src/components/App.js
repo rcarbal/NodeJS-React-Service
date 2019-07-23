@@ -1,11 +1,12 @@
 import React from 'react';
-import { Steps, Menu, Button } from 'element-react';
+import { Steps, 
+         Menu, 
+        } from 'element-react';
 
 import Navbar from './Navbar';
 import InfoContainer from './InfoContainer';
 import OptionsContainer from './OptionsContainer';
 import PayContainer from './PayContainer';
-import Admin from './Admin';
 import Footer from './Footer';
 
 import '../Smooth.css'
@@ -20,7 +21,6 @@ class App extends React.Component {
             // Toggles nav steps
             start: false,
             active: 1,
-            loginClick: false,
             form: {
                 stateOfIncorporation: 'Delaware',
                 type: 'LLC'
@@ -41,10 +41,6 @@ class App extends React.Component {
                 active = 1;
             }
         this.setState({ active });
-    }
-
-    startLogin = () => {
-        this.setState({ loginClick: true })
     }
 
     saveForm = (data) => {
@@ -71,9 +67,6 @@ class App extends React.Component {
         let pageContent;
         let headerContent;
         let activeContent = this.state.active;
-
-        console.log('activeContent a.k.a. this.state.active')
-        console.log(activeContent);
 
         if (this.state.start){
             if (activeContent === 1) {
@@ -164,29 +157,6 @@ class App extends React.Component {
             pageContent = (
                 <div>
                     <header className="site-header">
-			            <div className="header-shape header-shape-1">
-				            <svg width="337" height="222" viewBox="0 0 337 222" xmlns="http://www.w3.org/2000/svg">
-				                <defs>
-				                    <linearGradient x1="50%" y1="55.434%" x2="50%" y2="0%" id="header-shape-1">
-				                        <stop stop-color="#E0E1FE" stop-opacity="0" offset="0%"/>
-				                        <stop stop-color="#E0E1FE" offset="100%"/>
-				                    </linearGradient>
-				                </defs>
-				                <path d="M1103.21 0H1440v400h-400c145.927-118.557 166.997-251.89 63.21-400z" transform="translate(-1103)" fill="url(#header-shape-1)" fill-rule="evenodd"/>
-				            </svg>
-			            </div>
-			            <div className="header-shape header-shape-2">
-				            <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" style={{overflow: 'visible'}}>
-				                <defs>
-				                    <linearGradient x1="93.05%" y1="19.767%" x2="15.034%" y2="85.765%" id="header-shape-2">
-				                        <stop stop-color="#FF3058" offset="0%"/>
-				                        <stop stop-color="#FF6381" offset="100%"/>
-				                    </linearGradient>
-				                </defs>
-				                <circle className="anime-element fadeup-animation" cx="64" cy="64" r="64" fill="url(#header-shape-2)" fill-rule="evenodd"/>
-				            </svg>
-			            </div>
-
                         <div className="container">
                             <div className="site-header-inner">
                                 <div className="brand header-brand">
@@ -212,7 +182,7 @@ class App extends React.Component {
 	                                    <p className="hero-paragraph">SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
 							            <div className="hero-form field field-grouped">
 							            	<div className="control">
-							            		<a className="button button-primary button-block" onClick={this.startForm} href="#">Start your form</a>
+							            		<a className="button button-primary button-block" onClick={this.startForm} href="/">Start your form</a>
 							            	</div>
 							            </div>
                                     </div>
@@ -231,7 +201,7 @@ class App extends React.Component {
             headerContent = (
                 <div>
                     <Navbar />
-                    <Menu defaultActive="1" className="container-fluid" mode="horizontal" className='border-top border-light' style={{background: '#11103E'}}>
+                    <Menu defaultActive="1" mode="horizontal" className='border-top border-light container-fluid' style={{background: '#11103E'}}>
                         <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
                             <Steps.Step title="Company & Contact"></Steps.Step>
                             <Steps.Step title="Options & Services"></Steps.Step>
@@ -246,10 +216,7 @@ class App extends React.Component {
             <div style={{fontFamily: 'Helvetica Neue, helvetica'}}>
                 { headerContent }
                 { pageContent }
-                <Footer 
-                    active={this.state.active}
-                    adminLogin={this.adminLogin}
-                />
+                <Footer />
             </div>
         )
     }
