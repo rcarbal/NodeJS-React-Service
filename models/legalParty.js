@@ -9,4 +9,4 @@ const mongoose = require("mongoose"),
 
 const legalPartySchema = new mongoose.Schema(properties.legalParty);
 
-module.exports = mongoose.model("LegalParty", legalPartySchema);
+module.exports = mongoose.model("memberName", legalPartySchema);

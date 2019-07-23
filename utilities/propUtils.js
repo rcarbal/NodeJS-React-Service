@@ -5,7 +5,7 @@ const { ServicesString, enforcedProps } = require('../utilities/propRefs');
 const LegalParties = require("../models/legalParty");
 
 
-extractPopularServices = (array, word) => {
+const extractPopularServices = (array, word) => {
     for (var i = 0; i < array.length; i++) {
         if (array[i]["value"] === word) {
             return {
@@ -17,7 +17,7 @@ extractPopularServices = (array, word) => {
     return {};
 }
 
-checkProp = (data = {}, property1, property2) => {
+const checkProp = (data = {}, property1, property2) => {
     if (data.hasOwnProperty(property1) && data.hasOwnProperty(property2)) {
         return {
             price: data.price,
@@ -29,7 +29,7 @@ checkProp = (data = {}, property1, property2) => {
     }
 }
 
-converServicesToHTML = ({ services }, refs, payment) => {
+const converServicesToHTML = ({ services }, refs, payment) => {
     let html = "";
 
     for (let ref in refs) {
@@ -131,12 +131,12 @@ converServicesToHTML = ({ services }, refs, payment) => {
 
 }
 
-getRefString = (ref) => {
+const getRefString = (ref) => {
     return ServicesString[ref];
 
 };
 
-getNumberOfCopies = (paymentObject, order) => {
+const getNumberOfCopies = (paymentObject, order) => {
     let copies = "";
     let onePrice = "";
 
@@ -182,12 +182,12 @@ getNumberOfCopies = (paymentObject, order) => {
     }
 }
 
-getDate = () => {
+const getDate = () => {
     const date = new Date();
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 }
 
-getPayment = (payment) => {
+const getPayment = (payment) => {
     const dollars = payment / 100;
     const cents = payment % 100;
 

@@ -1,8 +1,9 @@
-const { converServicesToHTML, getDate, formatMoney } = require('../../utilities/propUtils');
+const { converServicesToHTML, extractLegalParties} = require('../../utilities/propUtils');
 const { servicesRef } = require('../../utilities/propRefs')
 
 module.exports = (data, callback) => {
   const servicesHTML = converServicesToHTML(data, servicesRef);
+  // const parties = extractLegalParties(data);
   
   return `
 <html>

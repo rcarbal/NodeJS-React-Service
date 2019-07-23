@@ -99,7 +99,7 @@ function saveToDatabase(data) {
                             }
                             for (var property in legalParties.insertedIds) {
                                 if (legalParties.insertedIds.hasOwnProperty(property)) {
-                                    company.legalParty.push(legalParties.insertedIds[property]);
+                                    company.memberNames.push(legalParties.insertedIds[property]);
                                 }
                             }
                             Services.create(servicesData, (err, services) => {
@@ -146,7 +146,7 @@ function saveToDatabase(data) {
 function queryDbRefsFilled(data) {
     return new Promise((resolve, reject) => {
         Company.findById(data.id)
-            .populate(["contact", "legalParty", "request", "services"])
+            .populate(["contact", "memberName", "request", "services"])
             .exec((error, company) => {
                 if (error) {
                     console.log('Error on Populate execute.');
