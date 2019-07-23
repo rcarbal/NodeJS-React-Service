@@ -11,8 +11,6 @@ class Footer extends React.Component {
     }
 
     render() {
-
-        console.log(this.state.active)
         return(
             <footer className="site-footer">
                 <div className="container">
@@ -25,9 +23,6 @@ class Footer extends React.Component {
                         </a>
                         <div className="row d-flex justify-content-center" style={{marginBottom: '12px'}}>
                             &copy; 2019 SmoothLegal, all rights reserved
-                        </div>
-                        <div className='row d-flex justify-content-center'>
-                            <button onClick={this.adminLogin.bind(this)}>Admin login</button>
                         </div>
                     </div>
                 </div>

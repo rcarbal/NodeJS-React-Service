@@ -1,5 +1,11 @@
 import React from 'react';
 
+import { Input,
+         Form,
+         Dialog,
+         Button
+       } from 'element-react/next';
+
 import '../Smooth.css'
 
 const Navbar = () => {
@@ -11,6 +17,7 @@ const Navbar = () => {
                     <i className="far fa-paper-plane fa-stack-1x"></i>
                 </span>
             </a>
+            
         </nav>
     )
 };
