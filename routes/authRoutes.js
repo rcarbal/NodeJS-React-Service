@@ -1,6 +1,7 @@
 const express = require('express'),
       User = require('../models/user'),
-      passport = require("passport");
+      passport = require("passport"),
+      { adminSecretCode } = require('../config/keys');
       router = express.Router();
 
 router.get('/api/v1/register', (req, res)=>{
@@ -10,6 +11,11 @@ router.get('/api/v1/register', (req, res)=>{
 router.post("/api/v1/register", (req, res)=>{
     console.log(req.body);
     let newUser = new User({username: req.body.username});
+
+    if (req.body.adminCode === adminSecretCode){
+        newUser.isAdmin = true;
+    }
+
     User.register(newUser, req.body.password, (err, user) =>{
         if (err){
             console.log(err);
