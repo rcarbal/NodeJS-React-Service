@@ -8,7 +8,12 @@ const emailOrderTemplate = require('./emailtemplate/orderTemplate');
 function sendEmailOrder(data){
     return new Promise((resolve, reject)=>{
 
-        const SEND_TO_EMAIL_ORDER = 'orders@smooth.legal';
+        let SEND_TO_EMAIL_ORDER = '';
+        if (process.env.USERNAME === "rcarb"){
+            SEND_TO_EMAIL_ORDER = "ricardo.a.carballo@gmail.com";
+        } else {
+            SEND_TO_EMAIL_ORDER = 'orders@smooth.legal';
+        } 
         let html = emailOrderTemplate(data);        
 
         let email = {
