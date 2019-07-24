@@ -30,7 +30,7 @@ router.post("/api/v1/register", (req, res) => {
     });
 });
 
-router.get("/api/v1/login", (req, res) => {
+router.get("/api/v1/login", (req, res) =>{
     res.render('login');
 });
 
