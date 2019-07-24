@@ -27,28 +27,28 @@ class Navbar extends React.Component {
                     </span>
                 </a>
                 <div className='nav-item'>
-                    <Button>Login</Button>
-                    <Dialog
-            title="Shipping Address"
-            visible={ this.state.dialogVisible }
-            onCancel={ () => this.setState({ dialogVisible: false }) }
-          >
-            <Dialog.Body>
-              <Form model={this.state.form}>
-                <Form.Item label="Promotion name" labelWidth="120">
-                  <Input value={this.state.form.name}></Input>
-                </Form.Item>
-                <Form.Item label="Zones" labelWidth="120">
-                    <Input value={this.state.form.name}></Input>
-                </Form.Item>
-              </Form>
-            </Dialog.Body>
+                    <Button type='text' onClick={ () => this.setState({ dialogVisible: true })}>Login</Button>
+                        <Dialog
+                            title="Shipping Address"
+                            visible={ this.state.dialogVisible }
+                            onCancel={ () => this.setState({ dialogVisible: false }) }
+                        >
+                        <Dialog.Body>
+                            <Form model={this.state.form}>
+                                <Form.Item label="Promotion name" labelWidth="120">
+                                    <Input value={this.state.form.name}></Input>
+                                </Form.Item>
+                                <Form.Item label="Zones" labelWidth="120">
+                                    <Input value={this.state.form.name}></Input>
+                                </Form.Item>
+                            </Form>
+                        </Dialog.Body>
     
-            <Dialog.Footer className="dialog-footer">
-              <Button onClick={ () => this.setState({ dialogVisible: false }) }>取 消</Button>
-              <Button type="primary" onClick={ () => this.setState({ dialogVisible: false }) }>确 定</Button>
-            </Dialog.Footer>
-          </Dialog>
+                        <Dialog.Footer className="dialog-footer">
+                            <Button onClick={ () => this.setState({ dialogVisible: false }) }>取 消</Button>
+                            <Button type="primary" onClick={ () => this.setState({ dialogVisible: false }) }>确 定</Button>
+                        </Dialog.Footer>
+                    </Dialog>
                 </div>
             </nav>
         )

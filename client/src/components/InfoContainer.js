@@ -1,13 +1,10 @@
 import React from 'react';
 import  { 
-            Layout, 
             Input,
             Button,
-            Form, 
-            Select,
+            Form,
             Tooltip
         } from 'element-react/next';
-import Footer from './Footer';
 
 class InfoContainer extends React.Component {
     state = {
@@ -185,6 +182,7 @@ class InfoContainer extends React.Component {
     };
     
     render(){
+        console.log(this.state.active)
         return (
             <div>
                 <Form ref='form' model={this.state} rules={this.state.rules}>

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Steps, 
          Menu, 
         } from 'element-react';
@@ -147,8 +148,6 @@ class App extends React.Component {
                             saveAndNext={this.saveAndNext}
                             onBack={this.saveAndBack}
                             formData={JSON.stringify(this.state.form)}
-
-                            active={this.state.active}
                         />
                     </div>
                 )
@@ -156,6 +155,7 @@ class App extends React.Component {
         } else {
             pageContent = (
                 <div>
+                    <Navbar />
                     <header className="site-header">
                         <div className="container">
                             <div className="site-header-inner">
