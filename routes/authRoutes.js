@@ -1,7 +1,8 @@
 const express = require('express'),
     User = require('../models/user'),
     passport = require("passport"),
-    { adminSecretCode } = require('../config/keys');
+    { adminSecretCode } = require('../config/keys'),
+    { queryAllCompanies } = require('../database/database');
 router = express.Router();
 
 router.get('/api/v1/register', (req, res) => {
@@ -29,14 +30,23 @@ router.post("/api/v1/register", (req, res) => {
     });
 });
 
-router.get("/api/v1/login", (req, res) =>{
+router.get("/api/v1/login", (req, res) => {
     res.render('login');
 });
 
 router.post("/api/v1/login", passport.authenticate('local'), (req, res) => {
-    res.status(200).send({
-        loginSuccess: req.user.username,
-        isAdmin: req.user.isAdmin
+    queryAllCompanies().then((database) => {
+
+        let sendDB = {};
+        if (req.user.isAdmin){
+            sendDB = database;
+        }
+
+        res.status(200).send({
+            loginSuccess: req.user.username,
+            isAdmin: req.user.isAdmin,
+            sendDB
+        });
     });
 });
 

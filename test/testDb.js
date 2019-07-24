@@ -140,7 +140,7 @@ Story.
 function retieveDatabasePopulatedDocs() {
     Company
         .findOne({})
-        .populate(["contact","memberName", "request","services"])
+        .populate(["contact","legalParty", "request","services"])
         .exec((error, company) => {
             if (error) {
                 console.log(error);
