@@ -182,7 +182,7 @@ class App extends React.Component {
 	                                    <p className="hero-paragraph">SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
 							            <div className="hero-form field field-grouped">
 							            	<div className="control">
-							            		<a className="button button-primary button-block" onClick={this.startForm} href="/">Start your form</a>
+							            		<a className="button button-primary button-block" onClick={this.startForm} href="#">Start your form</a>
 							            	</div>
 							            </div>
                                     </div>
