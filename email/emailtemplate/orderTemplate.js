@@ -1,9 +1,9 @@
-const { converServicesToHTML, extractLegalParties} = require('../../utilities/propUtils');
+const { converServicesToHTML, extractLegalPartiesToHTMl} = require('../../utilities/propUtils');
 const { servicesRef } = require('../../utilities/propRefs')
 
 module.exports = (data, callback) => {
   const servicesHTML = converServicesToHTML(data, servicesRef);
-  // const parties = extractLegalParties(data);
+  const parties = extractLegalPartiesToHTMl(data);
   
   return `
 <html>
@@ -37,8 +37,7 @@ module.exports = (data, callback) => {
 
 <br>
 <h2>${data.type} Members</h2>
-<div><strong>Primary: </strong>Ricardo Carballo</div>
-<div><strong>Additional: </strong>Lianny Sabillon</div>
+${parties}
 
 <br>
 <h2>${data.type} Service Items:</h2>

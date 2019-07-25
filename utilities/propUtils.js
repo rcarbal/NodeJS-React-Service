@@ -308,15 +308,27 @@ function enforceProperties(properties) {
     return missingProps;
 }
 
-function extractLegalParties({memberName}){
-    let arr =[]
+function extractLegalParties({ memberName }) {
+    let arr = []
 
-    for (i in memberName){
-        if (memberName[i].hasOwnProperty('value')){
-            const party = {name: memberName[i]['value']};
+    for (i in memberName) {
+        if (memberName[i].hasOwnProperty('value')) {
+            const party = { name: memberName[i]['value'] };
             arr.push(LegalParties(party))
         };
     };
+    return arr;
+};
+
+function extractLegalPartiesToHTMl({ legalParty }) {
+    let arr = ``;
+    for (i in legalParty) {
+        if (legalParty[i].hasOwnProperty('name')) {
+            const party = legalParty[i]['name'];
+            arr += `<div>Member: <strong>${party}</strong></div>`;
+        };
+    };
+    console.log(arr);
     return arr;
 };
 
@@ -340,5 +352,6 @@ module.exports = {
     formatMoney,
     enforceProperties,
     checkIfObjectIsEmpty,
-    extractLegalParties
+    extractLegalParties,
+    extractLegalPartiesToHTMl
 }

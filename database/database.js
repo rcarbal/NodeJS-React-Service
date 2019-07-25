@@ -145,7 +145,7 @@ function saveToDatabase(data) {
 
 function queryDbRefsFilled(data) {
     return new Promise((resolve, reject) => {
-        Company.findById(data.id)
+        Company.findById(data.id).lean()
             .populate(["contact", "legalParty", "request", "services"])
             .exec((error, company) => {
                 if (error) {
@@ -155,7 +155,6 @@ function queryDbRefsFilled(data) {
                 } else {
                     console.log("========================================================");
                     console.log("RETRIEVED FILLED REFERENCE");
-                    console.log(company);
                     resolve(company);
                 }
             });
@@ -174,7 +173,6 @@ function queryAllCompanies() {
                 } else {
                     console.log("========================================================");
                     console.log("RETRIEVED FILLED REFERENCE");
-                    console.log(company);
                     resolve(company);
                 }
             });

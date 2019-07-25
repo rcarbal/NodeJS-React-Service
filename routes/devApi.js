@@ -6,7 +6,7 @@ const express = require('express'),
     { saveToDatabase, queryDbRefsFilled } = require('../database/database'),
     { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
     { enforceProperties, checkIfObjectIsEmpty } = require('../utilities/propUtils'),
-    { SMOOTH_LEGAL_PACKAGE_CONSTANTS } = require('../utilities/clientConstants')
+    { SMOOTH_LEGAL_PACKAGE_CONSTANTS } = require('../utilities/clientConstants'),
     router = express.Router();
 
 console.log("Inside dev API ======================================");
