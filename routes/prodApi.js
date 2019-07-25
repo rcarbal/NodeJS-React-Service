@@ -5,6 +5,7 @@ const express = require('express'),
     { processPayment } = require('../payment'),
     { saveToDatabase, queryDbRefsFilled } = require('../database/database'),
     { sendEmailConfirmtaion, sendEmailOrder } = require('../email'),
+    { SMOOTH_LEGAL_PACKAGE_CONSTANTS } = require('../utilities/clientConstants'),
     router = express.Router();
 
 router.get("/api/v1/package/JSON", (req, res) => {

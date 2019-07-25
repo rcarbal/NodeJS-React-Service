@@ -99,7 +99,7 @@ function saveToDatabase(data) {
                             }
                             for (var property in legalParties.insertedIds) {
                                 if (legalParties.insertedIds.hasOwnProperty(property)) {
-                                    company.memberNames.push(legalParties.insertedIds[property]);
+                                    company.legalParty.push(legalParties.insertedIds[property]);
                                 }
                             }
                             Services.create(servicesData, (err, services) => {
@@ -145,8 +145,8 @@ function saveToDatabase(data) {
 
 function queryDbRefsFilled(data) {
     return new Promise((resolve, reject) => {
-        Company.findById(data.id)
-            .populate(["contact", "memberName", "request", "services"])
+        Company.findById(data.id).lean()
+            .populate(["contact", "legalParty", "request", "services"])
             .exec((error, company) => {
                 if (error) {
                     console.log('Error on Populate execute.');
@@ -155,15 +155,32 @@ function queryDbRefsFilled(data) {
                 } else {
                     console.log("========================================================");
                     console.log("RETRIEVED FILLED REFERENCE");
-                    console.log(company);
                     resolve(company);
                 }
             });
     });
 }
 
+function queryAllCompanies() {
+    return new Promise((resolve, reject) => {
+        Company.find()
+            .populate(["contact", "legalParty", "request", "services"])
+            .exec((error, company) => {
+                if (error) {
+                    console.log('Error on Populate execute.');
+                    console.log(error);
+                    reject(error);
+                } else {
+                    console.log("========================================================");
+                    console.log("RETRIEVED FILLED REFERENCE");
+                    resolve(company);
+                }
+            });
+    });
+}
 module.exports = {
     saveToDatabase,
-    queryDbRefsFilled
+    queryDbRefsFilled,
+    queryAllCompanies
 }
 

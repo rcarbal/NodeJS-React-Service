@@ -26,9 +26,9 @@ class Payments extends React.Component {
 
         let URL;
         if(process.env.NODE_ENV === 'production'){
-            URL = '/api/v1/package/JSON';
+            URL = '/api/v1/';
         }else{
-            URL = '/api/v01/test/package/JSON';
+            URL = '/api/v01/test';
         }
 
         fetch(URL, {

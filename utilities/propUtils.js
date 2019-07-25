@@ -3,7 +3,28 @@
  */
 const { ServicesString, enforcedProps } = require('../utilities/propRefs');
 const LegalParties = require("../models/legalParty");
+const { SMOOTH_LEGAL_PACKAGE_CONSTANTS } = require('../utilities/clientConstants');
 
+const getPackageInfo = (packageName) => {
+    let html = ``;
+
+    for (i in SMOOTH_LEGAL_PACKAGE_CONSTANTS) {
+        if (SMOOTH_LEGAL_PACKAGE_CONSTANTS[i]['title'] === packageName) {
+
+            for (a in SMOOTH_LEGAL_PACKAGE_CONSTANTS[i]) {
+
+                if (a !== "title") {
+                    for (y in SMOOTH_LEGAL_PACKAGE_CONSTANTS[i][a]){
+                        html += `<span>· ${SMOOTH_LEGAL_PACKAGE_CONSTANTS[i][a][y]}</span><br>`;
+                    };
+                }
+            };
+        };
+    };
+
+    return html;
+
+}
 
 const extractPopularServices = (array, word) => {
     for (var i = 0; i < array.length; i++) {
@@ -55,8 +76,10 @@ const converServicesToHTML = ({ services }, refs, payment) => {
                 // If there is a payment object, for Confirmation email
                 if (payment) {
                     if (refString === 'package') {
-                        const package = services["package"]['name'];
-                        refString = `Package: ${services['package']['name']}`;
+                        const name = services["package"]['name'];
+                        const info = getPackageInfo(name);
+                        refString = `Package: ${services['package']['name']}<br>`;
+                        refString += info;
                     }
 
                     if (refString === "Delivery Option - ") {
@@ -308,15 +331,27 @@ function enforceProperties(properties) {
     return missingProps;
 }
 
-function extractLegalParties({memberName}){
-    let arr =[]
+function extractLegalParties({ memberName }) {
+    let arr = []
 
-    for (i in memberName){
-        if (memberName[i].hasOwnProperty('value')){
-            const party = {name: memberName[i]['value']};
+    for (i in memberName) {
+        if (memberName[i].hasOwnProperty('value')) {
+            const party = { name: memberName[i]['value'] };
             arr.push(LegalParties(party))
         };
     };
+    return arr;
+};
+
+function extractLegalPartiesToHTMl({ legalParty }) {
+    let arr = ``;
+    for (i in legalParty) {
+        if (legalParty[i].hasOwnProperty('name')) {
+            const party = legalParty[i]['name'];
+            arr += `<div>Member: <strong>${party}</strong></div>`;
+        };
+    };
+    console.log(arr);
     return arr;
 };
 
@@ -340,5 +375,6 @@ module.exports = {
     formatMoney,
     enforceProperties,
     checkIfObjectIsEmpty,
-    extractLegalParties
+    extractLegalParties,
+    extractLegalPartiesToHTMl
 }
