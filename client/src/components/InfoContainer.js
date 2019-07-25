@@ -182,7 +182,6 @@ class InfoContainer extends React.Component {
     };
     
     render(){
-        console.log(this.state.active)
         return (
             <div>
                 <Form ref='form' model={this.state} rules={this.state.rules}>
