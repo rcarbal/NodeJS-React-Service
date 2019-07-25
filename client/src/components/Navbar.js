@@ -20,15 +20,28 @@ class Navbar extends React.Component {
         loginSubmitClicked: false,
         signUpSubmitClicked: false
     }
+
     
     loginEmailInput(loginEmail) {
         this.state.loginForm.email = loginEmail;
         this.setState({ loginEmail : loginEmail });
     }
 
+    onLoginSubmit = () => {
+        this.setState({ dialogVisible: false });
+        this.setState({ loginSubmitClicked: true })
+        console.log(this.state.loginForm.email);
+    }
+
     signUpEmailInput(signUpEmail) {
         this.state.signUpForm.email = signUpEmail;
         this.setState({ signUpEmail: signUpEmail });
+    }
+
+    onSignUpSubmit = () => {
+        this.setState({ dialogVisible2: false });
+        this.setState({ signUpSubmitClicked: true });
+        console.log(this.state.signUpForm.email);
     }
 
     onLogout(e) {
@@ -116,11 +129,7 @@ class Navbar extends React.Component {
                                 <Dialog.Footer className="dialog-footer">
                                     <button 
                                         className='button button-primary' 
-                                        onClick={ () => {
-                                            this.setState({ dialogVisible: false });
-                                            this.setState({ loginSubmitClicked: true })
-                                            console.log(this.state.loginForm.email);
-                                        }}>
+                                        onClick={this.onLoginSubmit}>
                                         Submit
                                     </button>
                                 </Dialog.Footer>
@@ -157,11 +166,7 @@ class Navbar extends React.Component {
                                 <Dialog.Footer className="dialog-footer">
                                     <button 
                                         className='button button-primary' 
-                                        onClick={ () => {
-                                            this.setState({ dialogVisible2: false });
-                                            this.setState({ signUpSubmitClicked: true });
-                                            console.log(this.state.signUpForm.email);
-                                        }}>
+                                        onClick={this.onSignUpSubmit}>
                                         Submit
                                     </button>
                                 </Dialog.Footer>
