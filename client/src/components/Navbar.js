@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Dialog, Button, Form, Input } from 'element-react/next';
+import { Dialog, Form, Input } from 'element-react/next';
 
 import '../Smooth.css'
 
@@ -29,14 +29,21 @@ class Navbar extends React.Component {
 
     onLoginSubmit = () => {
         let email = this.state.loginForm.email;
-
         let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+        let URL = '/api/v1/login';
 
         if(emailRegex.test(email) === false && email !== '') {
             alert('Please enter a valid email address.');
         } else {
             this.setState({ dialogVisible: false });
-            this.setState({ loginSubmitClicked: true })
+            this.setState({ loginSubmitClicked: true });
+
+            /*
+            fetch(URL, {
+                method: 'POST',
+                body: 
+            })
+            */
             console.log(this.state.loginForm.email);
         }
     }
@@ -46,14 +53,21 @@ class Navbar extends React.Component {
         this.setState({ signUpEmail: signUpEmail });
     }
 
-    onSignUpSubmit = () => {
-        let email = this.state.signUpForm.email;
+    onSignUpSubmit(event) {
+        event.preventDefault();
 
+        let email = this.state.signUpForm.email;
         let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+        const data = new FormData(event.target);
 
         if(emailRegex.test(email) === false && email !== '') {
             alert('Please enter a valid email address.');
         } else {
+            fetch('/api/v1/register', {
+                method: 'POST',
+                body: data
+            })
+
             this.setState({ dialogVisible2: false });
             this.setState({ signUpSubmitClicked: true });
             console.log(this.state.signUpForm.email);
@@ -128,7 +142,7 @@ class Navbar extends React.Component {
                                     onCancel={ () => this.setState({ dialogVisible: false }) }
                                 >
                                 <Dialog.Body>
-                                    <Form model={this.state.loginForm}>
+                                    <Form model={this.state.loginForm} onSubmit={this.onLoginSubmit}>
                                         <Form.Item label="Email Address" labelWidth="120">
                                             <Input 
                                                 type='email'
@@ -137,15 +151,18 @@ class Navbar extends React.Component {
                                             />
                                         </Form.Item>
                                         <Form.Item label="Password" labelWidth="120">
-                                            <Input value={this.state.loginForm.password}></Input>
+                                            <Input 
+                                                value={this.state.loginForm.password} 
+                                            />
                                         </Form.Item>
                                     </Form>
                                 </Dialog.Body>
             
                                 <Dialog.Footer className="dialog-footer">
                                     <button 
-                                        className='button button-primary' 
-                                        onClick={this.onLoginSubmit}>
+                                        action="/api/v1/login" 
+                                        method="POST"
+                                        className='button button-primary'>
                                         Submit
                                     </button>
                                 </Dialog.Footer>
@@ -165,7 +182,7 @@ class Navbar extends React.Component {
                                     onCancel={ () => this.setState({ dialogVisible2: false }) }
                                 >
                                 <Dialog.Body>
-                                    <Form model={this.state.signUpForm}>
+                                    <Form model={this.state.signUpForm} onSubmit={this.onSignUpSubmit.bind(this)}>
                                         <Form.Item label="Email Address" labelWidth="120">
                                             <Input 
                                                 type='email'
@@ -181,8 +198,7 @@ class Navbar extends React.Component {
             
                                 <Dialog.Footer className="dialog-footer">
                                     <button 
-                                        className='button button-primary' 
-                                        onClick={this.onSignUpSubmit}>
+                                        className='button button-primary'>
                                         Submit
                                     </button>
                                 </Dialog.Footer>
