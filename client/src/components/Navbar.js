@@ -41,9 +41,11 @@ class Navbar extends React.Component {
 
         if (loginEmail !== '' && signUpEmail === '' && loginSubmitClicked === true) {
             this.setState({ loginEmail: e.target.value });
+            this.setState({ loginSubmitClicked: false})
         }
         if (loginEmail === '' && signUpEmail !== '' && signUpSubmitClicked === true) {
             this.setState({ signUpEmail: e.target.value });
+            this.setState({ signUpSubmitClicked: false });
         }
     }
 
