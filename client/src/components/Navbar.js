@@ -28,9 +28,17 @@ class Navbar extends React.Component {
     }
 
     onLoginSubmit = () => {
-        this.setState({ dialogVisible: false });
-        this.setState({ loginSubmitClicked: true })
-        console.log(this.state.loginForm.email);
+        let email = this.state.loginForm.email;
+
+        let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+
+        if(emailRegex.test(email) === false && email !== '') {
+            alert('Please enter a valid email address.');
+        } else {
+            this.setState({ dialogVisible: false });
+            this.setState({ loginSubmitClicked: true })
+            console.log(this.state.loginForm.email);
+        }
     }
 
     signUpEmailInput(signUpEmail) {
@@ -39,9 +47,17 @@ class Navbar extends React.Component {
     }
 
     onSignUpSubmit = () => {
-        this.setState({ dialogVisible2: false });
-        this.setState({ signUpSubmitClicked: true });
-        console.log(this.state.signUpForm.email);
+        let email = this.state.signUpForm.email;
+
+        let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+
+        if(emailRegex.test(email) === false && email !== '') {
+            alert('Please enter a valid email address.');
+        } else {
+            this.setState({ dialogVisible2: false });
+            this.setState({ signUpSubmitClicked: true });
+            console.log(this.state.signUpForm.email);
+        }
     }
 
     onLogout(e) {
