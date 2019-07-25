@@ -3,7 +3,28 @@
  */
 const { ServicesString, enforcedProps } = require('../utilities/propRefs');
 const LegalParties = require("../models/legalParty");
+const { SMOOTH_LEGAL_PACKAGE_CONSTANTS } = require('../utilities/clientConstants');
 
+const getPackageInfo = (packageName) => {
+    let html = ``;
+
+    for (i in SMOOTH_LEGAL_PACKAGE_CONSTANTS) {
+        if (SMOOTH_LEGAL_PACKAGE_CONSTANTS[i]['title'] === packageName) {
+
+            for (a in SMOOTH_LEGAL_PACKAGE_CONSTANTS[i]) {
+
+                if (a !== "title") {
+                    for (y in SMOOTH_LEGAL_PACKAGE_CONSTANTS[i][a]){
+                        html += `<span>· ${SMOOTH_LEGAL_PACKAGE_CONSTANTS[i][a][y]}</span><br>`;
+                    };
+                }
+            };
+        };
+    };
+
+    return html;
+
+}
 
 const extractPopularServices = (array, word) => {
     for (var i = 0; i < array.length; i++) {
@@ -55,8 +76,10 @@ const converServicesToHTML = ({ services }, refs, payment) => {
                 // If there is a payment object, for Confirmation email
                 if (payment) {
                     if (refString === 'package') {
-                        const package = services["package"]['name'];
-                        refString = `Package: ${services['package']['name']}`;
+                        const name = services["package"]['name'];
+                        const info = getPackageInfo(name);
+                        refString = `Package: ${services['package']['name']}<br>`;
+                        refString += info;
                     }
 
                     if (refString === "Delivery Option - ") {
