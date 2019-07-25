@@ -34,6 +34,8 @@ nav {
     text-decoration: none;
 }
 
+.navbar-toggler:focus{outline: 0}
+
 .package_card {
     margin-bottom: 1%;
 }
@@ -771,6 +773,7 @@ button,input,select,textarea,label{
 }
 .button:active{outline:0}
 .button::before{border-radius:2px}
+
 .button-sm{
     padding:8px 24px;
     height:32px
@@ -781,11 +784,23 @@ button,input,select,textarea,label{
     background:#4950F6
 }
 
+.nav-button-primary{
+    color: #11103E !important;
+    transition:background .15s ease;
+    background:#4950F6
+}
+
 .button-primary:hover{background:#3f47f6}
 
 .button-secondary{
     color: #4950F6;
     background: #fff;
+    border: 2px #4950F6 solid;
+}
+
+.nav-button-secondary{
+    color: #4950F6;
+    background: none;
     border: 2px #4950F6 solid;
 }
 

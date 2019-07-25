@@ -26,9 +26,9 @@ class Payments extends React.Component {
 
         let URL;
         if(process.env.NODE_ENV === 'production'){
-            URL = '/api/v1/';
+            URL = '/api/v1/package/JSON';
         }else{
-            URL = '/api/v01/test';
+            URL = '/api/v01/test/package/JSON';
         }
 
         fetch(URL, {
@@ -38,15 +38,6 @@ class Payments extends React.Component {
                 JSON.stringify(this.propsData)
             ]
         }).then(response => {
-            /*
-            if (response.status === 400) {
-                console.log(` 
-                    !!!!!!! ERROR !!!!!!!
-                    ${response.json()}
-                `)
-            }
-            */
-
             response.json().then(data => {
                 self.setState({ token: data });
                 self.setState({ tokenInfo: token })
