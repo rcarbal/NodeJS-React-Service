@@ -80,14 +80,14 @@ function saveToDatabase(data) {
             if (err) {
                 console.log('Error on Company create.');
                 console.log(err);
-                reject()
+                reject("MongoDB failed to create Company Schema.");
             }
             else {
                 Contact.create(contactData, (err, contact) => {
                     if (err) {
                         console.log('Error on Contact create.');
                         console.log(err);
-                        reject()
+                        reject("MongoDB failed to create Contact Schema.");
                     }
                     else {
                         company.contact = contact._id;
@@ -95,7 +95,7 @@ function saveToDatabase(data) {
                             if (err) {
                                 console.log('Error on Legal Parties array.');
                                 console.log(err);
-                                reject()
+                                reject("MongoDB failed to create LegalParties Array Schema.");
                             }
                             for (var property in legalParties.insertedIds) {
                                 if (legalParties.insertedIds.hasOwnProperty(property)) {
@@ -106,7 +106,7 @@ function saveToDatabase(data) {
                                 if (err) {
                                     console.log('Error on Services create.');
                                     console.log(err);
-                                    reject()
+                                    reject("MongoDB failed to create Services Schema.");
                                 }
                                 else {
                                     company.services = services._id;
@@ -114,7 +114,7 @@ function saveToDatabase(data) {
                                         if (err) {
                                             console.log('Error on Request create.');
                                             console.log(err);
-                                            reject()
+                                            reject("MongoDB failed to create Request Schema.");
                                         }
                                         else {
                                             company.request = request._id;
@@ -122,6 +122,7 @@ function saveToDatabase(data) {
                                                 if (err) {
                                                     console.log('Error on Company save.');
                                                     console.log(err);
+                                                    reject("MongoDB failed to save Company Schema.");
                                                 }
                                                 else {
                                                     console.log("Company Saved");
@@ -151,7 +152,7 @@ function queryDbRefsFilled(data) {
                 if (error) {
                     console.log('Error on Populate execute.');
                     console.log(error);
-                    reject(error);
+                    reject("Error: querying company.");
                 } else {
                     console.log("========================================================");
                     console.log("RETRIEVED FILLED REFERENCE");

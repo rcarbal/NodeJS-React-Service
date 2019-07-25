@@ -53,7 +53,7 @@ function send(email, data, resolve, reject){
             if (error) {
                 console.log(`Error on email send.`);
                 console.log(error);
-                reject();
+                reject("Error sending email");
             } else {
                 console.log("=======================")
                 console.log(` Email sent`)

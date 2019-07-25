@@ -83,10 +83,9 @@ router.post("/api/v01/test", (req, res) => {
                     res.status(200).send(data);
                 }
             })
-            .catch(()=>{
-                console.log("Payment Failed")
+            .catch((message)=>{
                 res.status(409).send({
-                    payment: 'Failed'
+                    error: message
                 });
             });
     }

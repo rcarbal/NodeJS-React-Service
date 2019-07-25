@@ -15,7 +15,7 @@ const getPackageInfo = (packageName) => {
 
                 if (a !== "title") {
                     for (y in SMOOTH_LEGAL_PACKAGE_CONSTANTS[i][a]){
-                        html += `<span>· ${SMOOTH_LEGAL_PACKAGE_CONSTANTS[i][a][y]}</span><br>`;
+                        html += `<span>·   ${SMOOTH_LEGAL_PACKAGE_CONSTANTS[i][a][y]}</span><br>`;
                     };
                 }
             };
@@ -108,7 +108,11 @@ const converServicesToHTML = ({ services }, refs, payment) => {
                 else {
 
                     if (refString === 'package') {
-                        refString = `Package: ${services['package']['name']}`;
+                        const name = services["package"]['name'];
+                        const info = getPackageInfo(name);
+                        refString = `Package: ${services['package']['name']}<br>`;
+                        refString += info;
+                        console.log();
                     }
                     if (refString === "Delivery Option - ") {
                         if (services.deliveryOption) {

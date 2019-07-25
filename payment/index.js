@@ -9,7 +9,7 @@ const processPayment= (data) =>{
             if(error){
                 console.log('Payment Unsuccessful')
                 console.log(error);
-                reject(false)
+                reject("Proccessing Payment Failed")
             }else{
                 console.log("Payment Successful");
                 console.log(payment);
