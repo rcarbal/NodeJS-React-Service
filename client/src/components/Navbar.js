@@ -90,7 +90,7 @@ class Navbar extends React.Component {
                             <button 
                                 className="button-sm nav-button-primary button" 
                                 onClick={ () => this.setState({ dialogVisible: true })} 
-                                style={{margin: '3px'}}>
+                                style={{margin: '3px', outline: '0'}}>
                                 Login
                             </button>
                                 <Dialog
@@ -131,7 +131,7 @@ class Navbar extends React.Component {
                             <button 
                                 className="button button-sm nav-button-secondary" 
                                 onClick={ () => this.setState({ dialogVisible2: true })} 
-                                style={{marginTop: '1px', margin: '3px'}}>
+                                style={{marginTop: '1px', margin: '3px', outline: '0'}}>
                                 Sign Up
                             </button>
                                 <Dialog
@@ -200,7 +200,7 @@ class Navbar extends React.Component {
                                 className="button-sm nav-button-primary button" 
                                 value=''
                                 onClick={ this.onLogout.bind(this) } 
-                                style={{margin: '3px'}}>
+                                style={{margin: '3px', outline: '0'}}>
                                 Logout
                             </button>
                         </div>
