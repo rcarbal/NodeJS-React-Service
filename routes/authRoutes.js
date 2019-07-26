@@ -11,7 +11,7 @@ router.get('/api/v1/register', (req, res) => {
 
 router.post("/api/v1/register", (req, res) => {
     console.log(req.body);
-    const username = req.body.usernamel;
+    const username = req.body.username;
     const password = req.body.password;
 
     let newUser = new User({ username });
@@ -28,7 +28,10 @@ router.post("/api/v1/register", (req, res) => {
         console.log("User Saved");
         console.log(user);
         passport.authenticate("local")(req, res, () => {
-            res.send(`${user.username}: SAVED`);
+            res.status(200).send({
+                user: user.username,
+                isAdmin:user.isAdmin
+            })
         });
     });
 });
