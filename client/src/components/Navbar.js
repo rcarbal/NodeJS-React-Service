@@ -143,75 +143,14 @@ class Navbar extends React.Component {
             loginSubmitClicked: false,
             signUpSubmitClicked: false
         });
-
-        /*
-        let data;
-        let loginEmail = this.state.loginForm.email;
-        let signUpEmail = this.state.signUpForm.email;
-        let loginSubmitClicked = this.state.loginSubmitClicked;
-        let signUpSubmitClicked = this.state.signUpSubmitClicked;
-
-        if (loginEmail !== '' && signUpEmail === '' && loginSubmitClicked === true) {
-            data = this.state.loginForm;
-            fetch('/api/v1/logout', {
-                method: 'POST',
-                body: JSON.stringify({
-                    username: data.email,
-                    password: data.password
-                })
-            }).then(response => {
-                console.log(response)
-            }).catch(error => {
-                console.log(error);
-            })
-
-            this.setState({ loginEmail: e.target.value });
-            this.setState({ loginSubmitClicked: false})
-        }
-        if (loginEmail === '' && signUpEmail !== '' && signUpSubmitClicked === true) {
-            data = this.state.signUpForm;
-            fetch('/api/v1/logout', {
-                method: 'POST',
-                body: JSON.stringify({
-                    username: data.email,
-                    password: data.password
-                })
-            }).then(response => {
-                console.log(response)
-            }).catch(error => {
-                console.log(error);
-            })
-
-            this.setState({ signUpEmail: e.target.value });
-            this.setState({ signUpSubmitClicked: false });
-        }
-        */
     }
 
     render() {
         console.log(this.state);
         let isLoggedIn = this.state.isLoggedIn;
         let username = this.state.signedInUsername;
-        /*
-        let loginEmail = this.state.loginForm.email;
-        let signUpEmail = this.state.signUpForm.email;
-        let loginSubmitClicked = this.state.loginSubmitClicked;
-        let signUpSubmitClicked = this.state.signUpSubmitClicked;
 
-        let signedIn;
-        if (loginEmail !== '' && signUpEmail === '' && loginSubmitClicked === true) {
-            signedIn = loginEmail;
-        } else if (loginEmail === '' && signUpEmail !== '' && signUpSubmitClicked === true) {
-            signedIn = signUpEmail;
-        } else {
-            signedIn = undefined;
-        }
-        */
-
-        if (
-            //signedIn === undefined
-            isLoggedIn === false
-            ) {
+        if (isLoggedIn === false) {
             return (
                 <nav className="navbar navbar-expand-sm navbar-dark">
                     <a href='/' className="nav_brand">
