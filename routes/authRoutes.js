@@ -11,13 +11,16 @@ router.get('/api/v1/register', (req, res) => {
 
 router.post("/api/v1/register", (req, res) => {
     console.log(req.body);
-    let newUser = new User({ username: req.body.username });
+    const username = req.body.usernamel;
+    const password = req.body.password;
+
+    let newUser = new User({ username });
 
     if (req.body.adminCode === adminSecretCode) {
         newUser.isAdmin = true;
     }
 
-    User.register(newUser, req.body.password, (err, user) => {
+    User.register(newUser, password, (err, user) => {
         if (err) {
             console.log(err);
             return res.redirect("/");
@@ -43,7 +46,8 @@ router.post("/api/v1/login", passport.authenticate('local'), (req, res) => {
         }
 
         res.status(200).send({
-            loginSuccess: req.user.username,
+            loggedIn: true,
+            username: req.user.username,
             isAdmin: req.user.isAdmin,
             sendDB
         });
@@ -53,7 +57,10 @@ router.post("/api/v1/login", passport.authenticate('local'), (req, res) => {
 router.get("/api/v1/logout", (req, res) => {
     const logOutUser = req.user.username;
     req.logout();
-    res.status(200).send({ logoutSucess: logOutUser });
+    res.status(200).send({
+        loggedIn: false,
+        username: logOutUser
+     });
 });
 
 module.exports = router;
