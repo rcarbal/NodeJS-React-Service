@@ -1,7 +1,7 @@
 const express = require('express'),
     User = require('../models/user'),
     passport = require("passport"),
-    { adminSecretCode } = require('../config/keys'),
+    { adminSecretCode } = require('../config/dev'),
     { queryAllCompanies } = require('../database/database');
 router = express.Router();
 
