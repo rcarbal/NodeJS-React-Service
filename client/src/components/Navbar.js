@@ -28,22 +28,27 @@ class Navbar extends React.Component {
     }
 
     onLoginSubmit = () => {
+        let data = this.state.loginForm
         let email = this.state.loginForm.email;
         let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
-        let URL = '/api/v1/login';
+
+        console.log(data)
 
         if(emailRegex.test(email) === false && email !== '') {
             alert('Please enter a valid email address.');
         } else {
+            fetch('/api/v1/login', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: data.email,
+                    password: data.password 
+                })
+            }).then(response => {
+                console.log(response);
+            }).catch(error => console.log(`Error ===== ${error}`));
+
             this.setState({ dialogVisible: false });
             this.setState({ loginSubmitClicked: true });
-
-            /*
-            fetch(URL, {
-                method: 'POST',
-                body: 
-            })
-            */
             console.log(this.state.loginForm.email);
         }
     }
@@ -67,10 +72,10 @@ class Navbar extends React.Component {
         } else {
             fetch('/api/v1/register', {
                 method: 'POST',
-                body: {
-                    username: JSON.stringify(data.email),
-                    password: JSON.stringify(data.password)
-                }
+                body: JSON.stringify({
+                    username: data.email,
+                    password: data.password
+                })
             }).then(response => {
                 console.log(response);
             }).catch(error => console.log('Error: ', error))
@@ -84,16 +89,43 @@ class Navbar extends React.Component {
     onLogout(e) {
         e.preventDefault();
 
+        let data;
         let loginEmail = this.state.loginForm.email;
         let signUpEmail = this.state.signUpForm.email;
         let loginSubmitClicked = this.state.loginSubmitClicked;
         let signUpSubmitClicked = this.state.signUpSubmitClicked;
 
         if (loginEmail !== '' && signUpEmail === '' && loginSubmitClicked === true) {
+            data = this.state.loginForm;
+            fetch('/api/v1/logout', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: data.email,
+                    password: data.password
+                })
+            }).then(response => {
+                console.log(response)
+            }).catch(error => {
+                console.log(error);
+            })
+
             this.setState({ loginEmail: e.target.value });
             this.setState({ loginSubmitClicked: false})
         }
         if (loginEmail === '' && signUpEmail !== '' && signUpSubmitClicked === true) {
+            data = this.state.signUpForm;
+            fetch('/api/v1/logout', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: data.email,
+                    password: data.password
+                })
+            }).then(response => {
+                console.log(response)
+            }).catch(error => {
+                console.log(error);
+            })
+
             this.setState({ signUpEmail: e.target.value });
             this.setState({ signUpSubmitClicked: false });
         }
@@ -143,13 +175,13 @@ class Navbar extends React.Component {
                                 style={{margin: '3px', outline: '0'}}>
                                 Login
                             </button>
+                            <Form>
                                 <Dialog
                                     title="Login"
                                     visible={ this.state.dialogVisible }
                                     onCancel={ () => this.setState({ dialogVisible: false }) }
                                 >
-                                <Dialog.Body>
-                                    <Form model={this.state.loginForm} onSubmit={this.onLoginSubmit}>
+                                    <Dialog.Body>
                                         <Form.Item label="Email Address" labelWidth="120">
                                             <Input 
                                                 type='email'
@@ -162,18 +194,17 @@ class Navbar extends React.Component {
                                                 value={this.state.loginForm.password} 
                                             />
                                         </Form.Item>
-                                    </Form>
-                                </Dialog.Body>
-            
-                                <Dialog.Footer className="dialog-footer">
-                                    <button 
-                                        action="/api/v1/login" 
-                                        method="POST"
-                                        className='button button-primary'>
-                                        Submit
-                                    </button>
-                                </Dialog.Footer>
-                            </Dialog>
+                                    </Dialog.Body>
+                
+                                    <Dialog.Footer className="dialog-footer">
+                                        <Button 
+                                            onClick={this.onLoginSubmit.bind(this)}
+                                            className='button button-primary'>
+                                            Submit
+                                        </Button>
+                                    </Dialog.Footer>
+                                </Dialog>
+                            </Form>
                         </div>
                         
                         <div className='nav-item'>
