@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Dialog, Form, Input } from 'element-react/next';
+import { Dialog, Form, Input, Button } from 'element-react/next';
 
 import '../Smooth.css'
 
@@ -54,19 +54,26 @@ class Navbar extends React.Component {
     }
 
     onSignUpSubmit(event) {
-        event.preventDefault();
-
+        event.preventDefault(); 
+        let data = this.state.signUpForm;
         let email = this.state.signUpForm.email;
+        console.log(email);
         let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
-        const data = new FormData(event.target);
+
+        console.log(data);
 
         if(emailRegex.test(email) === false && email !== '') {
             alert('Please enter a valid email address.');
         } else {
             fetch('/api/v1/register', {
                 method: 'POST',
-                body: data
-            })
+                body: {
+                    username: JSON.stringify(data.email),
+                    password: JSON.stringify(data.password)
+                }
+            }).then(response => {
+                console.log(response);
+            }).catch(error => console.log('Error: ', error))
 
             this.setState({ dialogVisible2: false });
             this.setState({ signUpSubmitClicked: true });
@@ -176,13 +183,13 @@ class Navbar extends React.Component {
                                 style={{marginTop: '1px', margin: '3px', outline: '0'}}>
                                 Sign Up
                             </button>
+                            <Form>
                                 <Dialog
                                     title="Sign Up"
                                     visible={ this.state.dialogVisible2 }
                                     onCancel={ () => this.setState({ dialogVisible2: false }) }
                                 >
-                                <Dialog.Body>
-                                    <Form model={this.state.signUpForm} onSubmit={this.onSignUpSubmit.bind(this)}>
+                                    <Dialog.Body>
                                         <Form.Item label="Email Address" labelWidth="120">
                                             <Input 
                                                 type='email'
@@ -191,18 +198,19 @@ class Navbar extends React.Component {
                                             />
                                         </Form.Item>
                                         <Form.Item label="Password" labelWidth="120">
-                                            <Input value={this.state.signUpForm.password}></Input>
+                                            <Input value={this.state.signUpForm.password} />
                                         </Form.Item>
-                                    </Form>
-                                </Dialog.Body>
+                                    </Dialog.Body>
             
-                                <Dialog.Footer className="dialog-footer">
-                                    <button 
-                                        className='button button-primary'>
-                                        Submit
-                                    </button>
-                                </Dialog.Footer>
-                            </Dialog>
+                                    <Dialog.Footer className="dialog-footer">
+                                        <Button 
+                                            className='button button-primary'
+                                            onClick={this.onSignUpSubmit.bind(this)}>
+                                            Submit
+                                        </Button>
+                                    </Dialog.Footer>
+                                </Dialog>
+                            </Form>
                         </div>
                     </div>
                 </nav>
