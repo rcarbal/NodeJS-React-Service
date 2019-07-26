@@ -44,6 +44,9 @@ class Navbar extends React.Component {
         } else {
             fetch('/api/v1/login', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                     username: data.email,
                     password: data.password 
@@ -75,13 +78,18 @@ class Navbar extends React.Component {
         console.log(email);
         let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
 
+        console.log(`TYPE OF DATA === ${typeof data}`)
         console.log(data);
+        console.log(`TYPE OF DATA.email === ${typeof data.email}`)
 
         if(emailRegex.test(email) === false && email !== '') {
             alert('Please enter a valid email address.');
         } else {
             fetch('/api/v1/register', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                     username: data.email,
                     password: data.password
