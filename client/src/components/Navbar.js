@@ -17,6 +17,7 @@ class Navbar extends React.Component {
             email: '',
             password: ''
         },
+        isLoggedIn: false,
         loginSubmitClicked: false,
         signUpSubmitClicked: false
     }
@@ -36,7 +37,7 @@ class Navbar extends React.Component {
         let data = this.state.loginForm
         let email = this.state.loginForm.email;
         let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
-
+        const self = this;
         console.log(data)
 
         if(emailRegex.test(email) === false && email !== '') {
@@ -52,8 +53,15 @@ class Navbar extends React.Component {
                     password: data.password 
                 })
             }).then(response => {
-                console.log(response);
-            }).catch(error => console.log(`Error ===== ${error}`));
+                return response.json();
+            })
+            .then(myJson => {
+                self.setState({ isLoggedIn: myJson.loggedIn });
+                console.log(`MYJSON.LOGGEDIN ==== ${myJson.loggedIn}`)
+                console.log(`THIS.STATE.ISLOGGEDIN === ${this.state.isLoggedIn}`)
+                console.log(JSON.stringify(myJson));
+            })
+            .catch(error => console.log(`Error ===== ${error}`));
 
             this.setState({ dialogVisible: false });
             this.setState({ loginSubmitClicked: true });
