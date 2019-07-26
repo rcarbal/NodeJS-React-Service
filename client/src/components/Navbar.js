@@ -2,25 +2,29 @@ import React from 'react';
 
 import { Dialog, Form, Input, Button } from 'element-react/next';
 
-import '../Smooth.css'
+import '../Smooth.css';
 
 class Navbar extends React.Component {
    
     state = {
-        dialogVisible: false,
-        dialogVisible2: false,
         loginForm: {
             email: '',
             password: '',
             adminCode: ''
         },
+
         signUpForm: {
             email: '',
             password: '',
             adminCode: ''
         },
+
         isLoggedIn: false,
         signedInUsername: '',
+        isAdmin: false,
+
+        dialogVisible: false,
+        dialogVisible2: false,
         loginSubmitClicked: false,
         signUpSubmitClicked: false
     }
@@ -63,19 +67,21 @@ class Navbar extends React.Component {
             .then(myJson => {
                 self.setState({ isLoggedIn: myJson.loggedIn });
                 self.setState({ signedInUsername: myJson.username });
+                self.setState({ isAdmin: myJson.isAdmin });
                 console.log(`MYJSON.LOGGEDIN ==== ${myJson.loggedIn}`)
                 console.log(`THIS.STATE.ISLOGGEDIN === ${this.state.isLoggedIn}`)
                 console.log(`MYJSON.USERNAME === ${myJson.username}`)
                 console.log(myJson.username);
                 console.log(`THIS.STATE.SIGNEDINUSERNAME`);
-                console.log(this.state.signedInUsername)
+                console.log(this.state.signedInUsername);
+                console.log(`MYJSON.ISADMIN === ${myJson.isAdmin}`)
+                console.log(`THIS.STATE.ISADMIN === ${this.state.isAdmin}`)
                 console.log(JSON.stringify(myJson));
             })
             .catch(error => console.log(`Error ===== ${error}`));
 
             this.setState({ dialogVisible: false });
             this.setState({ loginSubmitClicked: true });
-            console.log(this.state.loginForm.email);
         }
     }
 
@@ -87,6 +93,11 @@ class Navbar extends React.Component {
     signUpPasswordInput(signUpPassword) {
         this.state.signUpForm.password = signUpPassword;
         this.setState({ signUpPassword: signUpPassword });
+    }
+
+    signUpAdminInput(adminCode) {
+        this.state.signUpForm.adminCode = adminCode;
+        this.setState({ adminCode: adminCode });
     }
 
     onSignUpSubmit(event) {
@@ -110,7 +121,8 @@ class Navbar extends React.Component {
                 },
                 body: JSON.stringify({
                     username: data.email,
-                    password: data.password
+                    password: data.password,
+                    adminCode: data.adminCode
                 })
             }).then(response => {
                 console.log(response);
@@ -146,7 +158,6 @@ class Navbar extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         let isLoggedIn = this.state.isLoggedIn;
         let username = this.state.signedInUsername;
 
@@ -200,10 +211,6 @@ class Navbar extends React.Component {
                                                 onChange={this.loginPasswordInput.bind(this)}
                                             />
                                         </Form.Item>
-                                        <div className="dropdown-divider"></div>
-                                        <Form.Item label='Admin Code' labelWidth="120">
-                                            <Input></Input>
-                                        </Form.Item>
                                     </Dialog.Body>
                                     
                                     <Dialog.Footer className="dialog-footer">
@@ -243,6 +250,14 @@ class Navbar extends React.Component {
                                                 type='password'
                                                 value={this.state.signUpForm.password} 
                                                 onChange={this.signUpPasswordInput.bind(this)}
+                                            />
+                                        </Form.Item>
+                                        <div className="dropdown-divider"></div>
+                                        <Form.Item label='Admin Code' labelWidth="120">
+                                            <Input 
+                                                type='password'
+                                                value={this.state.signUpForm.adminCode}
+                                                onChange={this.signUpAdminInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Dialog.Body>
