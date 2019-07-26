@@ -107,6 +107,8 @@ class Navbar extends React.Component {
         console.log(email);
         let emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
 
+        const self = this;
+
         console.log(`TYPE OF DATA === ${typeof data}`)
         console.log(data);
         console.log(`TYPE OF DATA.email === ${typeof data.email}`)
@@ -125,7 +127,12 @@ class Navbar extends React.Component {
                     adminCode: data.adminCode
                 })
             }).then(response => {
-                console.log(response);
+                return response.json();
+            }).then(myJson => {
+                self.setState({ isLoggedIn: myJson.loggedIn });
+                self.setState({ signedInUsername: myJson.user });
+                self.setState({ isAdmin: myJson.isAdmin });
+                console.log(JSON.stringify(myJson))
             }).catch(error => console.log('Error: ', error))
 
             this.setState({ dialogVisible2: false });
