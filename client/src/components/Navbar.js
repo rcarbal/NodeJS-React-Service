@@ -27,6 +27,11 @@ class Navbar extends React.Component {
         this.setState({ loginEmail : loginEmail });
     }
 
+    loginPasswordInput(loginPassword) {
+        this.state.loginForm.password = loginPassword;
+        this.setState({ loginPassword: loginPassword });
+    }
+
     onLoginSubmit = () => {
         let data = this.state.loginForm
         let email = this.state.loginForm.email;
@@ -56,6 +61,11 @@ class Navbar extends React.Component {
     signUpEmailInput(signUpEmail) {
         this.state.signUpForm.email = signUpEmail;
         this.setState({ signUpEmail: signUpEmail });
+    }
+
+    signUpPasswordInput(signUpPassword) {
+        this.state.signUpForm.password = signUpPassword;
+        this.setState({ signUpPassword: signUpPassword });
     }
 
     onSignUpSubmit(event) {
@@ -191,7 +201,9 @@ class Navbar extends React.Component {
                                         </Form.Item>
                                         <Form.Item label="Password" labelWidth="120">
                                             <Input 
+                                                type='password'
                                                 value={this.state.loginForm.password} 
+                                                onChange={this.loginPasswordInput.bind(this)}
                                             />
                                         </Form.Item>
                                     </Dialog.Body>
@@ -229,7 +241,11 @@ class Navbar extends React.Component {
                                             />
                                         </Form.Item>
                                         <Form.Item label="Password" labelWidth="120">
-                                            <Input value={this.state.signUpForm.password} />
+                                            <Input 
+                                                type='password'
+                                                value={this.state.signUpForm.password} 
+                                                onChange={this.signUpPasswordInput.bind(this)}
+                                            />
                                         </Form.Item>
                                     </Dialog.Body>
             
