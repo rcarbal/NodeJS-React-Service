@@ -11,13 +11,16 @@ class Navbar extends React.Component {
         dialogVisible2: false,
         loginForm: {
             email: '',
-            password: ''
+            password: '',
+            adminCode: ''
         },
         signUpForm: {
             email: '',
-            password: ''
+            password: '',
+            adminCode: ''
         },
         isLoggedIn: false,
+        signedInUsername: '',
         loginSubmitClicked: false,
         signUpSubmitClicked: false
     }
@@ -32,6 +35,8 @@ class Navbar extends React.Component {
         this.state.loginForm.password = loginPassword;
         this.setState({ loginPassword: loginPassword });
     }
+
+
 
     onLoginSubmit = () => {
         let data = this.state.loginForm
@@ -57,8 +62,13 @@ class Navbar extends React.Component {
             })
             .then(myJson => {
                 self.setState({ isLoggedIn: myJson.loggedIn });
+                self.setState({ signedInUsername: myJson.username });
                 console.log(`MYJSON.LOGGEDIN ==== ${myJson.loggedIn}`)
                 console.log(`THIS.STATE.ISLOGGEDIN === ${this.state.isLoggedIn}`)
+                console.log(`MYJSON.USERNAME === ${myJson.username}`)
+                console.log(myJson.username);
+                console.log(`THIS.STATE.SIGNEDINUSERNAME`);
+                console.log(this.state.signedInUsername)
                 console.log(JSON.stringify(myJson));
             })
             .catch(error => console.log(`Error ===== ${error}`));
@@ -115,6 +125,17 @@ class Navbar extends React.Component {
     onLogout(e) {
         e.preventDefault();
 
+        let isLoggedIn = this.state.isLoggedIn;
+        let username = this.state.signedInUsername;
+
+        
+
+        this.setState({ isLoggedIn: false });
+        this.setState({ username: '' });
+
+        console.log(this.state);
+
+        /*
         let data;
         let loginEmail = this.state.loginForm.email;
         let signUpEmail = this.state.signUpForm.email;
@@ -155,9 +176,13 @@ class Navbar extends React.Component {
             this.setState({ signUpEmail: e.target.value });
             this.setState({ signUpSubmitClicked: false });
         }
+        */
     }
 
     render() {
+        let isLoggedIn = this.state.isLoggedIn;
+        let username = this.state.signedInUsername;
+        /*
         let loginEmail = this.state.loginForm.email;
         let signUpEmail = this.state.signUpForm.email;
         let loginSubmitClicked = this.state.loginSubmitClicked;
@@ -171,8 +196,12 @@ class Navbar extends React.Component {
         } else {
             signedIn = undefined;
         }
+        */
 
-        if (signedIn === undefined) {
+        if (
+            //signedIn === undefined
+            isLoggedIn === false
+            ) {
             return (
                 <nav className="navbar navbar-expand-sm navbar-dark">
                     <a href='/' className="nav_brand">
@@ -201,7 +230,7 @@ class Navbar extends React.Component {
                                 style={{margin: '3px', outline: '0'}}>
                                 Login
                             </button>
-                            <Form>
+                            <Form labelPosition='top'>
                                 <Dialog
                                     title="Login"
                                     visible={ this.state.dialogVisible }
@@ -222,8 +251,12 @@ class Navbar extends React.Component {
                                                 onChange={this.loginPasswordInput.bind(this)}
                                             />
                                         </Form.Item>
+                                        <div className="dropdown-divider"></div>
+                                        <Form.Item label='Admin Code' labelWidth="120">
+                                            <Input></Input>
+                                        </Form.Item>
                                     </Dialog.Body>
-                
+                                    
                                     <Dialog.Footer className="dialog-footer">
                                         <Button 
                                             onClick={this.onLoginSubmit.bind(this)}
@@ -301,7 +334,7 @@ class Navbar extends React.Component {
     
                     <div className='collapse navbar-collapse justify-content-end' id="navbarSupportedContent">
                         <div className='nav-item' style={{margin: '3px', color: '#ABABC9'}}>
-                            Signed in with '{signedIn}'
+                            Signed in with '{username}'
                         </div>
                         <div className='nav-item'>
                             <button 
