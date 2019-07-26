@@ -125,15 +125,24 @@ class Navbar extends React.Component {
     onLogout(e) {
         e.preventDefault();
 
-        let isLoggedIn = this.state.isLoggedIn;
-        let username = this.state.signedInUsername;
-
-        
-
-        this.setState({ isLoggedIn: false });
-        this.setState({ username: '' });
-
-        console.log(this.state);
+        this.setState({ 
+            isLoggedIn: false, 
+            signedInUsername: e.target.value,
+            loginForm: {
+                email: e.target.value,
+                password: e.target.value,
+                adminCode: e.target.value
+            },
+            signUpForm: {
+                email: e.target.value,
+                password: e.target.value,
+                adminCode: e.target.value
+            },
+            loginEmail: e.target.value,
+            loginPassword: e.target.value,
+            loginSubmitClicked: false,
+            signUpSubmitClicked: false
+        });
 
         /*
         let data;
@@ -180,6 +189,7 @@ class Navbar extends React.Component {
     }
 
     render() {
+        console.log(this.state);
         let isLoggedIn = this.state.isLoggedIn;
         let username = this.state.signedInUsername;
         /*
