@@ -182,6 +182,7 @@ class InfoContainer extends React.Component {
     };
     
     render(){
+        console.log('SUCCESSFULLY RENDERED')
         return (
             <div>
                 <Form ref='form' model={this.state} rules={this.state.rules}>

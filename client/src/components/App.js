@@ -62,6 +62,7 @@ class App extends React.Component {
     }
 
     startForm = () => {
+        console.log('START FORM')
        this.setState({start: true});
     }
 
@@ -163,7 +164,6 @@ class App extends React.Component {
             if (isAdmin === true) {
                 pageContent = (
                     <div>
-                        <Navbar saveUserData={this.saveUserData}/>
                         <header className="site-header">
                             <div className="container">
                                 <div className="site-header-inner">
@@ -202,7 +202,6 @@ class App extends React.Component {
             } else {
                 pageContent = (
                     <div>
-                        <Navbar saveUserData={this.saveUserData}/>
                         <header className="site-header">
                             <div className="container">
                                 <div className="site-header-inner">
@@ -248,7 +247,6 @@ class App extends React.Component {
         if (this.state.start) {
             headerContent = (
                 <div>
-                    <Navbar saveUserData={this.saveUserData}/>
                     <Menu defaultActive="1" mode="horizontal" className='border-top border-light container-fluid' style={{background: '#11103E'}}>
                         <Steps active={this.state.active} style={{marginLeft: '22%', padding: '10px'}} finishStatus="success">
                             <Steps.Step title="Company & Contact"></Steps.Step>
@@ -262,6 +260,7 @@ class App extends React.Component {
 
         return (
             <div style={{fontFamily: 'Helvetica Neue, helvetica'}}>
+                <Navbar saveUserData={this.saveUserData}/>
                 { headerContent }
                 { pageContent }
                 <Footer />

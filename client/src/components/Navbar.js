@@ -152,6 +152,17 @@ class Navbar extends React.Component {
     onLogout(e) {
         e.preventDefault();
 
+        fetch('/api/v1/logout', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        });
+
         this.setState({ 
             isLoggedIn: false, 
             signedInUsername: e.target.value,
