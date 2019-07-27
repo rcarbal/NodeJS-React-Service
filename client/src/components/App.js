@@ -62,7 +62,6 @@ class App extends React.Component {
     }
 
     startForm = () => {
-        console.log('START FORM')
        this.setState({start: true});
     }
 
@@ -189,7 +188,7 @@ class App extends React.Component {
                                             <div className="hero-form field field-grouped">
                                                 <ReactJson src={this.state.userData.adminData.sendDB} />
                                                 <div className="control">
-                                                    <a className="button button-primary button-block" onClick={this.startForm} href="/">Start your form</a>
+                                                    <button className="button button-primary button-block" onClick={this.startForm}>Start your form</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -228,7 +227,7 @@ class App extends React.Component {
                                             <p className="hero-paragraph">SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
                                             <div className="hero-form field field-grouped">
                                                 <div className="control">
-                                                    <a className="button button-primary button-block" onClick={this.startForm} href="/">Start your form</a>
+                                                    <button className="button button-primary button-block" onClick={this.startForm}>Start your form</button>
                                                 </div>
                                             </div>
                                         </div>
