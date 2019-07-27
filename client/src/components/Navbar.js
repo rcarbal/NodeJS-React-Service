@@ -29,6 +29,10 @@ class Navbar extends React.Component {
         signUpSubmitClicked: false
     }
 
+    saveUserData() {
+        let userData = this.state;
+        this.props.saveUserData(userData);
+    }
     
     loginEmailInput(loginEmail) {
         this.state.loginForm.email = loginEmail;
@@ -77,6 +81,7 @@ class Navbar extends React.Component {
                 console.log(`MYJSON.ISADMIN === ${myJson.isAdmin}`)
                 console.log(`THIS.STATE.ISADMIN === ${this.state.isAdmin}`)
                 console.log(JSON.stringify(myJson));
+                this.saveUserData();
             })
             .catch(error => console.log(`Error ===== ${error}`));
 
@@ -133,6 +138,7 @@ class Navbar extends React.Component {
                 self.setState({ signedInUsername: myJson.user });
                 self.setState({ isAdmin: myJson.isAdmin });
                 console.log(JSON.stringify(myJson))
+                this.saveUserData();
             }).catch(error => console.log('Error: ', error))
 
             this.setState({ dialogVisible2: false });
