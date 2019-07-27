@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactJson from 'react-json-view';
 
 import { Steps, 
          Menu, 
@@ -73,6 +74,7 @@ class App extends React.Component {
         let pageContent;
         let headerContent;
         let activeContent = this.state.active;
+        let isAdmin = this.state.userData.isAdmin;
 
         if (this.state.start){
             if (activeContent === 1) {
@@ -158,49 +160,90 @@ class App extends React.Component {
                 )
             }
         } else {
-            pageContent = (
-                <div>
-                    <Navbar saveUserData={this.saveUserData}/>
-                    <header className="site-header">
-                        <div className="container">
-                            <div className="site-header-inner">
-                                <div className="brand header-brand">
-                                    <h1 className="m-0">
-                                    <a href='/' className="brand">
-                                        <span className="fa-stack">
-                                            <i className="far fa-circle fa-stack-2x"></i>
-                                            <i className="far fa-paper-plane fa-stack-1x"></i>
-                                        </span>
-                                    </a>
-                                    </h1>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
-
-                    <main>  
-                        <section className="hero">
+            if (isAdmin === true) {
+                pageContent = (
+                    <div>
+                        <Navbar saveUserData={this.saveUserData}/>
+                        <header className="site-header">
                             <div className="container">
-                                <div className="hero-inner">
-						            <div className="hero-copy">
-	                                    <h2 className="hero-title mt-0">Leave the paperwork to us.</h2>
-	                                    <p className="hero-paragraph">SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
-							            <div className="hero-form field field-grouped">
-							            	<div className="control">
-							            		<a className="button button-primary button-block" onClick={this.startForm} href="#">Start your form</a>
-							            	</div>
-							            </div>
+                                <div className="site-header-inner">
+                                    <div className="brand header-brand">
+                                        <h1 className="m-0">
+                                            <a href='/' className="brand">
+                                                <span className="fa-stack">
+                                                    <i className="far fa-circle fa-stack-2x"></i>
+                                                    <i className="far fa-paper-plane fa-stack-1x"></i>
+                                                </span>
+                                            </a>
+                                        </h1>
                                     </div>
-                                    
-						            <div className="hero-illustration">
-                                        <img src='filingPapers.svg' className='card-image-top' alt='Filing papers' />   
-                                    </div> 
                                 </div>
                             </div>
-                        </section>
-                    </main>
-                </div>
-            )
+                        </header>
+
+                        <main>  
+                            <section className="hero">
+                                <div className="container">
+                                    <div className="hero-inner">
+                                        <div className="hero-copy">
+                                            <div className="hero-form field field-grouped">
+                                                <ReactJson src={this.state.userData.adminData.sendDB} />
+                                                <div className="control">
+                                                    <a className="button button-primary button-block" onClick={this.startForm} href="/">Start your form</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </main>
+                    </div>
+                )
+            } else {
+                pageContent = (
+                    <div>
+                        <Navbar saveUserData={this.saveUserData}/>
+                        <header className="site-header">
+                            <div className="container">
+                                <div className="site-header-inner">
+                                    <div className="brand header-brand">
+                                        <h1 className="m-0">
+                                        <a href='/' className="brand">
+                                            <span className="fa-stack">
+                                                <i className="far fa-circle fa-stack-2x"></i>
+                                                <i className="far fa-paper-plane fa-stack-1x"></i>
+                                            </span>
+                                        </a>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+    
+                        <main>  
+                            <section className="hero">
+                                <div className="container">
+                                    <div className="hero-inner">
+                                        <div className="hero-copy">
+                                            <h2 className="hero-title mt-0">Leave the paperwork to us.</h2>
+                                            <p className="hero-paragraph">SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
+                                            <div className="hero-form field field-grouped">
+                                                <div className="control">
+                                                    <a className="button button-primary button-block" onClick={this.startForm} href="/">Start your form</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="hero-illustration">
+                                            <img src='filingPapers.svg' className='card-image-top' alt='Filing papers' />   
+                                        </div> 
+                                    </div>
+                                </div>
+                            </section>
+                        </main>
+                    </div>
+                )
+            }
         }
         if (this.state.start) {
             headerContent = (

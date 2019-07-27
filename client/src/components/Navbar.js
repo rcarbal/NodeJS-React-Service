@@ -22,6 +22,7 @@ class Navbar extends React.Component {
         isLoggedIn: false,
         signedInUsername: '',
         isAdmin: false,
+        adminData: {},
 
         dialogVisible: false,
         dialogVisible2: false,
@@ -72,6 +73,7 @@ class Navbar extends React.Component {
                 self.setState({ isLoggedIn: myJson.loggedIn });
                 self.setState({ signedInUsername: myJson.username });
                 self.setState({ isAdmin: myJson.isAdmin });
+                self.setState({ adminData: myJson })
                 console.log(`MYJSON.LOGGEDIN ==== ${myJson.loggedIn}`)
                 console.log(`THIS.STATE.ISLOGGEDIN === ${this.state.isLoggedIn}`)
                 console.log(`MYJSON.USERNAME === ${myJson.username}`)
