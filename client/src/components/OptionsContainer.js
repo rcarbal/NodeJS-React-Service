@@ -53,7 +53,7 @@ class OptionsContainer extends React.Component {
         // current array of servicesList
         const servicesList = this.state.servicesList
         let index;
-
+        
         // check if the check box is checked or unchecked
         if (e.target.checked) {
             // add the numerical value of the checkbox to servicesList array
@@ -252,12 +252,14 @@ class OptionsContainer extends React.Component {
                                     <Checkbox.Group value={this.state.servicesList} fill='#4950F6'>
                                         <Checkbox.Button
                                             value={statementOfOrganizer}
-                                            onChange={this.onServicesSelect.bind(this)}>
+                                            onChange={this.onServicesSelect.bind(this)}
+                                            checked={true}>
                                             Statement of Organizer
                                         </Checkbox.Button>
                                         <Checkbox.Button 
                                             value={taxIDNumberApp}
-                                            onChange={this.onServicesSelect.bind(this)}>
+                                            onChange={this.onServicesSelect.bind(this)}
+                                            checked={true}>
                                             Tax ID Number - EIN Application
                                         </Checkbox.Button>
                                         <Checkbox.Button 
