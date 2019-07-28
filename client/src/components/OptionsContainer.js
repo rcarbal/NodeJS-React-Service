@@ -12,7 +12,10 @@ class OptionsContainer extends React.Component {
         goodStandingCopies: {},
         goodStandingCopiesWApostille: {},
         deliveryOption: [],
-        servicesList: [],
+        servicesList: [
+            { value: "Statement of Organizer", price: 49 },
+            { value: 'Tax ID Number - EIN Application', price: 99 }
+        ],
         requests: '',
         paymentTotal: 0
     }
