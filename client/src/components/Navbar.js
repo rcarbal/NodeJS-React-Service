@@ -257,7 +257,7 @@ class Navbar extends React.Component {
                                 style={{marginTop: '1px', margin: '3px', outline: '0'}}>
                                 Sign Up
                             </button>
-                            <Form>
+                            <Form labelPosition='top'>
                                 <Dialog
                                     title="Sign Up"
                                     visible={ this.state.dialogVisible2 }
@@ -278,7 +278,7 @@ class Navbar extends React.Component {
                                                 onChange={this.signUpPasswordInput.bind(this)}
                                             />
                                         </Form.Item>
-                                        <div className="dropdown-divider"></div>
+                                        <div className="dropdown-divider" style={{margin: '5%'}}></div>
                                         <Form.Item label='Admin Code' labelWidth="120">
                                             <Input 
                                                 type='password'
