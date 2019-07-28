@@ -433,9 +433,6 @@ class PayContainer extends React.Component {
                         <div className='col'>
                         </div>
                     </div>
-
-                    <Footer />
-
                 </div>
             )
         }
