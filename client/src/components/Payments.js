@@ -52,9 +52,7 @@ class Payments extends React.Component {
                 console.log(this.propsData);
                 this.saveToken();
             });
-        })/*.catch(
-            alert('Sorry, the request could not be completed. Please email us at support@smooth.legal to describe your problem.')
-        );*/
+        })
     };
 
     render() {
@@ -121,7 +119,7 @@ class Payments extends React.Component {
         if (tokenInfo === undefined) {
             return(
                 <StripeCheckout
-                    name='SmoothLegal Checkout'
+                    name='React-Node Service Checkout'
                     description='Pay for your LLC formation.'
                     stripeKey='pk_test_LDIkUEQ3WzsMPUFHtVRRpq6s00jN1E6PVE'
                     amount={this.propsData.paymentTotal * 100}

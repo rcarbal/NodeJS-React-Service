@@ -1,5 +1,5 @@
 /*
-    Smoothlegal Server main file.
+    React-Node Server main file.
 */
 
 
@@ -43,8 +43,6 @@ if (process.env.NODE_ENV === 'production') {
         if (req.header('x-forwarded-proto') !== 'https'){
             console.log("Inside https force ================================================");
             console.log(req.url);
-            console.log(`https://www.smooth.legal${req.url}`);
-            res.redirect(`https://www.smooth.legal${req.url}`);
         } else {
             next();
         }
@@ -61,7 +59,7 @@ if (process.env.NODE_ENV === 'production') {
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
-    console.log(`Started Smoothlegal server... 
+    console.log(`Started ReactNode server... 
     
     \nmachine: ${process.env.USERNAME}
     \nListening on port: ${port}`);

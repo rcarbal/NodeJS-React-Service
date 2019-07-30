@@ -1,10 +1,10 @@
 /** 
- * Completely clears the smoothlegal Mongo collections.
+ * Completely clears the React-Node Mongo collections.
 */
 
 const  mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
+mongoose.connect("mongodb://localhost/reactnode", { useNewUrlParser: true }, () => {
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");

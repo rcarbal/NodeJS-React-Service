@@ -12,13 +12,13 @@ function sendEmailOrder(data){
         if (process.env.USERNAME === "rcarb"){
             SEND_TO_EMAIL_ORDER = "ricardo.a.carballo@gmail.com";
         } else {
-            SEND_TO_EMAIL_ORDER = 'orders@smooth.legal';
+            SEND_TO_EMAIL_ORDER = 'ricardo.a.carballo@gmail.com';
         } 
         let html = emailOrderTemplate(data);        
 
         let email = {
             to: SEND_TO_EMAIL_ORDER,
-            from: 'orders@smooth.legal',
+            from: 'ricardo.a.carballo@gmail.com',
             subject: `Order for ${data.name} Application`   
         }
 
@@ -35,7 +35,7 @@ function sendEmailConfirmtaion(data) {
 
         const email = {
             to: SEND_TO_EMAIL_CONFIRMATION,
-            from: 'orders@smooth.legal',
+            from: 'ricardo.a.carballo@gmail.com',
             subject: `Purchase Confirmation for ${data.name} Application`,          
         }
 

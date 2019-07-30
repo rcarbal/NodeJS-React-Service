@@ -16,7 +16,7 @@ function sendEmail(email, callback) {
     // Set the email
     const emailData = {
         to: email.email,
-        from: 'orders@smooth.legal',
+        from: 'ricardo.carballo@gmail.com',
         subject: email.subject,
         text: email.data,
         html: `<strong>${email.data}</strong>`

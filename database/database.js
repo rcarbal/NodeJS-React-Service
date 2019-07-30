@@ -9,7 +9,7 @@ const Company = require("../models/company"),
 
 // Saves to company LLC information to database asynchronously. Returns a Promise.
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactnode", { useNewUrlParser: true }, () => {
     console.log("Connected to mongoDB!!!!");
 });
 

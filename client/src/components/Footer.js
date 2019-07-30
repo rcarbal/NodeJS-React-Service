@@ -13,7 +13,7 @@ class Footer extends React.Component {
                             </span>
                         </a>
                         <div className="row d-flex justify-content-center" style={{marginBottom: '12px'}}>
-                            &copy; 2019 SmoothLegal, all rights reserved
+                            &copy; 2019 React-Node Service, all rights reserved
                         </div>
                     </div>
                 </div>

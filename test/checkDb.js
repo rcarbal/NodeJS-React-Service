@@ -1,5 +1,5 @@
 /**
- Retrieves any informtion forint in the smoothlegal Mongo collections.
+ Retrieves any informtion forint in the React-Node Mongo collections.
 */
 
 const mongoose = require('mongoose'),
@@ -10,7 +10,7 @@ const mongoose = require('mongoose'),
     Request = require('../models/request');
 
     
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/smoothlegal", { useNewUrlParser: true }, () => {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactnode", { useNewUrlParser: true }, () => {
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");
     console.log("=============================================================================================================================");

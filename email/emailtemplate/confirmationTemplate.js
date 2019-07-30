@@ -313,7 +313,7 @@ module.exports = (data) => {
                                     </tr>
                                     <tr>
                                         <td class="content-block">
-                                            <h2 class="aligncenter">Thank you for using Smoothlegal</h2>
+                                            <h2 class="aligncenter">Thank you for using React-Node Service</h2>
                                         </td>
                                     </tr>
                                     <tr>
@@ -334,7 +334,7 @@ module.exports = (data) => {
                                     </tr>
                                     <tr>
                                         <td class="content-block aligncenter">
-                                            Smoothlegal llc.
+                                            React-Node Service llc.
                                         </td>
                                     </tr>
                                 </table>

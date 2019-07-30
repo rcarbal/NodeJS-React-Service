@@ -224,7 +224,7 @@ class App extends React.Component {
                                     <div className="hero-inner">
                                         <div className="hero-copy">
                                             <h2 className="hero-title mt-0">Leave the paperwork to us.</h2>
-                                            <p className="hero-paragraph">SmoothLegal helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
+                                            <p className="hero-paragraph">React-Node Service helps you to effortlessly create and file your prospective LLC. Fill out your info in minutes and we'll take care of the rest!</p>
                                             <div className="hero-form field field-grouped">
                                                 <div className="control">
                                                     <button className="button button-primary button-block" onClick={this.startForm}>Start your form</button>
