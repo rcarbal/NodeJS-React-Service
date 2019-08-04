@@ -15,7 +15,7 @@ React-Node Service is a Node Express application that uses ReactJS client.  The 
 - Email transactions use SendGrid API
 - Uses MongoDB database
 
-![image](https://user-images.githubusercontent.com/20021751/62164688-c2588180-b2d1-11e9-954e-4e714218b5c8.png)
+![image](https://user-images.githubusercontent.com/20021751/62429552-d67ef300-b6c4-11e9-843e-56119303f8e6.png)
 
 ![image](https://user-images.githubusercontent.com/20021751/62164765-e1efaa00-b2d1-11e9-8314-47dcd8cedef8.png)
 
